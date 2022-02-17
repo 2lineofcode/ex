@@ -28,38 +28,49 @@ mixin ExAlert {
   static void success({
     required BuildContext context,
     String svgAssetDir = 'assets/images/ic_dialog_success.svg',
-    String title = 'Sukses',
-    required String message,
+    bool showAsset = true,
+    String title = 'Success',
+    double titleTextSize = 18,
+    TextAlign titleTextAlign = TextAlign.center,
+    Color titleTextColor = Colors.black,
+    String message = '',
+    double messageTextSize = 13,
+    TextAlign messageTextAlign = TextAlign.center,
+    Color messageTextColor = Colors.blueGrey,
     bool isDismissible = false,
-    String btnYesText = 'Selesai',
-    Function()? onYes,
+    String btnOkText = 'Close',
+    Color? barrierColor = Colors.black54,
+    double cornerRadius = 8.0,
+    Function()? onOkPressed,
   }) {
     showDialog(
       context: context,
+      barrierDismissible: isDismissible,
+      barrierColor: barrierColor,
       builder: (context) {
         return AlertDialog(
-          // shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(cornerRadius))),
           // contentPadding: EdgeInsets.all(16),
           scrollable: true,
+
           content: VStack([
-            SvgPicture.asset(svgAssetDir, package: 'ex', width: 90, height: 90).centered(),
-            24.heightBox,
-            Center(
-              child: Text(
-                title,
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-                maxLines: 2,
-              ),
-            ),
+            if (showAsset)
+              VStack([
+                SvgPicture.asset(svgAssetDir, package: 'ex', width: 90, height: 90).centered(),
+                24.heightBox,
+              ]),
+            Text(
+              title,
+              style: TextStyle(fontSize: titleTextSize, fontWeight: FontWeight.bold, color: titleTextColor),
+              textAlign: titleTextAlign,
+              maxLines: 2,
+            ).w(double.infinity),
             12.heightBox,
-            Center(
-              child: Text(
-                message,
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.blueGrey),
-                textAlign: TextAlign.center,
-              ),
-            ),
+            Text(
+              message,
+              style: TextStyle(fontSize: messageTextSize, fontWeight: FontWeight.normal, color: messageTextColor),
+              textAlign: messageTextAlign,
+            ).w(double.infinity),
           ]),
           actions: [
             Row(
@@ -67,8 +78,8 @@ mixin ExAlert {
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
-                  onPressed: onYes ?? () => Navigator.of(context).pop(),
-                  child: Text(btnYesText),
+                  onPressed: onOkPressed ?? () => Navigator.of(context).pop(),
+                  child: Text(btnOkText),
                 ).pOnly(left: 12, right: 12, bottom: 12).h(55).expand(),
               ],
             ),
@@ -90,38 +101,48 @@ mixin ExAlert {
   static void error({
     required BuildContext context,
     String svgAssetDir = 'assets/images/ic_dialog_error.svg',
-    String title = 'Gagal',
-    required String message,
+    bool showAsset = true,
+    String title = 'Failed',
+    double titleTextSize = 18,
+    TextAlign titleTextAlign = TextAlign.center,
+    Color titleTextColor = Colors.black,
+    String message = '',
+    double messageTextSize = 13,
+    TextAlign messageTextAlign = TextAlign.center,
+    Color messageTextColor = Colors.blueGrey,
     bool isDismissible = false,
-    String btnYesText = 'Tutup',
+    String btnYesText = 'Close',
+    Color? barrierColor = Colors.black54,
+    double cornerRadius = 8.0,
     Function()? onYes,
   }) {
     showDialog(
       context: context,
+      barrierDismissible: isDismissible,
+      barrierColor: barrierColor,
       builder: (context) {
         return AlertDialog(
-          // shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(cornerRadius))),
           // contentPadding: EdgeInsets.all(16),
           scrollable: true,
           content: VStack([
-            SvgPicture.asset(svgAssetDir, package: 'ex', width: 90, height: 90).centered(),
-            24.heightBox,
-            Center(
-              child: Text(
-                title,
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-                maxLines: 2,
-              ),
-            ),
+            if (showAsset)
+              VStack([
+                SvgPicture.asset(svgAssetDir, package: 'ex', width: 90, height: 90).centered(),
+                24.heightBox,
+              ]),
+            Text(
+              title,
+              style: TextStyle(fontSize: titleTextSize, fontWeight: FontWeight.bold, color: titleTextColor),
+              textAlign: titleTextAlign,
+              maxLines: 2,
+            ).w(double.infinity),
             12.heightBox,
-            Center(
-              child: Text(
-                message,
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.blueGrey),
-                textAlign: TextAlign.center,
-              ),
-            ),
+            Text(
+              message,
+              style: TextStyle(fontSize: messageTextSize, fontWeight: FontWeight.normal, color: messageTextColor),
+              textAlign: messageTextAlign,
+            ).w(double.infinity),
           ]),
           actions: [
             Row(
@@ -152,33 +173,52 @@ mixin ExAlert {
   /// ```
   static void confirm({
     required BuildContext context,
-    required String title,
-    required String message,
+    String svgAssetDir = 'assets/images/ic_dialog_success.svg',
+    bool showAsset = true,
+    String title = '',
+    double titleTextSize = 18,
+    TextAlign titleTextAlign = TextAlign.center,
+    Color titleTextColor = Colors.black,
+    String message = '',
+    double messageTextSize = 13,
+    TextAlign messageTextAlign = TextAlign.center,
+    Color messageTextColor = Colors.blueGrey,
     bool isDismissible = false,
-    String btnNoText = 'Tidak',
+    String btnNoText = 'No',
     Function()? onNo,
-    String btnYesText = 'Ya',
+    String btnYesText = 'Yes',
     Function()? onYes,
     bool isWarningMode = false,
+    Color? barrierColor = Colors.black54,
+    double cornerRadius = 8.0,
   }) {
     showDialog(
       context: context,
+      barrierDismissible: isDismissible,
+      barrierColor: barrierColor,
       builder: (context) {
         return AlertDialog(
-          // shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(cornerRadius))),
           // contentPadding: EdgeInsets.all(16),
           scrollable: true,
           content: VStack([
+            if (showAsset)
+              VStack([
+                SvgPicture.asset(svgAssetDir, package: 'ex', width: 90, height: 90).centered(),
+                24.heightBox,
+              ]),
             Text(
               title,
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: titleTextSize, fontWeight: FontWeight.bold, color: titleTextColor),
+              textAlign: titleTextAlign,
               maxLines: 2,
-            ),
+            ).w(double.infinity),
             12.heightBox,
             Text(
               message,
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.blueGrey),
-            ),
+              style: TextStyle(fontSize: messageTextSize, fontWeight: FontWeight.normal, color: messageTextColor),
+              textAlign: messageTextAlign,
+            ).w(double.infinity),
           ]),
           actions: [
             Row(

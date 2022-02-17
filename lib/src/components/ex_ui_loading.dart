@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import '../_lib/loading_animation/loading_animation_widget.dart';
 
 ///   created               : Aditya Pratama
 ///   originalFilename      : ex_ui_loading

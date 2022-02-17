@@ -1,64 +1,40 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart' show debugPrint, kDebugMode;
-import 'package:intl/intl.dart';
-import 'package:logger/logger.dart';
 
 import '../../ex.dart';
 
-class ExLog extends LogPrinter {
-  @override
-  List<String> log(LogEvent event) {
-    final AnsiColor? color = PrettyPrinter.levelColors[event.level];
-    // final String? emoji = PrettyPrinter.levelEmojis[event.level];
-    final time = DateFormat.Hms().format(DateTime.now());
-    // const tag = ''; //'🚦 ↓';
-
-    return [
-      // color!('—————————————————————————————————————————————————————————————————————————————'),
-      color!('⏱ $time | ${event.message.toString().quote}'),
-      // color('—————————————————————————————————————————————————————————————————————————————'),
-    ];
-  }
-}
-
-final _log = Logger(
-  filter: ProductionFilter(),
-  printer: ExLog(),
-);
-
-void log<T>(message) {
-  if (kDebugMode) {
-    _log.d('$message');
-  }
-}
-
-void print<T>(message) {
-  // if (kDebugMode) _log.d("$message");
-  debugPrint(message, wrapWidth: 5000);
-}
-
 void logD<T>(message) {
   if (kDebugMode) {
-    _log.d('$message');
+    final DateTime now = DateTime.now();
+    final String time = " ${now.hour.toString().padLeft(2,'0')}:${now.minute.toString().padLeft(2,'0')}";
+    log('⏱ $time | 🟩 ${message.toString().quote} 🟩');
   }
 }
 
 void logE<T>(message) {
   if (kDebugMode) {
-    _log.e('$message');
+    final DateTime now = DateTime.now();
+    final String time = " ${now.hour.toString().padLeft(2,'0')}:${now.minute.toString().padLeft(2,'0')}";
+    log('⏱ $time | 🟥 ${message.toString().quote} 🟥');
   }
 }
 
 void logI<T>(message) {
   if (kDebugMode) {
-    _log.i(message);
+    final DateTime now = DateTime.now();
+    final String time = " ${now.hour.toString().padLeft(2,'0')}:${now.minute.toString().padLeft(2,'0')}";
+    debugPrint('⏱ $time | 🟦 ${message.toString().quote} 🟦');
   }
 }
 
 void logW<T>(message) {
   if (kDebugMode) {
-    _log.w('$message');
+    final DateTime now = DateTime.now();
+    final String time = " ${now.hour.toString().padLeft(2,'0')}:${now.minute.toString().padLeft(2,'0')}:${now.second.toString().padLeft(2,'0')}";
+    debugPrint('⏱ $time | 🟧 ${message.toString().quote} 🟧', wrapWidth: 1440);
   }
 }
 

@@ -603,50 +603,6 @@ void main() {
     },
   );
   test(
-    'Gets the day name of the date',
-        () {
-      String date1 = DateTime(1988, 8, 27).toString();
-      expect(date1.getDayFromDate(), 'Saturday');
-      expect(date1.getDayFromDate(locale: 'el'), 'Σάββατο');
-      expect(date1.getDayFromDate(locale: 'es'), 'sábado');
-      expect(date1.getDayFromDate(locale: 'az'), 'şənbə');
-      expect(date1.getDayFromDate(locale: 'ka'), 'შაბათი');
-    },
-  );
-  test(
-    'Gets the month name of the date',
-        () {
-      String date1 = DateTime(1988, 8, 27).toString();
-      expect(date1.getMonthFromDate(), 'August');
-      expect(date1.getMonthFromDate(locale: 'el'), 'Αυγούστου');
-      expect(date1.getMonthFromDate(locale: 'es'), 'agosto');
-      expect(date1.getMonthFromDate(locale: 'az'), 'Avqust');
-      expect(date1.getMonthFromDate(locale: 'ka'), 'აგვისტო');
-    },
-  );
-  test(
-    'Gets the first day of the date',
-        () {
-      String date1 = DateTime(2021, 11, 27).toString();
-      expect(date1.firstDayOfMonth(), 'Monday');
-      expect(date1.firstDayOfMonth(locale: 'el'), 'Δευτέρα');
-      expect(date1.firstDayOfMonth(locale: 'es'), 'lunes');
-      expect(date1.firstDayOfMonth(locale: 'az'), 'bazar ertəsi');
-      expect(date1.firstDayOfMonth(locale: 'ka'), 'ორშაბათი');
-    },
-  );
-  test(
-    'Gets the last day of the date',
-        () {
-      String date1 = DateTime(2021, 11, 27).toString();
-      expect(date1.lastDayOfMonth(), 'Tuesday');
-      expect(date1.lastDayOfMonth(locale: 'el'), 'Τρίτη');
-      expect(date1.lastDayOfMonth(locale: 'es'), 'martes');
-      expect(date1.lastDayOfMonth(locale: 'az'), 'çərşənbə axşamı');
-      expect(date1.lastDayOfMonth(locale: 'ka'), 'სამშაბათი');
-    },
-  );
-  test(
     'Get the left side of the string from a specific character',
         () {
       String t1 = 'peanut-10-butter';

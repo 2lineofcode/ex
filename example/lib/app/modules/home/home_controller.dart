@@ -5,12 +5,10 @@ import 'package:velocity_x/velocity_x.dart';
 
 class HomeController extends GetxController {
 
-  final count = 0.obs;
-
   void list() {
     final _data = <KeyVal>[];
-    repeat(2, (index) {
-      _data.add(KeyVal(key: 'key$index', val: 'val$index'));
+    repeat(10, (index) {
+      _data.add(KeyVal(key: 'key$index', val: 'val  $index'));
     });
     ExBottomSheet.list(
       context: Get.context!,
@@ -45,7 +43,7 @@ class HomeController extends GetxController {
       title: lorem(paragraphs: 1, words: 8),
       hint: 'Nama Lengkap',
       onYes: (v) {
-        logW('from controller ${lorem(paragraphs: 8)}');
+        logW(lorem(paragraphs: 9));
       },
       validator: (p0) {
         if (p0.isEmptyOrNull) {
@@ -56,18 +54,31 @@ class HomeController extends GetxController {
   }
 
   void custom() {
-    final datas = <KeyVal>[];
-    repeat(2, (index) {
-      datas.add(KeyVal(key: 'key$index', val: 'val$index'));
-    });
     ExBottomSheet.custom(
       context: Get.context!,
-      title: 'Pilihan',
+      title: 'This is Title',
       body: VStack([
         'this is body'.text.make(),
+        24.heightBox,
+        HStack([
+          ExImageView(url: 'url'),
+          24.widthBox,
+          ExAvatarView(url: 'url', name: 'name'),
+        ]),
+        HStack([
+          ExButtonDefault(),
+          24.widthBox,
+          ExButtonOutline(),
+        ]),
+        110.heightBox,
+        '... try to scroll me ...'.text.size(22).makeCentered().w(double.infinity),
+        110.heightBox,
+        'end of this is body'.text.make(),
       ]),
       footer: HStack([
-        'this is footer'.text.make(),
+        ExButtonDefault().expand(),
+        16.widthBox,
+        ExButtonOutline().expand(),
       ]),
     );
   }
@@ -76,9 +87,4 @@ class HomeController extends GetxController {
     ExLoading.show(context: Get.context!);
     Future.delayed(3.seconds).then((value) => ExLoading.dismiss(Get.context!));
   }
-
-  @override
-  void onClose() {}
-
-  void increment() => count.value++;
 }

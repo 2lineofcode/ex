@@ -14,7 +14,7 @@ class ExButtonOutline extends StatelessWidget {
     Key? key,
     this.width,
     this.height,
-    required this.btnText,
+    this.btnText,
     this.onPress,
     this.color = Colors.black,
     this.radius,
@@ -29,7 +29,7 @@ class ExButtonOutline extends StatelessWidget {
 
   final double? width;
   final double? height;
-  final String btnText;
+  final String? btnText;
   final VoidCallback? onPress;
   final Color? color;
   final Color? bgColor;
@@ -52,7 +52,7 @@ class ExButtonOutline extends StatelessWidget {
       height: height,
       width: width,
       child: OutlinedButton(
-        onPressed: onPress,
+        onPressed: onPress ?? () {},
         style: OutlinedButton.styleFrom(
             primary: color,
             backgroundColor: bgColor ?? Colors.transparent,
@@ -67,7 +67,8 @@ class ExButtonOutline extends StatelessWidget {
                 Icon(icon),
                 8.widthBox,
               ]),
-            btnText.text
+            (btnText ?? 'ExButton')
+                .text
                 .textStyle(TextStyle(
                   color: color,
                   fontWeight: isTextBold == true ? FontWeight.w900 : FontWeight.normal,
@@ -81,7 +82,7 @@ class ExButtonOutline extends StatelessWidget {
                   height: 20,
                   width: 28,
                   color: badgeColor,
-                  child: '${badgeCountForPrint.toString().first(n: 2)}'.text.white. size(12).maxLines(1).align(TextAlign.center).makeCentered(),
+                  child: '${badgeCountForPrint.toString().first(n: 2)}'.text.white.size(12).maxLines(1).align(TextAlign.center).makeCentered(),
                 ).cornerRadius(90),
               ]),
           ],

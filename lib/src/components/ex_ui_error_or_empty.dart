@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lottie/lottie.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'ex_button_outline.dart';
@@ -22,8 +21,6 @@ class ExUiErrorOrEmpty extends StatelessWidget {
     this.textColor,
     this.btnText,
     this.svgAssets,
-    this.lottieAssets,
-    this.lottieNetwork,
     this.showBtnRetry = false,
     this.textSize = 14,
     this.imageHeight,
@@ -39,8 +36,6 @@ class ExUiErrorOrEmpty extends StatelessWidget {
   final Color? textColor;
   final VoidCallback callback;
   final String? svgAssets;
-  final String? lottieAssets;
-  final String? lottieNetwork;
   final double? imageHeight;
   final double? imageWidth;
 
@@ -56,33 +51,32 @@ class ExUiErrorOrEmpty extends StatelessWidget {
         color: bgColor ?? Colors.transparent,
         child: VStack(
           [
-            if (svgAssets != null) SvgPicture.asset(
-                    '$svgAssets',
-                    width: imageWidth,
-                    height: imageHeight,
-                  ).centered() else 0.heightBox,
-            if (lottieAssets != null) Lottie.asset(
-                    '$lottieAssets',
-                    width: imageWidth,
-                    height: imageHeight,
-                    fit: BoxFit.fill,
-                  ).centered() else 0.heightBox,
-            if (lottieNetwork != null) Lottie.network(
-                    '$lottieNetwork',
-                    width: imageWidth,
-                    height: imageHeight,
-                    fit: BoxFit.fill,
-                  ).centered() else 0.heightBox,
+            if (svgAssets != null)
+              SvgPicture.asset(
+                '$svgAssets',
+                width: imageWidth,
+                height: imageHeight,
+              ).centered()
+            else
+              Icon(
+                Icons.error_outline,
+                size: 64,
+                color: Theme.of(context).errorColor,
+              ).centered(),
             HeightBox(title.isEmptyOrNull ? 0 : 20),
             title.text.size(16).semiBold.color(Colors.black).makeCentered(),
             HeightBox(20),
-            if (message.isEmptyOrNull) 'Terjadi Kesalahan'.text.size(textSize).color(textColor ?? Colors.black).makeCentered() else message.text.size(textSize).color(textColor ?? Colors.black).align(TextAlign.center).makeCentered(),
+            if (message.isEmptyOrNull)
+              'Terjadi Kesalahan'.text.size(textSize).color(textColor ?? Colors.black).makeCentered()
+            else
+              message.text.size(textSize).color(textColor ?? Colors.black).align(TextAlign.center).makeCentered(),
             HeightBox(20),
-            if (showBtnRetry == true) ExButtonOutline(
-                    btnText: btnText ?? 'Reload',
-                    color: textColor ?? Colors.black,
-                    onPress: callback,
-                  ).centered() else ''.text.make(),
+            if (showBtnRetry == true)
+              ExButtonOutline(
+                btnText: btnText ?? 'Reload',
+                color: textColor ?? Colors.black,
+                onPress: callback,
+              ).centered()
           ],
         ).centered(),
       ),

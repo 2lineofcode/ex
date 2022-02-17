@@ -14,7 +14,7 @@ import '../../ex.dart';
 class ExButtonDefault extends StatelessWidget {
   const ExButtonDefault({
     Key? key,
-    required this.btnText,
+    this.btnText,
     this.onPress,
     this.width,
     this.height,
@@ -31,7 +31,7 @@ class ExButtonDefault extends StatelessWidget {
 
   final double? width;
   final double? height;
-  final String btnText;
+  final String? btnText;
   final Color? bgColor;
   final Color? textColor;
   final VoidCallback? onPress;
@@ -68,7 +68,7 @@ class ExButtonDefault extends StatelessWidget {
                 Icon(icon),
                 8.widthBox,
               ]),
-            btnText.text
+            (btnText ?? 'ExButton').text
                 .textStyle(TextStyle(
                   color: textColor,
                   fontWeight: isTextBold == true ? FontWeight.w900 : FontWeight.normal,

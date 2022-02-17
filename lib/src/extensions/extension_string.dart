@@ -3,9 +3,6 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl/intl.dart';
-
 enum DocumentType { xls, doc, ppt, pdf, file }
 
 extension MiscExtensions on String? {
@@ -1393,137 +1390,10 @@ extension MiscExtensions on String? {
       return this;
     }
     try {
-      final f = NumberFormat.currency(locale: 'el_GR');
-      return f.format(double.tryParse(this!.replaceAll(',', '.'))).replaceAll('EUR', '').trim().append(currencySymbol == null ? '' : ' $currencySymbol');
+      _moneyFormat(currencySymbol: currencySymbol, price: this!);
     } catch (e) {
       return null;
     }
-  }
-
-  /// Returns the day name of the date provided.
-  ///
-  /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
-  ///
-  /// You can provide the [locale] to filter the result to a specific language.
-  ///
-  /// Defaults to 'en-US'.
-  ///
-  /// ### Example
-  ///
-  /// ```dart
-  /// String date = '2021-10-23';
-  /// String day = date.getDayFromDate(); // returns 'Saturday'
-  /// String grDay = date.getDayFromDate(locale:'el'); // returns 'Σάββατο'
-  /// ```
-  String? getDayFromDate({String locale = 'en'}) {
-    initializeDateFormatting(locale);
-    if (this == null) {
-      return null;
-    }
-    if (this!.isEmpty) {
-      return this;
-    }
-    final date = DateTime.tryParse(this!);
-    if (date == null) {
-      return null;
-    }
-    return DateFormat('EEEE', locale).format(date).toString();
-  }
-
-  /// Returns the month name of the date provided.
-  ///
-  /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
-  ///
-  /// You can provide the [locale] to filter the result to a specific language.
-  ///
-  /// Defaults to 'en-US'.
-  ///
-  /// ### Example
-  ///
-  /// ```dart
-  /// String date = '2021-10-23';
-  /// String month = date.getMonthFromDate(); // returns 'August'
-  /// String grMonth = date.getMonthFromDate(locale:'el'); // returns 'Αυγούστου'
-  /// ```
-  String? getMonthFromDate({String locale = 'en'}) {
-    initializeDateFormatting(locale);
-    if (this == null) {
-      return null;
-    }
-    if (this!.isEmpty) {
-      return this;
-    }
-    final date = DateTime.tryParse(this!);
-    if (date == null) {
-      return null;
-    }
-    return DateFormat('MMMM', locale).format(date).toString();
-  }
-
-  /// Returns the first day of the month from the provided `DateTime`.
-  ///
-  /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
-  ///
-  /// You can provide the [locale] to filter the result to a specific language.
-  ///
-  /// Defaults to 'en-US'.
-  ///
-  /// ### Example
-  ///
-  /// ```dart
-  /// String date = '2021-10-23';
-  /// String day = date.firstDayOfDate(); // returns 'Friday'
-  /// String grDay = date.firstDayOfDate(locale:'el'); // returns 'Παρασκευή'
-  /// ```
-  String? firstDayOfMonth({String locale = 'en'}) {
-    initializeDateFormatting(locale);
-    if (this == null) {
-      return null;
-    }
-    if (this!.isEmpty) {
-      return this;
-    }
-    final date = DateTime.tryParse(this!);
-    if (date == null) {
-      return null;
-    }
-    return DateFormat('EEEE', locale).format(DateTime(date.year, date.month)).toString();
-  }
-
-  /// Returns the last day of the month from the provided `DateTime`.
-  ///
-  /// If the date is in `DateTime` format, you can convert it to `String` `DateTime().toString()`.
-  ///
-  /// You can provide the [locale] to filter the result to a specific language.
-  ///
-  /// Defaults to 'en-US'.
-  ///
-  /// ### Example
-  ///
-  /// ```dart
-  /// String date = '2021-10-23';
-  /// String day = date.firstDayOfDate(); // returns 'Friday'
-  /// String grDay = date.firstDayOfDate(locale:'el'); // returns 'Παρασκευή'
-  /// ```
-  String? lastDayOfMonth({String locale = 'en'}) {
-    initializeDateFormatting(locale);
-    if (this == null) {
-      return null;
-    }
-    if (this!.isEmpty) {
-      return this;
-    }
-    final date = DateTime.tryParse(this!);
-    if (date == null) {
-      return null;
-    }
-    return DateFormat('EEEE', locale)
-        .format(
-          DateTime(date.year, date.month + 1).add(
-            const Duration(days: -1),
-          ),
-        )
-        .toString();
   }
 
   /// Returns the left side of the `String` starting from [char].
@@ -1760,15 +1630,12 @@ extension MiscExtensions on String? {
                   ? 'assets/images/ic_pdf.svg'
                   : 'assets/images/ic_file.svg';
 
-  String? convertCurrency() {
-    if (this == null) {
-      return null;
+  String? _moneyFormat({String? currencySymbol = '', required String price}) {
+    if (price.length > 2) {
+      var value = price;
+      value = value.replaceAll(RegExp(r'\D'), '');
+      value = value.replaceAll(RegExp(r'\B(?=(\d{3})+(?!\d))'), ',');
+      return '$currencySymbol $value';
     }
-    if (this!.isEmpty) {
-      return this;
-    }
-
-    final format = NumberFormat.simpleCurrency(locale: 'in', decimalDigits: 0, name: 'Rp. ');
-    return format.format(int.parse(this!));
   }
 }

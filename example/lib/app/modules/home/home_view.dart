@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:ex/ex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_lorem/flutter_lorem.dart';
@@ -87,7 +89,12 @@ class HomeView extends GetView<HomeController> {
           buildListTile(
             context: context,
             title: 's',
-            onTap: () => ExAlert.success(context: context, message: lorem(paragraphs: 1)),
+            onTap: () => ExAlert.success(
+              context: context,
+              message: lorem(paragraphs: 1),
+              messageTextAlign: TextAlign.left,
+              showAsset: false,
+            ),
           ).expand(),
           buildListTile(
             context: context,
@@ -137,7 +144,6 @@ class ErrorOrEmptyPage extends StatelessWidget {
         ExUiErrorOrEmpty(
           message: 'error / empty message',
           title: 'Title',
-          lottieNetwork: 'https://assets7.lottiefiles.com/packages/lf20_GlZGOi.json',
           callback: () {},
         ).expand(),
       ]),

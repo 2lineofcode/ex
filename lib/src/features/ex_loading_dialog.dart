@@ -2,8 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import '../_lib/loading_animation/loading_animation_widget.dart';
 
 /*
  * ExLoading
@@ -22,7 +23,6 @@ import 'package:velocity_x/velocity_x.dart';
  * ```
  */
 mixin ExLoading {
-
   /// -- example implementation
   /// ```dart
   /// void loading() {

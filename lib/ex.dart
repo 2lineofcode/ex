@@ -10,7 +10,7 @@ library ex;
 export 'src/core/index.dart';
 
 // component
-export 'src/components/index.dart';
+export 'src/widget/index.dart';
 
 // extensions
 export 'src/extensions/index.dart';

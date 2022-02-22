@@ -10,7 +10,7 @@ dependencies:
   flutter_lorem: ^2.0.0
   cupertino_icons: ^1.0.2
   get: 4.6.1
-  flutter: 
+  flutter:
     sdk: flutter
   ex: 
     path: ../

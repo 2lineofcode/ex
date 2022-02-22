@@ -130,8 +130,12 @@ mixin ExBottomSheet {
                         leading: isWithIcon ? ExImageView(url: '${data[index].icon}', width: 24, height: 24) : null,
                         dense: true,
                         onTap: () {
-                          callback.call(data[index].key, data[index].val);
-                          Navigator.maybePop(context);
+                          try {
+                            callback.call(data[index].key, data[index].val);
+                            // Navigator.maybePop(context);
+                          } on Exception {
+                            logE('failed to close ex bottom sheet');
+                          }
                         },
                       );
                     },

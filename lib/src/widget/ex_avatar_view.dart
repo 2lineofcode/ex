@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../ex.dart';
-import '../extensions/index.dart';
 
 ///   created               : Aditya Pratama
 ///   originalFilename      : ex_avatar_view
@@ -19,8 +18,7 @@ class ExAvatarView extends StatelessWidget {
     Key? key,
     required this.url,
     required this.name,
-    this.height,
-    this.width,
+    this.size,
     this.borderColor,
     this.borderWidth,
     this.textSize,
@@ -31,8 +29,7 @@ class ExAvatarView extends StatelessWidget {
 
   final String url;
   final String? name;
-  final double? height;
-  final double? width;
+  final double? size;
   final Color? borderColor;
   final double? borderWidth;
   final double? textSize;
@@ -47,8 +44,8 @@ class ExAvatarView extends StatelessWidget {
       return ZStack(
         [
           Container(
-            width: height ?? 70,
-            height: width ?? 70,
+            width: size ?? 70,
+            height: size ?? 70,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(color: borderColor ?? Colors.black12, width: borderWidth ?? 2.0),
@@ -58,8 +55,8 @@ class ExAvatarView extends StatelessWidget {
                   ? Image.network(
                       url,
                       headers: header,
-                      width: height ?? 70,
-                      height: width ?? 70,
+                      width: size ?? 70,
+                      height: size ?? 70,
                       fit: BoxFit.cover,
                       isAntiAlias: true,
                       loadingBuilder: (context, child, loadingProgress) {
@@ -100,8 +97,8 @@ class ExAvatarView extends StatelessWidget {
       return ZStack(
         [
           Container(
-            width: height ?? 70,
-            height: width ?? 70,
+            width: size ?? 70,
+            height: size ?? 70,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(color: borderColor ?? Colors.black12, width: borderWidth ?? 2.0),
@@ -111,8 +108,8 @@ class ExAvatarView extends StatelessWidget {
                   ? Image.network(
                       url,
                       headers: header,
-                      width: height ?? 70,
-                      height: width ?? 70,
+                      width: size ?? 70,
+                      height: size ?? 70,
                       fit: BoxFit.cover,
                       isAntiAlias: true,
                       loadingBuilder: (context, child, loadingProgress) {

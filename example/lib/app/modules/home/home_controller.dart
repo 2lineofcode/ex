@@ -4,35 +4,44 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomeController extends GetxController {
+  void showAlert() {
+    ExSnackbar.info(
+      context: Get.context!,
+      title: 'This is a title',
+      message: 'Please wait ...',
+      isDismissible: false,
+    );
+    Future.delayed(3.seconds).then((value) => ExLoading.dismiss(Get.context!));
+  }
 
   void list() {
     final _data = <KeyVal>[];
-    repeat(10, (index) {
+    10.forEach((index) {
       _data.add(KeyVal(key: 'key$index', val: 'val  $index'));
     });
     ExBottomSheet.list(
       context: Get.context!,
-      title: 'Pilihan',
+      title: 'Select Your Type',
       data: _data,
-      callback: (k, v) {
-        Get.snackbar('$v', 'data dengan key $k dipilih');
-        // ExAlertSuccess(context: Get.context!, message: 'data dengan key $k dipilih');
+      callback: (k, v) async {
+        Get.back();
+        ExSnackbar.uploading(context: Get.context!, message: 'message');
       },
     );
   }
 
   void grid() {
-    final datas = <KeyVal>[];
-    repeat(2, (index) {
-      datas.add(KeyVal(key: 'key$index', val: 'val$index'));
+    final _data = <KeyVal>[];
+    10.forEach((index) {
+      _data.add(KeyVal(key: 'key$index', val: 'val  $index'));
     });
     ExBottomSheet.grid(
       context: Get.context!,
-      title: 'Pilihan',
-      data: datas,
-      callback: (k, v) {
-        Get.snackbar('$v', 'data dengan key $k dipilih');
-        // ExAlertSuccess(context: Get.context!, message: 'data dengan key $k dipilih');
+      title: 'Select Your Type',
+      data: _data,
+      callback: (k, v) async {
+        Get.back();
+        ExSnackbar.uploading(context: Get.context!, message: 'message');
       },
     );
   }

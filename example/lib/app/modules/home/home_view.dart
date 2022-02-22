@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:ex/ex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_lorem/flutter_lorem.dart';
@@ -58,7 +56,7 @@ class HomeView extends GetView<HomeController> {
         8.heightBox,
         HStack([]).centered(),
         8.heightBox,
-        ExProgress(value: 70, color1: Colors.red, color2: Colors.grey),
+        ExProgressIndicator(value: 70, color1: Colors.red, color2: Colors.grey),
         8.heightBox,
         ExRadioButton(
           title: 'title',
@@ -126,7 +124,7 @@ Widget buildListTile({
     title: title.text.make(),
     subtitle: lorem(words: 10).text.maxLines(2).overflow(TextOverflow.ellipsis).make(),
     dense: true,
-    leading: ExAvatarView(url: 'url', name: 'name', width: 40, height: 40),
+    leading: ExAvatarView(url: 'url', name: 'name', size: 40,),
     onTap: onTap,
     minVerticalPadding: 16,
     trailing: Icon(Icons.navigate_next),
@@ -157,7 +155,7 @@ class LoadingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: 'LoadingPage'.text.make()),
+      appBar: AppBar(title: 'ExLoading'.text.make(), centerTitle: false,),
       body: VStack([ExUiLoading().expand()]),
     );
   }

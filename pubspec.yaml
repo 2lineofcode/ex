@@ -1,6 +1,6 @@
 name: ex
 description: Scope Function, When Expression, ExComponent, ExLog, ExAlert, ExBottomSheet, ExLoading, ExImagePreview, ExUtils
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/abehbatre/ex
 
 environment:

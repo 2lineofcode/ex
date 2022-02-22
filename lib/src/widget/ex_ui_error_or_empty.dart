@@ -59,7 +59,7 @@ class ExUiErrorOrEmpty extends StatelessWidget {
               ).centered()
             else
               Icon(
-                Icons.error_outline,
+                Icons.error,
                 size: 64,
                 color: Theme.of(context).errorColor,
               ).centered(),

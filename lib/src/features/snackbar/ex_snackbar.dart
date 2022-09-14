@@ -1,56 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../ex.dart';
 
-import 'flushbar.dart';
-
+/*
+ * ExSnackbar
+ * Created by Aditya Pratama
+ * https://adit.com
+ *
+ * Copyright (c) 2021 MDVK, LLC. All rights reserved.
+ * See LICENSE for distribution and usage details.
+ */
 mixin ExSnackbar {
-  static void success({
-    required BuildContext context,
+  // —————————————————————————————————————————————————————————————————————————————
+  // info
+  // —————————————————————————————————————————————————————————————————————————————
+  static void infoTop(
+    String message, {
     String? title,
     double? titleSize,
     Color? titleColor = Colors.black,
-    String? message,
     double? messageSize,
     Color? messageColor = Colors.black,
-    Color backgroundColor = const Color(0xFFEFEFEF),
-    IconData? icon = Icons.check_circle,
-    Duration duration = const Duration(seconds: 3),
-    double radius = 8,
-    double margin = 8,
-    FlushbarPosition position = FlushbarPosition.TOP,
-    bool isDismissible = true,
-  }) {
-    Flushbar(
-      title: title,
-      titleSize: titleSize,
-      titleColor: titleColor,
-      message: message,
-      messageSize: messageSize,
-      messageColor: messageColor,
-      backgroundColor: backgroundColor,
-      icon: Icon(icon, color: Colors.green[300]),
-      leftBarIndicatorColor: Colors.green[300],
-      borderRadius: BorderRadius.circular(radius),
-      margin: EdgeInsets.all(margin),
-      isDismissible: isDismissible,
-      duration: duration,
-      flushbarPosition: FlushbarPosition.TOP,
-      shouldIconPulse: true,
-    ).show(context);
-  }
-
-  /// Get an information notification flushbar
-  static void info({
-    required BuildContext context,
-    String? title,
-    double? titleSize,
-    Color? titleColor = Colors.black,
-    String? message,
-    double? messageSize,
-    Color? messageColor = Colors.black,
-    Color backgroundColor = const Color(0xFFEFEFEF),
+    Color backgroundColor = const Color(0xffF3F6FE),
     IconData? icon = Icons.info,
     Duration duration = const Duration(seconds: 3),
-    double radius = 8,
+    double radius = 4,
     double margin = 8,
     FlushbarPosition position = FlushbarPosition.TOP,
     bool isDismissible = true,
@@ -63,31 +37,31 @@ mixin ExSnackbar {
       messageSize: messageSize,
       messageColor: messageColor,
       backgroundColor: backgroundColor,
-      icon: Icon(icon, color: Colors.blue[300]),
-      leftBarIndicatorColor: Colors.blue[300],
+      icon: Icon(icon, color: Color(0xFF22328F)),
+      leftBarIndicatorColor: Color(0xFF22328F),
       borderRadius: BorderRadius.circular(radius),
       margin: EdgeInsets.all(margin),
       isDismissible: isDismissible,
       duration: duration,
-      flushbarPosition: FlushbarPosition.TOP,
-      shouldIconPulse: true,
-    ).show(context);
+      flushbarPosition: position,
+    ).show(Get.context!);
   }
 
-  /// Get a error notification flushbar
-  static void error({
-    required BuildContext context,
+  // —————————————————————————————————————————————————————————————————————————————
+  // danger
+  // —————————————————————————————————————————————————————————————————————————————
+  static void dangerTop(
+    String message, {
     String? title,
     double? titleSize,
     Color? titleColor = Colors.black,
-    String? message,
     double? messageSize,
     Color? messageColor = Colors.black,
-    Color backgroundColor = const Color(0xFFEFEFEF),
-    IconData? icon = Icons.warning,
+    Color backgroundColor = const Color(0xFFFFF4F5),
+    IconData? icon = Icons.info,
     Duration duration = const Duration(seconds: 3),
-    double radius = 8,
-    double margin = 8,
+    double radius = 4,
+    double margin = 4,
     FlushbarPosition position = FlushbarPosition.TOP,
     bool isDismissible = true,
   }) {
@@ -99,20 +73,92 @@ mixin ExSnackbar {
       messageSize: messageSize,
       messageColor: messageColor,
       backgroundColor: backgroundColor,
-      icon: Icon(icon, color: Colors.red[300]),
-      leftBarIndicatorColor: Colors.red[300],
+      icon: Icon(icon, color: Colors.red[800]),
+      leftBarIndicatorColor: Colors.red[800],
       borderRadius: BorderRadius.circular(radius),
       margin: EdgeInsets.all(margin),
       isDismissible: isDismissible,
       duration: duration,
-      flushbarPosition: FlushbarPosition.TOP,
-      shouldIconPulse: true,
-    ).show(context);
+      flushbarPosition: position,
+    ).show(Get.context!);
   }
 
-  /// Get a flushbar that can receive a user action through a button.
+  // —————————————————————————————————————————————————————————————————————————————
+  // warning
+  // —————————————————————————————————————————————————————————————————————————————
+  static void warningTop(
+    String message, {
+    String? title,
+    double? titleSize,
+    Color? titleColor = Colors.black,
+    double? messageSize,
+    Color? messageColor = Colors.black,
+    Color backgroundColor = const Color(0xFFFFFDF3),
+    IconData? icon = Icons.warning,
+    Duration duration = const Duration(seconds: 3),
+    double radius = 4,
+    double margin = 4,
+    FlushbarPosition position = FlushbarPosition.TOP,
+    bool isDismissible = true,
+  }) {
+    Flushbar(
+      title: title,
+      titleSize: titleSize,
+      titleColor: titleColor,
+      message: message,
+      messageSize: messageSize,
+      messageColor: messageColor,
+      backgroundColor: backgroundColor,
+      icon: Icon(icon, color: Color(0xFFF69348)),
+      leftBarIndicatorColor: Color(0xFFF69348),
+      borderRadius: BorderRadius.circular(radius),
+      margin: EdgeInsets.all(margin),
+      isDismissible: isDismissible,
+      duration: duration,
+      flushbarPosition: position,
+    ).show(Get.context!);
+  }
+
+  // —————————————————————————————————————————————————————————————————————————————
+  // success
+  // —————————————————————————————————————————————————————————————————————————————
+  static void successTop(
+    String message, {
+    String? title,
+    double? titleSize,
+    Color? titleColor = Colors.black,
+    double? messageSize,
+    Color? messageColor = Colors.black,
+    Color backgroundColor = const Color(0xFFE9F5F2),
+    IconData? icon = Icons.check_circle,
+    Duration duration = const Duration(seconds: 3),
+    double radius = 4,
+    double margin = 4,
+    FlushbarPosition position = FlushbarPosition.TOP,
+    bool isDismissible = true,
+  }) {
+    Flushbar(
+      title: title,
+      titleSize: titleSize,
+      titleColor: titleColor,
+      message: message,
+      messageSize: messageSize,
+      messageColor: messageColor,
+      backgroundColor: backgroundColor,
+      icon: Icon(icon, color: Colors.green[800]),
+      leftBarIndicatorColor: Colors.green[800],
+      borderRadius: BorderRadius.circular(radius),
+      margin: EdgeInsets.all(margin),
+      isDismissible: isDismissible,
+      duration: duration,
+      flushbarPosition: position,
+    ).show(Get.context!);
+  }
+
+  // —————————————————————————————————————————————————————————————————————————————
+  // action
+  // —————————————————————————————————————————————————————————————————————————————
   static void action({
-    required BuildContext context,
     required String message,
     required Widget button,
     String? title,
@@ -123,12 +169,10 @@ mixin ExSnackbar {
       message: message,
       duration: duration,
       mainButton: button,
-    ).show(context);
+    ).show(Get.context!);
   }
 
-  // Get a flushbar that shows the progress of a async computation.
   static void uploading({
-    required BuildContext context,
     required String message,
     String? title,
     Duration duration = const Duration(seconds: 3),
@@ -143,17 +187,96 @@ mixin ExSnackbar {
       showProgressIndicator: true,
       progressIndicatorController: progressIndicatorController,
       progressIndicatorBackgroundColor: progressIndicatorBackgroundColor,
-    ).show(context);
+    ).show(Get.context!);
   }
 
-  // /// Get a flushbar that shows an user input form.
-  // static void createInputFlushbar({
-  //   required BuildContext context,
-  //   required Form textForm,
-  // }) {
-  //   Flushbar(
-  //     duration: null,
-  //     userInputForm: textForm,
-  //   ).show(context);
-  // }
+  // —————————————————————————————————————————————————————————————————————————————
+  // ver2 : bottom
+  // —————————————————————————————————————————————————————————————————————————————
+
+  static void neutral(String message, {int? duration, bool showIcon = true}) {
+    final snackBar = SnackBar(
+      content: HStack([
+        if (showIcon == true) Icon(Icons.info, color: Colors.white),
+        12.widthBox,
+        message.text.black.overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
+      ]),
+      backgroundColor: Colors.black,
+      behavior: SnackBarBehavior.floating,
+      duration: Duration(seconds: duration ?? 2),
+    );
+    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+  }
+
+  static void info(String message, {int? duration, bool showIcon = true}) {
+    final snackBar = SnackBar(
+      content: Container(
+        decoration: DecoratorHelper.commonBoxDecoration(borderColor: Color(0xFF093479)),
+        child: HStack([
+          if (showIcon == true) Icon(Icons.info, color: Color(0xFF093479)),
+          12.widthBox,
+          message.text.black.overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
+        ]).p12(),
+      ),
+      padding: EdgeInsets.all(0),
+      backgroundColor: Color(0xFFE8F9FE),
+      behavior: SnackBarBehavior.floating,
+      duration: Duration(seconds: duration ?? 2),
+    );
+    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+  }
+
+  static void danger(String message, {int? duration, bool showIcon = true}) {
+    final snackBar = SnackBar(
+      content: Container(
+        decoration: DecoratorHelper.commonBoxDecoration(borderColor: Color(0xFF881135)),
+        child: HStack([
+          if (showIcon == true) Icon(Icons.info, color: Color(0xFF881135)),
+          12.widthBox,
+          message.text.black.overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
+        ]).p12(),
+      ),
+      padding: EdgeInsets.all(0),
+      backgroundColor: Color(0xFFFFF4F5),
+      behavior: SnackBarBehavior.floating,
+      duration: Duration(seconds: duration ?? 2),
+    );
+    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+  }
+
+  static void success(String message, {int? duration, bool showIcon = true}) {
+    final snackBar = SnackBar(
+      content: Container(
+        decoration: DecoratorHelper.commonBoxDecoration(borderColor: Color(0xFF0E3E33)),
+        child: HStack([
+          if (showIcon == true) Icon(Icons.check_circle, color: Color(0xFF0E3E33)),
+          12.widthBox,
+          message.text.black.overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
+        ]).p12(),
+      ),
+      padding: EdgeInsets.all(0),
+      backgroundColor: Color(0xFFE9F5F2),
+      behavior: SnackBarBehavior.floating,
+      duration: Duration(seconds: duration ?? 2),
+    );
+    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+  }
+
+  static void warning(String message, {int? duration, bool showIcon = true}) {
+    final snackBar = SnackBar(
+      content: Container(
+        decoration: DecoratorHelper.commonBoxDecoration(borderColor: Color(0xFF93662A)),
+        child: HStack([
+          if (showIcon == true) Icon(Icons.warning, color: Color(0xFF93662A)),
+          12.widthBox,
+          message.text.black.overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
+        ]).p12(),
+      ),
+      padding: EdgeInsets.all(0),
+      backgroundColor: Color(0xFFFFFDF3),
+      behavior: SnackBarBehavior.floating,
+      duration: Duration(seconds: duration ?? 2),
+    );
+    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+  }
 }

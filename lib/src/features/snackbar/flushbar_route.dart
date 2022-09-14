@@ -47,7 +47,7 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
           _initialAlignment = const Alignment(-1.0, -2.0);
           if (flushbar.endOffset != null) {
             _endAlignment = const Alignment(-1.0, -1.0) +
-              Alignment(flushbar.endOffset!.dx, flushbar.endOffset!.dy);
+                Alignment(flushbar.endOffset!.dx, flushbar.endOffset!.dy);
           } else {
             _endAlignment = const Alignment(-1.0, -1.0);
           }
@@ -450,8 +450,10 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
   String toString() => '$runtimeType(animation: $_controller)';
 }
 
-FlushbarRoute showFlushbar<T>(
-    {required BuildContext context, required Flushbar flushbar}) {
+FlushbarRoute showFlushbar<T>({
+  required BuildContext context,
+  required Flushbar flushbar,
+}) {
   return FlushbarRoute<T>(
     flushbar: flushbar,
     settings: const RouteSettings(name: FLUSHBAR_ROUTE_NAME),

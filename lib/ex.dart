@@ -6,12 +6,6 @@
 
 library ex;
 
-// core
-export 'src/core/index.dart';
-
-// component
-export 'src/widget/index.dart';
-
 // extensions
 export 'src/extensions/index.dart';
 
@@ -20,3 +14,12 @@ export 'src/features/index.dart';
 
 // utils
 export 'src/utils/index.dart';
+
+// widgets
+export 'src/widgets/index.dart';
+
+// helper
+export 'src/helper/index.dart';
+
+// velocityX
+export 'package:velocity_x/velocity_x.dart';

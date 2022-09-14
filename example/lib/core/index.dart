@@ -1,0 +1,1 @@
+export 'resource/resource.dart';

@@ -2,9 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../_lib/loading_animation/loading_animation_widget.dart';
+import 'loading_animation/loading_animation_widget.dart';
 
 /*
  * ExLoading
@@ -31,41 +32,44 @@ mixin ExLoading {
   /// }
   /// ```
   static void show({
-    required BuildContext context,
     bool isDismissible = false,
     String? message = '',
+    double? messageSize = 14,
+    Widget? imageAsset,
   }) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-          insetPadding: EdgeInsets.symmetric(horizontal: 120),
-          content: VStack(
-            [
-              Center(
-                child: VStack([
+    Get.dialog(
+      AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+        insetPadding: EdgeInsets.symmetric(horizontal: 120),
+        content: VStack(
+          [
+            Center(
+              child: VStack([
+                if (imageAsset != null)
+                  imageAsset
+                else
                   LoadingAnimationWidget.discreteCircle(
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(Get.context!).primaryColor,
                     size: 32,
-                    // rightDotColor: Theme.of(context).primaryColor,
-                    // leftDotColor: Theme.of(context).errorColor,
                   ).centered(),
-                  if (!message.isEmptyOrNull)
-                    VStack([
-                      16.heightBox,
-                      Text(message!, textAlign: TextAlign.center, style: TextStyle(fontSize: 14)).centered(),
-                    ]),
-                ]),
-              ),
-            ],
-          ),
-        );
-      },
+                if (!message.isEmptyOrNull)
+                  VStack([
+                    16.heightBox,
+                    message!.text.align(TextAlign.center).size(messageSize).makeCentered(),
+                  ]).centered(),
+              ]),
+            ),
+          ],
+        ),
+      ),
+      barrierDismissible: isDismissible,
+      useSafeArea: true,
     );
   }
 
-  static void dismiss(BuildContext context) {
-    Navigator.maybePop(context);
+  static void dismiss() {
+    if (Get.isDialogOpen == true) {
+      Get.back();
+    }
   }
 }

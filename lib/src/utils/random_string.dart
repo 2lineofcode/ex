@@ -1,5 +1,7 @@
 /// Simple library for generating random ascii strings.
 
+// ignore_for_file: one_member_abstracts
+
 import 'dart:math' show Random;
 
 const maxSupportedInteger = 999999999999999;
@@ -14,7 +16,6 @@ const upperAlphaStart = 65;
 const upperAlphaEnd = 90;
 
 final _internal = Random();
-
 
 // -- example --
 // main() {

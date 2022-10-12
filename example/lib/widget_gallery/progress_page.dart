@@ -12,7 +12,10 @@ class ProgressPage extends StatefulWidget {
 }
 
 class _ProgressPageState extends State<ProgressPage> {
-  var counter = randomBetween(10, 99);
+  var counter = ExUtils.randomBetween(10, 99);
+  var counter2 = ExUtils.randomBetween(10, 99);
+  var counter3 = ExUtils.randomBetween(10, 99);
+  var counter4 = ExUtils.randomBetween(10, 99);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,7 @@ class _ProgressPageState extends State<ProgressPage> {
         leading: IconButton(icon: Icon(Icons.arrow_back_outlined), onPressed: () => Get.back()),
       ),
       body: VStack([
-        ///
+        /// 1
         HStack(
           [
             ExProgress(
@@ -34,13 +37,56 @@ class _ProgressPageState extends State<ProgressPage> {
             '$counter%'.text.make().pOnly(left: 12),
           ],
         ),
+        12.heightBox,
+
+        /// 2
+        HStack(
+          [
+            ExProgress(
+              value: counter2,
+              color1: colorAccent,
+              color2: colorAccentLight,
+            ).expand(),
+            '$counter2%'.text.make().pOnly(left: 12),
+          ],
+        ),
+        12.heightBox,
+
+        /// 3
+        HStack(
+          [
+            ExProgress(
+              value: counter3,
+              color1: colorSuccess,
+              color2: colorSuccessLight,
+            ).expand(),
+            '$counter3%'.text.make().pOnly(left: 12),
+          ],
+        ),
+        12.heightBox,
+
+        /// 4
+        HStack(
+          [
+            ExProgress(
+              value: counter4,
+              color1: colorError,
+              color2: colorErrorLight,
+            ).expand(),
+            '$counter4%'.text.make().pOnly(left: 12),
+          ],
+        ),
+        12.heightBox,
 
         ExButtonOutline(
           width: double.infinity,
           label: 're-render',
           onPressed: () {
             setState(() {
-              counter = randomBetween(10, 90);
+              counter = ExUtils.randomBetween(10, 90);
+              counter2 = ExUtils.randomBetween(10, 90);
+              counter3 = ExUtils.randomBetween(10, 90);
+              counter4 = ExUtils.randomBetween(10, 90);
               debugPrint('counter: $counter');
             });
           },

@@ -23,7 +23,7 @@ class BottomSheetPage extends StatelessWidget {
           label: 'Example Type Content',
           width: double.infinity,
           onPressed: () {
-            BottomSheetHelper.bottomSheetContentDialog(
+            ExBottomSheet.bottomSheetContentDialog(
               title: faker.lorem.word(),
               childrenWidget: VStack([
                 faker.lorem.sentence().text.make(),
@@ -48,18 +48,18 @@ class BottomSheetPage extends StatelessWidget {
           label: 'Example Type List with Item Selected',
           width: double.infinity,
           onPressed: () {
-            final data = <KeyVal>[
-              KeyVal(key: 'all', val: 'Semua'),
-              KeyVal(key: '124a68ef-a52b-41c6-a65c-902f56a488c7', val: faker.lorem.word()),
-              KeyVal(key: '890b3a75-7a55-4d2a-9d4e-bb194fdcdc9a', val: faker.lorem.word()),
-              KeyVal(key: '8670e932-93b5-4e54-8dba-dd20b409fe5c', val: faker.lorem.word()),
-              KeyVal(key: '85c2cf01-a502-440f-925b-029fd16db4df', val: faker.lorem.word()),
-              KeyVal(key: '870e4640-b887-44eb-a1c6-e78097ec7899', val: faker.lorem.word()),
-              KeyVal(key: '8dfe58c7-2f48-4676-956a-d4f0c24ab444', val: faker.lorem.word()),
-              KeyVal(key: '016d5d17-2617-4708-97f9-80174f2d94c2', val: faker.lorem.word()),
+            final data = <ExKeyValue>[
+              ExKeyValue(key: 'all', value: 'Semua'),
+              ExKeyValue(key: '124a68ef-a52b-41c6-a65c-902f56a488c7', value: faker.lorem.word()),
+              ExKeyValue(key: '890b3a75-7a55-4d2a-9d4e-bb194fdcdc9a', value: faker.lorem.word()),
+              ExKeyValue(key: '8670e932-93b5-4e54-8dba-dd20b409fe5c', value: faker.lorem.word()),
+              ExKeyValue(key: '85c2cf01-a502-440f-925b-029fd16db4df', value: faker.lorem.word()),
+              ExKeyValue(key: '870e4640-b887-44eb-a1c6-e78097ec7899', value: faker.lorem.word()),
+              ExKeyValue(key: '8dfe58c7-2f48-4676-956a-d4f0c24ab444', value: faker.lorem.word()),
+              ExKeyValue(key: '016d5d17-2617-4708-97f9-80174f2d94c2', value: faker.lorem.word()),
             ];
 
-            BottomSheetHelper.bottomSheetListWithSelectedDialog(
+            ExBottomSheet.bottomSheetListWithSelectedDialog(
               data: data,
               keySelected: keyItemBottomSheetSelected,
               title: '${faker.lorem.word().toTitleCase}',
@@ -78,7 +78,7 @@ class BottomSheetPage extends StatelessWidget {
           label: 'Type Without Title',
           width: double.infinity,
           onPressed: () {
-            BottomSheetHelper.bottomSheetContentDialogWithoutText(
+            ExBottomSheet.bottomSheetContentDialogWithoutText(
               childrenWidget: VStack([
                 faker.lorem.sentence().text.make().pSymmetric(v: 12),
                 faker.lorem.sentence().text.make().pSymmetric(v: 12),
@@ -96,7 +96,7 @@ class BottomSheetPage extends StatelessWidget {
           label: 'Type Custom & Dragable / FullSize',
           width: double.infinity,
           onPressed: () {
-            BottomSheetHelper.bottomSheetCustomDialog(
+            ExBottomSheet.bottomSheetCustomDialog(
               childrenWidget: VStack([
                 faker.lorem.sentence().text.make().pSymmetric(v: 12),
                 Placeholder(),

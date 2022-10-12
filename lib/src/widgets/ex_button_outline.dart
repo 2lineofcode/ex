@@ -22,7 +22,7 @@ class ExButtonOutline extends StatelessWidget {
     this.backgroundColor,
     this.leftIcon,
     this.rightIcon,
-    this.isLabelBold,
+    this.isLabelBold = false,
     this.isShowBadge = false,
     this.badgeTextCount,
     this.badgeColor = Colors.red,
@@ -65,13 +65,15 @@ class ExButtonOutline extends StatelessWidget {
         ),
         child: HStack([
           if (leftIcon != null) HStack([leftIcon!, 8.widthBox]),
-          '$label'
-              .text
-              .textStyle(TextStyle(color: labelColor, fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.normal))
-              .size(labelSize)
-              .overflow(TextOverflow.ellipsis)
-              .maxLines(1)
-              .make(),
+          Text(
+            '$label',
+            style: TextStyle(
+              color: labelColor,
+              fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.normal,
+              fontSize: labelSize,
+            ),
+            overflow: TextOverflow.ellipsis,
+          ),
           if (isShowBadge == true && badgeCountForPrint != 0)
             HStack([
               8.widthBox,
@@ -97,13 +99,15 @@ class ExButtonOutline extends StatelessWidget {
         ),
         child: HStack([
           if (leftIcon != null) HStack([leftIcon!, 8.widthBox]),
-          '$label'
-              .text
-              .textStyle(TextStyle(color: labelColor, fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.normal))
-              .size(labelSize)
-              .overflow(TextOverflow.ellipsis)
-              .maxLines(1)
-              .make(),
+          Text(
+            '$label',
+            style: TextStyle(
+              color: labelColor,
+              fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.normal,
+              fontSize: labelSize,
+            ),
+            overflow: TextOverflow.ellipsis,
+          ),
           if (isShowBadge == true && badgeCountForPrint != 0)
             HStack([
               8.widthBox,

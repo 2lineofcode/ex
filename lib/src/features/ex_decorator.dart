@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-mixin DecoratorHelper {
+mixin ExDecorator {
   static BoxDecoration boxBottomSheetRadiusDecoration({double radius = 16}) {
     return BoxDecoration(
       color: Colors.white,

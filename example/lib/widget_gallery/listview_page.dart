@@ -3,12 +3,20 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:velocity_x/velocity_x.dart';
-
 import '../core/index.dart';
 
 class TestController extends GetxController {
-  final xData = <String>[].obs;
+  final xData = <String>[
+    faker.lorem.sentence(),
+  ].obs;
+
+  @override
+  void onInit() {
+    10.forEach((index) {
+      xData.add(faker.lorem.sentence());
+    });
+    super.onInit();
+  }
 
   Future<void> addItem() async {
     ExLoading.show();
@@ -28,33 +36,44 @@ class TestController extends GetxController {
 }
 
 ///
-class TestPage extends GetView {
-  const TestPage({Key? key}) : super(key: key);
+class ListViewPage extends GetView<TestController> {
+  const ListViewPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = TestController();
+    Get.put(TestController());
     return Scaffold(
       appBar: AppBar(
-        title: 'Tugas 1 Vocabulary'.text.size(16).make(),
+        title: 'ExListView'.text.size(16).make(),
         elevation: 0.5,
         leading: IconButton(icon: Icon(Icons.arrow_back_outlined), onPressed: () => Get.back()),
       ),
       body: Obx(
         () => ExListView(
           headerBuilder: (context) {
-            return VStack(['Unggah Jawaban'.text.extraBold.black.make().pOnly(bottom: 12)]);
+            return VStack([
+              Container(
+                width: double.infinity,
+                decoration: ExDecorator.commonBoxDecoration(),
+                child: VStack(
+                  [
+                    'Header Builder'.text.extraBold.black.make(),
+                    faker.lorem.sentence().text.italic.make(),
+                  ],
+                ).p(12),
+              ).pOnly(bottom: 24)
+            ]);
           },
           itemCount: controller.xData.length,
           itemBuilder: (context, index) {
             return Container(
-              decoration: DecoratorHelper.commonBoxDecoration(),
+              decoration: ExDecorator.commonBoxDecoration(),
               child: HStack(
                 [
                   Container(
                     height: 56,
                     width: 64,
-                    // decoration: DecoratorHelper.commonBoxDecoration(fillColor: colorNeutral[50], borderRadius: 0),
+                    // decoration: ExDecorator.commonBoxDecoration(fillColor: colorNeutral[50], borderRadius: 0),
                     color: colorNeutral[50],
                     child: Icon(Icons.link),
                   ),
@@ -69,7 +88,7 @@ class TestPage extends GetView {
           },
           footerBuilder: (context) {
             return ExButtonOutline(
-              label: 'Lampiran',
+              label: 'Footer Builder',
               leftIcon: Icon(Icons.upload, size: 13),
               borderColor: colorPrimary,
               height: 40,

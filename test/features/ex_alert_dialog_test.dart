@@ -26,7 +26,6 @@ void main() {
                   title: titleText,
                   message: messageText,
                   btnOkText: btnOkText,
-                  showAsset: false,
                 ),
               );
             },
@@ -90,7 +89,6 @@ void main() {
                 onPressed: () => ExAlert.success(
                   title: titleText,
                   message: messageText,
-                  isDismissible: true,
                   btnOkText: btnOkText,
                 ),
               );
@@ -149,7 +147,6 @@ void main() {
                   message: messageText,
                   btnYesText: btnConfirmText,
                   btnNoText: btnCancelText,
-                  showAsset: false,
                   onNo: () => Get.back(),
                   onYes: () => Get.back(),
                 ),
@@ -239,7 +236,6 @@ void main() {
                 onPressed: () => ExAlert.confirm(
                   title: titleText,
                   message: messageText,
-                  isDismissible: true,
                   btnYesText: btnConfirmText,
                   btnNoText: btnCancelText,
                   onNo: () => Get.back(),
@@ -302,7 +298,6 @@ void main() {
                   title: titleText,
                   message: messageText,
                   btnYesText: btnConfirmText,
-                  showAsset: false,
                   onYes: () => Get.back(),
                 ),
               );
@@ -367,7 +362,6 @@ void main() {
                 onPressed: () => ExAlert.error(
                   title: titleText,
                   message: messageText,
-                  isDismissible: true,
                   btnYesText: btnConfirmText,
                   onYes: () => Get.back(),
                 ),

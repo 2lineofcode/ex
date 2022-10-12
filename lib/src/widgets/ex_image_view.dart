@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../ex.dart';
-import 'loading_animation/loading_animation_widget.dart';
 
 ///   created               : Aditya Pratama
 ///   originalFilename      : ex_avatar_view

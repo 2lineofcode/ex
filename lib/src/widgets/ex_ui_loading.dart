@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'loading_animation/loading_animation_widget.dart';
+import '../../ex.dart';
+
+
 
 ///   created               : Aditya Pratama
 ///   originalFilename      : ex_ui_loading
@@ -30,7 +32,7 @@ class ExUiLoading extends StatelessWidget {
       child: Center(
         child: VStack(
           [
-            LoadingAnimationWidget.discreteCircle(
+            ExProgressBar(
               color: Theme.of(context).primaryColor,
               size: 32,
             ).centered(),

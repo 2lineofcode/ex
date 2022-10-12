@@ -1,52 +1,31 @@
 import 'package:ex/ex.dart';
+import 'package:faker/faker.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ShimmerPage extends StatefulWidget {
-  const ShimmerPage({Key? key}) : super(key: key);
+import 'loading_page.dart';
 
-  @override
-  State<ShimmerPage> createState() => _ShimmerPageState();
-}
-
-class _ShimmerPageState extends State<ShimmerPage> {
-  var isLoading = true;
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+class ShimmerPage extends GetView<LoadingController> {
   @override
   Widget build(BuildContext context) {
-    3.seconds.delay(() => setState(() => isLoading = false));
-
+    Get.put(LoadingController());
     return Scaffold(
       appBar: AppBar(
         title: 'Shimmer'.text.extraBold.size(16).make(),
         elevation: 0.5,
         leading: IconButton(icon: Icon(Icons.arrow_back_outlined), onPressed: () => Get.back()),
+        actions: [
+          IconButton(onPressed: () => controller.onInit(), icon: Icon(Icons.replay_outlined)),
+        ],
       ),
-      body: VStack([
-        if (isLoading)
-          ExUiShimmerList().expand()
-        else
-          VStack(
-            [
-              'DATA LOADED'.text.makeCentered().pOnly(bottom: 16),
-              ExButtonOutline(
-                label: 'reload',
-                onPressed: () {
-                  setState(() {
-                    isLoading = true;
-                    3.seconds.delay(() => setState(() => isLoading = false));
-                  });
-                },
-              ).centered(),
-            ],
-          ),
-      ]).p12(),
+      body: controller.obx(
+        onLoading: ExUiShimmerList(),
+        (state) => VStack([
+          'DATA LOADED'.text.xl.makeCentered().pOnly(bottom: 16),
+          '${faker.lorem.sentence()}'.text.center.green600.makeCentered(),
+        ]).centered().p12(),
+      ),
     );
   }
 }

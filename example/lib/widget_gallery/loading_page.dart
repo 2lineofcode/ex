@@ -1,51 +1,42 @@
+import 'dart:developer';
+
 import 'package:ex/ex.dart';
+import 'package:faker/faker.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoadingPage extends StatefulWidget {
-  const LoadingPage({Key? key}) : super(key: key);
-
+class LoadingController extends GetxController with StateMixin {
   @override
-  State<LoadingPage> createState() => _LoadingPageState();
+  Future<void> onInit() async {
+    log('im here..');
+    change(0, status: RxStatus.loading());
+    await 1.seconds.delay();
+    change(0, status: RxStatus.success());
+    super.onInit();
+  }
 }
 
-class _LoadingPageState extends State<LoadingPage> {
-  var isLoading = true;
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+class LoadingPage extends GetView<LoadingController> {
   @override
   Widget build(BuildContext context) {
-    3.seconds.delay(() => setState(() => isLoading = false));
+    Get.put(LoadingController());
     return Scaffold(
       appBar: AppBar(
         title: 'Loading'.text.extraBold.size(16).make(),
         elevation: 0.5,
         leading: IconButton(icon: Icon(Icons.arrow_back_outlined), onPressed: () => Get.back()),
+        actions: [
+          IconButton(onPressed: () => controller.onInit(), icon: Icon(Icons.replay_outlined)),
+        ],
       ),
-      body: VStack([
-        if (isLoading)
-          ExUiShimmerList().expand()
-        else
-          VStack(
-            [
-              'DATA LOADED'.text.makeCentered().pOnly(bottom: 16),
-              ExButtonOutline(
-                label: 'reload',
-                onPressed: () {
-                  setState(() {
-                    isLoading = true;
-                    3.seconds.delay(() => setState(() => isLoading = false));
-                  });
-                },
-              ).centered(),
-            ],
-          ),
-      ]).p12(),
+      body: controller.obx(
+        onLoading: ExUiLoading(),
+        (state) => VStack([
+          'DATA LOADED'.text.xl.makeCentered().pOnly(bottom: 16),
+          '${faker.lorem.sentence()}'.text.center.green600.makeCentered(),
+        ]).centered().p12(),
+      ),
     );
   }
 }

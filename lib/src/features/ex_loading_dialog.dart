@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'loading_animation/loading_animation_widget.dart';
+import '../widgets/ex_progressbar.dart';
 
 /*
  * ExLoading

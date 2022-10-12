@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TranslateAnimation extends StatelessWidget {
-  const TranslateAnimation({
+class ExTranslateAnimation extends StatelessWidget {
+  const ExTranslateAnimation({
     Key? key,
     this.duration = const Duration(milliseconds: 800),
     this.child,
@@ -30,8 +30,8 @@ class TranslateAnimation extends StatelessWidget {
   }
 }
 
-class OpacityAnimation extends StatelessWidget {
-  const OpacityAnimation({
+class ExOpacityAnimation extends StatelessWidget {
+  const ExOpacityAnimation({
     Key? key,
     this.duration = const Duration(milliseconds: 1000),
     this.child,
@@ -63,8 +63,8 @@ class OpacityAnimation extends StatelessWidget {
   }
 }
 
-class ScaleAnimation extends StatelessWidget {
-  const ScaleAnimation({
+class ExScaleAnimation extends StatelessWidget {
+  const ExScaleAnimation({
     Key? key,
     this.duration = const Duration(milliseconds: 800),
     required this.child,
@@ -96,8 +96,8 @@ class ScaleAnimation extends StatelessWidget {
   }
 }
 
-class TextAnimation extends StatelessWidget {
-  const TextAnimation({
+class ExTextAnimation extends StatelessWidget {
+  const ExTextAnimation({
     Key? key,
     required this.child,
   }) : super(key: key);
@@ -106,6 +106,6 @@ class TextAnimation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OpacityAnimation(duration: const Duration(milliseconds: 3000), child: child);
+    return ExOpacityAnimation(duration: const Duration(milliseconds: 3000), child: child);
   }
 }

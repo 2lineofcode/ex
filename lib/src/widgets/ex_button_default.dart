@@ -60,7 +60,15 @@ class ExButtonDefault extends StatelessWidget {
         child: HStack(
           [
             if (leftIcon != null) HStack([leftIcon!, 8.widthBox]),
-            '$label'.text.textStyle(TextStyle(color: labelColor, fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.normal)).size(labelSize).overflow(TextOverflow.ellipsis).make(),
+            Text(
+              '$label',
+              style: TextStyle(
+                color: labelColor,
+                fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.normal,
+                fontSize: labelSize,
+              ),
+              overflow: TextOverflow.ellipsis,
+            ),
             if (isShowBadge == true && badgeCountForPrint != 0)
               HStack([
                 8.widthBox,
@@ -85,7 +93,15 @@ class ExButtonDefault extends StatelessWidget {
         child: HStack(
           [
             if (leftIcon != null) HStack([leftIcon!, 8.widthBox]),
-            '$label'.text.textStyle(TextStyle(color: labelColor, fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.normal)).size(labelSize).overflow(TextOverflow.ellipsis).make(),
+            Text(
+              '$label',
+              style: TextStyle(
+                color: labelColor,
+                fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.normal,
+                fontSize: labelSize,
+              ),
+              overflow: TextOverflow.ellipsis,
+            ),
             if (isShowBadge == true && badgeCountForPrint != 0)
               HStack([
                 8.widthBox,

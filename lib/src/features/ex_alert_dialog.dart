@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../ex.dart';
-import '../utils/color.dart';
+import '../color.dart';
 
 /*
  * ExAlert
@@ -27,22 +27,27 @@ mixin ExAlert {
   /// );
   /// ```
   static void success({
-    Widget? svgAssetDir,
-    bool showAsset = true,
+    // icon
+    Widget? icon,
+    bool showIcon = true,
+    // title
     String title = 'Success',
     TextStyle? titleStyle,
     double titleTextSize = 18,
     TextAlign titleTextAlign = TextAlign.left,
     Color titleTextColor = Colors.black,
+    // message
     String? message,
     TextStyle? messageStyle,
     double messageTextSize = 13,
     TextAlign messageTextAlign = TextAlign.left,
-    Color messageTextColor = Colors.blueGrey,
-    bool isDismissible = false,
+    Color messageTextColor = colorNeutral,
+    // isDismissible
+    bool isDismissible = true,
+    // button
     String btnOkText = 'Close',
     Color? barrierColor = Colors.black54,
-    double cornerRadius = 8.0,
+    double cornerRadius = 4.0,
     Function()? onYes,
   }) {
     showDialog(
@@ -57,10 +62,10 @@ mixin ExAlert {
             // contentPadding: EdgeInsets.all(16),
             scrollable: true,
             content: VStack([
-              if (showAsset || svgAssetDir != null)
+              if (showIcon || icon != null)
                 VStack([
-                  if (svgAssetDir != null)
-                    svgAssetDir
+                  if (icon != null)
+                    icon
                   else
                     Icon(
                       CupertinoIcons.check_mark_circled,
@@ -68,13 +73,12 @@ mixin ExAlert {
                       color: Theme.of(context).primaryColor,
                     ).centered().pOnly(bottom: 24)
                 ]),
-              if (title != null)
-                Text(
-                  title,
-                  style: titleStyle ?? TextStyle(fontSize: titleTextSize, fontWeight: FontWeight.bold, color: titleTextColor),
-                  textAlign: titleTextAlign,
-                  maxLines: 2,
-                ).w(double.infinity),
+              Text(
+                title,
+                style: titleStyle ?? TextStyle(fontSize: titleTextSize, fontWeight: FontWeight.bold, color: titleTextColor),
+                textAlign: titleTextAlign,
+                maxLines: 2,
+              ).w(double.infinity),
               if (message != null)
                 Text(
                   message,
@@ -110,9 +114,9 @@ mixin ExAlert {
   /// );
   /// ```
   static void error({
-    Widget? svgAssetDir,
-    bool showAsset = true,
-    String title = 'Failed',
+    Widget? icon,
+    bool showIcon = true,
+    String? title,
     TextStyle? titleStyle,
     double titleTextSize = 18,
     TextAlign titleTextAlign = TextAlign.left,
@@ -121,11 +125,11 @@ mixin ExAlert {
     TextStyle? messageStyle,
     double messageTextSize = 13,
     TextAlign messageTextAlign = TextAlign.left,
-    Color messageTextColor = Colors.blueGrey,
-    bool isDismissible = false,
+    Color messageTextColor = colorNeutral,
+    bool isDismissible = true,
     String btnYesText = 'Close',
     Color? barrierColor = Colors.black54,
-    double cornerRadius = 8.0,
+    double cornerRadius = 4.0,
     Function()? onYes,
   }) {
     showDialog(
@@ -140,10 +144,10 @@ mixin ExAlert {
             // contentPadding: EdgeInsets.all(16),
             scrollable: true,
             content: VStack([
-              if (showAsset)
+              if (showIcon)
                 VStack([
-                  if (svgAssetDir != null)
-                    svgAssetDir
+                  if (icon != null)
+                    icon
                   else
                     Icon(
                       CupertinoIcons.clear_circled,
@@ -194,9 +198,9 @@ mixin ExAlert {
   /// );
   /// ```
   static void confirm({
-    Widget? svgAssetDir,
-    bool showAsset = true,
-    String title = '',
+    Widget? icon,
+    bool showIcon = true,
+    String? title,
     TextStyle? titleStyle,
     double titleTextSize = 18,
     TextAlign titleTextAlign = TextAlign.left,
@@ -205,15 +209,15 @@ mixin ExAlert {
     TextStyle? messageStyle,
     double messageTextSize = 13,
     TextAlign messageTextAlign = TextAlign.left,
-    Color messageTextColor = Colors.blueGrey,
-    bool isDismissible = false,
+    Color messageTextColor = colorNeutral,
+    bool isDismissible = true,
     String btnNoText = 'No',
     Function()? onNo,
     String btnYesText = 'Yes',
     Function()? onYes,
     bool isWarningMode = false,
     Color? barrierColor = Colors.black54,
-    double cornerRadius = 8.0,
+    double cornerRadius = 4.0,
   }) {
     showDialog(
       context: Get.context!,
@@ -226,10 +230,10 @@ mixin ExAlert {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(cornerRadius))),
             scrollable: true,
             content: VStack([
-              if (showAsset)
+              if (showIcon)
                 VStack([
-                  if (svgAssetDir != null)
-                    svgAssetDir
+                  if (icon != null)
+                    icon
                   else
                     Icon(
                       CupertinoIcons.question_circle,

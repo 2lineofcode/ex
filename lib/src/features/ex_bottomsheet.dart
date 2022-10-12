@@ -3,13 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../../ex.dart';
 import '../widgets/index.dart';
-import 'decorator_helper.dart';
+import 'ex_decorator.dart';
 
 enum BSHeaderType { dash, close }
 
 enum BSContentType { regular, radio }
 
-mixin BottomSheetHelper {
+mixin ExBottomSheet {
   // —————————————————————————————————————————————————————————————————————————
   // BOTTOM SHEET DIALOG  ————————————————————————————————————————————————————
   // —————————————————————————————————————————————————————————————————————————
@@ -25,7 +25,7 @@ mixin BottomSheetHelper {
     HapticFeedback.lightImpact();
     Get.bottomSheet(
       Container(
-        decoration: DecoratorHelper.boxBottomSheetRadiusDecoration(),
+        decoration: ExDecorator.boxBottomSheetRadiusDecoration(),
         child: VStack(
           [
             if (headerType == BSHeaderType.dash)
@@ -78,7 +78,7 @@ mixin BottomSheetHelper {
         maxChildSize: 0.9,
         minChildSize: minChildSize,
         builder: (_, controller) => Container(
-          decoration: DecoratorHelper.boxBottomSheetRadiusDecoration(radius: radius),
+          decoration: ExDecorator.boxBottomSheetRadiusDecoration(radius: radius),
           child: VStack(
             [
               const ExDashLine(),
@@ -105,7 +105,7 @@ mixin BottomSheetHelper {
     HapticFeedback.lightImpact();
     Get.bottomSheet(
       Container(
-        decoration: DecoratorHelper.boxBottomSheetRadiusDecoration(radius: radius),
+        decoration: ExDecorator.boxBottomSheetRadiusDecoration(radius: radius),
         child: VStack(
           [
             Center(
@@ -126,7 +126,7 @@ mixin BottomSheetHelper {
   }
 
   static void bottomSheetListWithSelectedDialog({
-    required List<KeyVal> data,
+    required List<ExKeyValue> data,
     required String title,
     required String keySelected,
     bool? showTotalData = false,
@@ -142,7 +142,7 @@ mixin BottomSheetHelper {
     final totalData = data.length;
     Get.bottomSheet(
       Container(
-        decoration: DecoratorHelper.boxBottomSheetRadiusDecoration(),
+        decoration: ExDecorator.boxBottomSheetRadiusDecoration(),
         child: VStack(
           [
             const ExDashLine().p24(),
@@ -156,11 +156,11 @@ mixin BottomSheetHelper {
                       itemCount: data.length,
                       itemBuilder: (context, index) {
                         return ListTile(
-                          title: data[index].key == keySelected ? data[index].val.text.bold.size(14).make() : data[index].val.text.size(14).make(),
+                          title: data[index].key == keySelected ? data[index].value.text.bold.size(14).make() : data[index].value.text.size(14).make(),
                           trailing: data[index].key == keySelected ? Icon(Icons.radio_button_on) : Icon(Icons.radio_button_off),
                           onTap: () {
                             Get.back();
-                            callback(data[index].key, data[index].val);
+                            callback(data[index].key, data[index].value);
                           },
                         ).pSymmetric(h: 24);
                       },

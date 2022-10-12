@@ -11,6 +11,8 @@ dependencies:
   flutter_lorem: ^2.0.0
   cupertino_icons: ^1.0.2
   google_fonts: ^3.0.1
+  flutter_html: 3.0.0-alpha.5
+  dart_code_viewer2: ^1.0.0
   get:
 
   flutter:

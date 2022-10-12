@@ -1,8 +1,21 @@
-## 0.1.0
+## 0.1.2
+* added     : ex-accordion
+* added     : ex-timeline-activity
+* added     : ex-message
+* added     : ex-image-priview
+* added     : ex-datetimepicker
+* improve   : ex-input-dialog
+* add       : ex-input-dialog-custom
+* improve   : ex-alert-dialog
+* optimize  : code (pub.dev score)
+
+
+## 0.1.1
 * support flutter 3 / latest
 * fix ex-alert
 * add ex-list
 * re-write example
+* update documentation
 ## 0.0.10
 * added WillPopScope as parent for AlertDialog
 * added integration test for ex_alert_dialog
@@ -10,13 +23,13 @@
 
 ## 0.0.9
 * change default isDismissible = false on ExLoading
-* add param initial value on ExInputDialog
+* add param initial value on ExDialog
 
 ## 0.0.8
 * fix issue loading dialog
 
 ## 0.0.7
-* Add ExInputDialog.single()
+* Add ExDialog.single()
 
 
 ## 0.0.6

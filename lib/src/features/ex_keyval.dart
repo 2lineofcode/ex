@@ -7,17 +7,17 @@
 ///   - list dialog
 ///   - etc.
 ///
-class KeyVal {
-  KeyVal({
+class ExKeyValue {
+  ExKeyValue({
     required this.key,
-    required this.val,
+    required this.value,
     this.icon,
     this.badge,
     this.isSelected,
   });
 
   dynamic key;
-  String val;
+  String value;
   String? icon;
   bool? badge;
   bool? isSelected;

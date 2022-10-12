@@ -2,8 +2,55 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import 'draw_arc.dart';
+class ExProgressBar extends StatelessWidget {
+  const ExProgressBar({
+    Key? key,
+    this.color,
+    this.size,
+    this.secondRingColor,
+    this.thirdRingColor,
+  }) : super(key: key);
 
+  final Color? color;
+  final double? size;
+  final Color? secondRingColor;
+  final Color? thirdRingColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return DiscreteCircle(
+      color: color ?? Theme.of(context).primaryColor,
+      size: size ?? 24,
+      secondCircleColor: secondRingColor ?? Colors.teal,
+      thirdCircleColor: thirdRingColor ?? Colors.orange,
+      key: key,
+    );
+  }
+}
+
+class LoadingAnimationWidget {
+  LoadingAnimationWidget._();
+
+  static Widget discreteCircle({
+    required Color color,
+    required double size,
+    Color secondRingColor = Colors.teal,
+    Color thirdRingColor = Colors.orange,
+    Key? key,
+  }) {
+    return DiscreteCircle(
+      color: color,
+      size: size,
+      secondCircleColor: secondRingColor,
+      thirdCircleColor: thirdRingColor,
+      key: key,
+    );
+  }
+}
+
+// —————————————————————————————————————————————————————————————————————————————
+// DiscreteCircle
+// —————————————————————————————————————————————————————————————————————————————
 class DiscreteCircle extends StatefulWidget {
   const DiscreteCircle({
     Key? key,
@@ -36,11 +83,11 @@ class _DiscreteCircleState extends State<DiscreteCircle> with SingleTickerProvid
 
   @override
   Widget build(BuildContext context) {
-    final color = widget.color;
-    final size = widget.size;
-    final strokeWidth = size / 8;
-    final secondRingColor = widget.secondCircleColor;
-    final thirdRingColor = widget.thirdCircleColor;
+    final Color color = widget.color;
+    final double size = widget.size;
+    final double strokeWidth = size / 8;
+    final Color secondRingColor = widget.secondCircleColor;
+    final Color thirdRingColor = widget.thirdCircleColor;
     return AnimatedBuilder(
       animation: _animationController,
       builder: (_, __) {
@@ -182,4 +229,62 @@ class _DiscreteCircleState extends State<DiscreteCircle> with SingleTickerProvid
     _animationController.dispose();
     super.dispose();
   }
+}
+
+// —————————————————————————————————————————————————————————————————————————————
+// Arc
+// —————————————————————————————————————————————————————————————————————————————
+
+class Arc extends CustomPainter {
+  Arc._(
+    this._color,
+    this._strokeWidth,
+    this._startAngle,
+    this._sweepAngle,
+  );
+
+  final Color _color;
+  final double _strokeWidth;
+  final double _sweepAngle;
+  final double _startAngle;
+
+  static Widget draw({
+    required Color color,
+    required double size,
+    required double strokeWidth,
+    required double startAngle,
+    required double endAngle,
+  }) =>
+      SizedBox(
+        width: size,
+        height: size,
+        child: CustomPaint(
+          painter: Arc._(
+            color,
+            strokeWidth,
+            startAngle,
+            endAngle,
+          ),
+        ),
+      );
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Rect rect = Rect.fromCircle(
+      center: Offset(size.width / 2, size.height / 2),
+      radius: size.height / 2,
+    );
+
+    const bool useCenter = false;
+    final Paint paint = Paint()
+      ..color = _color
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round
+      ..strokeWidth = _strokeWidth;
+
+    canvas.drawArc(rect, _startAngle, _sweepAngle, useCenter, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }

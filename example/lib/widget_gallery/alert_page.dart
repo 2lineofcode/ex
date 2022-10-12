@@ -39,7 +39,7 @@ class AlertPage extends StatelessWidget {
             onPressed: () => ExAlert.success(
               title: faker.lorem.word(),
               message: faker.lorem.sentence(),
-              showAsset: false,
+              showIcon: false,
             ),
           ).expand(),
         ]),
@@ -71,7 +71,7 @@ class AlertPage extends StatelessWidget {
             onPressed: () => ExAlert.error(
               title: faker.lorem.word(),
               message: faker.lorem.sentence(),
-              showAsset: false,
+              showIcon: false,
             ),
           ).expand(),
         ]),
@@ -103,7 +103,7 @@ class AlertPage extends StatelessWidget {
             onPressed: () => ExAlert.confirm(
               title: faker.lorem.word(),
               message: faker.lorem.sentence(),
-              showAsset: false,
+              showIcon: false,
             ),
           ).expand(),
         ]),
@@ -137,8 +137,8 @@ class AlertPage extends StatelessWidget {
             onPressed: () => ExAlert.confirm(
               title: faker.lorem.word(),
               message: faker.lorem.sentence(),
-              showAsset: false,
               isWarningMode: true,
+              showIcon: false,
             ),
           ).expand(),
         ]),

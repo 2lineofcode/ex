@@ -8,7 +8,7 @@ import '../../ex.dart';
 import '../color.dart';
 
 /*
- * ExAlert
+ * ExDialog
  * Created by Aditya Pratama
  * https://adit.web.id
  *

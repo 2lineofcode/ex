@@ -15,7 +15,7 @@ class ExButtonOutline extends StatelessWidget {
     Key? key,
     this.width,
     this.height = 44,
-    this.label = 'ExButton',
+    this.label = '',
     this.onPressed,
     this.labelColor,
     this.borderColor,
@@ -71,7 +71,7 @@ class ExButtonOutline extends StatelessWidget {
             '$label',
             style: TextStyle(
               color: labelColor,
-              fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.normal,
+              fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.w500,
               fontSize: labelSize,
             ),
             overflow: TextOverflow.ellipsis,
@@ -105,7 +105,7 @@ class ExButtonOutline extends StatelessWidget {
             '$label',
             style: TextStyle(
               color: labelColor,
-              fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.normal,
+              fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.w500,
               fontSize: labelSize,
             ),
             overflow: TextOverflow.ellipsis,

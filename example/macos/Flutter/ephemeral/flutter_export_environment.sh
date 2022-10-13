@@ -1,12 +1,13 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/Aditya.Pratama/fvm/versions/stable"
+export "FLUTTER_ROOT=/Users/Aditya.Pratama/fvm/versions/2.10.4"
 export "FLUTTER_APPLICATION_PATH=/Users/Aditya.Pratama/StudioProjects/@lib/ex/example"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=/Users/Aditya.Pratama/StudioProjects/@lib/ex/example/lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"
 export "FLUTTER_BUILD_NUMBER=1.0.0"
+export "EXCLUDED_ARCHS=arm64"
 export "DART_DEFINES=RkxVVFRFUl9XRUJfQVVUT19ERVRFQ1Q9dHJ1ZQ=="
 export "DART_OBFUSCATION=false"
 export "TRACK_WIDGET_CREATION=true"

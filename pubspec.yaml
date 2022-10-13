@@ -1,6 +1,6 @@
 name: ex
 description: Scope Function, When Expression, ExComponent, ExLog, ExAlert, ExBottomSheet, ExLoading, ExImagePreview, ExUtils
-version: 0.1.3
+version: 0.1.4
 homepage: https://github.com/abehbatre/ex
 
 environment:
@@ -17,6 +17,7 @@ dependencies:
   get: ^4.6.1
 
 dev_dependencies:
+  lints: ^1.0.0
   flutter_test:
     sdk: flutter
 

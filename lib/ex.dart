@@ -6,6 +6,9 @@
 
 library ex;
 
+// core
+export 'src/core/index.dart';
+
 // extensions
 export 'src/extensions/index.dart';
 

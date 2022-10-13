@@ -1,15 +1,117 @@
 # Ex
-is an common widget / utils or helper library we made for all type application. whatever application you made, **Ex** it will help you reduce your fucking time on development process
+Just Start with Type : Ex...
 
 ## DEMO (WEB)
 https://abehbatre.github.io/ex-preview.github.io/#/
 
 ---
 
+
+## Some Example
+### ImagePreview (overlay, pinch, zoom, interactive) like IG
+<img width="90" alt="Screenshot 2022-10-13 at 15 01 34" src="https://user-images.githubusercontent.com/36602270/195540844-44b05fec-89b7-4e99-a268-2541c4afe261.png">
+
+```
+ExImagePreview.show(
+  'https://imageurl.com',
+),
+```
+
+### ExAlert:
+```
+tipe     : success, error, confirm
+example  : https://github.com/abehbatre/ex/blob/master/example/lib/helper_gallery/alert_page.dart
+```
+
+### ExBottomSheet:
+```
+tipe     : bottomSheetContentDialog, bottomSheetCustomDialog, bottomSheetListWithSelectedDialog
+example  : https://github.com/abehbatre/ex/blob/master/example/lib/helper_gallery/bottomsheet_page.dart
+```
+### ExDialog
+```
+tipe     : singleInput, custom
+example  : https://github.com/abehbatre/ex/blob/master/example/lib/helper_gallery/input_dialog_page.dart
+```
+
+### ExSnackbar
+```
+tipe     : neutral, info, warning, success, error, action || top/bottom
+example  : https://github.com/abehbatre/ex/blob/master/example/lib/helper_gallery/input_dialog_page.dart
+```
+
+### ExLog
+```
+logD('message');
+logE('message');
+logW('message');
+logI('message');
+
+# output
+[ExLog] 👻 | message
+[ExLog] 🔴 | message
+[ExLog] 🟠 | message
+[ExLog] ℹ️ | message
+```
+
+
+### ExHttp
+
+**simple example** | lets explore more params/option: https://github.com/abehbatre/ex/blob/master/lib/src/core/ex_http.dart
+
+```dart
+/// `main.dart` (inject)
+void main() {
+  ...
+    Get.put(ExHttp(
+      baseURL: 'https://your-api.com',
+      baseHeader: {
+        'App-ID': 'ex_v_1038',
+        'Device-ID': await DeviceInfo().uuid(),
+        'Device-Type': Platform.operatingSystem,
+      },
+    ));
+  ...
+}
+
+
+/// repo or provider
+class ExampleProvider extends BaseProvider {
+
+  // example with baseURL
+  getUsers() async {
+    return apiService.httpGet(
+      endpoint: '/users',
+      header: {},
+      query: {},
+      withToken: true,
+    );
+  }
+
+  // example without baseURL
+  getTodayQoute() async {
+    return apiService.http(
+      url: 'https://zenquotes.io/api/today',
+      method: Method.GET,
+    );
+  }
+}
+
+/// put on controller
+class ExampleController extends BaseController<ExampleProvider> {
+
+  loadAPI() async {
+    await provider.getUsers().then((response) {
+      print(response.body);
+    }).catchError((e) {
+      print(e);
+    });
+  }
+}
+```
+
+
 ## Screenshoot
-
-
-
 <img width="90" alt="Screenshot 2022-10-13 at 15 04 05" src="https://user-images.githubusercontent.com/36602270/195540776-9d7a1a06-2824-48d0-ac55-ff4f40b2a63f.png">
 <img width="90" alt="Screenshot 2022-10-13 at 15 03 55" src="https://user-images.githubusercontent.com/36602270/195540779-6e56c041-f06e-4963-83c5-a9a79841599c.png">
 <img width="90" alt="Screenshot 2022-10-13 at 15 03 47" src="https://user-images.githubusercontent.com/36602270/195540781-92e837b0-7b5b-4664-9e06-81a0fe8de78b.png">

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:ex/ex.dart';
 import 'package:faker/faker.dart';
 

@@ -1,7 +1,9 @@
+## 0.1.4
+* add : ex-log
+* add : ex-http (manual, get, post, put, delete, upload-multipart, download, request modifier, custom-interceptor, exeption, etc.) just powerfull.
+
 ## 0.1.3
 * fix issue backward compatibility flutter 2
-
-
 
 ## 0.1.2
 * added     : ex-accordion

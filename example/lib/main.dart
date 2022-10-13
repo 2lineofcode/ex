@@ -1,34 +1,53 @@
 import 'package:ex/ex.dart';
 import 'package:example/core/index.dart';
-import 'package:example/widget_gallery/decoration_page.dart';
+import 'package:example/core_gallery/http_page.dart';
+import 'package:example/core_gallery/log_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'app_themes.dart';
 import 'ext_gallery/ext_int_page.dart';
 import 'ext_gallery/ext_string_page.dart';
-import 'widget_gallery/accordion_page.dart';
-import 'widget_gallery/datetime_picker_page.dart';
-import 'widget_gallery/listview_page.dart';
-import 'widget_gallery/alert_page.dart';
-import 'widget_gallery/avatar_page.dart';
-import 'widget_gallery/bottomsheet_page.dart';
-import 'widget_gallery/button_page.dart';
-import 'widget_gallery/divider_page.dart';
-import 'widget_gallery/error_or_empty_page.dart';
-import 'widget_gallery/imageview_page.dart';
-import 'widget_gallery/input_dialog_page.dart';
-import 'widget_gallery/loading_page.dart';
-import 'widget_gallery/message_page.dart';
-import 'widget_gallery/progress_page.dart';
-import 'widget_gallery/shimmer_page.dart';
-import 'widget_gallery/snackbar_page.dart';
-import 'widget_gallery/textfield_page.dart';
-import 'widget_gallery/timeline_activity_page.dart';
-import 'widget_gallery/typography_page.dart';
+import 'ui_widget_gallery/accordion_page.dart';
+import 'helper_gallery/datetime_picker_page.dart';
+import 'ui_widget_gallery/listview_page.dart';
+import 'helper_gallery/alert_page.dart';
+import 'ui_widget_gallery/avatar_page.dart';
+import 'helper_gallery/bottomsheet_page.dart';
+import 'ui_widget_gallery/button_page.dart';
+import 'ui_widget_gallery/divider_page.dart';
+import 'ui_widget_gallery/error_or_empty_page.dart';
+import 'ui_widget_gallery/imageview_page.dart';
+import 'helper_gallery/input_dialog_page.dart';
+import 'ui_widget_gallery/loading_page.dart';
+import 'ui_widget_gallery/message_page.dart';
+import 'ui_widget_gallery/progress_page.dart';
+import 'ui_widget_gallery/shimmer_page.dart';
+import 'helper_gallery/snackbar_page.dart';
+import 'ui_widget_gallery/textfield_page.dart';
+import 'ui_widget_gallery/timeline_activity_page.dart';
+import 'ui_widget_gallery/typography_page.dart';
+import 'helper_gallery/decoration_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
+  /// ExHttp
+  Get.put(
+    ExHttp(
+      baseURL: 'https://api.com',
+      baseHeader: {},
+      maxTimeOut: 30.seconds,
+      maxAuthRetry: 5,
+      allowFollowRedirects: true,
+      showLogHeader: true,
+      showLogResponse: true,
+    ),
+  );
+
+  /// ExLog
+  ExLog.init();
+
   runApp(
     GetMaterialApp(
       title: 'Ex:ample',
@@ -72,14 +91,18 @@ class Home extends GetView {
   final xFeatures3 = {
     'Int': ExtIntPage(),
     'String': ExtStringPage(),
-    'List': AlertPage(),
-    'Date': AlertPage(),
+    'List': Scaffold(appBar: AppBar()),
+    'Date': Scaffold(appBar: AppBar()),
+  };
+  final xFeatures4 = {
+    'Log': LogPage(),
+    'Http': HttpPage(),
   };
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 4,
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
@@ -88,10 +111,12 @@ class Home extends GetView {
           bottom: TabBar(
             labelColor: colorBlack,
             unselectedLabelColor: colorNeutral[200],
+            isScrollable: true,
             tabs: [
               'UI/Widget'.text.make().p16(),
               'Helper'.text.make().p16(),
               'Extension'.text.make().p16(),
+              'Core'.text.make().p16(),
             ],
           ),
         ),
@@ -118,7 +143,7 @@ class Home extends GetView {
             /// tab 2
             VStack([
               Divider(),
-               ListTile(
+              ListTile(
                 leading: Icon(Icons.folder_outlined),
                 title: 'ImagePreview'.text.make(),
                 minLeadingWidth: 16,
@@ -150,6 +175,24 @@ class Home extends GetView {
                 separatorBuilder: (BuildContext context, int index) => Divider(),
                 itemBuilder: (context, index) {
                   final data = xFeatures3.entries.toList();
+                  return ListTile(
+                    leading: Icon(Icons.folder_outlined),
+                    title: data[index].key.text.make(),
+                    minVerticalPadding: 2,
+                    minLeadingWidth: 16,
+                    onTap: () => Get.to(() => data[index].value),
+                  );
+                },
+              ).expand(),
+            ]).p24(),
+
+            /// tab 4
+            VStack([
+              ListView.separated(
+                itemCount: xFeatures4.length,
+                separatorBuilder: (BuildContext context, int index) => Divider(),
+                itemBuilder: (context, index) {
+                  final data = xFeatures4.entries.toList();
                   return ListTile(
                     leading: Icon(Icons.folder_outlined),
                     title: data[index].key.text.make(),

@@ -1,4 +1,4 @@
-// ignore_for_file: cast_nullable_to_non_nullable, use_named_constants, invalid_null_aware_operator
+// ignore_for_file: cast_nullable_to_non_nullable, use_named_constants, invalid_null_aware_operator, constant_identifier_names
 
 import 'dart:async';
 import 'dart:ui';
@@ -291,7 +291,6 @@ mixin ExSnackbar {
 // flushbar
 // —————————————————————————————————————————————————————————————————————————————
 
-// ignore: constant_identifier_names
 const String FLUSHBAR_ROUTE_NAME = '/flushbarRoute';
 
 typedef FlushbarStatusCallback = void Function(FlushbarStatus? status);

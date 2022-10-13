@@ -20,11 +20,13 @@ class ShimmerPage extends GetView<LoadingController> {
         ],
       ),
       body: controller.obx(
+        (state) => VStack(
+          [
+            'DATA LOADED'.text.xl.makeCentered().pOnly(bottom: 16),
+            '${faker.lorem.sentence()}'.text.center.green600.makeCentered(),
+          ],
+        ).centered().p12(),
         onLoading: ExUiShimmerList(),
-        (state) => VStack([
-          'DATA LOADED'.text.xl.makeCentered().pOnly(bottom: 16),
-          '${faker.lorem.sentence()}'.text.center.green600.makeCentered(),
-        ]).centered().p12(),
       ),
     );
   }

@@ -1,3 +1,8 @@
+## 0.1.3
+* fix issue backward compatibility flutter 2
+
+
+
 ## 0.1.2
 * added     : ex-accordion
 * added     : ex-timeline-activity

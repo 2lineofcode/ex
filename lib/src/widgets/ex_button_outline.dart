@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 
 import '../../ex.dart';
@@ -57,7 +59,7 @@ class ExButtonOutline extends StatelessWidget {
       return OutlinedButton(
         onPressed: onPressed ?? () {},
         style: OutlinedButton.styleFrom(
-          foregroundColor: labelColor,
+          primary: labelColor,
           backgroundColor: backgroundColor,
           side: BorderSide(color: borderColor ?? Colors.grey),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
@@ -91,7 +93,7 @@ class ExButtonOutline extends StatelessWidget {
       return OutlinedButton(
         onPressed: null,
         style: OutlinedButton.styleFrom(
-          foregroundColor: labelColor,
+          primary: labelColor,
           backgroundColor: backgroundColor,
           side: BorderSide(color: borderColor ?? Color(0xFFD8DCE0)),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),

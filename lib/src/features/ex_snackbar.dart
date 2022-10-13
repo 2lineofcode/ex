@@ -1,4 +1,4 @@
-// ignore_for_file: cast_nullable_to_non_nullable, use_named_constants
+// ignore_for_file: cast_nullable_to_non_nullable, use_named_constants, invalid_null_aware_operator
 
 import 'dart:async';
 import 'dart:ui';
@@ -627,7 +627,7 @@ class _FlushbarState<K extends Object?> extends State<Flushbar<K>> with TickerPr
   }
 
   void _configureLeftBarFuture() {
-    SchedulerBinding.instance.addPostFrameCallback(
+    SchedulerBinding.instance?.addPostFrameCallback(
       (_) {
         final keyContext = _backgroundBoxKey!.currentContext;
 

@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -60,7 +62,7 @@ mixin ExDialog {
                   width: width,
                   child: HStack(
                     [
-                      title.text.size(titleTextSize).ellipsis.textStyle(titleTextStyle).maxLines(1).bold.make().pSymmetric(h: 24).expand(),
+                      title.text.size(titleTextSize).ellipsis.textStyle(titleTextStyle ?? TextStyle()).maxLines(1).bold.make().pSymmetric(h: 24).expand(),
                     ],
                   ),
                 ).cornerRadius(4),
@@ -103,7 +105,7 @@ mixin ExDialog {
                     ).pOnly(right: 12, bottom: 12).h(55),
                     Obx(
                       () => ElevatedButton(
-                        style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).primaryColor),
+                        style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
                         onPressed: isInputValid.value == true
                             ? () {
                                 if (tfController.text.isNotBlank) {
@@ -164,7 +166,7 @@ mixin ExDialog {
                   width: width,
                   child: HStack(
                     [
-                      title.text.size(titleTextSize).ellipsis.textStyle(titleTextStyle).maxLines(1).bold.make().pSymmetric(h: 24).expand(),
+                      title.text.size(titleTextSize).ellipsis.textStyle(titleTextStyle ?? TextStyle()).maxLines(1).bold.make().pSymmetric(h: 24).expand(),
                     ],
                   ),
                 ).cornerRadius(4),

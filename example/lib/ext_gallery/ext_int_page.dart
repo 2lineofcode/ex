@@ -3,7 +3,7 @@ import 'package:ex/ex.dart';
 import 'package:flutter/material.dart';
 
 class ExtIntPage extends StatelessWidget {
-  const ExtIntPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {

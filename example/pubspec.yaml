@@ -3,10 +3,10 @@ publish_to: none
 version: 1.0.0
 description: Demonstrates how to use the kotlin_scope_function plugin.
 environment:
-  sdk: '>=2.18.0 <3.0.0'
+  sdk: '>=2.16.2 <3.0.0'
 
 dependencies:
-  velocity_x: any
+  velocity_x: 3.4.0
   faker: ^2.0.0
   flutter_lorem: ^2.0.0
   cupertino_icons: ^1.0.2

@@ -1,6 +1,5 @@
-// ignore_for_file: use_is_even_rather_than_modulo
+// ignore_for_file: use_is_even_rather_than_modulo, unnecessary_null_checks
 
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
 import '../../ex.dart';
@@ -50,7 +49,7 @@ class ExActivityTimeLine extends StatelessWidget {
                   Icon(
                     Icons.linked_camera_outlined,
                     size: 16,
-                  ).p(5).backgroundColor(Colors.blue[100]).cornerRadius(90),
+                  ).p(5).backgroundColor(Colors.blue[100]!).cornerRadius(90),
               ],
             ).pOnly(right: 12),
 

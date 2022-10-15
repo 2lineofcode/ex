@@ -1,3 +1,6 @@
+## 0.1.5
+* improve image-preview (like IG)
+* fix pubdev score
 ## 0.1.4
 * add : ex-log
 * add : ex-http (manual, get, post, put, delete, upload-multipart, download, request modifier, custom-interceptor, exeption, etc.) just powerfull.

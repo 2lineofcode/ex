@@ -24,6 +24,7 @@ import 'ui_widget_gallery/message_page.dart';
 import 'ui_widget_gallery/progress_page.dart';
 import 'ui_widget_gallery/shimmer_page.dart';
 import 'helper_gallery/snackbar_page.dart';
+import 'ui_widget_gallery/table_page.dart';
 import 'ui_widget_gallery/textfield_page.dart';
 import 'ui_widget_gallery/timeline_activity_page.dart';
 import 'ui_widget_gallery/typography_page.dart';
@@ -75,6 +76,7 @@ class Home extends GetView {
     'Loading Page': LoadingPage(),
     'Progress': ProgressPage(),
     'Shimmer': ShimmerPage(),
+    'Table': TablePage(),
     'TextField': TextFieldPage(),
     'TimeLine': TimeLineActivityPage(),
   };

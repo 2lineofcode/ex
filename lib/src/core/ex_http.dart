@@ -13,7 +13,6 @@ import '../../ex.dart';
 // ignore: constant_identifier_names
 enum Method { GET, POST, PUT, DELETE, UPLOAD }
 
-
 /// documentation here : [__ex_http_documentation.md]
 
 class ExHttp extends GetConnect {

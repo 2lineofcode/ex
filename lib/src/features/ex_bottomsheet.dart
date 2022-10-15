@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../../ex.dart';
-import '../widgets/index.dart';
-import 'ex_decorator.dart';
 
 enum BSHeaderType { dash, close }
 

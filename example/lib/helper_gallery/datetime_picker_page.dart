@@ -2,7 +2,6 @@ import 'package:ex/ex.dart';
 import 'package:flutter/material.dart';
 
 class DateTimePage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

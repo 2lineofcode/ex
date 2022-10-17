@@ -1,6 +1,6 @@
 name: ex
-description: Scope Function, When Expression, ExComponent, ExLog, ExAlert, ExBottomSheet, ExLoading, ExImagePreview, ExUtils
-version: 0.1.5
+description: Powerfull Ex-Material UI (Material UI improvement)
+version: 0.1.6
 homepage: https://github.com/abehbatre/ex
 
 environment:
@@ -12,10 +12,10 @@ dependencies:
   cached_network_image: ^3.2.0
   http: ^0.13.5
   intl: ^0.17.0
-  velocity_x: ^3.4.0
+  velocity_x: ^3.6.0
   flutter_svg: ^1.0.3
   get: ^4.6.1
-  photo_view: ^0.13.0
+  photo_view: ^0.14.0
 
 dev_dependencies:
   lints: ^1.0.0

@@ -19,13 +19,13 @@ class ExHttp extends GetConnect {
   ExHttp({
     required this.baseURL,
     required this.baseHeader,
-    required this.maxTimeOut,
     this.allowAutoSignedCertificate = true,
     this.useUserAgent = false,
     this.customUserAgent = 'ex-api',
     this.allowFollowRedirects = false,
     this.maxRedirectURL = 3,
     this.maxAuthRetry = 3,
+    this.maxTimeOut,
     this.showLogHeader = kDebugMode,
     this.showLogResponse = kDebugMode,
     this.addRequestModifier,
@@ -40,7 +40,7 @@ class ExHttp extends GetConnect {
   final bool allowFollowRedirects;
   final int maxRedirectURL;
   final int maxAuthRetry;
-  final Duration maxTimeOut;
+  final Duration? maxTimeOut;
   final bool showLogHeader;
   final bool showLogResponse;
   final Future<Request<void>>? addRequestModifier;
@@ -57,7 +57,7 @@ class ExHttp extends GetConnect {
         ..baseUrl = baseURL
         ..errorSafety = true
         ..followRedirects = allowFollowRedirects
-        ..timeout = maxTimeOut
+        ..timeout = maxTimeOut ?? 15.seconds
         ..maxAuthRetries = maxAuthRetry
         ..maxRedirects = maxRedirectURL
         ..sendUserAgent = useUserAgent

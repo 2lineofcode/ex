@@ -12,7 +12,7 @@ class SnackbarPage extends StatelessWidget {
         title: 'SnackBar'.text.extraBold.size(16).make(),
       ),
       body: VStack([
-        'Info'.text.bold.make().pOnly(bottom: 12),
+        'ExSnackbar.info'.text.bold.make().pOnly(bottom: 12),
         HStack([
           ExButtonOutline(
             label: 'Info',
@@ -29,7 +29,7 @@ class SnackbarPage extends StatelessWidget {
 
         // —————————————————————————————————————————————————————————————————————————————
         Divider().pSymmetric(v: 16),
-        'Warning'.text.bold.make().pOnly(bottom: 12),
+        'ExSnackbar.warning'.text.bold.make().pOnly(bottom: 12),
         HStack([
           ExButtonOutline(
             label: 'Warning',
@@ -46,7 +46,7 @@ class SnackbarPage extends StatelessWidget {
 
         // —————————————————————————————————————————————————————————————————————————————
         Divider().pSymmetric(v: 16),
-        'Success'.text.bold.make().pOnly(bottom: 12),
+        'ExSnackbar.success'.text.bold.make().pOnly(bottom: 12),
         HStack([
           ExButtonOutline(
             label: 'Success',
@@ -63,7 +63,7 @@ class SnackbarPage extends StatelessWidget {
 
         // —————————————————————————————————————————————————————————————————————————————
         Divider().pSymmetric(v: 16),
-        'Danger'.text.bold.make().pOnly(bottom: 12),
+        'ExSnackbar.danger'.text.bold.make().pOnly(bottom: 12),
         HStack([
           12.widthBox,
           ExButtonOutline(

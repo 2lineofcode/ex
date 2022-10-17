@@ -1,3 +1,6 @@
+## 0.1.6
+* improve bottomsheet
+* fix pubdev score
 ## 0.1.5
 * improve image-preview (like IG)
 * fix pubdev score

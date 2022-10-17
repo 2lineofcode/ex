@@ -149,7 +149,7 @@ class Home extends GetView {
                 leading: Icon(Icons.folder_outlined),
                 title: 'ImagePreview'.text.make(),
                 minLeadingWidth: 16,
-                onTap: () => ExImagePreview.show(
+                onTap: () => ExImagePreview.showUrl(
                   'https://asset.kompas.com/crops/7z-QN6nlfPhhYas60AA5tQXDu7Y=/0x0:1350x900/750x500/data/photo/2020/11/13/5fae5fa6b09bb.jpg',
                 ),
               ),

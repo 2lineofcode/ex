@@ -18,12 +18,12 @@ class BottomSheetPage extends StatelessWidget {
       ),
       body: VStack([
         // —————————————————————————————————————————————————————————————————————————————
-        'Type Content'.text.bold.make().pOnly(bottom: 12),
+        'ExBottomSheet.basic'.text.bold.make().pOnly(bottom: 12),
         ExButtonOutline(
-          label: 'Example Type Content',
+          label: 'Example Type Basic',
           width: double.infinity,
           onPressed: () {
-            ExBottomSheet.bottomSheetContentDialog(
+            ExBottomSheet.basic(
               title: faker.lorem.word(),
               childrenWidget: VStack([
                 faker.lorem.sentence().text.make(),
@@ -43,7 +43,7 @@ class BottomSheetPage extends StatelessWidget {
 
         // —————————————————————————————————————————————————————————————————————————————
         Divider().pSymmetric(v: 16),
-        'Type List '.text.bold.make().pOnly(bottom: 12),
+        'ExBottomSheet.list '.text.bold.make().pOnly(bottom: 12),
         ExButtonOutline(
           label: 'Example Type List with Item Selected',
           width: double.infinity,
@@ -59,7 +59,7 @@ class BottomSheetPage extends StatelessWidget {
               ExKeyValue(key: '016d5d17-2617-4708-97f9-80174f2d94c2', value: faker.lorem.word()),
             ];
 
-            ExBottomSheet.bottomSheetListWithSelectedDialog(
+            ExBottomSheet.list(
               data: data,
               keySelected: keyItemBottomSheetSelected,
               title: '${faker.lorem.word().toTitleCase}',
@@ -73,30 +73,12 @@ class BottomSheetPage extends StatelessWidget {
 
         // —————————————————————————————————————————————————————————————————————————————
         Divider().pSymmetric(v: 16),
-        'Without Title'.text.bold.make().pOnly(bottom: 12),
+        'ExBottomSheet.dragable'.text.bold.make().pOnly(bottom: 12),
         ExButtonOutline(
-          label: 'Type Without Title',
+          label: 'Type Dragable / FullSize',
           width: double.infinity,
           onPressed: () {
-            ExBottomSheet.bottomSheetContentDialogWithoutText(
-              childrenWidget: VStack([
-                faker.lorem.sentence().text.make().pSymmetric(v: 12),
-                faker.lorem.sentence().text.make().pSymmetric(v: 12),
-                faker.lorem.sentence().text.make().pSymmetric(v: 12),
-                faker.lorem.sentence().text.make().pSymmetric(v: 12),
-              ]),
-            );
-          },
-        ),
-
-        // —————————————————————————————————————————————————————————————————————————————
-        Divider().pSymmetric(v: 16),
-        'Custom & Dragable / FullSize'.text.bold.make().pOnly(bottom: 12),
-        ExButtonOutline(
-          label: 'Type Custom & Dragable / FullSize',
-          width: double.infinity,
-          onPressed: () {
-            ExBottomSheet.bottomSheetCustomDialog(
+            ExBottomSheet.dragable(
               childrenWidget: VStack([
                 faker.lorem.sentence().text.make().pSymmetric(v: 12),
                 Placeholder(),

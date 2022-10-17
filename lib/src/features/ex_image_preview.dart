@@ -10,7 +10,7 @@ import '../../ex.dart';
 import '../color.dart';
 
 mixin ExImagePreview {
-  static void show(String url, {Map<String, String>? header}) {
+  static void showUrl(String url, {Map<String, String>? header}) {
     showGeneralDialog(
       context: Get.context!,
       barrierColor: Colors.black.withOpacity(0.8),

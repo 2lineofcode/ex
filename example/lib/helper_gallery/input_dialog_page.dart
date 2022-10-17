@@ -14,7 +14,8 @@ class InputDialogPage extends StatelessWidget {
         title: 'Dialog'.text.extraBold.size(16).make(),
       ),
       body: VStack([
-        'Dialog Input'.text.make().pOnly(bottom: 16),
+        // 1
+        'ExDialog.singleInput'.text.make().pOnly(bottom: 8),
         ExButtonOutline(
           label: 'SINGLE INPUT',
           width: double.infinity,
@@ -29,7 +30,10 @@ class InputDialogPage extends StatelessWidget {
             onYes: (output) => ExSnackbar.info(output),
           ),
         ),
-        ExDivider(),
+        ExDivider().pSymmetric(v: 16),
+
+        // 2
+        'ExDialog.custom'.text.make().pOnly(bottom: 8),
         ExButtonOutline(
           label: 'CUSTOM',
           width: double.infinity,

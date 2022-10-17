@@ -1,6 +1,8 @@
 # Ex
 Just Start with Type : Ex...
 
+not-yet ready for production. (est. 2023 early)
+
 ## DEMO (WEB)
 https://abehbatre.github.io/ex-preview.github.io/#/
 

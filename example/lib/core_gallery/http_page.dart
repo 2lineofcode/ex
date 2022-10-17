@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:dart_code_viewer2/dart_code_viewer2.dart';
 import 'package:ex/ex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -50,23 +49,14 @@ class HttpPage extends StatelessWidget {
             showAccordion: true,
             title: 'INIT',
             content: Container(
-              height: 180,
+              height: 70,
               child: VStack(
                 [
                   '''
 /// main.dart
-Get.put(
-  ExHttp(
-    baseURL: 'https://api.com',
-    baseHeader: {},
-    maxTimeOut: 30.seconds,
-    maxAuthRetry: 5,
-    allowFollowRedirects: true,
-    showLogHeader: false,
-    showLogResponse: false,
-  ),
-);
-    '''
+Get.put(ExHttp(baseURL: 'https://api-1.com', baseHeader: {}), tag: 'api1');
+Get.put(ExHttp(baseURL: 'https://api-2.com', baseHeader: {}), tag: 'api2');
+'''
                       .selectableText
                       .make(),
                 ],
@@ -77,19 +67,19 @@ Get.put(
           /// 2
           ExAccordion(
             showAccordion: true,
-            title: 'GET',
+            title: 'GET | POST | PUT | DELETE',
             content: Container(
-              height: 120,
-              child: DartCodeViewer(
-                '''
- await apiService.httpGet(endPoint: '/users').then((response) {
-  logI(jsonEncode(response.body));
-  ExSnackbar.success(jsonEncode(response.body));
+                height: 120,
+                child: '''
+await apiService.httpGet(endPoint: '/users').then((response) {
+    logI(jsonEncode(response.body));
+  }).catchError((e) {
+    logE('e);
+  });
 });
-                  ''',
-                showCopyButton: false,
-              ),
-            ),
+                  '''
+                    .selectableText
+                    .make()),
           ),
         ],
       ).p12().scrollVertical(),

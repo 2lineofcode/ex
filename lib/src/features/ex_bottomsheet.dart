@@ -11,9 +11,9 @@ mixin ExBottomSheet {
   // —————————————————————————————————————————————————————————————————————————
   // BOTTOM SHEET DIALOG  ————————————————————————————————————————————————————
   // —————————————————————————————————————————————————————————————————————————
-  static void bottomSheetContentDialog({
-    required String title,
+  static void basic({
     required Widget childrenWidget,
+    String? title,
     int titleMaxLine = 999,
     BSHeaderType headerType = BSHeaderType.dash,
     MainAxisAlignment alignment = MainAxisAlignment.spaceBetween,
@@ -27,30 +27,24 @@ mixin ExBottomSheet {
         child: VStack(
           [
             if (headerType == BSHeaderType.dash)
-              VStack([
-                const ExDashLine(),
-                title.text.bold.size(18).maxLines(titleMaxLine).make().pSymmetric(v: 24),
-              ])
+              VStack(
+                [
+                  ExDashLine(),
+                  if (title != null) title.text.bold.size(18).maxLines(titleMaxLine).make().pOnly(top: 24),
+                ],
+              )
             else
-              iconPositionOnLeft
-                  ? HStack(
-                      [
-                        const Icon(Icons.close_rounded, size: 30, color: Colors.grey).pOnly(right: 8).onInkTap(() => Get.back()),
-                        title.text.color(Colors.black).size(18).maxLines(titleMaxLine).bold.make(),
-                      ],
-                      alignment: alignment,
-                    ).pOnly(bottom: 24)
-                  : HStack(
-                      [
-                        title.text.color(Colors.black).maxLines(titleMaxLine).size(18).bold.make(),
-                        IconButton(
-                          onPressed: () => Get.back(),
-                          icon: const Icon(Icons.close_rounded, size: 30, color: Colors.grey),
-                        ),
-                      ],
-                      alignment: alignment,
-                    ).w(double.infinity - 48),
-            Wrap(children: [childrenWidget]),
+              HStack(
+                [
+                  if (title != null) title.text.color(Colors.black).maxLines(titleMaxLine).size(18).bold.make().pOnly(top: 24),
+                  IconButton(
+                    onPressed: () => Get.back(),
+                    icon: const Icon(Icons.close_rounded, size: 30, color: Colors.grey),
+                  ),
+                ],
+                alignment: alignment,
+              ).w(double.infinity - 48),
+            Wrap(children: [childrenWidget]).pOnly(top: 24),
           ],
         ).p24(),
       ),
@@ -59,7 +53,7 @@ mixin ExBottomSheet {
     );
   }
 
-  static void bottomSheetCustomDialog({
+  static void dragable({
     required Widget childrenWidget,
     double radius = 16,
     bool isClose = false,
@@ -98,32 +92,7 @@ mixin ExBottomSheet {
     );
   }
 
-  static void bottomSheetContentDialogWithoutText({required Widget childrenWidget, double radius = 16, bool isClose = false}) {
-    // add haptic feedback (UX)
-    HapticFeedback.lightImpact();
-    Get.bottomSheet(
-      Container(
-        decoration: ExDecorator.boxBottomSheetRadiusDecoration(radius: radius),
-        child: VStack(
-          [
-            Center(
-              child: Container(
-                width: 30,
-                height: 2,
-                color: Color(0xFF7F8790),
-              ),
-            ),
-            if (isClose) const Align(alignment: Alignment.centerRight, child: Icon(Icons.close_rounded, size: 25, color: Colors.black)) else const SizedBox(),
-            Wrap(children: [childrenWidget]).pOnly(top: 20),
-          ],
-        ).p24(),
-      ),
-      elevation: 10,
-      isScrollControlled: true,
-    );
-  }
-
-  static void bottomSheetListWithSelectedDialog({
+  static void list({
     required List<ExKeyValue> data,
     required String title,
     required String keySelected,

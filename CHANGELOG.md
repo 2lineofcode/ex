@@ -1,3 +1,5 @@
+## 0.1.8
+* improve ex-http default log = false
 ## 0.1.7
 * improve ex-http [add-custom-interceptor(request, response, auth, error)]
 ## 0.1.6

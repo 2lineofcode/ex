@@ -8,6 +8,18 @@ class HttpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final apiService = Get.find<ExHttp>();
+    apiService
+      ..httpClient.addAuthenticator<void>((request) {
+        return request;
+      })
+      ..httpClient.addRequestModifier<void>((request) {
+        final String? token = 'token';
+        if (token != null && token.isNotEmpty) {
+          request.headers['Authorization'] = 'Bearer $token';
+        }
+        request.headers.addAll({});
+        return request;
+      });
 
     return Scaffold(
       appBar: AppBar(
@@ -20,8 +32,7 @@ class HttpPage extends StatelessWidget {
               ExButtonOutline(
                 label: 'GET',
                 onPressed: () async {
-                  await apiService.http(url: 'https://api.github.com', method: Method.GET).then((response) {
-                    logI(jsonEncode(response.body));
+                  await apiService.httpGet(endPoint: '/todos/1').then((response) {
                     ExSnackbar.success(jsonEncode(response.body));
                   });
                 },

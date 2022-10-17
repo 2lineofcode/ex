@@ -1,3 +1,5 @@
+## 0.1.7
+* improve ex-http [add-custom-interceptor(request, response, auth, error)]
 ## 0.1.6
 * improve bottomsheet
 * fix pubdev score

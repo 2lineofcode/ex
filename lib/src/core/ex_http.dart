@@ -18,7 +18,7 @@ enum Method { GET, POST, PUT, DELETE, UPLOAD }
 class ExHttp extends GetConnect {
   ExHttp({
     required this.baseURL,
-    required this.baseHeader,
+    this.baseHeader,
     this.allowAutoSignedCertificate = true,
     this.useUserAgent = false,
     this.customUserAgent = 'ex-api',
@@ -28,23 +28,25 @@ class ExHttp extends GetConnect {
     this.maxTimeOut,
     this.showLogHeader = kDebugMode,
     this.showLogResponse = kDebugMode,
-    this.addRequestModifier,
-    this.addAuthenticator,
+    this.interceptorAddRequestModifier,
+    this.interceptorAddAuthenticator,
+    this.interceptorAddResponseModifier,
   });
 
-  final String baseURL;
-  final Map<String, String> baseHeader;
-  final bool allowAutoSignedCertificate;
-  final String customUserAgent;
-  final bool useUserAgent;
-  final bool allowFollowRedirects;
-  final int maxRedirectURL;
-  final int maxAuthRetry;
-  final Duration? maxTimeOut;
-  final bool showLogHeader;
-  final bool showLogResponse;
-  final Future<Request<void>>? addRequestModifier;
-  final Future<Request<void>>? addAuthenticator;
+  String baseURL;
+  Map<String, String>? baseHeader;
+  bool allowAutoSignedCertificate;
+  String customUserAgent;
+  bool useUserAgent;
+  bool allowFollowRedirects;
+  int maxRedirectURL;
+  int maxAuthRetry;
+  Duration? maxTimeOut;
+  bool showLogHeader;
+  bool showLogResponse;
+  Function(Request<void>)? interceptorAddAuthenticator;
+  Function(Request<void>)? interceptorAddRequestModifier;
+  Function(Request<void>)? interceptorAddResponseModifier;
 
   @override
   Future<void> onInit() async {
@@ -64,7 +66,7 @@ class ExHttp extends GetConnect {
         ..userAgent = customUserAgent;
 
       /// add something on every http request
-      if (addRequestModifier != null) {
+      if (interceptorAddRequestModifier != null) {
         httpClient.addRequestModifier<void>((request) async {
           /// [example]
           // final token = PrefHelper.userToken;
@@ -73,12 +75,13 @@ class ExHttp extends GetConnect {
           // }
           // request.headers.addAll(baseHeader);
           // return request;
-          return addRequestModifier!;
+          interceptorAddRequestModifier?.call(request);
+          return request;
         });
       }
 
       /// if (401) -> AUTO REFRESH TOKEN
-      if (addAuthenticator != null) {
+      if (interceptorAddAuthenticator != null) {
         httpClient.addAuthenticator<void>((request) async {
           /// [example]
           // if (PrefHelper.userRefreshToken.isNotNullOrEmpty) {
@@ -100,7 +103,8 @@ class ExHttp extends GetConnect {
           // request.headers['Authorization'] = '$token';
           // logI('TOKEN REFRESHED!');
           // }
-          return addAuthenticator!;
+          interceptorAddAuthenticator?.call(request);
+          return request;
         });
       }
     } on Exception {
@@ -294,7 +298,7 @@ Outcome ErrorInterceptorHandling({dynamic response, required Outcome result, Str
 
   switch (response.statusCode) {
     case 400:
-      result.errorMessages = response.body['message']; // commonly
+      result.errorMessages = response.body['message'] ?? '400'; // commonly
       throw Exception(result.errorMessages);
     case 401:
       result.errorMessages = 'Session anda telah habis, silahkan masuk kembali (401)';

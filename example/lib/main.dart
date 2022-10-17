@@ -4,6 +4,7 @@ import 'package:example/core_gallery/http_page.dart';
 import 'package:example/core_gallery/log_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'app_themes.dart';
 import 'ext_gallery/ext_int_page.dart';
@@ -30,14 +31,21 @@ import 'ui_widget_gallery/timeline_activity_page.dart';
 import 'ui_widget_gallery/typography_page.dart';
 import 'helper_gallery/decoration_page.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  /// Pref
+  await GetStorage.init();
+
+  /// ExLog
+  ExLog.init();
+
   /// ExHttp
+  final baseHeader = {'peler': 'kuda'};
   Get.put(
     ExHttp(
-      baseURL: 'https://api.com',
-      baseHeader: {},
+      baseURL: 'https://jsonplaceholder.typicode.com',
+      baseHeader: baseHeader,
       maxTimeOut: 30.seconds,
       maxAuthRetry: 5,
       allowFollowRedirects: true,
@@ -45,9 +53,6 @@ void main() {
       showLogResponse: true,
     ),
   );
-
-  /// ExLog
-  ExLog.init();
 
   runApp(
     GetMaterialApp(

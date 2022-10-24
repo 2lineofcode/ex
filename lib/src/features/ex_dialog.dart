@@ -96,7 +96,7 @@ mixin ExDialog {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     OutlinedButton(
-                      onPressed: onNo ?? () => Get.back(),
+                      onPressed: onNo ?? Get.back,
                       child: Text(
                         btnCancelText,
                         style: TextStyle(color: Colors.black),

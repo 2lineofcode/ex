@@ -92,7 +92,7 @@ mixin ExAlert {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
-                    onPressed: onYes ?? () => Get.back(),
+                    onPressed: onYes ?? Get.back,
                     child: Text(btnOkText),
                   ).pOnly(left: 12, right: 12, bottom: 12).h(55).expand(),
                 ],
@@ -175,7 +175,7 @@ mixin ExAlert {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(primary: Theme.of(context).errorColor),
-                    onPressed: onYes ?? () => Get.back(),
+                    onPressed: onYes ?? Get.back,
                     child: Text(btnYesText),
                   ).pOnly(left: 12, right: 12, bottom: 12).h(55).expand(),
                 ],
@@ -263,7 +263,7 @@ mixin ExAlert {
                     height: 44,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(primary: isWarningMode == true ? Theme.of(context).errorColor : Theme.of(context).primaryColor),
-                      onPressed: onYes ?? () => Get.back(),
+                      onPressed: onYes ?? Get.back,
                       child: Text(btnYesText),
                     ),
                   ),
@@ -276,7 +276,7 @@ mixin ExAlert {
                         primary: isWarningMode == true ? Theme.of(context).errorColor : Colors.black,
                         side: BorderSide(color: isWarningMode == true ? Theme.of(context).errorColor : colorNeutral[300]!),
                       ),
-                      onPressed: onNo ?? () => Get.back(),
+                      onPressed: onNo ?? Get.back,
                       child: Text(btnNoText),
                     ),
                   ),

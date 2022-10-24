@@ -1,3 +1,5 @@
+## 0.1.10
+* fix pub.dev score again
 ## 0.1.9
 * fix ex-http (manual) : issue post/put when modifier header != empty
 * improve ex-snackbar: change `message` to dynamic 

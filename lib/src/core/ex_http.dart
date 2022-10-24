@@ -12,8 +12,6 @@ import '../../ex.dart';
 // ignore: constant_identifier_names
 enum Method { GET, POST, PUT, DELETE, UPLOAD }
 
-/// documentation here : [__ex_http_documentation.md]
-
 class ExHttp extends GetConnect {
   ExHttp({
     required this.baseURL,
@@ -240,8 +238,9 @@ Get.put(
     await ApiUtils.apiLog(response: res, showHeader: showLogHeader, showResponse: showLogResponse);
 
     if (res.isOk) {
-      _result.body = res.body;
-      _result.isFailure = false;
+      _result
+        ..body = res.body
+        ..isFailure = false;
       return _result;
     } else {
       return ErrorInterceptorHandling(response: res, result: _result, url: '${httpClient.baseUrl} | $endPoint');
@@ -293,9 +292,10 @@ class Outcome<T> {
 // —————————————————————————————————————————————————————————————————————————————
 Outcome ErrorInterceptorHandling({dynamic response, required Outcome result, String? url}) {
   response as Response<dynamic>;
-  result.isFailure = true;
-  result.statusCode = response.statusCode;
-  result.errorBody = response.body;
+  result
+    ..isFailure = true
+    ..statusCode = response.statusCode
+    ..errorBody = response.body;
 
   logW('${response.statusCode} | ${response.bodyString}');
 

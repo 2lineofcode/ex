@@ -312,7 +312,7 @@ class Flushbar<T> extends StatefulWidget {
     this.icon,
     this.shouldIconPulse = true,
     this.maxWidth,
-    this.margin = const EdgeInsets.all(0.0),
+    this.margin = const EdgeInsets.all(0),
     this.padding = const EdgeInsets.all(16),
     this.borderRadius,
     this.textDirection = TextDirection.ltr,
@@ -575,7 +575,7 @@ class Flushbar<T> extends StatefulWidget {
 class _FlushbarState<K extends Object?> extends State<Flushbar<K>> with TickerProviderStateMixin {
   final Duration _pulseAnimationDuration = const Duration(seconds: 1);
   final Widget _emptyWidget = const SizedBox();
-  final double _initialOpacity = 1.0;
+  final double _initialOpacity = 1;
   final double _finalOpacity = 0.4;
 
   GlobalKey? _backgroundBoxKey;
@@ -670,7 +670,7 @@ class _FlushbarState<K extends Object?> extends State<Flushbar<K>> with TickerPr
   @override
   Widget build(BuildContext context) {
     return Align(
-      heightFactor: 1.0,
+      heightFactor: 1,
       child: Material(
         color: widget.flushbarStyle == FlushbarStyle.FLOATING ? Colors.transparent : widget.backgroundColor,
         child: SafeArea(
@@ -745,7 +745,7 @@ class _FlushbarState<K extends Object?> extends State<Flushbar<K>> with TickerPr
         border: widget.borderColor != null ? Border.all(color: widget.borderColor!, width: widget.borderWidth) : null,
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0, top: 16.0),
+        padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8, top: 16),
         child: FocusScope(
           node: _focusNode,
           autofocus: true,
@@ -863,7 +863,7 @@ class _FlushbarState<K extends Object?> extends State<Flushbar<K>> with TickerPr
                 Padding(
                   padding: EdgeInsets.only(
                     top: widget.padding.top,
-                    left: 4.0,
+                    left: 4,
                     right: widget.padding.left,
                   ),
                   child: _getTitleText(),
@@ -873,7 +873,7 @@ class _FlushbarState<K extends Object?> extends State<Flushbar<K>> with TickerPr
               Padding(
                 padding: EdgeInsets.only(
                   top: _messageTopMargin,
-                  left: 4.0,
+                  left: 4,
                   right: widget.padding.right,
                   bottom: widget.padding.bottom,
                 ),
@@ -906,7 +906,7 @@ class _FlushbarState<K extends Object?> extends State<Flushbar<K>> with TickerPr
                 padding: EdgeInsets.only(
                   top: _messageTopMargin,
                   left: widget.padding.left,
-                  right: 8.0,
+                  right: 8,
                   bottom: widget.padding.bottom,
                 ),
                 child: widget.messageText ?? _getDefaultNotificationText(),
@@ -935,8 +935,8 @@ class _FlushbarState<K extends Object?> extends State<Flushbar<K>> with TickerPr
                 Padding(
                   padding: EdgeInsets.only(
                     top: widget.padding.top,
-                    left: 4.0,
-                    right: 8.0,
+                    left: 4,
+                    right: 8,
                   ),
                   child: _getTitleText(),
                 )
@@ -945,8 +945,8 @@ class _FlushbarState<K extends Object?> extends State<Flushbar<K>> with TickerPr
               Padding(
                 padding: EdgeInsets.only(
                   top: _messageTopMargin,
-                  left: 4.0,
-                  right: 8.0,
+                  left: 4,
+                  right: 8,
                   bottom: widget.padding.bottom,
                 ),
                 child: widget.messageText ?? _getDefaultNotificationText(),
@@ -972,7 +972,7 @@ class _FlushbarState<K extends Object?> extends State<Flushbar<K>> with TickerPr
         builder: (BuildContext buildContext, AsyncSnapshot<Size> snapshot) {
           if (snapshot.hasData) {
             return Container(
-              width: 8.0,
+              width: 8,
               height: snapshot.data!.height,
               decoration: BoxDecoration(
                 borderRadius: widget.borderRadius == null
@@ -1087,18 +1087,18 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
     switch (flushbar.flushbarPosition) {
       case FlushbarPosition.TOP:
         {
-          _initialAlignment = const Alignment(-1.0, -2.0);
+          _initialAlignment = const Alignment(-1, -2);
           if (flushbar.endOffset != null) {
-            _endAlignment = const Alignment(-1.0, -1.0) + Alignment(flushbar.endOffset!.dx, flushbar.endOffset!.dy);
+            _endAlignment = const Alignment(-1, -1) + Alignment(flushbar.endOffset!.dx, flushbar.endOffset!.dy);
           } else {
-            _endAlignment = const Alignment(-1.0, -1.0);
+            _endAlignment = const Alignment(-1, -1);
           }
           break;
         }
       case FlushbarPosition.BOTTOM:
         {
-          _initialAlignment = const Alignment(-1.0, 2.0);
-          _endAlignment = flushbar.endOffset != null ? const Alignment(-1.0, 1.0) + Alignment(flushbar.endOffset!.dx, flushbar.endOffset!.dy) : const Alignment(-1.0, 1.0);
+          _initialAlignment = const Alignment(-1, 2);
+          _endAlignment = flushbar.endOffset != null ? const Alignment(-1, 1) + Alignment(flushbar.endOffset!.dx, flushbar.endOffset!.dy) : const Alignment(-1, 1);
           break;
         }
     }
@@ -1272,7 +1272,7 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
   /// one.
   AnimationController createAnimationController() {
     assert(!_transitionCompleter.isCompleted, 'Cannot reuse a $runtimeType after disposing it.');
-    assert(flushbar.animationDuration >= Duration.zero);
+    assert(flushbar.animationDuration >= Duration.zero, '');
     return AnimationController(
       duration: flushbar.animationDuration,
       debugLabel: debugLabel,
@@ -1285,7 +1285,7 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
   /// [createAnimationController()].
   Animation<Alignment> createAnimation() {
     assert(!_transitionCompleter.isCompleted, 'Cannot reuse a $runtimeType after disposing it.');
-    assert(_controller != null);
+    assert(_controller != null, '');
     return AlignmentTween(begin: _initialAlignment, end: _endAlignment).animate(
       CurvedAnimation(
         parent: _controller!,
@@ -1300,14 +1300,10 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
       return null;
     }
 
-    return Tween(begin: 0.0, end: flushbar.routeBlur).animate(
+    return Tween(begin: 0.1, end: flushbar.routeBlur).animate(
       CurvedAnimation(
         parent: _controller!,
-        curve: const Interval(
-          0.0,
-          0.35,
-          curve: Curves.easeInOutCirc,
-        ),
+        curve: Interval(0, 0.35, curve: Curves.easeInOutCirc),
       ),
     );
   }
@@ -1321,7 +1317,7 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
       CurvedAnimation(
         parent: _controller!,
         curve: const Interval(
-          0.0,
+          0,
           0.35,
           curve: Curves.easeInOutCirc,
         ),
@@ -1358,7 +1354,7 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
         }
         break;
       case AnimationStatus.dismissed:
-        assert(!overlayEntries.first.opaque);
+        assert(!overlayEntries.first.opaque, '');
         // We might still be the current route if a subclass is controlling the
         // the transition and hits the dismissed status. For example, the iOS
         // back gesture drives this animation to the dismissed status before
@@ -1373,7 +1369,7 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
           if (overlayEntries.isNotEmpty) {
             overlayEntries.clear();
           }
-          assert(overlayEntries.isEmpty);
+          assert(overlayEntries.isEmpty, '');
         }
         break;
     }

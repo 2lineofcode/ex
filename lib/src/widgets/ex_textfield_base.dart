@@ -158,7 +158,7 @@ class _ExBaseTextFieldState extends State<ExBaseTextField> {
         border: getInputBorder(),
         enabledBorder: getInputBorder(),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: widget.borderColorFocus ?? Theme.of(context).primaryColor, width: 2.0),
+          borderSide: BorderSide(color: widget.borderColorFocus ?? Theme.of(context).primaryColor, width: 2),
           borderRadius: BorderRadius.circular(getBorderRadius()),
         ),
       ),

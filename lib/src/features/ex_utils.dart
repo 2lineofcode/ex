@@ -95,8 +95,7 @@ mixin ExUtils {
 
   /// Merge [a] with [b] and shuffle.
   static String randomMerge(String a, String b) {
-    final mergedCodeUnits = List.from('$a$b'.codeUnits);
-    mergedCodeUnits.shuffle();
+    final mergedCodeUnits = List.from('$a$b'.codeUnits)..shuffle();
     return String.fromCharCodes(mergedCodeUnits.cast<int>());
   }
 }

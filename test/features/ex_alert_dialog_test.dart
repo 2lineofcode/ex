@@ -147,8 +147,8 @@ void main() {
                   message: messageText,
                   btnYesText: btnConfirmText,
                   btnNoText: btnCancelText,
-                  onNo: () => Get.back(),
-                  onYes: () => Get.back(),
+                  onNo: Get.back,
+                  onYes: Get.back,
                 ),
               );
             },
@@ -238,8 +238,8 @@ void main() {
                   message: messageText,
                   btnYesText: btnConfirmText,
                   btnNoText: btnCancelText,
-                  onNo: () => Get.back(),
-                  onYes: () => Get.back(),
+                  onNo: Get.back,
+                  onYes: Get.back,
                 ),
               );
             },
@@ -298,7 +298,7 @@ void main() {
                   title: titleText,
                   message: messageText,
                   btnYesText: btnConfirmText,
-                  onYes: () => Get.back(),
+                  onYes: Get.back,
                 ),
               );
             },
@@ -363,7 +363,7 @@ void main() {
                   title: titleText,
                   message: messageText,
                   btnYesText: btnConfirmText,
-                  onYes: () => Get.back(),
+                  onYes: Get.back,
                 ),
               );
             },

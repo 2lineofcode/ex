@@ -582,49 +582,6 @@ extension MiscExtensions on String? {
     return this!.split('').fold<int>(0, (previousValue, ch) => previousValue + (ch == char ? 1 : 0));
   }
 
-  /// Finds the most frequent character in the String.
-  /// ### Example 1
-  /// ```dart
-  /// String foo = 'Hello World';
-  /// String mostFrequent = foo.mostFrequent; // returns 'l'
-  /// ```
-  String? get mostFrequent {
-    if (this == null) {
-      return null;
-    }
-    if (this!.isEmpty) {
-      return this;
-    }
-    final occurences = [];
-    final letters = this!.split('')..sort();
-    var checkingLetter = letters[0];
-    var count = 0;
-    for (var i = 0; i < letters.length; i++) {
-      if (letters[i] == checkingLetter) {
-        count++;
-        if (i == letters.length - 1) {
-          occurences.add({checkingLetter: count});
-          checkingLetter = letters[i];
-        }
-      } else {
-        occurences.add({checkingLetter: count});
-        checkingLetter = letters[i];
-        count = 1;
-      }
-    }
-    var mostFrequent = '';
-    var occursCount = -1;
-    for (final element in occurences) {
-      element.forEach((character, occurs) {
-        if (occurs > occursCount) {
-          mostFrequent = character;
-          occursCount = occurs;
-        }
-      });
-    }
-    return mostFrequent;
-  }
-
   /// Returns the String reversed.
   /// ### Example
   /// ```dart

@@ -50,7 +50,7 @@ class ExAvatarView extends StatelessWidget {
     final header = {'Referer': 'https://mobile.gredu.co/*'};
 
     /// fix bug invalid url || null || blank
-    if (url == null || url.isBlank! || !url.contains('https')) {
+    if (url.isBlank! || !url.contains('https')) {
       return Container(
         width: size ?? width,
         height: size ?? height,

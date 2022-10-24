@@ -38,7 +38,7 @@ mixin ExBottomSheet {
                 [
                   if (title != null) title.text.color(Colors.black).maxLines(titleMaxLine).size(18).bold.make().pOnly(top: 24),
                   IconButton(
-                    onPressed: () => Get.back(),
+                    onPressed: Get.back,
                     icon: const Icon(Icons.close_rounded, size: 30, color: Colors.grey),
                   ),
                 ],

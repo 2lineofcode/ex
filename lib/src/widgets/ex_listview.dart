@@ -29,8 +29,7 @@ class ExListView extends StatefulWidget {
     // Sliver mode will discard a lot of ListView variables (likes physics, controller),
     // and each of items must be sliver.
     // *Sliver mode will build all items when inited. (ListView item is built by lazy)*
-  })  : assert(itemBuilder != null),
-        super(key: key);
+  })  : super(key: key);
 
   final int itemCount;
   final WidgetBuilder? headerBuilder;
@@ -72,7 +71,7 @@ class ExListViewState extends State<ExListView> {
         )
       : _buildList();
 
-  Widget _itemBuilder(context, index) {
+  Widget _itemBuilder(context, int index) {
     final headerCount = _headerCount();
     final totalItemCount = _dataItemCount() + headerCount + _footerCount();
     switch (_itemType(index, totalItemCount)) {
@@ -138,7 +137,7 @@ class ExListViewState extends State<ExListView> {
             : _defaultLoadMore;
   }
 
-  Widget _buildDividerWithData(index, dataIndex) => index.isEven
+  Widget _buildDividerWithData(int index, int dataIndex) => index.isEven
       ? widget.dividerBuilder != null
           ? widget.dividerBuilder!(context, dataIndex ~/ 2)
           : widget.isSliverMode
@@ -148,9 +147,9 @@ class ExListViewState extends State<ExListView> {
 
   bool _isHeader(itemIndex) => _hasHeader() && itemIndex == 0;
 
-  bool _isLoadMore(itemIndex, total) => widget.loadMore && itemIndex == total - 1;
+  bool _isLoadMore(int itemIndex, int total) => widget.loadMore && itemIndex == total - 1;
 
-  bool _isFooter(itemIndex, total) => _hasFooter() && itemIndex == total - 1;
+  bool _isFooter(int itemIndex, int total) => _hasFooter() && itemIndex == total - 1;
 
   int _headerCount() => _hasHeader() ? 1 : 0;
 
@@ -165,7 +164,7 @@ class ExListViewState extends State<ExListView> {
   bool _hasFooter() => widget.footerBuilder != null;
 
   final _defaultLoadMore = Container(
-    padding: const EdgeInsets.all(8.0),
+    padding: const EdgeInsets.all(8),
     child: Center(
       child: LoadingAnimationWidget.discreteCircle(color: Colors.grey, size: 24),
     ),

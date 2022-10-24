@@ -1,4 +1,4 @@
-## 0.1.10
+## 0.1.9+2
 * fix pub.dev score again
 ## 0.1.9
 * fix ex-http (manual) : issue post/put when modifier header != empty

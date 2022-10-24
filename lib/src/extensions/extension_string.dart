@@ -24,7 +24,7 @@ extension MiscExtensions on String? {
       return this;
     }
 
-    final List<String> wordList = this!.split(' ');
+    final wordList = this!.split(' ');
     if (wordList.isNotEmpty) {
       return wordList[0];
     } else {
@@ -260,7 +260,8 @@ extension MiscExtensions on String? {
       return false;
     }
     final regex = RegExp(
-        r'((?:^|\s)([a-z]{3,6}(?=://))?(://)?((?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?))(?::(\d{2,5}))?(?:\s|$))');
+      r'((?:^|\s)([a-z]{3,6}(?=://))?(://)?((?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.(?:25[0-5]|2[0-4]\d|[01]?\d\d?))(?::(\d{2,5}))?(?:\s|$))',
+    );
     return regex.hasMatch(this!);
   }
 
@@ -285,7 +286,8 @@ extension MiscExtensions on String? {
 
     this!.substring(0, 1);
     final regex = RegExp(
-        r'(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))');
+      r'(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))',
+    );
     return regex.hasMatch(this!);
   }
 
@@ -336,7 +338,8 @@ extension MiscExtensions on String? {
       return false;
     }
     final regex = RegExp(
-        r'^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$');
+      r'^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$',
+    );
     if (regex.hasMatch(this!)) {
       return true;
     }
@@ -748,11 +751,11 @@ extension MiscExtensions on String? {
       return this;
     }
     final words = this!.trim().split(RegExp(r'(\s+)'));
-    var result = words[0].toLowerCase();
+    final result = StringBuffer(words[0].toLowerCase());
     for (var i = 1; i < words.length; i++) {
-      result += words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase();
+      result.write(words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase());
     }
-    return result;
+    return result.toString();
   }
 
   /// Returns the word title cased.
@@ -1067,11 +1070,11 @@ extension MiscExtensions on String? {
     if (this!.isEmpty || count <= 0) {
       return this;
     }
-    var repeated = this!;
+    final repeated = StringBuffer(this!);
     for (var i = 0; i < count - 1; i++) {
-      repeated += this!;
+      repeated.write(this);
     }
-    return repeated;
+    return repeated.toString();
   }
 
   /// Squeezes the string by removing repeats of a given character.
@@ -1163,6 +1166,7 @@ extension MiscExtensions on String? {
       return null;
     }
     final a = this!.toLowerCase();
+    // ignore: parameter_assignments
     b = b.toLowerCase();
     // i == 0
     final costs = List.filled(b.length + 1, 0);
@@ -1547,7 +1551,7 @@ extension MiscExtensions on String? {
     if (this!.isEmpty) {
       return this;
     }
-    final int index = this!.indexOf(char);
+    final index = this!.indexOf(char);
     return this!.substring(0, index);
   }
 
@@ -1566,7 +1570,7 @@ extension MiscExtensions on String? {
     if (this!.isEmpty) {
       return this;
     }
-    final int index = this!.indexOf(char);
+    final index = this!.indexOf(char);
     return this!.substring(index + char.length, this!.length);
   }
 
@@ -1623,8 +1627,8 @@ extension MiscExtensions on String? {
     if (maxChars > this!.length) {
       return this;
     }
-    final int leftChars = (maxChars / 2).ceil();
-    final int rightChars = maxChars - leftChars;
+    final leftChars = (maxChars / 2).ceil();
+    final rightChars = maxChars - leftChars;
     return '${this!.first(n: leftChars)}...${this!.last(n: rightChars)}';
   }
 
@@ -1645,7 +1649,7 @@ extension MiscExtensions on String? {
     if (this!.isEmpty) {
       return this;
     }
-    final String normalizedString = this!.replaceAll('"', '');
+    final normalizedString = this!.replaceAll('"', '');
     return normalizedString.append('"').prepend('"');
   }
 

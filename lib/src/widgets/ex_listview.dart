@@ -3,7 +3,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../ex.dart';
 
@@ -94,7 +93,7 @@ class ExListViewState extends State<ExListView> {
   Stack _buildList() {
     final headerCount = _headerCount();
     final totalItemCount = _dataItemCount() + headerCount + _footerCount();
-    final ScrollView listView = widget.isSliverMode
+    final listView = widget.isSliverMode
         ? CustomScrollView(
             slivers: List.generate(totalItemCount, (index) => _itemBuilder(context, index)),
           )
@@ -106,6 +105,7 @@ class ExListViewState extends State<ExListView> {
             itemBuilder: _itemBuilder,
           );
 
+    // ignore: omit_local_variable_types
     final List<Widget> children = widget.scrollbarEnable ? [Scrollbar(child: listView)] : [listView];
     if (widget.foregroundWidget != null) {
       children.add(widget.foregroundWidget!);

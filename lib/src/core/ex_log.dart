@@ -10,26 +10,26 @@ class ExLog {
   }
 }
 
-void log(message) {
+void log(dynamic message) {
   developer.log('👻 | $message', name: _logName);
 }
 
-void print(message) {
+void print(dynamic message) {
   log(message);
 }
 
-void logD(message) {
+void logD(dynamic message) {
   log(message);
 }
 
-void logE(message) {
+void logE(dynamic message) {
   developer.log('🔴 | $message', name: _logName);
 }
 
-void logI(message) {
+void logI(dynamic message) {
   developer.log('ℹ️ | $message', name: _logName);
 }
 
-void logW(message) {
+void logW(dynamic message) {
   developer.log('🟠 | $message', name: _logName);
 }

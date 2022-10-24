@@ -12,7 +12,7 @@ extension IntExtensionHelper on int {
   }
 
   List<T> map<T>(T Function(int index) f) {
-    final List<T> values = [];
+    final values = <T>[];
     for (var i = 0; i < this; i++) {
       values.add(f(i));
     }

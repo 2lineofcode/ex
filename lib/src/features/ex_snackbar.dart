@@ -299,55 +299,55 @@ typedef OnTap = void Function(Flushbar flushbar);
 /// A highly customizable widget so you can notify your user when you fell like he needs a beautiful explanation.
 // ignore: must_be_immutable
 class Flushbar<T> extends StatefulWidget {
-  Flushbar(
-      {Key? key,
-      this.title,
-      this.titleColor,
-      this.titleSize,
-      this.message,
-      this.messageSize,
-      this.messageColor,
-      this.titleText,
-      this.messageText,
-      this.icon,
-      this.shouldIconPulse = true,
-      this.maxWidth,
-      this.margin = const EdgeInsets.all(0.0),
-      this.padding = const EdgeInsets.all(16),
-      this.borderRadius,
-      this.textDirection = TextDirection.ltr,
-      this.borderColor,
-      this.borderWidth = 1.0,
-      this.backgroundColor = const Color(0xFF303030),
-      this.leftBarIndicatorColor,
-      this.boxShadows,
-      this.backgroundGradient,
-      this.mainButton,
-      this.onTap,
-      this.duration,
-      this.isDismissible = true,
-      this.dismissDirection = FlushbarDismissDirection.VERTICAL,
-      this.showProgressIndicator = false,
-      this.progressIndicatorController,
-      this.progressIndicatorBackgroundColor,
-      this.progressIndicatorValueColor,
-      this.flushbarPosition = FlushbarPosition.BOTTOM,
-      this.positionOffset = 0.0,
-      this.flushbarStyle = FlushbarStyle.FLOATING,
-      this.forwardAnimationCurve = Curves.easeOutCirc,
-      this.reverseAnimationCurve = Curves.easeOutCirc,
-      this.animationDuration = const Duration(seconds: 1),
-      FlushbarStatusCallback? onStatusChanged,
-      this.barBlur = 0.0,
-      this.blockBackgroundInteraction = false,
-      this.routeBlur,
-      this.routeColor,
-      this.userInputForm,
-      this.endOffset,
-      this.flushbarRoute // Please dont init this
-      })
-      // ignore: prefer_initializing_formals
-      : onStatusChanged = onStatusChanged,
+  Flushbar({
+    Key? key,
+    this.title,
+    this.titleColor,
+    this.titleSize,
+    this.message,
+    this.messageSize,
+    this.messageColor,
+    this.titleText,
+    this.messageText,
+    this.icon,
+    this.shouldIconPulse = true,
+    this.maxWidth,
+    this.margin = const EdgeInsets.all(0.0),
+    this.padding = const EdgeInsets.all(16),
+    this.borderRadius,
+    this.textDirection = TextDirection.ltr,
+    this.borderColor,
+    this.borderWidth = 1.0,
+    this.backgroundColor = const Color(0xFF303030),
+    this.leftBarIndicatorColor,
+    this.boxShadows,
+    this.backgroundGradient,
+    this.mainButton,
+    this.onTap,
+    this.duration,
+    this.isDismissible = true,
+    this.dismissDirection = FlushbarDismissDirection.VERTICAL,
+    this.showProgressIndicator = false,
+    this.progressIndicatorController,
+    this.progressIndicatorBackgroundColor,
+    this.progressIndicatorValueColor,
+    this.flushbarPosition = FlushbarPosition.BOTTOM,
+    this.positionOffset = 0.0,
+    this.flushbarStyle = FlushbarStyle.FLOATING,
+    this.forwardAnimationCurve = Curves.easeOutCirc,
+    this.reverseAnimationCurve = Curves.easeOutCirc,
+    this.animationDuration = const Duration(seconds: 1),
+    FlushbarStatusCallback? onStatusChanged,
+    this.barBlur = 0.0,
+    this.blockBackgroundInteraction = false,
+    this.routeBlur,
+    this.routeColor,
+    this.userInputForm,
+    this.endOffset,
+    this.flushbarRoute, // Please dont init this
+  })  
+  // ignore: prefer_initializing_formals
+  : onStatusChanged = onStatusChanged,
         super(key: key) {
     onStatusChanged = onStatusChanged ?? (status) {};
   }
@@ -597,8 +597,10 @@ class _FlushbarState<K extends Object?> extends State<Flushbar<K>> with TickerPr
     _backgroundBoxKey = GlobalKey();
     _boxHeightCompleter = Completer<Size>();
 
-    assert(widget.userInputForm != null || ((widget.message != null && widget.message!.isNotEmpty) || widget.messageText != null),
-        'A message is mandatory if you are not using userInputForm. Set either a message or messageText');
+    assert(
+      widget.userInputForm != null || ((widget.message != null && widget.message!.isNotEmpty) || widget.messageText != null),
+      'A message is mandatory if you are not using userInputForm. Set either a message or messageText',
+    );
 
     _isTitlePresent = widget.title != null || widget.titleText != null;
     _messageTopMargin = _isTitlePresent ? 6.0 : widget.padding.top;
@@ -779,14 +781,15 @@ class _FlushbarState<K extends Object?> extends State<Flushbar<K>> with TickerPr
   Widget _buildProgressIndicator() {
     if (widget.showProgressIndicator && _progressAnimation != null) {
       return AnimatedBuilder(
-          animation: _progressAnimation!,
-          builder: (_, __) {
-            return LinearProgressIndicator(
-              value: _progressAnimation!.value,
-              backgroundColor: widget.progressIndicatorBackgroundColor,
-              valueColor: widget.progressIndicatorValueColor,
-            );
-          });
+        animation: _progressAnimation!,
+        builder: (_, __) {
+          return LinearProgressIndicator(
+            value: _progressAnimation!.value,
+            backgroundColor: widget.progressIndicatorBackgroundColor,
+            valueColor: widget.progressIndicatorValueColor,
+          );
+        },
+      );
     }
 
     if (widget.showProgressIndicator) {
@@ -1053,12 +1056,14 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
   FlushbarRoute({
     required this.flushbar,
     RouteSettings? settings,
-  })  : _builder = Builder(builder: (BuildContext innerContext) {
-          return GestureDetector(
-            onTap: flushbar.onTap != null ? () => flushbar.onTap!(flushbar) : null,
-            child: flushbar,
-          );
-        }),
+  })  : _builder = Builder(
+          builder: (BuildContext innerContext) {
+            return GestureDetector(
+              onTap: flushbar.onTap != null ? () => flushbar.onTap!(flushbar) : null,
+              child: flushbar,
+            );
+          },
+        ),
         _onStatusChanged = flushbar.onStatusChanged,
         super(settings: settings) {
     _configureAlignment(flushbar.flushbarPosition);
@@ -1118,31 +1123,33 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
     if (flushbar.blockBackgroundInteraction) {
       overlays.add(
         OverlayEntry(
-            builder: (BuildContext context) {
-              return Listener(
-                onPointerDown: flushbar.isDismissible ? (_) => flushbar.dismiss() : null,
-                child: _createBackgroundOverlay(),
-              );
-            },
-            opaque: opaque),
+          builder: (BuildContext context) {
+            return Listener(
+              onPointerDown: flushbar.isDismissible ? (_) => flushbar.dismiss() : null,
+              child: _createBackgroundOverlay(),
+            );
+          },
+          opaque: opaque,
+        ),
       );
     }
 
     overlays.add(
       OverlayEntry(
-          builder: (BuildContext context) {
-            final Widget annotatedChild = Semantics(
-              focused: false,
-              container: true,
-              explicitChildNodes: true,
-              child: AlignTransition(
-                alignment: _animation!,
-                child: flushbar.isDismissible ? _getDismissibleFlushbar(_builder) : _getFlushbar(),
-              ),
-            );
-            return annotatedChild;
-          },
-          opaque: opaque),
+        builder: (BuildContext context) {
+          final Widget annotatedChild = Semantics(
+            focused: false,
+            container: true,
+            explicitChildNodes: true,
+            child: AlignTransition(
+              alignment: _animation!,
+              child: flushbar.isDismissible ? _getDismissibleFlushbar(_builder) : _getFlushbar(),
+            ),
+          );
+          return annotatedChild;
+        },
+        opaque: opaque,
+      ),
     );
 
     return overlays;
@@ -1328,7 +1335,7 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
       case AnimationStatus.completed:
         currentStatus = FlushbarStatus.SHOWING;
         if (_onStatusChanged != null) {
-          _onStatusChanged!(currentStatus);
+          _onStatusChanged?.call(currentStatus);
         }
         if (overlayEntries.isNotEmpty) {
           overlayEntries.first.opaque = opaque;
@@ -1338,13 +1345,13 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
       case AnimationStatus.forward:
         currentStatus = FlushbarStatus.IS_APPEARING;
         if (_onStatusChanged != null) {
-          _onStatusChanged!(currentStatus);
+          _onStatusChanged?.call(currentStatus);
         }
         break;
       case AnimationStatus.reverse:
         currentStatus = FlushbarStatus.IS_HIDING;
         if (_onStatusChanged != null) {
-          _onStatusChanged!(currentStatus);
+          _onStatusChanged?.call(currentStatus);
         }
         if (overlayEntries.isNotEmpty) {
           overlayEntries.first.opaque = false;
@@ -1358,7 +1365,7 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
         // popping the navigator.
         currentStatus = FlushbarStatus.DISMISSED;
         if (_onStatusChanged != null) {
-          _onStatusChanged!(currentStatus);
+          _onStatusChanged?.call(currentStatus);
         }
 
         if (!isCurrent) {

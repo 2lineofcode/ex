@@ -1,5 +1,5 @@
 name: ex
-description: Powerfull Ex-Material UI (Material UI improvement)
+description: Powerfull Ex-Material UI (Material UI improvement) |  all material widget with functional many helper/utils like `ExHttp, ExLog, ExAlert, ExBottomSheet, ExDialog, ExSnackbar` 
 version: 0.1.9
 homepage: https://github.com/abehbatre/ex
 
@@ -18,7 +18,7 @@ dependencies:
   photo_view: ^0.14.0
 
 dev_dependencies:
-  lints: ^1.0.0
+  very_good_analysis: ^2.4.0
   flutter_test:
     sdk: flutter
 

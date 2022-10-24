@@ -83,11 +83,11 @@ class _DiscreteCircleState extends State<DiscreteCircle> with SingleTickerProvid
 
   @override
   Widget build(BuildContext context) {
-    final Color color = widget.color;
-    final double size = widget.size;
-    final double strokeWidth = size / 8;
-    final Color secondRingColor = widget.secondCircleColor;
-    final Color thirdRingColor = widget.thirdCircleColor;
+    final color = widget.color;
+    final size = widget.size;
+    final strokeWidth = size / 8;
+    final secondRingColor = widget.secondCircleColor;
+    final thirdRingColor = widget.thirdCircleColor;
     return AnimatedBuilder(
       animation: _animationController,
       builder: (_, __) {
@@ -270,13 +270,13 @@ class Arc extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final Rect rect = Rect.fromCircle(
+    final rect = Rect.fromCircle(
       center: Offset(size.width / 2, size.height / 2),
       radius: size.height / 2,
     );
 
-    const bool useCenter = false;
-    final Paint paint = Paint()
+    const useCenter = false;
+    final paint = Paint()
       ..color = _color
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round

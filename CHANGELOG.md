@@ -1,6 +1,7 @@
 ## 0.1.9
 * fix ex-http (manual) : issue post/put when modifier header != empty
 * improve ex-snackbar: change `message` to dynamic 
+* fix pub.dev score
 ## 0.1.8
 * improve ex-http default log = false
 ## 0.1.7

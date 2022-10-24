@@ -78,7 +78,7 @@ class ExAvatarView extends StatelessWidget {
         decoration: isWithShadow == true
             ? BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(90)),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Color(0xFFD8DCE0),
                     spreadRadius: 1,
@@ -240,39 +240,40 @@ class _CircularProfileAvatarState extends State<CircularProfileAvatar> {
         elevation: widget.elevation,
         color: widget.borderColor,
         child: Container(
-            height: widget.radius * 2,
-            width: widget.radius * 2,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(widget.radius),
-              border: Border.all(width: widget.borderWidth, color: widget.borderColor),
-            ),
-            child: Center(
-              child: Container(
-                decoration: BoxDecoration(color: widget.backgroundColor, borderRadius: BorderRadius.circular(widget.radius)),
-                child: widget.child == null
-                    ? Stack(
-                        fit: StackFit.expand,
-                        children: widget.imageUrl.isEmpty
-                            ? <Widget>[_initialsText!]
-                            : widget.showInitialTextAbovePicture
-                                ? <Widget>[
-                                    profileImage(),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: widget.foregroundColor,
-                                        borderRadius: BorderRadius.circular(widget.radius),
-                                      ),
+          height: widget.radius * 2,
+          width: widget.radius * 2,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(widget.radius),
+            border: Border.all(width: widget.borderWidth, color: widget.borderColor),
+          ),
+          child: Center(
+            child: Container(
+              decoration: BoxDecoration(color: widget.backgroundColor, borderRadius: BorderRadius.circular(widget.radius)),
+              child: widget.child == null
+                  ? Stack(
+                      fit: StackFit.expand,
+                      children: widget.imageUrl.isEmpty
+                          ? <Widget>[_initialsText!]
+                          : widget.showInitialTextAbovePicture
+                              ? <Widget>[
+                                  profileImage(),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: widget.foregroundColor,
+                                      borderRadius: BorderRadius.circular(widget.radius),
                                     ),
-                                    _initialsText!,
-                                  ]
-                                : <Widget>[
-                                    _initialsText!,
-                                    profileImage(),
-                                  ],
-                      )
-                    : child(),
-              ),
-            )),
+                                  ),
+                                  _initialsText!,
+                                ]
+                              : <Widget>[
+                                  _initialsText!,
+                                  profileImage(),
+                                ],
+                    )
+                  : child(),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -308,6 +309,7 @@ class _CircularProfileAvatarState extends State<CircularProfileAvatar> {
             child: Image.network(
               widget.imageUrl,
               fit: widget.imageFit,
-            ));
+            ),
+          );
   }
 }

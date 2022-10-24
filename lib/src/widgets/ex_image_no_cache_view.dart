@@ -2,10 +2,8 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import '../../ex.dart';
-import 'index.dart';
 
 class ExImageNoCacheView extends StatelessWidget {
   const ExImageNoCacheView(

@@ -6,28 +6,28 @@ import '../color.dart';
 
 class ExAccordion extends StatefulWidget {
   /// An accordion is used to show (and hide) content. Use [showAccordion] to hide & show the accordion content.
-  const ExAccordion(
-      {Key? key,
-      this.title,
-      this.content,
-      this.titleChild,
-      this.contentChild,
-      this.collapsedTitleBackgroundColor = colorWhite,
-      this.expandedTitleBackgroundColor = const Color(0xFFE0E0E0),
-      this.collapsedIcon = const Icon(Icons.keyboard_arrow_down),
-      this.expandedIcon = const Icon(Icons.keyboard_arrow_up),
-      this.textStyle = const TextStyle(color: Colors.black, fontSize: 16),
-      this.titlePadding = const EdgeInsets.all(10),
-      this.contentBackgroundColor,
-      this.contentPadding = const EdgeInsets.all(10),
-      this.titleBorder = const Border(),
-      this.contentBorderColor,
-      this.margin,
-      this.showAccordion = false,
-      this.onToggleCollapsed,
-      this.titleBorderRadius = const BorderRadius.all(Radius.circular(0)),
-      this.contentBorderRadius = const BorderRadius.all(Radius.circular(0))})
-      : super(key: key);
+  const ExAccordion({
+    Key? key,
+    this.title,
+    this.content,
+    this.titleChild,
+    this.contentChild,
+    this.collapsedTitleBackgroundColor = colorWhite,
+    this.expandedTitleBackgroundColor = const Color(0xFFE0E0E0),
+    this.collapsedIcon = const Icon(Icons.keyboard_arrow_down),
+    this.expandedIcon = const Icon(Icons.keyboard_arrow_up),
+    this.textStyle = const TextStyle(color: Colors.black, fontSize: 16),
+    this.titlePadding = const EdgeInsets.all(10),
+    this.contentBackgroundColor,
+    this.contentPadding = const EdgeInsets.all(10),
+    this.titleBorder = const Border(),
+    this.contentBorderColor,
+    this.margin,
+    this.showAccordion = false,
+    this.onToggleCollapsed,
+    this.titleBorderRadius = const BorderRadius.all(Radius.circular(0)),
+    this.contentBorderRadius = const BorderRadius.all(Radius.circular(0)),
+  }) : super(key: key);
 
   /// controls if the accordion should be collapsed or not making it possible to be controlled from outside
   final bool showAccordion;
@@ -149,17 +149,18 @@ class _ExAccordionState extends State<ExAccordion> with TickerProviderStateMixin
             ),
             if (showAccordion)
               Container(
-                  decoration: BoxDecoration(
-                    borderRadius: widget.contentBorderRadius,
-                    border: Border.all(color: widget.contentBorderColor ?? Color(0xFFE0E0E0)),
-                    color: widget.contentBackgroundColor ?? Colors.white70,
-                  ),
-                  width: MediaQuery.of(context).size.width,
-                  padding: widget.contentPadding,
-                  child: SlideTransition(
-                    position: offset,
-                    child: widget.content != null ? widget.content! : (widget.contentChild ?? Container()),
-                  ))
+                decoration: BoxDecoration(
+                  borderRadius: widget.contentBorderRadius,
+                  border: Border.all(color: widget.contentBorderColor ?? Color(0xFFE0E0E0)),
+                  color: widget.contentBackgroundColor ?? Colors.white70,
+                ),
+                width: MediaQuery.of(context).size.width,
+                padding: widget.contentPadding,
+                child: SlideTransition(
+                  position: offset,
+                  child: widget.content != null ? widget.content! : (widget.contentChild ?? Container()),
+                ),
+              )
             else
               Container()
           ],
@@ -179,7 +180,7 @@ class _ExAccordionState extends State<ExAccordion> with TickerProviderStateMixin
       }
       showAccordion = !showAccordion;
       if (widget.onToggleCollapsed != null) {
-        widget.onToggleCollapsed!(showAccordion);
+        widget.onToggleCollapsed?.call(showAccordion);
       }
     });
   }

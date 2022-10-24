@@ -21,7 +21,7 @@ mixin ExSnackbar {
   // info
   // —————————————————————————————————————————————————————————————————————————————
   static void infoTop(
-    String message, {
+    dynamic message, {
     String? title,
     double? titleSize,
     Color? titleColor = Colors.black,
@@ -57,7 +57,7 @@ mixin ExSnackbar {
   // danger
   // —————————————————————————————————————————————————————————————————————————————
   static void dangerTop(
-    String message, {
+    dynamic message, {
     String? title,
     double? titleSize,
     Color? titleColor = Colors.black,
@@ -93,7 +93,7 @@ mixin ExSnackbar {
   // warning
   // —————————————————————————————————————————————————————————————————————————————
   static void warningTop(
-    String message, {
+    dynamic message, {
     String? title,
     double? titleSize,
     Color? titleColor = Colors.black,
@@ -129,7 +129,7 @@ mixin ExSnackbar {
   // success
   // —————————————————————————————————————————————————————————————————————————————
   static void successTop(
-    String message, {
+    dynamic message, {
     String? title,
     double? titleSize,
     Color? titleColor = Colors.black,
@@ -165,7 +165,7 @@ mixin ExSnackbar {
   // action
   // —————————————————————————————————————————————————————————————————————————————
   static void action({
-    required String message,
+    required dynamic message,
     required Widget button,
     String? title,
     Duration duration = const Duration(seconds: 3),
@@ -179,7 +179,7 @@ mixin ExSnackbar {
   }
 
   static void uploading({
-    required String message,
+    required dynamic message,
     String? title,
     Duration duration = const Duration(seconds: 3),
     AnimationController? progressIndicatorController,
@@ -200,12 +200,12 @@ mixin ExSnackbar {
   // ver2 : bottom
   // —————————————————————————————————————————————————————————————————————————————
 
-  static void neutral(String message, {int? duration, bool showIcon = true}) {
+  static void neutral(dynamic message, {int? duration, bool showIcon = true}) {
     final snackBar = SnackBar(
       content: HStack([
         if (showIcon == true) Icon(Icons.info, color: Colors.white),
         12.widthBox,
-        message.text.black.overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
+        '$message'.text.black.overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
       ]),
       backgroundColor: Colors.black,
       behavior: SnackBarBehavior.floating,
@@ -214,14 +214,14 @@ mixin ExSnackbar {
     ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
   }
 
-  static void info(String message, {int? duration, bool showIcon = true}) {
+  static void info(dynamic message, {int? duration, bool showIcon = true}) {
     final snackBar = SnackBar(
       content: Container(
         decoration: ExDecorator.commonBoxDecoration(borderColor: Color(0xFF093479)),
         child: HStack([
           if (showIcon == true) Icon(Icons.info, color: Color(0xFF093479)),
           12.widthBox,
-          message.text.black.overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
+          '$message'.text.black.overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
         ]).p12(),
       ),
       padding: EdgeInsets.all(0),
@@ -232,14 +232,14 @@ mixin ExSnackbar {
     ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
   }
 
-  static void danger(String message, {int? duration, bool showIcon = true}) {
+  static void danger(dynamic message, {int? duration, bool showIcon = true}) {
     final snackBar = SnackBar(
       content: Container(
         decoration: ExDecorator.commonBoxDecoration(borderColor: Color(0xFF881135)),
         child: HStack([
           if (showIcon == true) Icon(Icons.info, color: Color(0xFF881135)),
           12.widthBox,
-          message.text.black.overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
+          '$message'.text.black.overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
         ]).p12(),
       ),
       padding: EdgeInsets.all(0),
@@ -250,14 +250,14 @@ mixin ExSnackbar {
     ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
   }
 
-  static void success(String message, {int? duration, bool showIcon = true}) {
+  static void success(dynamic message, {int? duration, bool showIcon = true}) {
     final snackBar = SnackBar(
       content: Container(
         decoration: ExDecorator.commonBoxDecoration(borderColor: Color(0xFF0E3E33)),
         child: HStack([
           if (showIcon == true) Icon(Icons.check_circle, color: Color(0xFF0E3E33)),
           12.widthBox,
-          message.text.black.overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
+          '$message'.text.black.overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
         ]).p12(),
       ),
       padding: EdgeInsets.all(0),
@@ -268,14 +268,14 @@ mixin ExSnackbar {
     ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
   }
 
-  static void warning(String message, {int? duration, bool showIcon = true}) {
+  static void warning(dynamic message, {int? duration, bool showIcon = true}) {
     final snackBar = SnackBar(
       content: Container(
         decoration: ExDecorator.commonBoxDecoration(borderColor: Color(0xFF93662A)),
         child: HStack([
           if (showIcon == true) Icon(Icons.warning, color: Color(0xFF93662A)),
           12.widthBox,
-          message.text.black.overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
+          '$message'.text.black.overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
         ]).p12(),
       ),
       padding: EdgeInsets.all(0),

@@ -4,7 +4,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 
@@ -132,8 +131,12 @@ Get.put(
 
   Future<Outcome> http({required Method method, required String url, Map<String, String>? header, Map<String, String>? query, Map<String, dynamic>? body}) async {
     final _result = Outcome();
-    await onInit();
     httpClient.baseUrl = '';
+    httpClient.addRequestModifier<void>((request) async {
+      request.headers.clear();
+      request.headers.addAll(header ?? {});
+      return request;
+    });
 
     Response res;
     switch (method) {

@@ -39,6 +39,17 @@ class HttpPage extends StatelessWidget {
               ).pOnly(right: 12, bottom: 12),
               ExButtonOutline(
                 label: 'POST',
+                onPressed: () async {
+                  await apiService.http(method: Method.POST, url: 'https://www.cnbcindonesia.com/market-data/api/getMajorIndexes', header: {
+                    'accept': 'application/json',
+                    'authorization':
+                        'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJrZXkiOiJrMXQ0SGFydXNCaXM0IiwidGltZSI6MTUyMzkzMTMzMCwic2FsdCI6ImV5SjBlWEFpT2lKS1YxUWlMQ0poYkdjaU9pSklVekkxTmlKOS5NVFV5TXprek1UTXpNQS42MG5ZQ0oyX2hsRzlDTmxOR1dQcmVOMV8weHgwMW84Tzc4V3VyVXYtUTBRIn0.WAcM1Wska3QulFqRxvdA3Lk6tKQ9YdPZIkWEvArbGxA',
+                  }).then((response) {
+                    ExSnackbar.success(jsonEncode(response.body));
+                  }).catchError((e) {
+                    ExSnackbar.danger(e);
+                  });
+                },
               ).pOnly(right: 12, bottom: 12),
               ExButtonOutline(
                 label: 'PUT',

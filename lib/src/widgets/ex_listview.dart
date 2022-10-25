@@ -29,7 +29,7 @@ class ExListView extends StatefulWidget {
     // Sliver mode will discard a lot of ListView variables (likes physics, controller),
     // and each of items must be sliver.
     // *Sliver mode will build all items when inited. (ListView item is built by lazy)*
-  })  : super(key: key);
+  }) : super(key: key);
 
   final int itemCount;
   final WidgetBuilder? headerBuilder;
@@ -94,7 +94,10 @@ class ExListViewState extends State<ExListView> {
     final totalItemCount = _dataItemCount() + headerCount + _footerCount();
     final listView = widget.isSliverMode
         ? CustomScrollView(
-            slivers: List.generate(totalItemCount, (index) => _itemBuilder(context, index)),
+            slivers: List.generate(
+              totalItemCount,
+              (index) => _itemBuilder(context, index),
+            ),
           )
         : ListView.builder(
             physics: isNested ? null : widget.physics,

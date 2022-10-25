@@ -45,7 +45,10 @@ class ExImageView extends StatelessWidget {
           width: size ?? width,
           height: size ?? height,
           decoration: BoxDecoration(
-            border: Border.all(color: borderColor ?? Colors.grey[300]!, width: borderWidth ?? 0.5),
+            border: Border.all(
+              color: borderColor ?? Colors.grey[300]!,
+              width: borderWidth ?? 0.5,
+            ),
           ),
           child: url.isUrl!
               ? Image.network(
@@ -65,7 +68,10 @@ class ExImageView extends StatelessWidget {
                     ).centered();
                   },
                   errorBuilder: (context, error, stackTrace) {
-                    return Container(color: Colors.grey[300], child: Icon(errorIcon));
+                    return Container(
+                      color: Colors.grey[300],
+                      child: Icon(errorIcon),
+                    );
                   },
                 )
               : Container(color: Colors.grey[300], child: Icon(errorIcon)),

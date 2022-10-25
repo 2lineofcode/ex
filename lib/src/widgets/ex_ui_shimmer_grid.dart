@@ -38,19 +38,43 @@ class ExUiShimmerGrid extends StatelessWidget {
         [
           HStack([
             const Spacer(),
-            Container(width: 24, height: 12, color: primaryColor).cornerRadius(2).shimmer(primaryColor: primaryColor, secondaryColor: secondaryColor),
+            Container(width: 24, height: 12, color: primaryColor).cornerRadius(2).shimmer(
+                  primaryColor: primaryColor,
+                  secondaryColor: secondaryColor,
+                ),
           ]),
           HStack([
-            VxCircle().wh(10, 10).shimmer(primaryColor: primaryColor, secondaryColor: secondaryColor),
-            VxCircle().wh(80, 80).shimmer(primaryColor: primaryColor, secondaryColor: secondaryColor).expand(),
-            VxCircle().wh(10, 10).shimmer(primaryColor: primaryColor, secondaryColor: secondaryColor),
+            VxCircle().wh(10, 10).shimmer(
+                  primaryColor: primaryColor,
+                  secondaryColor: secondaryColor,
+                ),
+            VxCircle()
+                .wh(80, 80)
+                .shimmer(
+                  primaryColor: primaryColor,
+                  secondaryColor: secondaryColor,
+                )
+                .expand(),
+            VxCircle().wh(10, 10).shimmer(
+                  primaryColor: primaryColor,
+                  secondaryColor: secondaryColor,
+                ),
           ]),
           12.heightBox,
-          Container(width: 160, height: 12, color: primaryColor).cornerRadius(2).shimmer(primaryColor: primaryColor, secondaryColor: secondaryColor),
+          Container(width: 160, height: 12, color: primaryColor).cornerRadius(2).shimmer(
+                primaryColor: primaryColor,
+                secondaryColor: secondaryColor,
+              ),
           4.heightBox,
-          Container(width: 70, height: 12, color: primaryColor).cornerRadius(2).shimmer(primaryColor: primaryColor, secondaryColor: secondaryColor),
+          Container(width: 70, height: 12, color: primaryColor).cornerRadius(2).shimmer(
+                primaryColor: primaryColor,
+                secondaryColor: secondaryColor,
+              ),
           4.heightBox,
-          Container(width: 40, height: 12, color: primaryColor).cornerRadius(2).shimmer(primaryColor: primaryColor, secondaryColor: secondaryColor),
+          Container(width: 40, height: 12, color: primaryColor).cornerRadius(2).shimmer(
+                primaryColor: primaryColor,
+                secondaryColor: secondaryColor,
+              ),
         ],
         alignment: MainAxisAlignment.center,
       ).p12(),

@@ -36,7 +36,9 @@ mixin ExLoading {
   }) {
     Get.dialog(
       AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        ),
         insetPadding: EdgeInsets.symmetric(horizontal: 120),
         content: VStack(
           [

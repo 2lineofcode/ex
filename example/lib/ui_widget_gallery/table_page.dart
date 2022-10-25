@@ -11,9 +11,7 @@ class TablePage extends StatelessWidget {
         title: 'Table'.text.bodyText1(context).bold.make(),
       ),
       body: VStack(
-        [
-
-        ],
+        [],
       ).p16(),
     );
   }

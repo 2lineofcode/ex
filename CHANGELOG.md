@@ -1,3 +1,6 @@
+## 0.1.10
+* refrector & simplify ex-decorator
+* simplify code
 ## 0.1.9+2
 * fix pub.dev score again
 ## 0.1.9

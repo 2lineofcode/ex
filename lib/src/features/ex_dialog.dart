@@ -49,7 +49,9 @@ mixin ExDialog {
         return SizedBox(
           width: width,
           child: AlertDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(cornerRadius))),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(cornerRadius)),
+            ),
             contentPadding: EdgeInsets.all(0),
             scrollable: true,
             content: Column(
@@ -104,7 +106,9 @@ mixin ExDialog {
                     ).pOnly(right: 12, bottom: 12).h(55),
                     Obx(
                       () => ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
+                        style: ElevatedButton.styleFrom(
+                          primary: Theme.of(context).primaryColor,
+                        ),
                         onPressed: isInputValid.value == true
                             ? () {
                                 if (tfController.text.isNotBlank) {
@@ -153,7 +157,9 @@ mixin ExDialog {
         return SizedBox(
           width: width,
           child: AlertDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(cornerRadius))),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(cornerRadius)),
+            ),
             contentPadding: EdgeInsets.all(0),
             scrollable: true,
             content: Column(

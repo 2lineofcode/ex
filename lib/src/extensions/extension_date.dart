@@ -90,7 +90,11 @@ extension StringToDateFormatterExtension on String {
     return output;
   }
 
-  String formatDate({String format = 'yyyy-MM-ddTHH:mm:ssZ', String to = 'dd MMM yyyy', int addHours = 0}) {
+  String formatDate({
+    String format = 'yyyy-MM-ddTHH:mm:ssZ',
+    String to = 'dd MMM yyyy',
+    int addHours = 0,
+  }) {
     String output;
     try {
       output = (toDateEx(format: format).add(addHours.hours)).toStringEx(format: to);

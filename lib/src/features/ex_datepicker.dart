@@ -22,7 +22,7 @@ mixin ExDatePicker {
       context: Get.context!,
       builder: (_) => Container(
         height: 270,
-        decoration: ExDecorator.boxBottomSheetRadiusDecoration(),
+        decoration: ExDecorator.boxBottomSheet(),
         child: Column(
           children: [
             HStack([

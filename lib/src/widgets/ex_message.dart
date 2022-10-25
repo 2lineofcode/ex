@@ -28,7 +28,7 @@ class ExMessage extends GetView<_ExMessageController> {
       () => Visibility(
         visible: controller.isVisible.value,
         child: Container(
-          decoration: ExDecorator.commonBoxDecoration(
+          decoration: ExDecorator.box(
             fillColor: fillColor ?? colorDisclaimerLight,
             borderColor: borderColor ?? colorDisclaimer,
             borderRadius: borderRadius ?? 2,

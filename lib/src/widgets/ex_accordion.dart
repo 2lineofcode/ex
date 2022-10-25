@@ -100,7 +100,10 @@ class _ExAccordionState extends State<ExAccordion> with TickerProviderStateMixin
   void initState() {
     showAccordion = widget.showAccordion;
     animationController = AnimationController(duration: const Duration(seconds: 2), vsync: this);
-    controller = AnimationController(duration: const Duration(milliseconds: 300), vsync: this);
+    controller = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
     offset = Tween(
       begin: const Offset(0, -0.06),
       end: Offset.zero,
@@ -151,7 +154,9 @@ class _ExAccordionState extends State<ExAccordion> with TickerProviderStateMixin
               Container(
                 decoration: BoxDecoration(
                   borderRadius: widget.contentBorderRadius,
-                  border: Border.all(color: widget.contentBorderColor ?? Color(0xFFE0E0E0)),
+                  border: Border.all(
+                    color: widget.contentBorderColor ?? Color(0xFFE0E0E0),
+                  ),
                   color: widget.contentBackgroundColor ?? Colors.white70,
                 ),
                 width: MediaQuery.of(context).size.width,

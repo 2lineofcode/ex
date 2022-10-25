@@ -33,16 +33,24 @@ final _internal = Random();
 mixin ExUtils {
   /// Generates a random integer where [from] <= [to] inclusive
   /// where 0 <= from <= to <= 999999999999999
-  static int randomBetween(int from, int to, {AbstractRandomProvider provider = const DefaultRandomProvider()}) {
+  static int randomBetween(
+    int from,
+    int to, {
+    AbstractRandomProvider provider = const DefaultRandomProvider(),
+  }) {
     if (from > to) {
       throw ArgumentError('$from cannot be > $to');
     }
     if (from < minSupportedInteger) {
-      throw ArgumentError('|$from| is larger than the maximum supported $maxSupportedInteger');
+      throw ArgumentError(
+        '|$from| is larger than the maximum supported $maxSupportedInteger',
+      );
     }
 
     if (to > maxSupportedInteger) {
-      throw ArgumentError('|$to| is larger than the maximum supported $maxSupportedInteger');
+      throw ArgumentError(
+        '|$to| is larger than the maximum supported $maxSupportedInteger',
+      );
     }
 
     final d = provider.nextDouble();
@@ -63,15 +71,37 @@ mixin ExUtils {
   /// Generates a random string of [length] with characters
   /// between ascii [from] to [to].
   /// Defaults to characters of ascii '!' to '~'.
-  static String randomString(int length, {int from = asciiStart, int to = asciiEnd, AbstractRandomProvider provider = const DefaultRandomProvider()}) {
-    return String.fromCharCodes(List.generate(length, (index) => randomBetween(from, to, provider: provider)));
+  static String randomString(
+    int length, {
+    int from = asciiStart,
+    int to = asciiEnd,
+    AbstractRandomProvider provider = const DefaultRandomProvider(),
+  }) {
+    return String.fromCharCodes(
+      List.generate(
+        length,
+        (index) => randomBetween(from, to, provider: provider),
+      ),
+    );
   }
 
   /// Generates a random string of [length] with only numeric characters.
-  static String randomNumeric(int length, {AbstractRandomProvider provider = const DefaultRandomProvider()}) => randomString(length, from: numericStart, to: numericEnd, provider: provider);
+  static String randomNumeric(
+    int length, {
+    AbstractRandomProvider provider = const DefaultRandomProvider(),
+  }) =>
+      randomString(
+        length,
+        from: numericStart,
+        to: numericEnd,
+        provider: provider,
+      );
 
   /// Generates a random string of [length] with only alpha characters.
-  static String randomAlpha(int length, {AbstractRandomProvider provider = const DefaultRandomProvider()}) {
+  static String randomAlpha(
+    int length, {
+    AbstractRandomProvider provider = const DefaultRandomProvider(),
+  }) {
     var lowerAlphaWeight = provider.nextDouble();
     var upperAlphaWeight = provider.nextDouble();
     final sumWeight = lowerAlphaWeight + upperAlphaWeight;
@@ -79,13 +109,26 @@ mixin ExUtils {
     upperAlphaWeight /= sumWeight;
     final lowerAlphaLength = randomBetween(0, length, provider: provider);
     final upperAlphaLength = length - lowerAlphaLength;
-    final lowerAlpha = randomString(lowerAlphaLength, from: lowerAlphaStart, to: lowerAlphaEnd, provider: provider);
-    final upperAlpha = randomString(upperAlphaLength, from: upperAlphaStart, to: upperAlphaEnd, provider: provider);
+    final lowerAlpha = randomString(
+      lowerAlphaLength,
+      from: lowerAlphaStart,
+      to: lowerAlphaEnd,
+      provider: provider,
+    );
+    final upperAlpha = randomString(
+      upperAlphaLength,
+      from: upperAlphaStart,
+      to: upperAlphaEnd,
+      provider: provider,
+    );
     return randomMerge(lowerAlpha, upperAlpha);
   }
 
   /// Generates a random string of [length] with alpha-numeric characters.
-  static String randomAlphaNumeric(int length, {AbstractRandomProvider provider = const DefaultRandomProvider()}) {
+  static String randomAlphaNumeric(
+    int length, {
+    AbstractRandomProvider provider = const DefaultRandomProvider(),
+  }) {
     final alphaLength = randomBetween(0, length, provider: provider);
     final numericLength = length - alphaLength;
     final alpha = randomAlpha(alphaLength, provider: provider);

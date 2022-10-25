@@ -54,7 +54,7 @@ class ListViewPage extends GetView<TestController> {
             return VStack([
               Container(
                 width: double.infinity,
-                decoration: ExDecorator.commonBoxDecoration(),
+                decoration: ExDecorator.box(),
                 child: VStack(
                   [
                     'Header Builder'.text.extraBold.black.make(),
@@ -67,13 +67,13 @@ class ListViewPage extends GetView<TestController> {
           itemCount: controller.xData.length,
           itemBuilder: (context, index) {
             return Container(
-              decoration: ExDecorator.commonBoxDecoration(),
+              decoration: ExDecorator.box(),
               child: HStack(
                 [
                   Container(
                     height: 56,
                     width: 64,
-                    // decoration: ExDecorator.commonBoxDecoration(fillColor: colorNeutral[50], borderRadius: 0),
+                    // decoration: ExDecorator.box(fillColor: colorNeutral[50], borderRadius: 0),
                     color: colorNeutral[50],
                     child: Icon(Icons.link),
                   ),

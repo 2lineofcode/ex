@@ -14,10 +14,10 @@ class DecorationPage extends GetView {
       body: VStack(
         [
           /// 1
-          '# ExDecorator.commonBoxDecoration'.text.make().pSymmetric(v: 8),
+          '# ExDecorator.box'.text.make().pSymmetric(v: 8),
           Container(
             width: double.infinity,
-            decoration: ExDecorator.commonBoxDecoration(),
+            decoration: ExDecorator.box(),
             child: VStack([
               faker.lorem.sentence().text.make(),
             ]).p12(),
@@ -26,22 +26,10 @@ class DecorationPage extends GetView {
           ExDivider().pSymmetric(v: 16),
 
           /// 2
-          '# ExDecorator.commonBoxDecorationWithShadow'.text.make().pSymmetric(v: 8),
+          '# ExDecorator.boxShadow'.text.make().pSymmetric(v: 8),
           Container(
             width: double.infinity,
-            decoration: ExDecorator.commonBoxDecorationWithShadow(),
-            child: VStack([
-              faker.lorem.sentence().text.make(),
-            ]).p12(),
-          ),
-
-          ExDivider().pSymmetric(v: 16),
-
-          /// 3
-          '# ExDecorator.boxBottomSheetRadiusDecoration'.text.make().pSymmetric(v: 8),
-          Container(
-            width: double.infinity,
-            decoration: ExDecorator.boxBottomSheetRadiusDecoration(radius: 8),
+            decoration: ExDecorator.boxShadow(),
             child: VStack([
               faker.lorem.sentence().text.make(),
             ]).p12(),

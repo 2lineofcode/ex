@@ -56,7 +56,9 @@ class ExButtonDefault extends StatelessWidget {
         onPressed: onPressed ?? () {},
         style: ElevatedButton.styleFrom(
           primary: backgroundColor,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(radius),
+          ),
           minimumSize: Size(width ?? 44, height ?? 44),
         ),
         child: HStack(
@@ -89,7 +91,9 @@ class ExButtonDefault extends StatelessWidget {
         onPressed: null,
         style: ElevatedButton.styleFrom(
           primary: backgroundColor,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(radius),
+          ),
           minimumSize: Size(width ?? 44, height ?? 44),
         ),
         child: HStack(

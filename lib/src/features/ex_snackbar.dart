@@ -217,7 +217,7 @@ mixin ExSnackbar {
   static void info(dynamic message, {int? duration, bool showIcon = true}) {
     final snackBar = SnackBar(
       content: Container(
-        decoration: ExDecorator.commonBoxDecoration(borderColor: Color(0xFF093479)),
+        decoration: ExDecorator.box(borderColor: Color(0xFF093479)),
         child: HStack([
           if (showIcon == true) Icon(Icons.info, color: Color(0xFF093479)),
           12.widthBox,
@@ -235,7 +235,7 @@ mixin ExSnackbar {
   static void danger(dynamic message, {int? duration, bool showIcon = true}) {
     final snackBar = SnackBar(
       content: Container(
-        decoration: ExDecorator.commonBoxDecoration(borderColor: Color(0xFF881135)),
+        decoration: ExDecorator.box(borderColor: Color(0xFF881135)),
         child: HStack([
           if (showIcon == true) Icon(Icons.info, color: Color(0xFF881135)),
           12.widthBox,
@@ -253,7 +253,7 @@ mixin ExSnackbar {
   static void success(dynamic message, {int? duration, bool showIcon = true}) {
     final snackBar = SnackBar(
       content: Container(
-        decoration: ExDecorator.commonBoxDecoration(borderColor: Color(0xFF0E3E33)),
+        decoration: ExDecorator.box(borderColor: Color(0xFF0E3E33)),
         child: HStack([
           if (showIcon == true) Icon(Icons.check_circle, color: Color(0xFF0E3E33)),
           12.widthBox,
@@ -271,7 +271,7 @@ mixin ExSnackbar {
   static void warning(dynamic message, {int? duration, bool showIcon = true}) {
     final snackBar = SnackBar(
       content: Container(
-        decoration: ExDecorator.commonBoxDecoration(borderColor: Color(0xFF93662A)),
+        decoration: ExDecorator.box(borderColor: Color(0xFF93662A)),
         child: HStack([
           if (showIcon == true) Icon(Icons.warning, color: Color(0xFF93662A)),
           12.widthBox,
@@ -642,7 +642,10 @@ class _FlushbarState<K extends Object?> extends State<Flushbar<K>> with TickerPr
 
   void _configureProgressIndicatorAnimation() {
     if (widget.showProgressIndicator && widget.progressIndicatorController != null) {
-      _progressAnimation = CurvedAnimation(curve: Curves.linear, parent: widget.progressIndicatorController!);
+      _progressAnimation = CurvedAnimation(
+        curve: Curves.linear,
+        parent: widget.progressIndicatorController!,
+      );
     }
   }
 
@@ -674,7 +677,11 @@ class _FlushbarState<K extends Object?> extends State<Flushbar<K>> with TickerPr
       child: Material(
         color: widget.flushbarStyle == FlushbarStyle.FLOATING ? Colors.transparent : widget.backgroundColor,
         child: SafeArea(
-          minimum: widget.flushbarPosition == FlushbarPosition.BOTTOM ? EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom) : EdgeInsets.only(top: MediaQuery.of(context).viewInsets.top),
+          minimum: widget.flushbarPosition == FlushbarPosition.BOTTOM
+              ? EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                )
+              : EdgeInsets.only(top: MediaQuery.of(context).viewInsets.top),
           // ? EdgeInsets.only(
           //     bottom: (MediaQuery.of(context).padding.bottom +
           //         widget.positionOffset))
@@ -713,7 +720,10 @@ class _FlushbarState<K extends Object?> extends State<Flushbar<K>> with TickerPr
               return ClipRRect(
                 borderRadius: widget.borderRadius,
                 child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: widget.barBlur, sigmaY: widget.barBlur),
+                  filter: ImageFilter.blur(
+                    sigmaX: widget.barBlur,
+                    sigmaY: widget.barBlur,
+                  ),
                   child: Container(
                     height: snapshot.data!.height,
                     width: snapshot.data!.width,
@@ -978,8 +988,14 @@ class _FlushbarState<K extends Object?> extends State<Flushbar<K>> with TickerPr
                 borderRadius: widget.borderRadius == null
                     ? null
                     : widget.textDirection == TextDirection.ltr
-                        ? BorderRadius.only(topLeft: widget.borderRadius!.topLeft, bottomLeft: widget.borderRadius!.bottomLeft)
-                        : BorderRadius.only(topRight: widget.borderRadius!.topRight, bottomRight: widget.borderRadius!.bottomRight),
+                        ? BorderRadius.only(
+                            topLeft: widget.borderRadius!.topLeft,
+                            bottomLeft: widget.borderRadius!.bottomLeft,
+                          )
+                        : BorderRadius.only(
+                            topRight: widget.borderRadius!.topRight,
+                            bottomRight: widget.borderRadius!.bottomRight,
+                          ),
                 color: widget.leftBarIndicatorColor,
               ),
             );
@@ -1010,14 +1026,21 @@ class _FlushbarState<K extends Object?> extends State<Flushbar<K>> with TickerPr
     return widget.titleText ??
         Text(
           widget.title ?? '',
-          style: TextStyle(fontSize: widget.titleSize ?? 16.0, color: widget.titleColor ?? Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: widget.titleSize ?? 16.0,
+            color: widget.titleColor ?? Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         );
   }
 
   Text _getDefaultNotificationText() {
     return Text(
       widget.message ?? '',
-      style: TextStyle(fontSize: widget.messageSize ?? 14.0, color: widget.messageColor ?? Colors.white),
+      style: TextStyle(
+        fontSize: widget.messageSize ?? 14.0,
+        color: widget.messageColor ?? Colors.white,
+      ),
     );
   }
 
@@ -1161,7 +1184,10 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
         animation: _filterBlurAnimation!,
         builder: (context, child) {
           return BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: _filterBlurAnimation!.value, sigmaY: _filterBlurAnimation!.value),
+            filter: ImageFilter.blur(
+              sigmaX: _filterBlurAnimation!.value,
+              sigmaY: _filterBlurAnimation!.value,
+            ),
             child: Container(
               constraints: const BoxConstraints.expand(),
               color: _filterColorAnimation!.value,
@@ -1176,7 +1202,10 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
         animation: _filterBlurAnimation!,
         builder: (context, child) {
           return BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: _filterBlurAnimation!.value, sigmaY: _filterBlurAnimation!.value),
+            filter: ImageFilter.blur(
+              sigmaX: _filterBlurAnimation!.value,
+              sigmaY: _filterBlurAnimation!.value,
+            ),
             child: Container(
               constraints: const BoxConstraints.expand(),
               color: Colors.transparent,
@@ -1271,7 +1300,10 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
   /// this route from the previous one, and back to the previous route from this
   /// one.
   AnimationController createAnimationController() {
-    assert(!_transitionCompleter.isCompleted, 'Cannot reuse a $runtimeType after disposing it.');
+    assert(
+      !_transitionCompleter.isCompleted,
+      'Cannot reuse a $runtimeType after disposing it.',
+    );
     assert(flushbar.animationDuration >= Duration.zero, '');
     return AnimationController(
       duration: flushbar.animationDuration,
@@ -1284,7 +1316,10 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
   /// the transition controlled by the animation controller created by
   /// [createAnimationController()].
   Animation<Alignment> createAnimation() {
-    assert(!_transitionCompleter.isCompleted, 'Cannot reuse a $runtimeType after disposing it.');
+    assert(
+      !_transitionCompleter.isCompleted,
+      'Cannot reuse a $runtimeType after disposing it.',
+    );
     assert(_controller != null, '');
     return AlignmentTween(begin: _initialAlignment, end: _endAlignment).animate(
       CurvedAnimation(
@@ -1378,9 +1413,15 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
 
   @override
   void install() {
-    assert(!_transitionCompleter.isCompleted, 'Cannot install a $runtimeType after disposing it.');
+    assert(
+      !_transitionCompleter.isCompleted,
+      'Cannot install a $runtimeType after disposing it.',
+    );
     _controller = createAnimationController();
-    assert(_controller != null, '$runtimeType.createAnimationController() returned null.');
+    assert(
+      _controller != null,
+      '$runtimeType.createAnimationController() returned null.',
+    );
     _filterBlurAnimation = createBlurFilterAnimation();
     _filterColorAnimation = createColorFilterAnimation();
     _animation = createAnimation();
@@ -1390,8 +1431,14 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
 
   @override
   TickerFuture didPush() {
-    assert(_controller != null, '$runtimeType.didPush called before calling install() or after calling dispose().');
-    assert(!_transitionCompleter.isCompleted, 'Cannot reuse a $runtimeType after disposing it.');
+    assert(
+      _controller != null,
+      '$runtimeType.didPush called before calling install() or after calling dispose().',
+    );
+    assert(
+      !_transitionCompleter.isCompleted,
+      'Cannot reuse a $runtimeType after disposing it.',
+    );
     _animation!.addStatusListener(_handleStatusChanged);
     _configureTimer();
     super.didPush();
@@ -1400,8 +1447,14 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
 
   @override
   void didReplace(Route<dynamic>? oldRoute) {
-    assert(_controller != null, '$runtimeType.didReplace called before calling install() or after calling dispose().');
-    assert(!_transitionCompleter.isCompleted, 'Cannot reuse a $runtimeType after disposing it.');
+    assert(
+      _controller != null,
+      '$runtimeType.didReplace called before calling install() or after calling dispose().',
+    );
+    assert(
+      !_transitionCompleter.isCompleted,
+      'Cannot reuse a $runtimeType after disposing it.',
+    );
     if (oldRoute is FlushbarRoute) {
       _controller!.value = oldRoute._controller!.value;
     }
@@ -1411,8 +1464,14 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
 
   @override
   bool didPop(T? result) {
-    assert(_controller != null, '$runtimeType.didPop called before calling install() or after calling dispose().');
-    assert(!_transitionCompleter.isCompleted, 'Cannot reuse a $runtimeType after disposing it.');
+    assert(
+      _controller != null,
+      '$runtimeType.didPop called before calling install() or after calling dispose().',
+    );
+    assert(
+      !_transitionCompleter.isCompleted,
+      'Cannot reuse a $runtimeType after disposing it.',
+    );
 
     _result = result;
     _cancelTimer();
@@ -1469,7 +1528,10 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
 
   @override
   void dispose() {
-    assert(!_transitionCompleter.isCompleted, 'Cannot dispose a $runtimeType twice.');
+    assert(
+      !_transitionCompleter.isCompleted,
+      'Cannot dispose a $runtimeType twice.',
+    );
     _controller?.dispose();
     _transitionCompleter.complete(_result);
     super.dispose();

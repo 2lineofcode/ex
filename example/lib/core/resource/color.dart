@@ -26,8 +26,6 @@ const int _colorPrimaryValue = 0xFF455DC7;
 const colorPrimaryDark = Color(0xFF3246AB);
 const colorPrimaryLight = Color(0xFFF3F6FE);
 
-
-
 // —————————————————————————————————————————————————————————————————————————————
 // secondary / accent
 // —————————————————————————————————————————————————————————————————————————————
@@ -49,8 +47,6 @@ const MaterialColor colorAccent = MaterialColor(
 const int _colorAccentValue = 0xFFFFBA53;
 const colorAccentDark = Color(0xFFDB953C);
 const colorAccentLight = Color(0xFFFFF8EE);
-
-
 
 // —————————————————————————————————————————————————————————————————————————————
 // default / neutral
@@ -77,9 +73,6 @@ const colorNeutralDark = Color(0xFF383F45);
 const colorNeutralLight = Color(0xFFD8DCE0);
 const colorNeutralSuperLight = Color(0xFFE5E7EA);
 
-
-
-
 // —————————————————————————————————————————————————————————————————————————————
 // disclaimer
 // —————————————————————————————————————————————————————————————————————————————
@@ -101,9 +94,6 @@ const MaterialColor colorDisclaimer = MaterialColor(
 const int _colorDisclaimerValue = 0xFFF69348;
 const colorDisclaimerDark = Color(0xFFE06C3D);
 const colorDisclaimerLight = Color(0xFFFFF9F2);
-
-
-
 
 // —————————————————————————————————————————————————————————————————————————————
 // info
@@ -127,9 +117,6 @@ const int _colorInfoValue = 0xFF1D81D1;
 const colorInfoDark = Color(0xFF093479);
 const colorInfoLight = Color(0xFFE8F9FE);
 
-
-
-
 // —————————————————————————————————————————————————————————————————————————————
 // warning
 // —————————————————————————————————————————————————————————————————————————————
@@ -151,9 +138,6 @@ const MaterialColor colorWarning = MaterialColor(
 const int _colorWarningValue = 0xFFFFD786;
 const colorWarningDark = Color(0xFF93662A);
 const colorWarningLight = Color(0xFFFFFDF3);
-
-
-
 
 // —————————————————————————————————————————————————————————————————————————————
 // success
@@ -177,9 +161,6 @@ const int _colorSuccessValue = 0xFF229C80;
 const colorSuccessDark = Color(0xFF0E3E33);
 const colorSuccessLight = Color(0xFFE9F5F2);
 
-
-
-
 // —————————————————————————————————————————————————————————————————————————————
 // error
 // —————————————————————————————————————————————————————————————————————————————
@@ -202,15 +183,11 @@ const int _colorErrorValue = 0xFFEB373E;
 const colorErrorDark = Color(0xFF881135);
 const colorErrorLight = Color(0xFFFFF4F5);
 
-
-
-
 // —————————————————————————————————————————————————————————————————————————————
 // basic color !!
 // —————————————————————————————————————————————————————————————————————————————
 const colorWhite = Color(0xFFFFFFFF);
 const colorBlack = Color(0xFF000C17);
-
 
 extension HexColor on Color {
   /// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".

@@ -47,7 +47,10 @@ class ExImageViewCached extends StatelessWidget {
           width: size ?? width,
           height: size ?? height,
           decoration: BoxDecoration(
-            border: Border.all(color: borderColor ?? Colors.grey[300]!, width: borderWidth ?? 0.0),
+            border: Border.all(
+              color: borderColor ?? Colors.grey[300]!,
+              width: borderWidth ?? 0.0,
+            ),
           ),
           child: url.isUrl!
               ? CachedNetworkImage(

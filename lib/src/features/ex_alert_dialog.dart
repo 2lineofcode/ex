@@ -58,7 +58,11 @@ mixin ExAlert {
         return WillPopScope(
           onWillPop: () async => isDismissible,
           child: AlertDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(cornerRadius))),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(cornerRadius),
+              ),
+            ),
             // contentPadding: EdgeInsets.all(16),
             scrollable: true,
             content: VStack([

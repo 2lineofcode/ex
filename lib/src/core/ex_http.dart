@@ -127,7 +127,13 @@ Get.put(
     super.onInit();
   }
 
-  Future<Outcome> http({required Method method, required String url, Map<String, String>? header, Map<String, String>? query, Map<String, dynamic>? body}) async {
+  Future<Outcome> http({
+    required Method method,
+    required String url,
+    Map<String, String>? header,
+    Map<String, String>? query,
+    Map<String, dynamic>? body,
+  }) async {
     final _result = Outcome();
     httpClient.baseUrl = '';
     // httpClient.addRequestModifier<void>((request) async {
@@ -155,87 +161,159 @@ Get.put(
         break;
     }
 
-    await ApiUtils.apiLog(response: res, showHeader: showLogHeader, showResponse: showLogResponse);
+    await ApiUtils.apiLog(
+      response: res,
+      showHeader: showLogHeader,
+      showResponse: showLogResponse,
+    );
     if (res.isOk) {
       _result
         ..body = res.body
         ..isFailure = false;
       return _result;
     } else {
-      return ErrorInterceptorHandling(response: res, result: _result, url: '${httpClient.baseUrl} | $url');
+      return ErrorInterceptorHandling(
+        response: res,
+        result: _result,
+        url: '${httpClient.baseUrl} | $url',
+      );
     }
   }
 
-  Future<Outcome> httpGet({required String endPoint, Map<String, dynamic>? query, Map<String, String>? header, bool withToken = true}) async {
+  Future<Outcome> httpGet({
+    required String endPoint,
+    Map<String, dynamic>? query,
+    Map<String, String>? header,
+    bool withToken = true,
+  }) async {
     await onInit();
     final _result = Outcome();
     final res = await get(endPoint, query: query, headers: header);
-    await ApiUtils.apiLog(response: res, showHeader: showLogHeader, query: query, showResponse: showLogResponse);
+    await ApiUtils.apiLog(
+      response: res,
+      showHeader: showLogHeader,
+      query: query,
+      showResponse: showLogResponse,
+    );
 
     if (res.isOk) {
       return _result
         ..body = res.body
         ..isFailure = false;
     } else {
-      return ErrorInterceptorHandling(response: res, result: _result, url: '${httpClient.baseUrl}$endPoint');
+      return ErrorInterceptorHandling(
+        response: res,
+        result: _result,
+        url: '${httpClient.baseUrl}$endPoint',
+      );
     }
   }
 
-  Future<Outcome> httpPost({String endPoint = '', dynamic body, Map<String, String>? header, bool withToken = true}) async {
+  Future<Outcome> httpPost({
+    String endPoint = '',
+    dynamic body,
+    Map<String, String>? header,
+    bool withToken = true,
+  }) async {
     await onInit();
     final _result = Outcome();
 
     final res = await httpClient.post(endPoint, body: body, headers: header);
-    await ApiUtils.apiLog(response: res, showHeader: showLogHeader, body: body, showResponse: showLogResponse);
+    await ApiUtils.apiLog(
+      response: res,
+      showHeader: showLogHeader,
+      body: body,
+      showResponse: showLogResponse,
+    );
 
     if (res.isOk) {
       return _result
         ..body = res.body
         ..isFailure = false;
     } else {
-      return ErrorInterceptorHandling(response: res, result: _result, url: '${httpClient.baseUrl}$endPoint');
+      return ErrorInterceptorHandling(
+        response: res,
+        result: _result,
+        url: '${httpClient.baseUrl}$endPoint',
+      );
     }
   }
 
-  Future<Outcome> httpPut({String endPoint = '', dynamic body, Map<String, String>? header, bool withToken = true}) async {
+  Future<Outcome> httpPut({
+    String endPoint = '',
+    dynamic body,
+    Map<String, String>? header,
+    bool withToken = true,
+  }) async {
     await onInit();
     final _result = Outcome();
 
     final res = await httpClient.put(endPoint, body: body);
-    await ApiUtils.apiLog(response: res, showHeader: showLogHeader, body: body, showResponse: showLogResponse);
+    await ApiUtils.apiLog(
+      response: res,
+      showHeader: showLogHeader,
+      body: body,
+      showResponse: showLogResponse,
+    );
 
     if (res.isOk) {
       return _result
         ..body = res.body
         ..isFailure = false;
     } else {
-      return ErrorInterceptorHandling(response: res, result: _result, url: '${httpClient.baseUrl}$endPoint');
+      return ErrorInterceptorHandling(
+        response: res,
+        result: _result,
+        url: '${httpClient.baseUrl}$endPoint',
+      );
     }
   }
 
-  Future<Outcome> httpDelete({String endPoint = '', Map<String, String>? header, bool withToken = true}) async {
+  Future<Outcome> httpDelete({
+    String endPoint = '',
+    Map<String, String>? header,
+    bool withToken = true,
+  }) async {
     await onInit();
     final _result = Outcome();
 
     final res = await httpClient.delete(endPoint);
-    await ApiUtils.apiLog(response: res, showHeader: showLogHeader, showResponse: showLogResponse);
+    await ApiUtils.apiLog(
+      response: res,
+      showHeader: showLogHeader,
+      showResponse: showLogResponse,
+    );
 
     if (res.isOk) {
       return _result
         ..body = res.body
         ..isFailure = false;
     } else {
-      return ErrorInterceptorHandling(response: res, result: _result, url: '${httpClient.baseUrl}$endPoint');
+      return ErrorInterceptorHandling(
+        response: res,
+        result: _result,
+        url: '${httpClient.baseUrl}$endPoint',
+      );
     }
   }
 
-  Future<Outcome> httpUploadMultipart({String endPoint = '', Map<String, String>? header, required File file, String? fileName, bool withToken = true}) async {
+  Future<Outcome> httpUploadMultipart({
+    String endPoint = '',
+    Map<String, String>? header,
+    required File file,
+    String? fileName,
+    bool withToken = true,
+  }) async {
     await onInit();
     final _result = Outcome();
 
     final form = FormData({'file': MultipartFile(file, filename: fileName ?? '')});
     final res = await post(endPoint, form);
-    await ApiUtils.apiLog(response: res, showHeader: showLogHeader, showResponse: showLogResponse);
+    await ApiUtils.apiLog(
+      response: res,
+      showHeader: showLogHeader,
+      showResponse: showLogResponse,
+    );
 
     if (res.isOk) {
       _result
@@ -243,7 +321,11 @@ Get.put(
         ..isFailure = false;
       return _result;
     } else {
-      return ErrorInterceptorHandling(response: res, result: _result, url: '${httpClient.baseUrl} | $endPoint');
+      return ErrorInterceptorHandling(
+        response: res,
+        result: _result,
+        url: '${httpClient.baseUrl} | $endPoint',
+      );
     }
   }
 
@@ -290,7 +372,11 @@ class Outcome<T> {
 // —————————————————————————————————————————————————————————————————————————————
 // ErrorInterceptorHandling
 // —————————————————————————————————————————————————————————————————————————————
-Outcome ErrorInterceptorHandling({dynamic response, required Outcome result, String? url}) {
+Outcome ErrorInterceptorHandling({
+  dynamic response,
+  required Outcome result,
+  String? url,
+}) {
   response as Response<dynamic>;
   result
     ..isFailure = true

@@ -244,11 +244,17 @@ class _CircularProfileAvatarState extends State<CircularProfileAvatar> {
           width: widget.radius * 2,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(widget.radius),
-            border: Border.all(width: widget.borderWidth, color: widget.borderColor),
+            border: Border.all(
+              width: widget.borderWidth,
+              color: widget.borderColor,
+            ),
           ),
           child: Center(
             child: Container(
-              decoration: BoxDecoration(color: widget.backgroundColor, borderRadius: BorderRadius.circular(widget.radius)),
+              decoration: BoxDecoration(
+                color: widget.backgroundColor,
+                borderRadius: BorderRadius.circular(widget.radius),
+              ),
               child: widget.child == null
                   ? Stack(
                       fit: StackFit.expand,

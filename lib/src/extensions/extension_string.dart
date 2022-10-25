@@ -309,7 +309,9 @@ extension MiscExtensions on String? {
     if (this!.isEmpty) {
       return false;
     }
-    final regex = RegExp(r'[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)');
+    final regex = RegExp(
+      r'[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)',
+    );
     return regex.hasMatch(this!);
   }
 
@@ -408,7 +410,9 @@ extension MiscExtensions on String? {
     if (this!.isEmpty) {
       return false;
     }
-    final regex = RegExp(r'^(?=.*([A-Z]){1,})(?=.*[!@#$&*]{1,})(?=.*[0-9]{1,})(?=.*[a-z]{1,}).{8,100}$');
+    final regex = RegExp(
+      r'^(?=.*([A-Z]){1,})(?=.*[!@#$&*]{1,})(?=.*[0-9]{1,})(?=.*[a-z]{1,}).{8,100}$',
+    );
     return regex.hasMatch(this!);
   }
 
@@ -430,7 +434,9 @@ extension MiscExtensions on String? {
     if (this!.isEmpty) {
       return false;
     }
-    final regex = RegExp(r'^(\{{0,1}([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\}{0,1})$');
+    final regex = RegExp(
+      r'^(\{{0,1}([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\}{0,1})$',
+    );
     return regex.hasMatch(this!);
   }
 
@@ -579,7 +585,10 @@ extension MiscExtensions on String? {
     if (this!.isEmpty) {
       return 0;
     }
-    return this!.split('').fold<int>(0, (previousValue, ch) => previousValue + (ch == char ? 1 : 0));
+    return this!.split('').fold<int>(
+          0,
+          (previousValue, ch) => previousValue + (ch == char ? 1 : 0),
+        );
   }
 
   /// Returns the String reversed.
@@ -710,7 +719,9 @@ extension MiscExtensions on String? {
     final words = this!.trim().split(RegExp(r'(\s+)'));
     final result = StringBuffer(words[0].toLowerCase());
     for (var i = 1; i < words.length; i++) {
-      result.write(words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase());
+      result.write(
+        words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase(),
+      );
     }
     return result.toString();
   }
@@ -1136,7 +1147,10 @@ extension MiscExtensions on String? {
       var nw = i - 1;
       for (var j = 1; j <= b.length; j++) {
         // ignore: omit_local_variable_types
-        final int cj = min(1 + min(costs[j], costs[j - 1]), a[i - 1] == b[j - 1] ? nw : nw + 1);
+        final int cj = min(
+          1 + min(costs[j], costs[j - 1]),
+          a[i - 1] == b[j - 1] ? nw : nw + 1,
+        );
         nw = costs[j];
         costs[j] = cj;
       }
@@ -1726,7 +1740,11 @@ extension MiscExtensions on String? {
                   : 'assets/images/ic_file.svg';
 
   String convertCurrency() {
-    final format = NumberFormat.simpleCurrency(locale: 'in', decimalDigits: 0, name: 'Rp. ');
+    final format = NumberFormat.simpleCurrency(
+      locale: 'in',
+      decimalDigits: 0,
+      name: 'Rp. ',
+    );
     return format.format(int.parse(this!));
   }
 }

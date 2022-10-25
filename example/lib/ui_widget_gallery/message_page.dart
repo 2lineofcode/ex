@@ -4,7 +4,6 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
 class MessagePage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

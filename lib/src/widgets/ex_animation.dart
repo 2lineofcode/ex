@@ -23,7 +23,10 @@ class ExTranslateAnimation extends StatelessWidget {
       curve: curve!,
       tween: Tween(begin: 1.0, end: 0.0),
       builder: (context, double? value, child) {
-        return Transform.translate(offset: offsetDirection == Axis.horizontal ? Offset(value! * offset!, 0) : Offset(0, value! * offset!), child: child);
+        return Transform.translate(
+          offset: offsetDirection == Axis.horizontal ? Offset(value! * offset!, 0) : Offset(0, value! * offset!),
+          child: child,
+        );
       },
       child: child,
     );
@@ -106,6 +109,9 @@ class ExTextAnimation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ExOpacityAnimation(duration: const Duration(milliseconds: 3000), child: child);
+    return ExOpacityAnimation(
+      duration: const Duration(milliseconds: 3000),
+      child: child,
+    );
   }
 }

@@ -13,6 +13,7 @@ enum ExDividerMode {
   LINE,
   DASH,
 }
+
 enum ExDividerTextMode {
   LEFT,
   CENTER,

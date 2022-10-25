@@ -23,7 +23,7 @@ mixin ExBottomSheet {
     HapticFeedback.lightImpact();
     Get.bottomSheet(
       Container(
-        decoration: ExDecorator.boxBottomSheetRadiusDecoration(),
+        decoration: ExDecorator.boxBottomSheet(),
         child: VStack(
           [
             if (headerType == BSHeaderType.dash)
@@ -39,7 +39,11 @@ mixin ExBottomSheet {
                   if (title != null) title.text.color(Colors.black).maxLines(titleMaxLine).size(18).bold.make().pOnly(top: 24),
                   IconButton(
                     onPressed: Get.back,
-                    icon: const Icon(Icons.close_rounded, size: 30, color: Colors.grey),
+                    icon: const Icon(
+                      Icons.close_rounded,
+                      size: 30,
+                      color: Colors.grey,
+                    ),
                   ),
                 ],
                 alignment: alignment,
@@ -70,12 +74,21 @@ mixin ExBottomSheet {
         maxChildSize: 0.9,
         minChildSize: minChildSize,
         builder: (_, controller) => Container(
-          decoration: ExDecorator.boxBottomSheetRadiusDecoration(radius: radius),
+          decoration: ExDecorator.boxBottomSheet(radius: radius),
           child: VStack(
             [
               const ExDashLine(),
               if (isClose)
-                const Align(alignment: Alignment.centerRight, child: Icon(Icons.close_rounded, size: 25, color: Colors.black)).onInkTap(() => {Get.back(), if (onClose != null) onClose() else ''})
+                const Align(
+                  alignment: Alignment.centerRight,
+                  child: Icon(
+                    Icons.close_rounded,
+                    size: 25,
+                    color: Colors.black,
+                  ),
+                ).onInkTap(
+                  () => {Get.back(), if (onClose != null) onClose() else ''},
+                )
               else
                 const SizedBox(),
               ListView(
@@ -109,7 +122,7 @@ mixin ExBottomSheet {
     final totalData = data.length;
     Get.bottomSheet(
       Container(
-        decoration: ExDecorator.boxBottomSheetRadiusDecoration(),
+        decoration: ExDecorator.boxBottomSheet(),
         child: VStack(
           [
             const ExDashLine().p24(),

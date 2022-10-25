@@ -75,7 +75,7 @@ class ExActivityTimeLine extends StatelessWidget {
 
                 Container(
                   width: double.infinity,
-                  decoration: ExDecorator.commonBoxDecoration(),
+                  decoration: ExDecorator.box(),
                   child:
 
                       // main content

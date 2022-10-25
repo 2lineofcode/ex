@@ -3,8 +3,6 @@ import 'package:ex/ex.dart';
 import 'package:flutter/material.dart';
 
 class ExtStringPage extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     10.forEach((index) {

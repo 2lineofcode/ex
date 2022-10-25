@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../ex.dart';
 
-
-
 ///   created               : Aditya Pratama
 ///   originalFilename      : ex_ui_loading
 ///   date                  : 24 Jun 2021

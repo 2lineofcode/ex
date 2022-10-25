@@ -62,7 +62,9 @@ class ExButtonOutline extends StatelessWidget {
           primary: labelColor,
           backgroundColor: backgroundColor,
           side: BorderSide(color: borderColor ?? Colors.grey),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(radius),
+          ),
           minimumSize: Size(width ?? 44, height ?? 44),
         ),
         child: HStack([
@@ -96,7 +98,9 @@ class ExButtonOutline extends StatelessWidget {
           primary: labelColor,
           backgroundColor: backgroundColor,
           side: BorderSide(color: borderColor ?? Color(0xFFD8DCE0)),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(radius),
+          ),
           minimumSize: Size(width ?? 44, height ?? 44),
         ),
         child: HStack([

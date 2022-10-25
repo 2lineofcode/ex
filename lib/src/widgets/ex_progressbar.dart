@@ -177,7 +177,10 @@ class _DiscreteCircleState extends State<DiscreteCircle> with SingleTickerProvid
                   strokeWidth: strokeWidth,
                   startAngle: -math.pi / 2,
                   // endAngle: 1.94 * math.pi,
-                  endAngle: Tween<double>(begin: math.pi / (size * size), end: 1.94 * math.pi)
+                  endAngle: Tween<double>(
+                    begin: math.pi / (size * size),
+                    end: 1.94 * math.pi,
+                  )
                       .animate(
                         CurvedAnimation(
                           parent: _animationController,

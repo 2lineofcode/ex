@@ -134,7 +134,7 @@ Get.put(
     Map<String, String>? query,
     Map<String, dynamic>? body,
   }) async {
-    final _result = Outcome();
+    final result = Outcome();
     httpClient.baseUrl = '';
     // httpClient.addRequestModifier<void>((request) async {
     //   request.headers.clear();
@@ -167,14 +167,14 @@ Get.put(
       showResponse: showLogResponse,
     );
     if (res.isOk) {
-      _result
+      result
         ..body = res.body
         ..isFailure = false;
-      return _result;
+      return result;
     } else {
       return ErrorInterceptorHandling(
         response: res,
-        result: _result,
+        result: result,
         url: '${httpClient.baseUrl} | $url',
       );
     }
@@ -187,7 +187,7 @@ Get.put(
     bool withToken = true,
   }) async {
     await onInit();
-    final _result = Outcome();
+    final result = Outcome();
     final res = await get(endPoint, query: query, headers: header);
     await ApiUtils.apiLog(
       response: res,
@@ -197,13 +197,13 @@ Get.put(
     );
 
     if (res.isOk) {
-      return _result
+      return result
         ..body = res.body
         ..isFailure = false;
     } else {
       return ErrorInterceptorHandling(
         response: res,
-        result: _result,
+        result: result,
         url: '${httpClient.baseUrl}$endPoint',
       );
     }
@@ -216,7 +216,7 @@ Get.put(
     bool withToken = true,
   }) async {
     await onInit();
-    final _result = Outcome();
+    final result = Outcome();
 
     final res = await httpClient.post(endPoint, body: body, headers: header);
     await ApiUtils.apiLog(
@@ -227,13 +227,13 @@ Get.put(
     );
 
     if (res.isOk) {
-      return _result
+      return result
         ..body = res.body
         ..isFailure = false;
     } else {
       return ErrorInterceptorHandling(
         response: res,
-        result: _result,
+        result: result,
         url: '${httpClient.baseUrl}$endPoint',
       );
     }
@@ -246,7 +246,7 @@ Get.put(
     bool withToken = true,
   }) async {
     await onInit();
-    final _result = Outcome();
+    final result = Outcome();
 
     final res = await httpClient.put(endPoint, body: body);
     await ApiUtils.apiLog(
@@ -257,13 +257,13 @@ Get.put(
     );
 
     if (res.isOk) {
-      return _result
+      return result
         ..body = res.body
         ..isFailure = false;
     } else {
       return ErrorInterceptorHandling(
         response: res,
-        result: _result,
+        result: result,
         url: '${httpClient.baseUrl}$endPoint',
       );
     }
@@ -275,7 +275,7 @@ Get.put(
     bool withToken = true,
   }) async {
     await onInit();
-    final _result = Outcome();
+    final result = Outcome();
 
     final res = await httpClient.delete(endPoint);
     await ApiUtils.apiLog(
@@ -285,13 +285,13 @@ Get.put(
     );
 
     if (res.isOk) {
-      return _result
+      return result
         ..body = res.body
         ..isFailure = false;
     } else {
       return ErrorInterceptorHandling(
         response: res,
-        result: _result,
+        result: result,
         url: '${httpClient.baseUrl}$endPoint',
       );
     }
@@ -305,7 +305,7 @@ Get.put(
     bool withToken = true,
   }) async {
     await onInit();
-    final _result = Outcome();
+    final result = Outcome();
 
     final form = FormData({'file': MultipartFile(file, filename: fileName ?? '')});
     final res = await post(endPoint, form);
@@ -316,14 +316,14 @@ Get.put(
     );
 
     if (res.isOk) {
-      _result
+      result
         ..body = res.body
         ..isFailure = false;
-      return _result;
+      return result;
     } else {
       return ErrorInterceptorHandling(
         response: res,
-        result: _result,
+        result: result,
         url: '${httpClient.baseUrl} | $endPoint',
       );
     }

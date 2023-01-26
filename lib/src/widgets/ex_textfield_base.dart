@@ -50,7 +50,6 @@ class ExBaseTextField extends StatefulWidget {
     this.enableSuggestions = true,
     this.enabled,
     this.showCursor,
-    this.toolbarOptions,
     this.onSaved,
     this.validator,
     this.autovalidateMode,
@@ -98,7 +97,6 @@ class ExBaseTextField extends StatefulWidget {
   final bool enableSuggestions;
   final bool? enabled;
   final bool? showCursor;
-  final ToolbarOptions? toolbarOptions;
   final Function(String?)? onSaved;
   final String? Function(String?)? validator;
   final AutovalidateMode? autovalidateMode;
@@ -141,7 +139,6 @@ class _ExBaseTextFieldState extends State<ExBaseTextField> {
       enableSuggestions: widget.enableSuggestions,
       enabled: widget.enabled,
       showCursor: widget.showCursor,
-      toolbarOptions: widget.toolbarOptions,
       inputFormatters: widget.inputFormatters,
       autovalidateMode: widget.autovalidateMode,
       decoration: InputDecoration(

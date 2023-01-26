@@ -1,3 +1,5 @@
+## 0.2.0
+* upgrade to flutter 3.7.0
 ## 0.1.10
 * refrector & simplify ex-decorator
 * simplify code

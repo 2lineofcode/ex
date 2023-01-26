@@ -23,9 +23,6 @@ mixin AppThemes {
     primaryColorDark: colorPrimaryDark,
     primaryColorLight: colorPrimaryLight,
     primaryIconTheme: IconThemeData(color: colorNeutral),
-    colorScheme: const ColorScheme.light(primary: colorPrimary).copyWith(secondary: colorAccent),
-    errorColor: colorError,
-    backgroundColor: colorWhite,
     scaffoldBackgroundColor: colorWhite,
     dividerColor: colorNeutral[200],
 
@@ -92,7 +89,7 @@ mixin AppThemes {
       secondaryColor: colorSuccess[50]!,
       labelStyle: TextStyle(color: colorSuccess, fontSize: 12),
       primaryColor: colorSuccess,
-    ),
+    ), colorScheme: const ColorScheme.light(primary: colorPrimary).copyWith(secondary: colorAccent).copyWith(background: colorWhite).copyWith(error: colorError),
   );
 
   // —————————————————————————————————————————————————————————————————————————————
@@ -104,9 +101,6 @@ mixin AppThemes {
     primaryColorDark: colorPrimaryDark,
     primaryColorLight: colorPrimaryLight,
     primaryIconTheme: IconThemeData(color: colorNeutral),
-    colorScheme: ColorScheme.dark(primary: colorNeutral[500]!).copyWith(secondary: colorAccent),
-    errorColor: colorError,
-    backgroundColor: colorNeutral[900],
     cardColor: colorWhite,
     scaffoldBackgroundColor: colorNeutral[900],
     disabledColor: colorNeutral[100],
@@ -150,7 +144,7 @@ mixin AppThemes {
     ),
     snackBarTheme: SnackBarThemeData(backgroundColor: colorBlack),
     iconTheme: IconThemeData(color: colorWhite),
-    popupMenuTheme: PopupMenuThemeData(color: colorNeutral[900]),
+    popupMenuTheme: PopupMenuThemeData(color: colorNeutral[900]), colorScheme: ColorScheme.dark(primary: colorNeutral[500]!).copyWith(secondary: colorAccent).copyWith(background: colorNeutral[900]).copyWith(error: colorError),
   );
 
   static ThemeMode get theme => ThemeMode.light;

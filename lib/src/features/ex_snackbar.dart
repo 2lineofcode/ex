@@ -1,4 +1,4 @@
-// ignore_for_file: cast_nullable_to_non_nullable, use_named_constants, invalid_null_aware_operator, constant_identifier_names
+// ignore_for_file: cast_nullable_to_non_nullable, use_named_constants, invalid_null_aware_operator, constant_identifier_names, no_runtimetype_tostring
 
 import 'dart:async';
 import 'dart:ui';
@@ -1538,7 +1538,7 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
   }
 
   /// A short description of this route useful for debugging.
-  String get debugLabel => '$runtimeType';
+  String get debugLabel => '${runtimeType}';
 
   @override
   String toString() => '$runtimeType(animation: $_controller)';

@@ -982,33 +982,6 @@ extension MiscExtensions on String? {
     return this!.replaceAll(regex, '');
   }
 
-  /// If the provided string is empty do something.
-  ///
-  /// ### Example
-  /// ```dart
-  /// String foo = '';
-  /// foo.ifEmpty(()=>print('String is empty'));
-  /// ```
-  String? ifEmpty(Function act) {
-    if (this == null) {
-      return null;
-    }
-    return this!.isEmpty ? act() : this;
-  }
-
-  /// If the provided `String` is `null` do something.
-  ///
-  /// ### Example
-  /// ```dart
-  /// String foo = ''
-  /// foo.ifEmpty(()=>print('String is null'));
-  /// ```
-  String? ifNull(Function act) {
-    if (this != null) {
-      return this;
-    }
-    return act();
-  }
 
   /// Provide default value if the `String` is `null`.
   ///

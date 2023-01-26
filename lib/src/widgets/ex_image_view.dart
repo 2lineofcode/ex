@@ -52,7 +52,7 @@ class ExImageView extends StatelessWidget {
           ),
           child: url.isUrl!
               ? Image.network(
-                  '$url?${DateTime.now().millisecondsSinceEpoch.toString()}',
+                  url,
                   headers: headers,
                   width: size ?? width,
                   height: size ?? height,

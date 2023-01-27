@@ -1,3 +1,13 @@
+## 0.2.1
+* add ExAlert.custom
+* add ExSnackbar.neutral (black)
+* fix bug cupertino date picker
+* ExAvatarView add shimmer effect on loading
+* ExImageView add shimmer effect on loading
+* ExImageView now support load from assets/url auto detect
+* ExLoading now more flexible
+
+
 ## 0.2.0
 * upgrade to flutter 3.7.0
 ## 0.1.10

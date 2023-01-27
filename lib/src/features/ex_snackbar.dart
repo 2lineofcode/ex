@@ -18,6 +18,42 @@ import '../../ex.dart';
  */
 mixin ExSnackbar {
   // —————————————————————————————————————————————————————————————————————————————
+  // neutral
+  // —————————————————————————————————————————————————————————————————————————————
+  static void neutralTop(
+    dynamic message, {
+    String? title,
+    double? titleSize,
+    Color? titleColor = Colors.white,
+    double? messageSize,
+    Color? messageColor = Colors.white,
+    Color backgroundColor = Colors.black,
+    IconData? icon = Icons.info,
+    Duration duration = const Duration(seconds: 3),
+    double radius = 4,
+    double margin = 8,
+    FlushbarPosition position = FlushbarPosition.TOP,
+    bool isDismissible = true,
+  }) {
+    Flushbar(
+      title: title,
+      titleSize: titleSize,
+      titleColor: titleColor,
+      message: message,
+      messageSize: messageSize,
+      messageColor: messageColor,
+      backgroundColor: backgroundColor,
+      icon: Icon(icon, color: Colors.white),
+      leftBarIndicatorColor: Colors.white30,
+      borderRadius: BorderRadius.circular(radius),
+      margin: EdgeInsets.all(margin),
+      isDismissible: isDismissible,
+      duration: duration,
+      flushbarPosition: position,
+    ).show(Get.context!);
+  }
+
+  // —————————————————————————————————————————————————————————————————————————————
   // info
   // —————————————————————————————————————————————————————————————————————————————
   static void infoTop(
@@ -205,7 +241,7 @@ mixin ExSnackbar {
       content: HStack([
         if (showIcon == true) Icon(Icons.info, color: Colors.white),
         12.widthBox,
-        '$message'.text.black.overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
+        '$message'.text.white.ellipsis.maxLines(3).make().expand(),
       ]),
       backgroundColor: Colors.black,
       behavior: SnackBarBehavior.floating,

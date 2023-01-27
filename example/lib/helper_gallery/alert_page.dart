@@ -142,6 +142,27 @@ class AlertPage extends StatelessWidget {
             ),
           ).expand(),
         ]),
+        Divider().pSymmetric(v: 16),
+
+        /// 5
+        'ExAlert.custom'.text.bold.make().pOnly(bottom: 12),
+        HStack([
+          ExButtonOutline(
+            label: 'test',
+            width: double.infinity,
+            onPressed: () => ExAlert.custom(
+              body: VStack(
+                [
+                  Text('test'),
+                ],
+              ),
+              action: [
+                TextButton(onPressed: null, child: Text('Cancel')),
+                TextButton(onPressed: null, child: Text('OK')),
+              ],
+            ),
+          ).expand(),
+        ]),
       ]).p16().scrollVertical(),
     );
   }

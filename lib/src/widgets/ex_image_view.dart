@@ -1,3 +1,4 @@
+import 'package:ex/src/color.dart';
 import 'package:flutter/material.dart';
 import '../../ex.dart';
 
@@ -19,9 +20,7 @@ class ExImageView extends StatelessWidget {
     this.borderWidth,
     this.radius = 8,
     this.boxFit = BoxFit.cover,
-    this.errorIcon = Icons.image,
-    this.canRemove = false,
-    this.onTap,
+    this.errorWidget,
   }) : super(key: key);
 
   final String url;
@@ -33,9 +32,7 @@ class ExImageView extends StatelessWidget {
   final double? borderWidth;
   final double radius;
   final BoxFit boxFit;
-  final Function? onTap;
-  final IconData? errorIcon;
-  final bool? canRemove;
+  final Widget? errorWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -44,37 +41,39 @@ class ExImageView extends StatelessWidget {
         Container(
           width: size ?? width,
           height: size ?? height,
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: borderColor ?? Colors.grey[300]!,
-              width: borderWidth ?? 0.5,
-            ),
-          ),
+          decoration: BoxDecoration(border: Border.all(color: borderColor ?? Colors.grey[300]!, width: borderWidth ?? 0.5)),
           child: url.isUrl!
               ? Image.network(
                   url,
                   headers: headers,
                   width: size ?? width,
                   height: size ?? height,
-                  fit: BoxFit.cover,
+                  fit: boxFit,
                   isAntiAlias: true,
                   loadingBuilder: (context, child, loadingProgress) {
                     if (loadingProgress == null) {
                       return child;
                     }
-                    return LoadingAnimationWidget.discreteCircle(
-                      color: Theme.of(context).primaryColor,
-                      size: 24,
-                    ).centered();
+                    return SizedBox(
+                      width: 24,
+                      height: 24,
+                      child: Container(color: colorNeutral),
+                    ).shimmer(primaryColor: colorNeutral[100]!, secondaryColor: colorNeutral[200]);
                   },
                   errorBuilder: (context, error, stackTrace) {
-                    return Container(
-                      color: Colors.grey[300],
-                      child: Icon(errorIcon),
-                    );
+                    return Container(color: Colors.grey[300], child: errorWidget);
                   },
                 )
-              : Container(color: Colors.grey[300], child: Icon(errorIcon)),
+              : Image.asset(
+                  url,
+                  width: size ?? width,
+                  height: size ?? height,
+                  fit: boxFit,
+                  isAntiAlias: true,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(color: Colors.grey[300], child: errorWidget);
+                  },
+                ),
         ).cornerRadius(radius),
       ],
     );

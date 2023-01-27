@@ -293,4 +293,30 @@ mixin ExAlert {
       },
     );
   }
+
+  static void custom({
+    Widget? body,
+    List<Widget>? action,
+    bool isDismissible = true,
+    Color? barrierColor = Colors.black54,
+    double cornerRadius = 4.0,
+    Function()? onYes,
+  }) {
+    showDialog(
+      context: Get.context!,
+      barrierDismissible: isDismissible,
+      barrierColor: barrierColor,
+      builder: (context) {
+        return WillPopScope(
+          onWillPop: () async => isDismissible,
+          child: AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(cornerRadius))),
+            scrollable: true,
+            content: body,
+            actions: action,
+          ),
+        );
+      },
+    );
+  }
 }

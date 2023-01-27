@@ -10,14 +10,12 @@ import '../../ex.dart';
 class ExUiLoading extends StatelessWidget {
   const ExUiLoading({
     Key? key,
+    this.child,
     this.message,
-    this.pbColor,
-    this.pbSize,
   }) : super(key: key);
 
+  final Widget? child;
   final String? message;
-  final Color? pbColor;
-  final double? pbSize;
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +26,11 @@ class ExUiLoading extends StatelessWidget {
       child: Center(
         child: VStack(
           [
-            ExProgressBar(
-              color: Theme.of(context).primaryColor,
-              size: 32,
-            ).centered(),
+            child ??
+                ExProgressBar(
+                  color: Theme.of(context).primaryColor,
+                  size: 32,
+                ).centered(),
             30.heightBox,
             (message ?? 'Sedang mengambil data...').text.makeCentered(),
           ],

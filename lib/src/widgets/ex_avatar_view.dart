@@ -1,6 +1,7 @@
 // ignore_for_file: use_late_for_private_fields_and_variables, library_private_types_in_public_api
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ex/src/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -113,11 +114,11 @@ class ExAvatarView extends StatelessWidget {
                   return isWhenErrorReplaceWithDefaultAvatar == true ? Icon(Icons.image, size: 16) : 0.heightBox;
                 },
                 animateFromOldImageOnUrlChange: true,
-                placeHolder: (context, url) => const SizedBox(
+                placeHolder: (context, url) => SizedBox(
                   width: 24,
                   height: 24,
-                  child: CircularProgressIndicator(),
-                ),
+                  child: Container(color: colorNeutral),
+                ).shimmer(primaryColor: colorNeutral[100]!, secondaryColor: colorNeutral[200]),
                 onTap: () {
                   if (onPressed != null) {
                     onPressed?.call();

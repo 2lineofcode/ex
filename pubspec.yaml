@@ -1,6 +1,6 @@
 name: ex
 description: Powerfull Ex-Material UI (Material UI improvement) |  all material widget with functional many helper/utils like `ExHttp, ExLog, ExAlert, ExBottomSheet, ExDialog, ExSnackbar` 
-version: 0.2.0
+version: 0.2.1
 homepage: https://github.com/abehbatre/ex
 
 environment:

@@ -21,9 +21,7 @@ class ExImageViewCached extends StatelessWidget {
     this.borderWidth,
     this.radius = 8,
     this.boxFit = BoxFit.cover,
-    this.errorIcon = Icons.image,
-    this.canRemove = false,
-    required this.onTap,
+    this.errorWidget,
   }) : super(key: key);
 
   final String url;
@@ -35,9 +33,7 @@ class ExImageViewCached extends StatelessWidget {
   final double? borderWidth;
   final double radius;
   final BoxFit boxFit;
-  final Function(String) onTap;
-  final IconData? errorIcon;
-  final bool? canRemove;
+  final Widget? errorWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -46,42 +42,20 @@ class ExImageViewCached extends StatelessWidget {
         Container(
           width: size ?? width,
           height: size ?? height,
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: borderColor ?? Colors.grey[300]!,
-              width: borderWidth ?? 0.0,
-            ),
-          ),
+          decoration: BoxDecoration(border: Border.all(color: borderColor ?? Colors.grey[300]!, width: borderWidth ?? 0.0)),
           child: url.isUrl!
               ? CachedNetworkImage(
                   imageUrl: url,
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
+                  imageBuilder: (context, imageProvider) => Container(decoration: BoxDecoration(image: DecorationImage(image: imageProvider, fit: boxFit))),
                   width: size ?? width,
                   height: size ?? height,
                   httpHeaders: headers,
-                  placeholder: (context, url) => LoadingAnimationWidget.discreteCircle(
-                    color: Theme.of(context).primaryColor,
-                    size: 24,
-                  ).centered(),
-                  errorWidget: (context, url, error) => Container(
-                    color: Colors.grey[300],
-                    child: Icon(errorIcon),
-                  ),
+                  placeholder: (context, url) => LoadingAnimationWidget.discreteCircle(color: Theme.of(context).primaryColor, size: 24).centered(),
+                  errorWidget: (context, url, error) => Container(color: Colors.grey[300], child: errorWidget),
                 )
-              : Container(color: Colors.grey[300], child: Icon(errorIcon)),
+              : Container(color: Colors.grey[300], child: errorWidget),
         ).cornerRadius(radius),
       ],
-    ).onTap(() {
-      if (url.isUrl!) {
-        onTap.call(url);
-      }
-    });
+    );
   }
 }

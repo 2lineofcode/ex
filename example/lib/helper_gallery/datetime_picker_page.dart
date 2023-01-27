@@ -18,6 +18,7 @@ class DateTimePage extends StatelessWidget {
                 label: 'material',
                 onPressed: () => ExDatePicker.datePickerMaterial(
                   minDate: DateTime(1990),
+                  maxDate: DateTime.now(),
                   callback: (p0) => ExSnackbar.info('$p0'),
                 ),
               ).pOnly(right: 8),
@@ -25,6 +26,7 @@ class DateTimePage extends StatelessWidget {
                 label: 'cupertino',
                 onPressed: () => ExDatePicker.datePickerCupertino(
                   minDate: DateTime(1990),
+                  maxDate: DateTime.now(),
                   callback: (p0) => ExSnackbar.info('$p0'),
                 ),
               ).pOnly(right: 8),

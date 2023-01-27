@@ -12,6 +12,24 @@ class SnackbarPage extends StatelessWidget {
         title: 'SnackBar'.text.extraBold.size(16).make(),
       ),
       body: VStack([
+        'ExSnackbar.neutral'.text.bold.make().pOnly(bottom: 12),
+        HStack([
+          ExButtonOutline(
+            label: 'Neutral',
+            width: double.infinity,
+            onPressed: () => ExSnackbar.neutral(faker.lorem.sentence()),
+          ).expand(),
+          12.widthBox,
+          ExButtonOutline(
+            label: 'Neutral Top',
+            width: double.infinity,
+            onPressed: () => ExSnackbar.neutralTop(faker.lorem.sentence()),
+          ).expand(),
+        ]),
+
+        // —————————————————————————————————————————————————————————————————————————————
+        Divider().pSymmetric(v: 16),
+
         'ExSnackbar.info'.text.bold.make().pOnly(bottom: 12),
         HStack([
           ExButtonOutline(

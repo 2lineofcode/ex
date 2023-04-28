@@ -39,17 +39,7 @@ class _ErrorOrEmptyPageState extends State<ErrorOrEmptyPage> {
           ExUiErrorOrEmpty(
             title: faker.lorem.word(),
             message: faker.lorem.sentence(),
-            illustration: currentState == 0
-                ? Icon(
-                    Icons.error,
-                    color: colorError,
-                    size: 72,
-                  )
-                : Icon(
-                    Icons.hourglass_empty,
-                    color: colorInfo,
-                    size: 72,
-                  ),
+            illustration: currentState == 0 ? Icon(Icons.error, color: colorError, size: 72) : Icon(Icons.hourglass_empty, color: colorInfo, size: 72),
             bgColor: colorPrimary[50],
             showBtnRetry: true,
             btnText: 'Coba Lagi',

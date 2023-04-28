@@ -89,7 +89,8 @@ mixin AppThemes {
       secondaryColor: colorSuccess[50]!,
       labelStyle: TextStyle(color: colorSuccess, fontSize: 12),
       primaryColor: colorSuccess,
-    ), colorScheme: const ColorScheme.light(primary: colorPrimary).copyWith(secondary: colorAccent).copyWith(background: colorWhite).copyWith(error: colorError),
+    ),
+    colorScheme: const ColorScheme.light(primary: colorPrimary).copyWith(secondary: colorAccent).copyWith(background: colorWhite).copyWith(error: colorError),
   );
 
   // —————————————————————————————————————————————————————————————————————————————
@@ -144,7 +145,8 @@ mixin AppThemes {
     ),
     snackBarTheme: SnackBarThemeData(backgroundColor: colorBlack),
     iconTheme: IconThemeData(color: colorWhite),
-    popupMenuTheme: PopupMenuThemeData(color: colorNeutral[900]), colorScheme: ColorScheme.dark(primary: colorNeutral[500]!).copyWith(secondary: colorAccent).copyWith(background: colorNeutral[900]).copyWith(error: colorError),
+    popupMenuTheme: PopupMenuThemeData(color: colorNeutral[900]),
+    colorScheme: ColorScheme.dark(primary: colorNeutral[500]!).copyWith(secondary: colorAccent).copyWith(background: colorNeutral[900]).copyWith(error: colorError),
   );
 
   static ThemeMode get theme => ThemeMode.light;

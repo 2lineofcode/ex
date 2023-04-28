@@ -2,8 +2,6 @@ import 'package:ex/ex.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
-import '../core/index.dart';
-
 class TextFieldPage extends StatelessWidget {
   const TextFieldPage({Key? key}) : super(key: key);
 
@@ -23,7 +21,7 @@ class TextFieldPage extends StatelessWidget {
         Divider().pSymmetric(v: 16),
         'TextField with Prefix Icon & Validator'.text.bold.make().pOnly(bottom: 12),
         ExTextField(
-          prefixIcon: Icons.verified_user,
+          prefixIcon: Icon(Icons.verified_user),
           hint: faker.lorem.sentence(),
           validator: (password) {
             if (password != null && password.length < 6) {
@@ -32,21 +30,20 @@ class TextFieldPage extends StatelessWidget {
             return null;
           },
           labelText: '* required',
-          labelTextColor: colorError,
         ),
         Divider().pSymmetric(v: 16),
 
         'TextField with Suffix Icon'.text.bold.make().pOnly(bottom: 12),
         ExTextField(
-          suffixIcon: Icons.search,
+          suffixIcon: Icon(Icons.search),
           hint: 'Search',
         ),
         Divider().pSymmetric(v: 16),
 
         'TextField with Prefix & Suffix Icon'.text.bold.make().pOnly(bottom: 12),
         ExTextField(
-          prefixIcon: Icons.account_circle,
-          suffixIcon: Icons.search,
+          prefixIcon: Icon(Icons.account_circle),
+          suffixIcon: Icon(Icons.search),
           hint: 'Search Account',
         ),
 
@@ -62,7 +59,7 @@ class TextFieldPage extends StatelessWidget {
         Divider().pSymmetric(v: 16),
         'Date Picker'.text.bold.make().pOnly(bottom: 12),
         ExTextField(
-          prefixIcon: Icons.date_range,
+          prefixIcon: Icon(Icons.date_range),
           hint: faker.lorem.sentence(),
           enabled: false,
         ).onInkTap(() {

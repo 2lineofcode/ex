@@ -16,13 +16,14 @@ class AvatarPage extends StatelessWidget {
       ),
       body: VStack([
         ///
-        '24px'.text.bold.make().pOnly(bottom: 12),
+        'from assets'.text.bold.make().pOnly(bottom: 12),
         HStack([
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               userFullName: faker.person.name(),
-              url: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
-              size: 24,
+              source: 'assets/images/ic_dialog_error.svg',
+              package: 'ex',
+              size: 48,
             ).pOnly(right: 12),
         ]).scrollHorizontal(),
         Divider().pSymmetric(v: 16),
@@ -33,7 +34,7 @@ class AvatarPage extends StatelessWidget {
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               userFullName: faker.person.name(),
-              url: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
+              source: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 32,
             ).pOnly(right: 12),
         ]).scrollHorizontal(),
@@ -45,7 +46,7 @@ class AvatarPage extends StatelessWidget {
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               userFullName: faker.person.name(),
-              url: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
+              source: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 40,
             ).pOnly(right: 12),
         ]).scrollHorizontal(),
@@ -57,7 +58,7 @@ class AvatarPage extends StatelessWidget {
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               userFullName: faker.person.name(),
-              url: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
+              source: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 48,
             ).pOnly(right: 12),
         ]).scrollHorizontal(),
@@ -69,7 +70,7 @@ class AvatarPage extends StatelessWidget {
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               userFullName: faker.person.name(),
-              url: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
+              source: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 56,
             ).pOnly(right: 12),
         ]).scrollHorizontal(),
@@ -82,7 +83,7 @@ class AvatarPage extends StatelessWidget {
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               userFullName: faker.person.name(),
-              url: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
+              source: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 72,
             ).pOnly(right: 12),
         ]).scrollHorizontal(),
@@ -95,7 +96,7 @@ class AvatarPage extends StatelessWidget {
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               userFullName: faker.person.name(),
-              url: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
+              source: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 120,
             ).pOnly(right: 12),
         ]).scrollHorizontal(),

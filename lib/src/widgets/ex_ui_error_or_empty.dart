@@ -48,7 +48,7 @@ class ExUiErrorOrEmpty extends StatelessWidget {
               ExButtonOutline(
                 label: btnText ?? 'Reload',
                 labelColor: textColor ?? Colors.black,
-                onPressed: () => callback ?? () {},
+                onPressed: () => callback?.call() ?? () {},
               ).centered().pSymmetric(v: 12),
           ],
         ).centered(),

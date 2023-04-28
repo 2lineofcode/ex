@@ -51,6 +51,7 @@ Future<void> main() async {
       allowFollowRedirects: true,
       showLogHeader: true,
       showLogResponse: true,
+      
     ),
   );
 
@@ -62,6 +63,7 @@ Future<void> main() async {
       theme: AppThemes.light,
       darkTheme: AppThemes.dark,
       themeMode: AppThemes.theme,
+      
     ),
   );
 }

@@ -32,7 +32,7 @@ class AccordionPage extends GetView {
             title: faker.lorem.word(),
             content: HStack(
               [
-                ExAvatarView(url: 'url', userFullName: 'userFullName').pOnly(right: 12),
+                ExAvatarView(source: 'url', userFullName: 'userFullName').pOnly(right: 12),
                 faker.lorem.word().text.make(),
               ],
             ),

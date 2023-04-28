@@ -78,7 +78,7 @@ mixin ExDialog {
                     ),
                   ),
                 ExTextField(
-                  tfController: tfController,
+                  controller: tfController,
                   borderColor: colorNeutral[300],
                   hint: inputHint,
                   onChanged: (s) => isInputValid.value = s.isNotBlank,

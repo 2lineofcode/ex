@@ -17,22 +17,27 @@ import '../../ex.dart';
 class ExAvatarView extends StatelessWidget {
   const ExAvatarView({
     Key? key,
-    required this.url,
-    required this.userFullName,
+
+    /// url or assets
+    required this.source,
+    this.header,
+    this.package,
+    this.userFullName,
     this.height = 70,
     this.width = 70,
     this.size,
     this.borderColor = Colors.white,
     this.borderWidth = 1,
     this.textSize = 14,
-    this.textColor = Colors.white,
-    this.bgColor = Colors.white,
+    this.textColor,
+    this.bgColor,
     this.isWithShadow = true,
-    this.isWhenErrorReplaceWithDefaultAvatar = true,
-    this.onPressed,
+    this.errorWidget,
   }) : super(key: key);
 
-  final String url;
+  final String source;
+  final Map<String, String>? header;
+  final String? package;
   final String? userFullName;
   final double? height;
   final double? width;
@@ -43,75 +48,49 @@ class ExAvatarView extends StatelessWidget {
   final Color? textColor;
   final Color? bgColor;
   final bool? isWithShadow;
-  final bool? isWhenErrorReplaceWithDefaultAvatar;
-  final Function? onPressed;
+  final Widget? errorWidget;
 
   @override
   Widget build(BuildContext context) {
-    final header = {'Referer': 'https://mobile.gredu.co/*'};
-
-    /// fix bug invalid url || null || blank
-    if (url.isBlank! || !url.contains('https')) {
+    /// assets
+    if (!source.isURL) {
       return Container(
         width: size ?? width,
         height: size ?? height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(90)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey[200]!,
-              spreadRadius: 1,
-              blurRadius: 1,
-              offset: Offset(0, 1), // changes position of shadow
-            ),
-          ],
+          boxShadow: [BoxShadow(color: Colors.grey[200]!, spreadRadius: 1, blurRadius: 1, offset: Offset(0, 1))],
         ),
-        child: Icon(Icons.image, size: 16).onTap(() {
-          if (onPressed != null) {
-            onPressed?.call();
-          }
-        }),
+        child: source.contains('.svg')
+            ? ClipOval(child: SvgPicture.asset(source, height: size ?? height, width: size ?? width, color: bgColor, package: package))
+            : ClipOval(child: Image.asset(source, height: size ?? height, width: size ?? width, color: bgColor, package: package)),
       );
-    } else {
+    }
+
+    /// url
+    else {
       return Container(
         width: size ?? width,
         height: size ?? height,
         decoration: isWithShadow == true
             ? BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(90)),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color(0xFFD8DCE0),
-                    spreadRadius: 1,
-                    blurRadius: 1,
-                    offset: Offset(0, 1), // changes position of shadow
-                  ),
-                ],
+                boxShadow: const [BoxShadow(color: Color(0xFFD8DCE0), spreadRadius: 1, blurRadius: 1, offset: Offset(0, 1))],
               )
             : BoxDecoration(),
-        child: url.contains('.svg')
-            ? ClipOval(
-                child: SvgPicture.network(
-                  url,
-                  height: height,
-                  width: width,
-                  color: bgColor,
-                ),
-              )
+        child: source.contains('.svg')
+            ? ClipOval(child: SvgPicture.network(source, height: height, width: width, color: bgColor))
             : CircularProfileAvatar(
-                imageUrl: url,
+                imageUrl: source,
                 httpHeaders: header,
                 radius: 100,
-                backgroundColor: bgColor!,
+                backgroundColor: bgColor ?? Colors.transparent,
                 borderWidth: borderWidth,
-                initialsText: Text(
-                  userFullName.initialName,
-                  style: TextStyle(fontSize: textSize, color: Colors.white),
-                ),
+                initialsText: Text(userFullName.initialName, style: TextStyle(fontSize: textSize, color: Colors.white)),
                 borderColor: borderColor,
                 elevation: 0.3,
                 errorWidget: (context, url, error) {
-                  return isWhenErrorReplaceWithDefaultAvatar == true ? Icon(Icons.image, size: 16) : 0.heightBox;
+                  return errorWidget ?? Container(color: colorNeutralLight);
                 },
                 animateFromOldImageOnUrlChange: true,
                 placeHolder: (context, url) => SizedBox(
@@ -119,11 +98,6 @@ class ExAvatarView extends StatelessWidget {
                   height: 24,
                   child: Container(color: colorNeutral),
                 ).shimmer(primaryColor: colorNeutral[100]!, secondaryColor: colorNeutral[200]),
-                onTap: () {
-                  if (onPressed != null) {
-                    onPressed?.call();
-                  }
-                },
               ),
       );
     }

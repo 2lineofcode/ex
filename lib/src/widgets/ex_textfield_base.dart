@@ -55,6 +55,7 @@ class ExBaseTextField extends StatefulWidget {
     this.autovalidateMode,
     this.borderColorFocus,
     this.initialValue,
+    this.readOnly,
   }) : super(key: key);
 
   final TextEditingController? controller;
@@ -101,6 +102,7 @@ class ExBaseTextField extends StatefulWidget {
   final String? Function(String?)? validator;
   final AutovalidateMode? autovalidateMode;
   final String? initialValue;
+  final bool? readOnly;
 
   @override
   _ExBaseTextFieldState createState() => _ExBaseTextFieldState();
@@ -155,10 +157,7 @@ class _ExBaseTextFieldState extends State<ExBaseTextField> {
         border: getInputBorder(),
         enabledBorder: getInputBorder(),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: widget.borderColorFocus ?? Theme.of(context).primaryColor,
-            width: 2,
-          ),
+          borderSide: BorderSide(color: widget.borderColorFocus ?? Theme.of(context).primaryColor, width: 1.2),
           borderRadius: BorderRadius.circular(getBorderRadius()),
         ),
       ),
@@ -171,6 +170,7 @@ class _ExBaseTextFieldState extends State<ExBaseTextField> {
       validator: widget.validator,
       style: widget.style,
       initialValue: widget.initialValue,
+      readOnly: widget.readOnly ?? false,
     );
 
     const other = null;

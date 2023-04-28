@@ -71,3 +71,35 @@ example/pubspec.lock
 example/macos/
 example/macos/*
 example/macos/**
+example/macos/Podfile
+example/macos/Podfile.lock
+example/macos/Flutter/ephemeral/flutter_export_environment.sh
+example/macos/Flutter/ephemeral/Flutter-Generated.xcconfig
+example/macos/Flutter/ephemeral/FlutterMacOS.podspec
+example/macos/Flutter/ephemeral/.symlinks/plugins/path_provider_macos
+example/macos/Flutter/ephemeral/.symlinks/plugins/sqflite
+example/macos/Pods/Local Podspecs/FlutterMacOS.podspec.json
+example/macos/Pods/Pods.xcodeproj/project.pbxproj
+example/macos/Pods/Pods.xcodeproj/xcuserdata/Aditya.Pratama.xcuserdatad/xcschemes/path_provider_macos.xcscheme
+example/macos/Pods/Pods.xcodeproj/xcuserdata/Aditya.Pratama.xcuserdatad/xcschemes/xcschememanagement.plist
+example/macos/Pods/Target Support Files/Pods-Runner/Pods-Runner-acknowledgements.markdown
+example/macos/Pods/Target Support Files/Pods-Runner/Pods-Runner-acknowledgements.plist
+example/macos/Pods/Target Support Files/Pods-Runner/Pods-Runner-frameworks-Debug-input-files.xcfilelist
+example/macos/Pods/Target Support Files/Pods-Runner/Pods-Runner-frameworks-Debug-output-files.xcfilelist
+example/macos/Pods/Target Support Files/Pods-Runner/Pods-Runner-frameworks-Profile-input-files.xcfilelist
+example/macos/Pods/Target Support Files/Pods-Runner/Pods-Runner-frameworks-Profile-output-files.xcfilelist
+example/macos/Pods/Target Support Files/Pods-Runner/Pods-Runner-frameworks-Release-input-files.xcfilelist
+example/macos/Pods/Target Support Files/Pods-Runner/Pods-Runner-frameworks-Release-output-files.xcfilelist
+example/macos/Pods/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh
+example/macos/Pods/Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig
+example/macos/Pods/Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig
+example/macos/Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig
+example/macos/Pods/Target Support Files/path_provider_macos/path_provider_macos-dummy.m
+example/macos/Pods/Target Support Files/path_provider_macos/path_provider_macos-Info.plist
+example/macos/Pods/Target Support Files/path_provider_macos/path_provider_macos-prefix.pch
+example/macos/Pods/Target Support Files/path_provider_macos/path_provider_macos-umbrella.h
+example/macos/Pods/Target Support Files/path_provider_macos/path_provider_macos.debug.xcconfig
+example/macos/Pods/Target Support Files/path_provider_macos/path_provider_macos.modulemap
+example/macos/Pods/Target Support Files/path_provider_macos/path_provider_macos.release.xcconfig
+example/macos/Pods/Target Support Files/sqflite/sqflite-umbrella.h
+example/macos/Runner.xcodeproj/project.pbxproj

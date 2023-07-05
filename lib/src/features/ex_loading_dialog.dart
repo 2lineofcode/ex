@@ -29,34 +29,24 @@ mixin ExLoading {
   /// }
   /// ```
   static void show({
-    bool isDismissible = false,
-    String? message = '',
-    double? messageSize = 14,
-    Widget? imageAsset,
+    bool isDismissible = true,
+    Widget? child,
+    double? radius,
+    Color? backgroundColor,
   }) {
     Get.dialog(
       AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(radius ?? 10))),
         insetPadding: EdgeInsets.symmetric(horizontal: 120),
+        backgroundColor: backgroundColor,
         content: VStack(
           [
             Center(
-              child: VStack([
-                if (imageAsset != null)
-                  imageAsset
-                else
+              child: child ??
                   LoadingAnimationWidget.discreteCircle(
                     color: Theme.of(Get.context!).primaryColor,
                     size: 32,
                   ).centered(),
-                if (!message.isEmptyOrNull)
-                  VStack([
-                    16.heightBox,
-                    message!.text.align(TextAlign.center).size(messageSize).makeCentered(),
-                  ]).centered(),
-              ]),
             ),
           ],
         ),
@@ -67,8 +57,6 @@ mixin ExLoading {
   }
 
   static void dismiss() {
-    if (Get.isDialogOpen == true) {
-      Get.back();
-    }
+    if (Get.isDialogOpen == true) Get.back();
   }
 }

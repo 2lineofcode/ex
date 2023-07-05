@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
 
 import '../../ex.dart';
-import '../color.dart';
 
 mixin ExImagePreview {
   static void showUrl(String url, {Map<String, String>? header}) {
@@ -30,7 +29,7 @@ mixin ExImagePreview {
                 HStack(
                   [
                     Spacer(),
-                    CloseButton(color: colorWhite).p8(),
+                    CloseButton(color: Colors.white).p8(),
                   ],
                 ),
               ],
@@ -61,7 +60,7 @@ mixin ExImagePreview {
                 HStack(
                   [
                     Spacer(),
-                    CloseButton(color: colorWhite).p8(),
+                    CloseButton(color: Colors.white).p8(),
                   ],
                 ),
               ],

@@ -2,17 +2,15 @@
 
 import 'package:flutter/material.dart';
 
-import '../color.dart';
-
 class ExAccordion extends StatefulWidget {
   /// An accordion is used to show (and hide) content. Use [showAccordion] to hide & show the accordion content.
   const ExAccordion({
-    Key? key,
+    super.key,
     this.title,
     this.content,
     this.titleChild,
     this.contentChild,
-    this.collapsedTitleBackgroundColor = colorWhite,
+    this.collapsedTitleBackgroundColor = Colors.white,
     this.expandedTitleBackgroundColor = const Color(0xFFE0E0E0),
     this.collapsedIcon = const Icon(Icons.keyboard_arrow_down),
     this.expandedIcon = const Icon(Icons.keyboard_arrow_up),
@@ -27,7 +25,7 @@ class ExAccordion extends StatefulWidget {
     this.onToggleCollapsed,
     this.titleBorderRadius = const BorderRadius.all(Radius.circular(0)),
     this.contentBorderRadius = const BorderRadius.all(Radius.circular(0)),
-  }) : super(key: key);
+  });
 
   /// controls if the accordion should be collapsed or not making it possible to be controlled from outside
   final bool showAccordion;

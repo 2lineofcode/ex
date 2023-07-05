@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class ExTranslateAnimation extends StatelessWidget {
   const ExTranslateAnimation({
-    Key? key,
+    super.key,
     this.duration = const Duration(milliseconds: 800),
     this.child,
     this.offset = 40.0,
     this.curve = Curves.fastOutSlowIn,
     this.offsetDirection = Axis.vertical,
-  }) : super(key: key);
+  });
 
   final Widget? child;
   final Duration? duration;
@@ -35,13 +35,13 @@ class ExTranslateAnimation extends StatelessWidget {
 
 class ExOpacityAnimation extends StatelessWidget {
   const ExOpacityAnimation({
-    Key? key,
+    super.key,
     this.duration = const Duration(milliseconds: 1000),
     this.child,
     this.curve = Curves.ease,
     this.begin = 0.0,
     this.end = 1.0,
-  }) : super(key: key);
+  });
 
   final Widget? child;
   final Duration? duration;
@@ -68,13 +68,13 @@ class ExOpacityAnimation extends StatelessWidget {
 
 class ExScaleAnimation extends StatelessWidget {
   const ExScaleAnimation({
-    Key? key,
-    this.duration = const Duration(milliseconds: 800),
     required this.child,
+    super.key,
+    this.duration = const Duration(milliseconds: 800),
     this.curve = Curves.fastOutSlowIn,
     this.initScale = 0.0,
     this.finalScale = 1.0,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final Duration duration;
@@ -101,9 +101,9 @@ class ExScaleAnimation extends StatelessWidget {
 
 class ExTextAnimation extends StatelessWidget {
   const ExTextAnimation({
-    Key? key,
     required this.child,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Widget child;
 

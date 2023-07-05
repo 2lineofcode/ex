@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../ex.dart';
 
@@ -11,26 +10,18 @@ import '../../ex.dart';
 
 class ExUiErrorOrEmpty extends StatelessWidget {
   const ExUiErrorOrEmpty({
-    Key? key,
+    super.key,
+    this.title,
     this.message,
-    this.callback,
-    this.title = '',
+    this.action,
     this.bgColor,
-    this.textColor,
-    this.btnText,
     this.illustration,
-    this.showBtnRetry = false,
-    this.textSize = 14,
-  }) : super(key: key);
+  });
 
-  final String? message;
-  final String? title;
-  final double? textSize;
-  final String? btnText;
-  final bool? showBtnRetry;
+  final Widget? title;
+  final Widget? message;
+  final Widget? action;
   final Color? bgColor;
-  final Color? textColor;
-  final Function? callback;
   final Widget? illustration;
 
   @override
@@ -41,15 +32,10 @@ class ExUiErrorOrEmpty extends StatelessWidget {
         color: bgColor ?? Colors.transparent,
         child: VStack(
           [
-            if (illustration != null) illustration!.centered() else SvgPicture.asset('assets/images/ic_dialog_error2.svg').centered(),
-            if (!title.isEmptyOrNull) '$title'.text.size(16).semiBold.color(Colors.black).center.makeCentered().pSymmetric(v: 12).pOnly(top: 12),
-            if (!message.isEmptyOrNull) '$message'.text.size(textSize).color(textColor ?? Color(0xFF676E76)).align(TextAlign.center).makeCentered(),
-            if (showBtnRetry == true)
-              ExButtonOutline(
-                label: btnText ?? 'Reload',
-                labelColor: textColor ?? Colors.black,
-                onPressed: () => callback?.call() ?? () {},
-              ).centered().pSymmetric(v: 12),
+            if (illustration != null) illustration!.centered().pOnly(bottom: 12),
+            if (title != null) title!.pSymmetric(v: 12),
+            if (message != null) message!.pSymmetric(v: 12),
+            if (action != null) action!.pSymmetric(v: 12),
           ],
         ).centered(),
       ),

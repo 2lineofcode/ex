@@ -50,8 +50,8 @@ class ExSwipe extends StatelessWidget {
   final double horizontalMinVelocity;
 
   const ExSwipe({
-    Key? key,
     required this.child,
+    super.key,
     this.onSwipeUp,
     this.onSwipeDown,
     this.onSwipeLeft,
@@ -62,7 +62,7 @@ class ExSwipe extends StatelessWidget {
     this.horizontalMaxHeightThreshold = 50,
     this.horizontalMinDisplacement = 100,
     this.horizontalMinVelocity = 300,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

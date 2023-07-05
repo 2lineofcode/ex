@@ -14,31 +14,32 @@ class ButtonPage extends StatelessWidget {
         title: 'Button'.text.extraBold.size(16).make(),
       ),
       body: VStack([
-        'Default'.text.bold.make().pOnly(bottom: 12),
+        'Elevated'.text.bold.make().pOnly(bottom: 12),
         HStack([
-          ExButtonDefault(
+          ExButtonElevated(
             label: faker.lorem.word(),
+            icon: Icon(Icons.refresh),
+            onPressed: () {},
           ),
           16.widthBox,
-          ExButtonDefault(
+          ExButtonElevated(
             label: faker.lorem.word(),
             width: double.infinity,
+            onPressed: () {},
           ).expand(),
         ]),
 
         // —————————————————————————————————————————————————————————————————————————————
         Divider().pSymmetric(v: 16),
-        'Default Disable'.text.bold.make().pOnly(bottom: 12),
+        'Elevated Disable'.text.bold.make().pOnly(bottom: 12),
         HStack([
-          ExButtonDefault(
+          ExButtonElevated(
             label: faker.lorem.word(),
-            isEnable: false,
           ),
           16.widthBox,
-          ExButtonDefault(
+          ExButtonElevated(
             label: faker.lorem.word(),
             width: double.infinity,
-            isEnable: false,
           ).expand(),
         ]),
 
@@ -48,10 +49,12 @@ class ButtonPage extends StatelessWidget {
         HStack([
           ExButtonOutline(
             label: faker.lorem.word(),
+            onPressed: () {},
           ),
           16.widthBox,
           ExButtonOutline(
             label: faker.lorem.word(),
+            onPressed: () {},
             width: double.infinity,
           ).expand(),
         ]),
@@ -62,85 +65,61 @@ class ButtonPage extends StatelessWidget {
         HStack([
           ExButtonOutline(
             label: faker.lorem.word(),
-            isEnable: false,
           ),
           16.widthBox,
           ExButtonOutline(
             label: faker.lorem.word(),
             width: double.infinity,
-            isEnable: false,
           ).expand(),
         ]),
 
         // —————————————————————————————————————————————————————————————————————————————
         Divider().pSymmetric(v: 16),
-        'Default with Option'.text.bold.make().pOnly(bottom: 12),
+        'Custom'.text.bold.make().pOnly(bottom: 12),
         HStack([
-          ExButtonDefault(
-            label: 'bold & icon',
-            backgroundColor: colorDisclaimer,
-            leftIcon: Icon(Icons.info),
-          ),
-          16.widthBox,
-          ExButtonDefault(
-            label: 'badge',
-            backgroundColor: colorSuccessLight,
-            labelColor: colorSuccess,
-            isShowBadge: true,
-            badgeTextCount: 12,
-          ),
-          16.widthBox,
-          ExButtonDefault(
+          ExButtonElevated(
             backgroundColor: colorSuccess,
-            label: 'Destructive',
-            labelSize: 24,
+            child: HStack(
+              [
+                Icon(Icons.report_gmailerrorred_sharp, size: 18).pOnly(right: 8),
+                'Elevated'.text.red200.size(12).bold.make().pOnly(right: 8),
+              ],
+            ),
+            radius: 90,
+            onPressed: () {},
+          ),
+          12.widthBox,
+          ExButtonOutline(
+            borderColor: colorSuccess,
+            child: HStack(
+              [
+                Icon(Icons.report_gmailerrorred_sharp, size: 12).pOnly(right: 8),
+                'Outline'.text.red200.size(12).bold.make().pOnly(right: 8),
+              ],
+            ),
+            height: 32,
+            radius: 90,
+            onPressed: () {},
           ),
         ]).scrollHorizontal(),
 
         // —————————————————————————————————————————————————————————————————————————————
         Divider().pSymmetric(v: 16),
-        'Outline with Option'.text.bold.make().pOnly(bottom: 12),
+        'Text '.text.bold.make().pOnly(bottom: 12),
         HStack([
-          ExButtonOutline(
-            label: faker.lorem.word(),
-            labelColor: colorPrimary,
-            leftIcon: Icon(Icons.info),
-            isLabelBold: true,
-          ),
-          16.widthBox,
-          ExButtonOutline(
-            label: faker.lorem.word(),
-            labelColor: colorSuccess,
-            isShowBadge: true,
-            badgeTextCount: 12,
-          ),
-          16.widthBox,
-          ExButtonOutline(
-            label: faker.lorem.word(),
-            labelColor: colorDisclaimer,
-            labelSize: 24,
-          ),
-        ]).scrollHorizontal(),
-
-        // —————————————————————————————————————————————————————————————————————————————
-        Divider().pSymmetric(v: 16),
-        'Naked '.text.bold.make().pOnly(bottom: 12),
-        HStack([
-          TextButton(
-            child: faker.lorem.word().text.make(),
+          ExButtonText(
+            label: 'etasdas',
+            labelSize: 12,
+            icon: Icon(Icons.zoom_out_outlined),
+            backgroundColor: Colors.pink,
             onPressed: () {},
           ),
           16.widthBox,
-          TextButton(
+          ExButtonText(
             child: faker.lorem.word().text.color(colorError).make(),
             onPressed: () {},
           ),
           16.widthBox,
-          TextButton.icon(
-            onPressed: () {},
-            icon: Icon(Icons.info),
-            label: 'with icon'.text.color(colorError).make(),
-          ),
         ]),
       ]).p16().scrollVertical(),
     );

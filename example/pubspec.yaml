@@ -3,18 +3,18 @@ publish_to: none
 version: 1.0.0
 description: Demonstrates how to use the kotlin_scope_function plugin.
 environment:
-  sdk: '>=2.16.2 <3.0.0'
+  sdk: '>=2.18.0 <3.0.0'
 
 dependencies:
-  velocity_x: ^3.6.0
   faker: ^2.0.0
-  flutter_lorem: ^2.0.0
-  cupertino_icons: ^1.0.2
-  google_fonts: ^3.0.1
-  flutter_html: 3.0.0-alpha.5
-  dart_code_viewer2: ^1.0.0
-  get:
-  get_storage: 
+  google_fonts: ^4.0.4
+  flutter_html: ^2.2.1
+  dart_code_viewer2: ^1.0.1
+  get: ^4.6.5
+  get_storage: ^2.1.1
+
+dependency_overrides:
+  flutter_svg: ^1.0.0
 
   flutter:
     sdk: flutter

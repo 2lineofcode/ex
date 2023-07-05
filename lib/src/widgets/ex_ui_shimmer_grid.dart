@@ -8,7 +8,7 @@ import 'package:velocity_x/velocity_x.dart';
 ///
 
 class ExUiShimmerGrid extends StatelessWidget {
-  const ExUiShimmerGrid({Key? key, this.count = 10}) : super(key: key);
+  const ExUiShimmerGrid({super.key, this.count = 10});
 
   final int? count;
 

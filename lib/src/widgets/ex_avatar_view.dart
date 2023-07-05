@@ -1,9 +1,7 @@
 // ignore_for_file: use_late_for_private_fields_and_variables, library_private_types_in_public_api
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ex/src/color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../ex.dart';
@@ -16,13 +14,12 @@ import '../../ex.dart';
 
 class ExAvatarView extends StatelessWidget {
   const ExAvatarView({
-    Key? key,
-
     /// url or assets
     required this.source,
+    super.key,
     this.header,
     this.package,
-    this.userFullName,
+    this.name,
     this.height = 70,
     this.width = 70,
     this.size,
@@ -33,12 +30,12 @@ class ExAvatarView extends StatelessWidget {
     this.bgColor,
     this.isWithShadow = true,
     this.errorWidget,
-  }) : super(key: key);
+  });
 
   final String source;
   final Map<String, String>? header;
   final String? package;
-  final String? userFullName;
+  final String? name;
   final double? height;
   final double? width;
   final double? size;
@@ -61,9 +58,15 @@ class ExAvatarView extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(90)),
           boxShadow: [BoxShadow(color: Colors.grey[200]!, spreadRadius: 1, blurRadius: 1, offset: Offset(0, 1))],
         ),
-        child: source.contains('.svg')
-            ? ClipOval(child: SvgPicture.asset(source, height: size ?? height, width: size ?? width, color: bgColor, package: package))
-            : ClipOval(child: Image.asset(source, height: size ?? height, width: size ?? width, color: bgColor, package: package)),
+        child: ClipOval(
+          child: Image.asset(
+            source,
+            height: size ?? height,
+            width: size ?? width,
+            color: bgColor,
+            package: package,
+          ),
+        ),
       );
     }
 
@@ -78,27 +81,29 @@ class ExAvatarView extends StatelessWidget {
                 boxShadow: const [BoxShadow(color: Color(0xFFD8DCE0), spreadRadius: 1, blurRadius: 1, offset: Offset(0, 1))],
               )
             : BoxDecoration(),
-        child: source.contains('.svg')
-            ? ClipOval(child: SvgPicture.network(source, height: height, width: width, color: bgColor))
-            : CircularProfileAvatar(
-                imageUrl: source,
-                httpHeaders: header,
-                radius: 100,
-                backgroundColor: bgColor ?? Colors.transparent,
-                borderWidth: borderWidth,
-                initialsText: Text(userFullName.initialName, style: TextStyle(fontSize: textSize, color: Colors.white)),
-                borderColor: borderColor,
-                elevation: 0.3,
-                errorWidget: (context, url, error) {
-                  return errorWidget ?? Container(color: colorNeutralLight);
-                },
-                animateFromOldImageOnUrlChange: true,
-                placeHolder: (context, url) => SizedBox(
-                  width: 24,
-                  height: 24,
-                  child: Container(color: colorNeutral),
-                ).shimmer(primaryColor: colorNeutral[100]!, secondaryColor: colorNeutral[200]),
-              ),
+        child: CircularProfileAvatar(
+          imageUrl: source,
+          httpHeaders: header,
+          radius: 100,
+          backgroundColor: bgColor ?? Colors.transparent,
+          borderWidth: borderWidth,
+          initialsText: Text(name.initialName, style: TextStyle(fontSize: textSize, color: textColor)),
+          borderColor: borderColor,
+          elevation: 0.3,
+          errorWidget: (context, url, error) {
+            return errorWidget ??
+                Container(
+                  color: bgColor,
+                  child: Text(name.initialName, style: TextStyle(fontSize: textSize, color: textColor)).centered(),
+                );
+          },
+          animateFromOldImageOnUrlChange: true,
+          placeHolder: (context, url) => SizedBox(
+            width: 24,
+            height: 24,
+            child: Container(color: Vx.neutral500),
+          ).shimmer(primaryColor: Vx.neutral100, secondaryColor: Vx.neutral200),
+        ),
       );
     }
   }
@@ -111,8 +116,8 @@ class ExAvatarView extends StatelessWidget {
 /// It is an alternative to Flutter's CircleAvatar Widget.
 class CircularProfileAvatar extends StatefulWidget {
   const CircularProfileAvatar({
-    Key? key,
     required this.imageUrl,
+    super.key,
     this.initialsText = const Text(''),
     this.cacheImage = true,
     this.radius = 50.0,
@@ -131,7 +136,7 @@ class CircularProfileAvatar extends StatefulWidget {
     this.child,
     this.imageFit = BoxFit.cover,
     this.httpHeaders,
-  }) : super(key: key);
+  });
 
   /// sets radius of the avatar circle, [borderWidth] is also included in this radius.
   /// default value is 0.0

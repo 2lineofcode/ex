@@ -1,25 +1,62 @@
-import 'dart:convert';
-
 import 'package:ex/ex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HttpPage extends StatelessWidget {
+class HttpController extends GetxController {
+  final output = [].obs;
+  final apiService = Get.find<ExHttp>();
+
+  Future<void> hget() async {
+    await apiService.httpGet(endPoint: '/posts').then((response) {
+      output.value = response.body;
+      Get.forceAppUpdate();
+    }).catchError((e) {
+      ExSnackbar.danger(e);
+    });
+  }
+
+  Future<void> hpost() async {
+    ExLoading.show(
+      child: VStack(
+        [
+          Icon(Icons.ac_unit).centered().pOnly(bottom: 8),
+          'loading'.text.size(12).makeCentered(),
+        ],
+      ),
+    );
+    await apiService.httpPost(endPoint: '/posts').then((response) {
+      ExSnackbar.success(response.statusCode);
+    }).catchError((e) {
+      ExSnackbar.danger(e);
+    });
+    ExLoading.dismiss();
+  }
+
+  Future<void> hput() async {
+    ExLoading.show();
+    await apiService.httpPut(endPoint: '/posts/1').then((response) {
+      ExSnackbar.success(response.statusCode);
+    }).catchError((e) {
+      ExSnackbar.danger(e);
+    });
+    ExLoading.dismiss();
+  }
+
+  Future<void> hdelete() async {
+    ExLoading.show();
+    await apiService.httpDelete(endPoint: '/posts/1').then((response) {
+      ExSnackbar.success(response.statusCode);
+    }).catchError((e) {
+      ExSnackbar.danger(e);
+    });
+    ExLoading.dismiss();
+  }
+}
+
+class HttpPage extends GetView<HttpController> {
   @override
   Widget build(BuildContext context) {
-    final apiService = Get.find<ExHttp>();
-    apiService
-      ..httpClient.addAuthenticator<void>((request) {
-        return request;
-      })
-      ..httpClient.addRequestModifier<void>((request) {
-        final String? token = 'token';
-        if (token != null && token.isNotEmpty) {
-          request.headers['Authorization'] = 'Bearer $token';
-        }
-        request.headers.addAll({});
-        return request;
-      });
+    Get.put(HttpController());
 
     return Scaffold(
       appBar: AppBar(
@@ -31,31 +68,19 @@ class HttpPage extends StatelessWidget {
             children: [
               ExButtonOutline(
                 label: 'GET',
-                onPressed: () async {
-                  await apiService.httpGet(endPoint: '/todos/1').then((response) {
-                    ExSnackbar.success(jsonEncode(response.body));
-                  });
-                },
+                onPressed: () => controller.hget(),
               ).pOnly(right: 12, bottom: 12),
               ExButtonOutline(
                 label: 'POST',
-                onPressed: () async {
-                  await apiService.http(method: Method.POST, url: 'https://www.cnbcindonesia.com/market-data/api/getMajorIndexes', header: {
-                    'accept': 'application/json',
-                    'authorization':
-                        'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJrZXkiOiJrMXQ0SGFydXNCaXM0IiwidGltZSI6MTUyMzkzMTMzMCwic2FsdCI6ImV5SjBlWEFpT2lKS1YxUWlMQ0poYkdjaU9pSklVekkxTmlKOS5NVFV5TXprek1UTXpNQS42MG5ZQ0oyX2hsRzlDTmxOR1dQcmVOMV8weHgwMW84Tzc4V3VyVXYtUTBRIn0.WAcM1Wska3QulFqRxvdA3Lk6tKQ9YdPZIkWEvArbGxA',
-                  }).then((response) {
-                    ExSnackbar.success(jsonEncode(response.body));
-                  }).catchError((e) {
-                    ExSnackbar.danger(e);
-                  });
-                },
+                onPressed: () => controller.hpost(),
               ).pOnly(right: 12, bottom: 12),
               ExButtonOutline(
                 label: 'PUT',
+                onPressed: () => controller.hput(),
               ).pOnly(right: 12, bottom: 12),
               ExButtonOutline(
                 label: 'DELETE',
+                onPressed: () => controller.hdelete(),
               ).pOnly(right: 12, bottom: 12),
               ExButtonOutline(
                 label: 'UPLOAD',
@@ -65,44 +90,7 @@ class HttpPage extends StatelessWidget {
               ).pOnly(right: 12, bottom: 12),
             ],
           ),
-
-          /// 1
-          ExAccordion(
-            showAccordion: true,
-            title: 'INIT',
-            content: Container(
-              height: 70,
-              child: VStack(
-                [
-                  '''
-/// main.dart
-Get.put(ExHttp(baseURL: 'https://api-1.com', baseHeader: {}), tag: 'api1');
-Get.put(ExHttp(baseURL: 'https://api-2.com', baseHeader: {}), tag: 'api2');
-'''
-                      .selectableText
-                      .make(),
-                ],
-              ).scrollVertical(),
-            ),
-          ),
-
-          /// 2
-          ExAccordion(
-            showAccordion: true,
-            title: 'GET | POST | PUT | DELETE',
-            content: Container(
-                height: 120,
-                child: '''
-await apiService.httpGet(endPoint: '/users').then((response) {
-    logI(jsonEncode(response.body));
-  }).catchError((e) {
-    logE('e);
-  });
-});
-                  '''
-                    .selectableText
-                    .make()),
-          ),
+          VxJson.list(controller.output),
         ],
       ).p12().scrollVertical(),
     );

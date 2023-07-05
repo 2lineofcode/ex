@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_field_initializers_in_const_classes
 
 import 'package:ex/ex.dart';
+import 'package:example/core/index.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class AvatarPage extends StatelessWidget {
         HStack([
           for (var i = 0; i < counter; i++)
             ExAvatarView(
-              userFullName: faker.person.name(),
+              name: faker.person.name(),
               source: 'assets/images/ic_dialog_error.svg',
               package: 'ex',
               size: 48,
@@ -33,7 +34,7 @@ class AvatarPage extends StatelessWidget {
         HStack([
           for (var i = 0; i < counter; i++)
             ExAvatarView(
-              userFullName: faker.person.name(),
+              name: faker.person.name(),
               source: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 32,
             ).pOnly(right: 12),
@@ -45,8 +46,10 @@ class AvatarPage extends StatelessWidget {
         HStack([
           for (var i = 0; i < counter; i++)
             ExAvatarView(
-              userFullName: faker.person.name(),
-              source: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
+              name: faker.person.name(),
+              source: 'https://asda.com',
+              bgColor: Colors.pink,
+              textColor: colorPrimary[50],
               size: 40,
             ).pOnly(right: 12),
         ]).scrollHorizontal(),
@@ -57,7 +60,7 @@ class AvatarPage extends StatelessWidget {
         HStack([
           for (var i = 0; i < counter; i++)
             ExAvatarView(
-              userFullName: faker.person.name(),
+              name: faker.person.name(),
               source: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 48,
             ).pOnly(right: 12),
@@ -69,7 +72,7 @@ class AvatarPage extends StatelessWidget {
         HStack([
           for (var i = 0; i < counter; i++)
             ExAvatarView(
-              userFullName: faker.person.name(),
+              name: faker.person.name(),
               source: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 56,
             ).pOnly(right: 12),
@@ -82,7 +85,7 @@ class AvatarPage extends StatelessWidget {
         HStack([
           for (var i = 0; i < counter; i++)
             ExAvatarView(
-              userFullName: faker.person.name(),
+              name: faker.person.name(),
               source: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 72,
             ).pOnly(right: 12),
@@ -95,7 +98,7 @@ class AvatarPage extends StatelessWidget {
         HStack([
           for (var i = 0; i < counter; i++)
             ExAvatarView(
-              userFullName: faker.person.name(),
+              name: faker.person.name(),
               source: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 120,
             ).pOnly(right: 12),

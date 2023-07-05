@@ -1,4 +1,3 @@
-import 'package:ex/src/color.dart';
 import 'package:flutter/material.dart';
 import '../../ex.dart';
 
@@ -10,18 +9,19 @@ import '../../ex.dart';
 
 class ExImageView extends StatelessWidget {
   const ExImageView({
-    Key? key,
     required this.url,
+    super.key,
     this.headers,
     this.height,
     this.width,
     this.size,
     this.borderColor,
+    this.backgroundColor,
     this.borderWidth,
     this.radius = 8,
     this.boxFit = BoxFit.cover,
     this.errorWidget,
-  }) : super(key: key);
+  });
 
   final String url;
   final Map<String, String>? headers;
@@ -29,6 +29,7 @@ class ExImageView extends StatelessWidget {
   final double? width;
   final double? size;
   final Color? borderColor;
+  final Color? backgroundColor;
   final double? borderWidth;
   final double radius;
   final BoxFit boxFit;
@@ -43,6 +44,8 @@ class ExImageView extends StatelessWidget {
           height: size ?? height,
           decoration: BoxDecoration(border: Border.all(color: borderColor ?? Colors.grey[300]!, width: borderWidth ?? 0.5)),
           child: url.isUrl!
+
+              /// network
               ? Image.network(
                   url,
                   headers: headers,
@@ -51,19 +54,20 @@ class ExImageView extends StatelessWidget {
                   fit: boxFit,
                   isAntiAlias: true,
                   loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) {
-                      return child;
-                    }
+                    if (loadingProgress == null) return child;
+
                     return SizedBox(
                       width: 24,
                       height: 24,
-                      child: Container(color: colorNeutral),
-                    ).shimmer(primaryColor: colorNeutral[100]!, secondaryColor: colorNeutral[200]);
+                      child: Container(color: Vx.neutral500),
+                    ).shimmer(primaryColor: Vx.neutral100, secondaryColor: Vx.neutral200);
                   },
                   errorBuilder: (context, error, stackTrace) {
-                    return Container(color: Colors.grey[300], child: errorWidget);
+                    return Container(color: backgroundColor, child: errorWidget ?? Icon(Icons.image_not_supported_rounded, color: Vx.neutral300));
                   },
                 )
+
+              /// assets
               : Image.asset(
                   url,
                   width: size ?? width,

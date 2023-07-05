@@ -5,62 +5,63 @@ import 'package:flutter/material.dart';
 import '../../ex.dart';
 
 ///   created               : Aditya Pratama
-///   originalFilename      : ex_button_outline
+///   originalFilename      : ex_button_default
 ///   date                  : 24 Jun 2021
 ///   —————————————————————————————————————————————————————————————————————————————
 ///   <img width="199" alt="image" src="https://user-images.githubusercontent.com/36602270/169626629-60056c7a-2081-4cb5-95a3-b88db7d00492.png">
 
-class ExButtonOutline extends StatelessWidget {
-  const ExButtonOutline({
+class ExButtonText extends StatelessWidget {
+  const ExButtonText({
     super.key,
-    this.width,
-    this.height = 44,
     this.label = '',
-    this.onPressed,
     this.labelColor,
-    this.borderColor,
-    this.radius = 4,
-    this.labelSize = 14,
+    this.labelSize = 16,
+    this.isLabelBold = true,
+    this.width,
+    this.height = 45,
     this.backgroundColor,
-    this.isLabelBold = false,
+    this.radius = 4,
+    this.onPressed,
     this.child,
+    this.icon,
   });
 
   final double? width;
   final double? height;
-  final VoidCallback? onPressed;
-  final String? label;
-  final Color? labelColor;
-  final double? labelSize;
-  final bool? isLabelBold;
-  final Color? borderColor;
   final Color? backgroundColor;
+  final String? label;
+  final double? labelSize;
+  final Color? labelColor;
+  final bool? isLabelBold;
+  final VoidCallback? onPressed;
   final double radius;
+  final Widget? icon;
   final Widget? child;
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
+    return TextButton(
       onPressed: onPressed,
-      style: OutlinedButton.styleFrom(
-        primary: labelColor,
-        backgroundColor: backgroundColor,
-        side: BorderSide(color: borderColor ?? Vx.neutral300),
+      style: TextButton.styleFrom(
+        primary: backgroundColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
         minimumSize: Size(width ?? 44, height ?? 44),
       ),
       child: child ??
-          HStack([
-            Text(
-              '$label',
-              style: TextStyle(
-                color: labelColor,
-                fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.w500,
-                fontSize: labelSize,
+          HStack(
+            [
+              icon?.pOnly(right: 8) ?? 0.heightBox,
+              Text(
+                '$label',
+                style: TextStyle(
+                  color: labelColor,
+                  fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.normal,
+                  fontSize: labelSize,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
-              overflow: TextOverflow.ellipsis,
-            ),
-          ]),
+            ],
+          ),
     );
   }
 }

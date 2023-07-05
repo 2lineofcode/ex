@@ -11,7 +11,6 @@ import 'ext_gallery/ext_int_page.dart';
 import 'ext_gallery/ext_string_page.dart';
 import 'ui_widget_gallery/accordion_page.dart';
 import 'helper_gallery/datetime_picker_page.dart';
-import 'ui_widget_gallery/listview_page.dart';
 import 'helper_gallery/alert_page.dart';
 import 'ui_widget_gallery/avatar_page.dart';
 import 'helper_gallery/bottomsheet_page.dart';
@@ -21,13 +20,11 @@ import 'ui_widget_gallery/error_or_empty_page.dart';
 import 'ui_widget_gallery/imageview_page.dart';
 import 'helper_gallery/input_dialog_page.dart';
 import 'ui_widget_gallery/loading_page.dart';
-import 'ui_widget_gallery/message_page.dart';
 import 'ui_widget_gallery/progress_page.dart';
 import 'ui_widget_gallery/shimmer_page.dart';
 import 'helper_gallery/snackbar_page.dart';
 import 'ui_widget_gallery/table_page.dart';
 import 'ui_widget_gallery/textfield_page.dart';
-import 'ui_widget_gallery/timeline_activity_page.dart';
 import 'ui_widget_gallery/typography_page.dart';
 import 'helper_gallery/decoration_page.dart';
 
@@ -41,7 +38,7 @@ Future<void> main() async {
   ExLog.init();
 
   /// ExHttp
-  final baseHeader = {'peler': 'kuda'};
+  final baseHeader = {'sample': 'ex'};
   Get.put(
     ExHttp(
       baseURL: 'https://jsonplaceholder.typicode.com',
@@ -49,9 +46,8 @@ Future<void> main() async {
       maxTimeOut: 30.seconds,
       maxAuthRetry: 5,
       allowFollowRedirects: true,
-      showLogHeader: true,
-      showLogResponse: true,
-      
+      showLogHeader: false,
+      showLogResponse: false,
     ),
   );
 
@@ -63,7 +59,6 @@ Future<void> main() async {
       theme: AppThemes.light,
       darkTheme: AppThemes.dark,
       themeMode: AppThemes.theme,
-      
     ),
   );
 }
@@ -73,19 +68,16 @@ class Home extends GetView {
   final xFeatures1 = {
     '# Typograph': TypographyPage(),
     'Accordion': AccordionPage(),
-    'Message': MessagePage(),
     'Avatar': AvatarPage(),
     'Button': ButtonPage(),
     'Divider': DividerPage(),
     'ErrorOrEmpty': ErrorOrEmptyPage(),
     'ImageView': ImageViewPage(),
-    'ListView': ListViewPage(),
     'Loading Page': LoadingPage(),
     'Progress': ProgressPage(),
     'Shimmer': ShimmerPage(),
     'Table': TablePage(),
     'TextField': TextFieldPage(),
-    'TimeLine': TimeLineActivityPage(),
   };
 
   final xFeatures2 = {

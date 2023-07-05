@@ -42,10 +42,10 @@ class InputDialogPage extends StatelessWidget {
             content: VStack(
               [
                 Text('-body-').pSymmetric(v: 12),
-                ExAvatarView(source: 'url', userFullName: 'userFullName', size: 24),
+                ExAvatarView(source: 'url', name: 'userFullName', size: 24),
                 Text('jijnii').pSymmetric(v: 12),
                 IconButton(onPressed: () {}, icon: Icon(Icons.next_plan)),
-                ExButtonDefault(
+                ExButtonElevated(
                   label: 'Ok',
                 ),
                 ExButtonOutline(

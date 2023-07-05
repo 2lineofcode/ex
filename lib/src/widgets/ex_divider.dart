@@ -22,11 +22,11 @@ enum ExDividerTextMode {
 
 class ExDivider extends StatelessWidget {
   const ExDivider({
-    Key? key,
+    super.key,
     this.label,
     this.textMode = ExDividerTextMode.CENTER,
     this.dividerMode = ExDividerMode.LINE,
-  }) : super(key: key);
+  });
 
   final String? label;
   final ExDividerMode dividerMode;

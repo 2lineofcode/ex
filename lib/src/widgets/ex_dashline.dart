@@ -9,10 +9,10 @@ import 'package:velocity_x/velocity_x.dart';
 
 class ExDashLine extends StatelessWidget {
   const ExDashLine({
-    Key? key,
+    super.key,
     this.width,
     this.color,
-  }) : super(key: key);
+  });
 
   final double? width;
   final Color? color;

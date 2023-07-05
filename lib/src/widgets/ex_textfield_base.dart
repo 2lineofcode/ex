@@ -10,7 +10,7 @@ enum ExTextFieldBorderType { none, roundLine, underLine }
 /// An easy to use implementation of [TextField] with ready to use props.
 class ExBaseTextField extends StatefulWidget {
   const ExBaseTextField({
-    Key? key,
+    super.key,
     this.controller,
     this.hint,
     this.value,
@@ -56,7 +56,7 @@ class ExBaseTextField extends StatefulWidget {
     this.borderColorFocus,
     this.initialValue,
     this.readOnly,
-  }) : super(key: key);
+  });
 
   final TextEditingController? controller;
   final String? hint;

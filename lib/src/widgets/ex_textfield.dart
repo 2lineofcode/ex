@@ -12,7 +12,7 @@ import 'ex_textfield_base.dart';
 
 class ExTextField extends StatelessWidget {
   const ExTextField({
-    Key? key,
+    super.key,
     this.controller,
     this.hint,
     this.value,
@@ -58,7 +58,7 @@ class ExTextField extends StatelessWidget {
     this.borderColorFocus,
     this.initialValue,
     this.readOnly,
-  }) : super(key: key);
+  });
 
   final TextEditingController? controller;
   final String? hint;

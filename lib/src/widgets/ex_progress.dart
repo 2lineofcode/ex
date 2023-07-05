@@ -10,12 +10,12 @@ import 'package:velocity_x/velocity_x.dart';
 
 class ExProgress extends StatelessWidget {
   const ExProgress({
-    Key? key,
     required this.value,
-    this.height,
     required this.color1,
     required this.color2,
-  }) : super(key: key);
+    super.key,
+    this.height,
+  });
 
   final int value;
   final double? height;

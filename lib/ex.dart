@@ -2,21 +2,16 @@
 /// with which you can write cleaner looking code.
 ///
 
-// ignore_for_file: directives_ordering
-
 library ex;
-
-// core
-export 'src/core/index.dart';
-
-// extensions
-export 'src/extensions/index.dart';
-
-// features
-export 'src/features/index.dart';
-
-// widgets
-export 'src/widgets/index.dart';
 
 // velocityX
 export 'package:velocity_x/velocity_x.dart';
+
+// core
+export 'src/core/index.dart';
+// extensions
+export 'src/extensions/index.dart';
+// features
+export 'src/features/index.dart';
+// widgets
+export 'src/widgets/index.dart';

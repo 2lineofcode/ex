@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 
 class ExProgressBar extends StatelessWidget {
   const ExProgressBar({
-    Key? key,
+    super.key,
     this.color,
     this.size,
     this.secondRingColor,
     this.thirdRingColor,
-  }) : super(key: key);
+  });
 
   final Color? color;
   final double? size;
@@ -53,12 +53,12 @@ class LoadingAnimationWidget {
 // —————————————————————————————————————————————————————————————————————————————
 class DiscreteCircle extends StatefulWidget {
   const DiscreteCircle({
-    Key? key,
     required this.color,
     required this.size,
     required this.secondCircleColor,
     required this.thirdCircleColor,
-  }) : super(key: key);
+    super.key,
+  });
 
   final double size;
   final Color color;

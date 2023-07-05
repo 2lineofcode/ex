@@ -32,9 +32,9 @@ class BottomSheetPage extends StatelessWidget {
                 Icon(Icons.android, size: 72),
                 Divider().pSymmetric(v: 16),
                 HStack([
-                  ExButtonDefault(),
+                  ExButtonElevated(),
                   16.widthBox,
-                  ExButtonDefault(),
+                  ExButtonElevated(),
                 ]),
               ]),
             );

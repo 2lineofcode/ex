@@ -10,7 +10,7 @@ import 'ex_textfield_base.dart';
 
 class ExTextFieldMultiline extends StatelessWidget {
   const ExTextFieldMultiline({
-    Key? key,
+    super.key,
     this.borderColor = const Color(0xFFe4e8eb),
     this.hint,
     this.tfController,
@@ -25,7 +25,7 @@ class ExTextFieldMultiline extends StatelessWidget {
     this.autocorrect,
     this.autofocus,
     this.validator,
-  }) : super(key: key);
+  });
   final Color? borderColor;
   final String? hint;
   final TextEditingController? tfController;

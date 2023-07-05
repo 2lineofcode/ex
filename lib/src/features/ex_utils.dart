@@ -1,5 +1,3 @@
-/// Simple library for generating random ascii strings.
-
 // ignore_for_file: one_member_abstracts
 
 import 'dart:math' show Random;

@@ -169,6 +169,7 @@ Get.put(
     if (res.isOk) {
       result
         ..body = res.body
+        ..statusCode = res.statusCode
         ..isFailure = false;
       return result;
     } else {
@@ -199,6 +200,7 @@ Get.put(
     if (res.isOk) {
       return result
         ..body = res.body
+        ..statusCode = res.statusCode
         ..isFailure = false;
     } else {
       return ErrorInterceptorHandling(
@@ -229,6 +231,7 @@ Get.put(
     if (res.isOk) {
       return result
         ..body = res.body
+        ..statusCode = res.statusCode
         ..isFailure = false;
     } else {
       return ErrorInterceptorHandling(
@@ -259,6 +262,7 @@ Get.put(
     if (res.isOk) {
       return result
         ..body = res.body
+        ..statusCode = res.statusCode
         ..isFailure = false;
     } else {
       return ErrorInterceptorHandling(
@@ -287,6 +291,7 @@ Get.put(
     if (res.isOk) {
       return result
         ..body = res.body
+        ..statusCode = res.statusCode
         ..isFailure = false;
     } else {
       return ErrorInterceptorHandling(
@@ -298,9 +303,9 @@ Get.put(
   }
 
   Future<Outcome> httpUploadMultipart({
+    required File file,
     String endPoint = '',
     Map<String, String>? header,
-    required File file,
     String? fileName,
     bool withToken = true,
   }) async {
@@ -318,6 +323,7 @@ Get.put(
     if (res.isOk) {
       result
         ..body = res.body
+        ..statusCode = res.statusCode
         ..isFailure = false;
       return result;
     } else {
@@ -373,8 +379,8 @@ class Outcome<T> {
 // ErrorInterceptorHandling
 // —————————————————————————————————————————————————————————————————————————————
 Outcome ErrorInterceptorHandling({
-  dynamic response,
   required Outcome result,
+  dynamic response,
   String? url,
 }) {
   response as Response<dynamic>;
@@ -425,11 +431,11 @@ Outcome ErrorInterceptorHandling({
 // —————————————————————————————————————————————————————————————————————————————
 mixin ApiUtils {
   static Future<void> apiLog({
+    required Response<dynamic> response,
     bool? showHeader,
     bool? showResponse,
     Map<String, dynamic>? query,
     dynamic body,
-    required Response<dynamic> response,
   }) async {
     // output += '—————————————————————————————————————————————————————————————————————————————\n';
     log('${response.request?.method ?? '-'} | ${response.request?.url ?? '-'} | ${response.statusCode ?? '-'}');

@@ -247,7 +247,7 @@ mixin ExSnackbar {
       behavior: SnackBarBehavior.floating,
       duration: Duration(seconds: duration ?? 2),
     );
-    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
   }
 
   static void info(dynamic message, {int? duration, bool showIcon = true}) {
@@ -265,7 +265,7 @@ mixin ExSnackbar {
       behavior: SnackBarBehavior.floating,
       duration: Duration(seconds: duration ?? 2),
     );
-    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
   }
 
   static void danger(dynamic message, {int? duration, bool showIcon = true}) {
@@ -283,7 +283,7 @@ mixin ExSnackbar {
       behavior: SnackBarBehavior.floating,
       duration: Duration(seconds: duration ?? 2),
     );
-    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
   }
 
   static void success(dynamic message, {int? duration, bool showIcon = true}) {
@@ -301,7 +301,7 @@ mixin ExSnackbar {
       behavior: SnackBarBehavior.floating,
       duration: Duration(seconds: duration ?? 2),
     );
-    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
   }
 
   static void warning(dynamic message, {int? duration, bool showIcon = true}) {
@@ -319,7 +319,7 @@ mixin ExSnackbar {
       behavior: SnackBarBehavior.floating,
       duration: Duration(seconds: duration ?? 2),
     );
-    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
+    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
   }
 }
 
@@ -336,7 +336,7 @@ typedef OnTap = void Function(Flushbar flushbar);
 // ignore: must_be_immutable
 class Flushbar<T> extends StatefulWidget {
   Flushbar({
-    Key? key,
+    super.key,
     this.title,
     this.titleColor,
     this.titleSize,
@@ -381,10 +381,9 @@ class Flushbar<T> extends StatefulWidget {
     this.userInputForm,
     this.endOffset,
     this.flushbarRoute, // Please dont init this
-  })  
+  })
   // ignore: prefer_initializing_formals
-  : onStatusChanged = onStatusChanged,
-        super(key: key) {
+  : onStatusChanged = onStatusChanged {
     onStatusChanged = onStatusChanged ?? (status) {};
   }
 
@@ -1114,7 +1113,7 @@ enum FlushbarStatus { SHOWING, DISMISSED, IS_APPEARING, IS_HIDING }
 class FlushbarRoute<T> extends OverlayRoute<T> {
   FlushbarRoute({
     required this.flushbar,
-    RouteSettings? settings,
+    super.settings,
   })  : _builder = Builder(
           builder: (BuildContext innerContext) {
             return GestureDetector(
@@ -1123,8 +1122,7 @@ class FlushbarRoute<T> extends OverlayRoute<T> {
             );
           },
         ),
-        _onStatusChanged = flushbar.onStatusChanged,
-        super(settings: settings) {
+        _onStatusChanged = flushbar.onStatusChanged {
     _configureAlignment(flushbar.flushbarPosition);
   }
 

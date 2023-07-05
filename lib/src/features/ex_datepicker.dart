@@ -11,12 +11,12 @@ mixin ExDatePicker {
   // DATE PICKER (CUPERTINO) —————————————————————————————————————————————————
   // —————————————————————————————————————————————————————————————————————————
   static void datePickerCupertino({
+    required Function(DateTime) callback,
     String title = 'Pilih Tanggal',
     String btnText = 'Simpan',
     DateTime? initialDate,
     DateTime? minDate,
     DateTime? maxDate,
-    required Function(DateTime) callback,
     CupertinoDatePickerMode mode = CupertinoDatePickerMode.date,
   }) {
     var output = DateTime.now();
@@ -47,7 +47,7 @@ mixin ExDatePicker {
                   dateOrder: DatePickerDateOrder.dmy,
                 ),
               ).expand(),
-              ExButtonDefault(
+              ExButtonElevated(
                 width: double.infinity,
                 label: btnText,
                 onPressed: () {
@@ -63,10 +63,10 @@ mixin ExDatePicker {
   }
 
   static void timePickerCupertino({
+    required Function(DateTime) callback,
     DateTime? initialDate,
     DateTime? minDate,
     DateTime? maxDate,
-    required Function(DateTime) callback,
   }) {
     var output = DateTime.now();
     showCupertinoModalPopup(
@@ -107,10 +107,10 @@ mixin ExDatePicker {
 // DATE PICKER (MATERIAL) ——————————————————————————————————————————————————
 // —————————————————————————————————————————————————————————————————————————
   static Future<void> datePickerMaterial({
+    required Function(DateTime) callback,
     DateTime? initialDate,
     DateTime? minDate,
     DateTime? maxDate,
-    required Function(DateTime) callback,
   }) async {
     final picked = await showDatePicker(
       context: Get.context!,
@@ -124,10 +124,10 @@ mixin ExDatePicker {
   }
 
   static Future<void> timePickerMaterial({
+    required Function(TimeOfDay) callback,
     DateTime? initialDate,
     DateTime? minDate,
     DateTime? maxDate,
-    required Function(TimeOfDay) callback,
   }) async {
     final picked = await showTimePicker(
       context: Get.context!,
@@ -139,10 +139,10 @@ mixin ExDatePicker {
   }
 
   static Future<void> date({
+    required Function(DateTime) callback,
     DateTime? initialDate,
     DateTime? minDate,
     DateTime? maxDate,
-    required Function(DateTime) callback,
   }) async {
     if (Platform.isAndroid) {
       await datePickerMaterial(
@@ -162,10 +162,10 @@ mixin ExDatePicker {
   }
 
   static Future<void> time({
+    required Function(dynamic) callback,
     DateTime? initialDate,
     DateTime? minDate,
     DateTime? maxDate,
-    required Function(dynamic) callback,
   }) async {
     if (Platform.isAndroid) {
       await timePickerMaterial(
@@ -185,10 +185,10 @@ mixin ExDatePicker {
   }
 
   static Future<void> datetime({
+    required Function(dynamic) callback,
     DateTime? initialDate,
     DateTime? minDate,
     DateTime? maxDate,
-    required Function(dynamic) callback,
   }) async {
     datePickerCupertino(
       initialDate: initialDate,

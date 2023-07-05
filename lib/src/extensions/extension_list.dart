@@ -1,9 +1,3 @@
-///   created               : Fadqurrosyidik
-///   originalFilename      : extension_list
-///   date                  : 27 Sept 2021
-///   —————————————————————————————————————————————————————————————————————————————
-///    scope                : List
-
 extension Unique<E, Id> on List<E> {
   List<E> unique([Id Function(E element)? id, bool inplace = true]) {
     final ids = <dynamic>{};

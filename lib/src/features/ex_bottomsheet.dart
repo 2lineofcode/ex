@@ -109,9 +109,9 @@ mixin ExBottomSheet {
     required List<ExKeyValue> data,
     required String title,
     required String keySelected,
+    required Function(String, String) callback,
     bool? showTotalData = false,
     bool isFullScreen = false,
-    required Function(String, String) callback,
     String? emptyMessage = 'Tidak ada data',
     String? emptySvgAsset,
     Function? emptyCallback,
@@ -148,8 +148,11 @@ mixin ExBottomSheet {
                   : VStack([
                       100.heightBox,
                       ExUiErrorOrEmpty(
-                        title: '$emptyMessage',
-                        callback: () => emptyCallback?.call(),
+                        title: '$emptyMessage'.text.make(),
+                        action: ExButtonElevated(
+                          label: 'Retry',
+                          onPressed: () => emptyCallback?.call(),
+                        ),
                       ).centered(),
                     ]).scrollVertical(),
             ),

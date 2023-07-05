@@ -8,7 +8,7 @@ import 'package:velocity_x/velocity_x.dart';
 ///
 
 class ExUiShimmerList extends StatelessWidget {
-  const ExUiShimmerList({Key? key, this.count = 10}) : super(key: key);
+  const ExUiShimmerList({super.key, this.count = 10});
 
   final int? count;
 

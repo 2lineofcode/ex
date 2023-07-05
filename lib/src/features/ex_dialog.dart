@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../ex.dart';
-import '../color.dart';
 
 /*
  * ExDialog
@@ -74,12 +73,12 @@ mixin ExDialog {
                     child: Text(
                       questionText,
                       textAlign: TextAlign.start,
-                      style: questionTextStyle ?? TextStyle(fontSize: 12, color: colorNeutral),
+                      style: questionTextStyle ?? TextStyle(fontSize: 12, color: Vx.neutral500),
                     ),
                   ),
                 ExTextField(
                   controller: tfController,
-                  borderColor: colorNeutral[300],
+                  borderColor: Vx.neutral300,
                   hint: inputHint,
                   onChanged: (s) => isInputValid.value = s.isNotBlank,
                 ).pSymmetric(h: 12, v: 12),
@@ -87,7 +86,7 @@ mixin ExDialog {
                   Text(
                     helperText,
                     textAlign: TextAlign.start,
-                    style: helperTextStyle ?? TextStyle(fontSize: 12, color: colorNeutral),
+                    style: helperTextStyle ?? TextStyle(fontSize: 12, color: Vx.neutral500),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ).pSymmetric(h: 12),

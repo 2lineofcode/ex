@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../ex.dart';
-import '../color.dart';
 
 /*
  * ExAlert
@@ -41,7 +40,7 @@ mixin ExAlert {
     TextStyle? messageStyle,
     double messageTextSize = 13,
     TextAlign messageTextAlign = TextAlign.left,
-    Color messageTextColor = colorNeutral,
+    Color messageTextColor = Vx.neutral500,
     // isDismissible
     bool isDismissible = true,
     // button
@@ -129,7 +128,7 @@ mixin ExAlert {
     TextStyle? messageStyle,
     double messageTextSize = 13,
     TextAlign messageTextAlign = TextAlign.left,
-    Color messageTextColor = colorNeutral,
+    Color messageTextColor = Vx.neutral500,
     bool isDismissible = true,
     String btnYesText = 'Close',
     Color? barrierColor = Colors.black54,
@@ -213,7 +212,7 @@ mixin ExAlert {
     TextStyle? messageStyle,
     double messageTextSize = 13,
     TextAlign messageTextAlign = TextAlign.left,
-    Color messageTextColor = colorNeutral,
+    Color messageTextColor = Vx.neutral500,
     bool isDismissible = true,
     String btnNoText = 'No',
     Function()? onNo,
@@ -242,7 +241,7 @@ mixin ExAlert {
                     Icon(
                       CupertinoIcons.question_circle,
                       size: 90,
-                      color: isWarningMode == true ? colorError : Theme.of(context).primaryColor,
+                      color: isWarningMode == true ? Vx.red600 : Theme.of(context).primaryColor,
                     ).centered().pOnly(bottom: 24),
                 ]),
               if (title != null)
@@ -278,7 +277,7 @@ mixin ExAlert {
                     child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
                         primary: isWarningMode == true ? Theme.of(context).errorColor : Colors.black,
-                        side: BorderSide(color: isWarningMode == true ? Theme.of(context).errorColor : colorNeutral[300]!),
+                        side: BorderSide(color: isWarningMode == true ? Theme.of(context).errorColor : Vx.neutral300),
                       ),
                       onPressed: onNo ?? Get.back,
                       child: Text(btnNoText),

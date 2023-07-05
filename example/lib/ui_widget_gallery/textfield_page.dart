@@ -12,7 +12,7 @@ class TextFieldPage extends StatelessWidget {
         title: 'TextField'.text.extraBold.size(16).make(),
       ),
       body: VStack([
-        'TextField Normal'.text.bold.make().pOnly(bottom: 12),
+        'TextField'.text.bold.make().pOnly(bottom: 12),
         ExTextField(
           hint: faker.lorem.sentence(),
         ),

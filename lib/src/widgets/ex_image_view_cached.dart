@@ -11,8 +11,8 @@ import '../../ex.dart';
 
 class ExImageViewCached extends StatelessWidget {
   const ExImageViewCached({
-    Key? key,
     required this.url,
+    super.key,
     this.headers,
     this.height,
     this.width,
@@ -22,7 +22,7 @@ class ExImageViewCached extends StatelessWidget {
     this.radius = 8,
     this.boxFit = BoxFit.cover,
     this.errorWidget,
-  }) : super(key: key);
+  });
 
   final String url;
   final Map<String, String>? headers;

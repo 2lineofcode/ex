@@ -1,9 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, deprecated_member_use
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import '../../ex.dart';
 
@@ -25,297 +22,222 @@ mixin ExAlert {
   ///   onYes: () => print('clicked'),
   /// );
   /// ```
-  static void success({
-    // icon
-    Widget? icon,
-    bool showIcon = true,
-    // title
-    String title = 'Success',
-    TextStyle? titleStyle,
-    double titleTextSize = 18,
-    TextAlign titleTextAlign = TextAlign.left,
-    Color titleTextColor = Colors.black,
-    // message
-    String? message,
-    TextStyle? messageStyle,
-    double messageTextSize = 13,
-    TextAlign messageTextAlign = TextAlign.left,
-    Color messageTextColor = Vx.neutral500,
-    // isDismissible
-    bool isDismissible = true,
-    // button
-    String btnOkText = 'Close',
-    Color? barrierColor = Colors.black54,
-    double cornerRadius = 4.0,
-    Function()? onYes,
-  }) {
-    showDialog(
-      context: Get.context!,
-      barrierDismissible: isDismissible,
-      barrierColor: barrierColor,
-      builder: (context) {
-        return WillPopScope(
-          onWillPop: () async => isDismissible,
-          child: AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(cornerRadius),
-              ),
-            ),
-            // contentPadding: EdgeInsets.all(16),
-            scrollable: true,
-            content: VStack([
-              if (showIcon || icon != null)
-                VStack([
-                  if (icon != null)
-                    icon
-                  else
-                    Icon(
-                      CupertinoIcons.check_mark_circled,
-                      size: 90,
-                      color: Theme.of(context).primaryColor,
-                    ).centered().pOnly(bottom: 24)
-                ]),
-              Text(
-                title,
-                style: titleStyle ?? TextStyle(fontSize: titleTextSize, fontWeight: FontWeight.bold, color: titleTextColor),
-                textAlign: titleTextAlign,
-                maxLines: 2,
-              ).w(double.infinity),
-              if (message != null)
-                Text(
-                  message,
-                  style: messageStyle ?? TextStyle(fontSize: messageTextSize, fontWeight: FontWeight.normal, color: messageTextColor),
-                  textAlign: messageTextAlign,
-                ).w(double.infinity).pOnly(top: 12),
-            ]),
-            actions: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
-                    onPressed: onYes ?? Get.back,
-                    child: Text(btnOkText),
-                  ).pOnly(left: 12, right: 12, bottom: 12).h(55).expand(),
-                ],
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
 
-  /// -- example implementation --
-  /// ```dart
-  /// ExAlert.error(
-  ///   context: Get.context!,
-  ///   title: 'Failed :"))',
-  ///   message: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-  ///   onYes: () => print('clicked'),
-  /// );
-  /// ```
-  static void error({
+  static void success({
     Widget? icon,
-    bool showIcon = true,
     String? title,
     TextStyle? titleStyle,
     double titleTextSize = 18,
-    TextAlign titleTextAlign = TextAlign.left,
+    TextAlign titleTextAlign = TextAlign.center,
     Color titleTextColor = Colors.black,
     String? message,
     TextStyle? messageStyle,
-    double messageTextSize = 13,
-    TextAlign messageTextAlign = TextAlign.left,
+    double messageTextSize = 14,
+    TextAlign messageTextAlign = TextAlign.center,
     Color messageTextColor = Vx.neutral500,
     bool isDismissible = true,
     String btnYesText = 'Close',
-    Color? barrierColor = Colors.black54,
-    double cornerRadius = 4.0,
+    Color color = const Color(0xFF229C80),
+    double radius = 16,
     Function()? onYes,
   }) {
-    showDialog(
-      context: Get.context!,
-      barrierDismissible: isDismissible,
-      barrierColor: barrierColor,
-      builder: (context) {
-        return WillPopScope(
-          onWillPop: () async => isDismissible,
-          child: AlertDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(cornerRadius))),
-            // contentPadding: EdgeInsets.all(16),
-            scrollable: true,
-            content: VStack([
-              if (showIcon)
-                VStack([
-                  if (icon != null)
-                    icon
-                  else
-                    Icon(
-                      CupertinoIcons.clear_circled,
-                      size: 90,
-                      color: Theme.of(context).errorColor,
-                    ).centered().pOnly(bottom: 24),
-                ]),
-              if (title != null)
-                Text(
-                  title,
-                  style: titleStyle ?? TextStyle(fontSize: titleTextSize, fontWeight: FontWeight.bold, color: titleTextColor),
-                  textAlign: titleTextAlign,
-                  maxLines: 2,
-                ).w(double.infinity),
-              if (message != null)
-                Text(
-                  message,
-                  style: messageStyle ?? TextStyle(fontSize: messageTextSize, fontWeight: FontWeight.normal, color: messageTextColor),
-                  textAlign: messageTextAlign,
-                ).w(double.infinity).pOnly(top: 12),
-            ]),
-            actions: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(primary: Theme.of(context).errorColor),
-                    onPressed: onYes ?? Get.back,
-                    child: Text(btnYesText),
-                  ).pOnly(left: 12, right: 12, bottom: 12).h(55).expand(),
-                ],
-              ),
-            ],
-          ),
-        );
-      },
+    _base(
+      icon: icon ?? Icon(Icons.check_circle, size: 64, color: color).centered().pOnly(bottom: 16),
+      title: title,
+      titleStyle: titleStyle,
+      titleTextSize: titleTextSize,
+      titleTextAlign: titleTextAlign,
+      titleTextColor: titleTextColor,
+      message: message,
+      messageStyle: messageStyle,
+      messageTextSize: messageTextSize,
+      messageTextAlign: messageTextAlign,
+      messageTextColor: messageTextColor,
+      isDismissible: isDismissible,
+      btnYesText: btnYesText,
+      color: color,
+      radius: radius,
+      onYes: onYes,
     );
   }
 
-  /// -- example implementation --
-  /// ```dart
-  /// ExAlert.confirm(
-  ///   context: Get.context!,
-  ///   title: 'Some Question',
-  ///   message: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry?',
-  ///   onYes: () => print('yes clicked'),
-  ///   onNo: () => print('no clicked'),
-  /// );
-  /// ```
-  static void confirm({
+  static void error({
     Widget? icon,
-    bool showIcon = true,
     String? title,
     TextStyle? titleStyle,
     double titleTextSize = 18,
-    TextAlign titleTextAlign = TextAlign.left,
+    TextAlign titleTextAlign = TextAlign.center,
     Color titleTextColor = Colors.black,
     String? message,
     TextStyle? messageStyle,
-    double messageTextSize = 13,
-    TextAlign messageTextAlign = TextAlign.left,
+    double messageTextSize = 14,
+    TextAlign messageTextAlign = TextAlign.center,
     Color messageTextColor = Vx.neutral500,
     bool isDismissible = true,
-    String btnNoText = 'No',
-    Function()? onNo,
-    String btnYesText = 'Yes',
+    String btnYesText = 'Close',
+    Color color = const Color(0xFFEB373E),
+    double radius = 16,
     Function()? onYes,
-    bool isWarningMode = false,
-    Color? barrierColor = Colors.black54,
-    double cornerRadius = 4.0,
   }) {
-    showDialog(
-      context: Get.context!,
-      barrierDismissible: isDismissible,
-      barrierColor: barrierColor,
-      builder: (context) {
-        return WillPopScope(
-          onWillPop: () async => isDismissible,
-          child: AlertDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(cornerRadius))),
-            scrollable: true,
-            content: VStack([
-              if (showIcon)
-                VStack([
-                  if (icon != null)
-                    icon
-                  else
-                    Icon(
-                      CupertinoIcons.question_circle,
-                      size: 90,
-                      color: isWarningMode == true ? Vx.red600 : Theme.of(context).primaryColor,
-                    ).centered().pOnly(bottom: 24),
-                ]),
-              if (title != null)
-                Text(
-                  title,
-                  style: titleStyle ?? TextStyle(fontSize: titleTextSize, fontWeight: FontWeight.bold, color: titleTextColor),
-                  textAlign: titleTextAlign,
-                  maxLines: 2,
-                ).w(double.infinity),
-              if (message != null)
-                Text(
-                  message,
-                  style: messageStyle ?? TextStyle(fontSize: messageTextSize, fontWeight: FontWeight.normal, color: messageTextColor),
-                  textAlign: messageTextAlign,
-                ).w(double.infinity).pOnly(top: 12),
-            ]),
-            actions: [
-              Column(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    height: 44,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(primary: isWarningMode == true ? Theme.of(context).errorColor : Theme.of(context).primaryColor),
-                      onPressed: onYes ?? Get.back,
-                      child: Text(btnYesText),
-                    ),
-                  ),
-                  12.heightBox,
-                  SizedBox(
-                    width: double.infinity,
-                    height: 44,
-                    child: OutlinedButton(
-                      style: OutlinedButton.styleFrom(
-                        primary: isWarningMode == true ? Theme.of(context).errorColor : Colors.black,
-                        side: BorderSide(color: isWarningMode == true ? Theme.of(context).errorColor : Vx.neutral300),
-                      ),
-                      onPressed: onNo ?? Get.back,
-                      child: Text(btnNoText),
-                    ),
-                  ),
-                  12.heightBox,
-                ],
-              ).pOnly(left: 12, right: 12),
-            ],
-          ),
-        );
-      },
+    _base(
+      icon: icon ?? Icon(Icons.error, size: 64, color: color).centered().pOnly(bottom: 16),
+      title: title,
+      titleStyle: titleStyle,
+      titleTextSize: titleTextSize,
+      titleTextAlign: titleTextAlign,
+      titleTextColor: titleTextColor,
+      message: message,
+      messageStyle: messageStyle,
+      messageTextSize: messageTextSize,
+      messageTextAlign: messageTextAlign,
+      messageTextColor: messageTextColor,
+      isDismissible: isDismissible,
+      btnYesText: btnYesText,
+      color: color,
+      radius: radius,
+      onYes: onYes,
     );
   }
 
-  static void custom({
-    Widget? body,
-    List<Widget>? action,
+  static void confirm({
+    Widget? icon,
+    Color color = const Color(0xFFF69348),
+    double radius = 16,
+    String? title,
+    TextStyle? titleStyle,
+    double titleTextSize = 18,
+    TextAlign titleTextAlign = TextAlign.center,
+    Color titleTextColor = Colors.black,
+    String? message,
+    TextStyle? messageStyle,
+    double messageTextSize = 14,
+    TextAlign messageTextAlign = TextAlign.center,
+    Color messageTextColor = Vx.neutral500,
     bool isDismissible = true,
-    Color? barrierColor = Colors.black54,
-    double cornerRadius = 4.0,
+    String btnYesText = 'Yes',
+    String btnNoText = 'No',
     Function()? onYes,
+    Function()? onNo,
   }) {
-    showDialog(
-      context: Get.context!,
+    _base(
+      icon: icon ?? Icon(Icons.help, size: 64, color: color).centered().pOnly(bottom: 16),
+      title: title,
+      titleStyle: titleStyle,
+      titleTextSize: titleTextSize,
+      titleTextAlign: titleTextAlign,
+      titleTextColor: titleTextColor,
+      message: message,
+      messageStyle: messageStyle,
+      messageTextSize: messageTextSize,
+      messageTextAlign: messageTextAlign,
+      messageTextColor: messageTextColor,
+      isDismissible: isDismissible,
+      color: color,
+      radius: radius,
+      btnYesText: btnYesText,
+      onYes: onYes,
+      btnNoText: btnNoText,
+      onNo: onNo,
+    );
+  }
+
+  static void custom({Widget? content}) {
+    return _base(content: content);
+  }
+
+  static void _base({
+    /// custom
+    Widget? content,
+    // icon
+    Widget? icon,
+    Color color = const Color(0xFF229C80),
+    double radius = 16,
+
+    // title
+    String? title,
+    TextStyle? titleStyle,
+    double titleTextSize = 18,
+    TextAlign titleTextAlign = TextAlign.center,
+    Color titleTextColor = Colors.black,
+
+    // message
+    String? message,
+    TextStyle? messageStyle,
+    double messageTextSize = 14,
+    TextAlign messageTextAlign = TextAlign.center,
+    Color messageTextColor = Vx.neutral500,
+
+    // isDismissible
+    bool isDismissible = true,
+
+    // button
+    String? btnYesText,
+    String? btnNoText,
+    Function()? onYes,
+    Function()? onNo,
+  }) {
+    Get.dialog(
+      WillPopScope(
+        onWillPop: () async => isDismissible,
+        child: AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(radius))),
+          scrollable: true,
+          content: content ??
+              VStack([
+                /// icon
+                if (icon != null) icon.centered().pOnly(bottom: 16),
+
+                /// title
+                if (title != null) ...[
+                  Text(
+                    title,
+                    style: titleStyle ?? TextStyle(fontSize: titleTextSize, fontWeight: FontWeight.bold, color: titleTextColor),
+                    textAlign: titleTextAlign,
+                    maxLines: 2,
+                  ).w(double.infinity),
+                ],
+
+                /// message
+                if (message != null)
+                  Text(
+                    message,
+                    style: messageStyle ?? TextStyle(fontSize: messageTextSize, fontWeight: FontWeight.normal, color: messageTextColor),
+                    textAlign: messageTextAlign,
+                  ).w(double.infinity).pOnly(top: 12),
+              ]),
+          actions: [
+            Column(
+              children: [
+                /// yes
+                if (btnYesText != null) ...[
+                  ExButtonElevated(
+                    width: double.infinity,
+                    label: btnYesText,
+                    height: 50,
+                    labelSize: 14,
+                    backgroundColor: color,
+                    onPressed: onYes ?? Get.back,
+                  ).cornerRadius(90).pOnly(left: 12, right: 12, bottom: 12),
+                ],
+
+                /// no
+                if (btnNoText != null) ...[
+                  ExButtonText(
+                    width: double.infinity,
+                    label: btnNoText,
+                    height: 50,
+                    labelSize: 14,
+                    backgroundColor: color,
+                    onPressed: onNo ?? Get.back,
+                  ).cornerRadius(90).pOnly(left: 12, right: 12, bottom: 12),
+                ],
+              ],
+            ),
+          ],
+        ),
+      ),
       barrierDismissible: isDismissible,
-      barrierColor: barrierColor,
-      builder: (context) {
-        return WillPopScope(
-          onWillPop: () async => isDismissible,
-          child: AlertDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(cornerRadius))),
-            scrollable: true,
-            content: body,
-            actions: action,
-          ),
-        );
-      },
+      transitionCurve: Curves.easeInCirc,
     );
   }
 }

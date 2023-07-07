@@ -54,7 +54,7 @@ mixin AppThemes {
     appBarTheme: const AppBarTheme(
       iconTheme: IconThemeData(color: colorBlack),
       color: Colors.white,
-      elevation: 1.0,
+      elevation: .1,
       centerTitle: false,
       titleTextStyle: TextStyle(color: colorBlack, fontFamily: 'InterSans'),
       actionsIconTheme: IconThemeData(color: Colors.grey),

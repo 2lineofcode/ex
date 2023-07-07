@@ -1,29 +1,27 @@
 name: example
+version: 1.0.0+1
 publish_to: none
-version: 1.0.0
-description: Demonstrates how to use the kotlin_scope_function plugin.
-environment:
-  sdk: '>=2.18.0 <3.0.0'
+description: A new Flutter project.
+environment: 
+  sdk: '>=3.0.0 <4.0.0'
 
-dependencies:
+dependencies: 
   faker: ^2.0.0
-  google_fonts: ^4.0.4
-  flutter_html: ^2.2.1
-  dart_code_viewer2: ^1.0.1
+  google_fonts: ^5.1.0
   get: ^4.6.5
-  get_storage: ^2.1.1
-
-dependency_overrides:
-  flutter_svg: ^1.0.0
-
   flutter:
     sdk: flutter
   ex:
     path: ../
 
-flutter:
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
   uses-material-design: true
 
-get_cli:
+get_cli: 
   sub_folder: false
 

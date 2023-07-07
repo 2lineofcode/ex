@@ -4,7 +4,7 @@ mixin ExDecorator {
   static BoxDecoration box({
     Color? borderColor = const Color(0xFFD8DCE0),
     Color? fillColor = Colors.transparent,
-    double borderRadius = 4,
+    double borderRadius = 12,
   }) {
     return BoxDecoration(
       color: fillColor,
@@ -16,7 +16,7 @@ mixin ExDecorator {
   static BoxDecoration boxShadow({
     Color? borderColor = const Color(0xFFD8DCE0),
     Color? fillColor = Colors.white,
-    double borderRadius = 0.0,
+    double borderRadius = 12,
   }) {
     return BoxDecoration(
       color: fillColor,

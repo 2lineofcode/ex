@@ -64,10 +64,12 @@ upload-keystore.jks
 .fvm/fvm_config.json
 .gitignore
 /coverage/
-example/build/
-example/build/*
+###
 example/build/**
 example/pubspec.lock
-example/macos/
-example/macos/*
 example/macos/**
+android/**
+ios/**
+macos/**
+web/**
+example/**

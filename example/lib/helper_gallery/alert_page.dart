@@ -36,11 +36,7 @@ class AlertPage extends StatelessWidget {
           ExButtonOutline(
             label: 'No Asset',
             width: double.infinity,
-            onPressed: () => ExAlert.success(
-              title: faker.lorem.word(),
-              message: faker.lorem.sentence(),
-              showIcon: false,
-            ),
+            onPressed: () => ExAlert.success(message: 'asdasd'),
           ).expand(),
         ]),
         Divider().pSymmetric(v: 16),
@@ -71,7 +67,6 @@ class AlertPage extends StatelessWidget {
             onPressed: () => ExAlert.error(
               title: faker.lorem.word(),
               message: faker.lorem.sentence(),
-              showIcon: false,
             ),
           ).expand(),
         ]),
@@ -103,7 +98,6 @@ class AlertPage extends StatelessWidget {
             onPressed: () => ExAlert.confirm(
               title: faker.lorem.word(),
               message: faker.lorem.sentence(),
-              showIcon: false,
             ),
           ).expand(),
         ]),
@@ -117,7 +111,6 @@ class AlertPage extends StatelessWidget {
             width: double.infinity,
             onPressed: () => ExAlert.confirm(
               title: faker.lorem.word(),
-              isWarningMode: true,
             ),
           ).expand(),
           12.widthBox,
@@ -127,7 +120,6 @@ class AlertPage extends StatelessWidget {
             onPressed: () => ExAlert.confirm(
               title: faker.lorem.word(),
               message: faker.lorem.sentence(),
-              isWarningMode: true,
             ),
           ).expand(),
           12.widthBox,
@@ -137,8 +129,6 @@ class AlertPage extends StatelessWidget {
             onPressed: () => ExAlert.confirm(
               title: faker.lorem.word(),
               message: faker.lorem.sentence(),
-              isWarningMode: true,
-              showIcon: false,
             ),
           ).expand(),
         ]),
@@ -151,15 +141,9 @@ class AlertPage extends StatelessWidget {
             label: 'test',
             width: double.infinity,
             onPressed: () => ExAlert.custom(
-              body: VStack(
-                [
-                  Text('test'),
-                ],
+              content: VStack(
+                [Text('asda')],
               ),
-              action: [
-                TextButton(onPressed: null, child: Text('Cancel')),
-                TextButton(onPressed: null, child: Text('OK')),
-              ],
             ),
           ).expand(),
         ]),

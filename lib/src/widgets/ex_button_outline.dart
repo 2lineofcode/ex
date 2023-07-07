@@ -19,10 +19,10 @@ class ExButtonOutline extends StatelessWidget {
     this.onPressed,
     this.labelColor,
     this.borderColor,
-    this.radius = 4,
-    this.labelSize = 14,
+    this.radius = 12,
+    this.labelSize,
     this.backgroundColor,
-    this.isLabelBold = false,
+    this.isLabelBold = true,
     this.child,
   });
 

@@ -4,7 +4,6 @@ import 'package:example/core_gallery/http_page.dart';
 import 'package:example/core_gallery/log_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 import 'app_themes.dart';
 import 'ext_gallery/ext_int_page.dart';
@@ -30,9 +29,6 @@ import 'helper_gallery/decoration_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  /// Pref
-  await GetStorage.init();
 
   /// ExLog
   ExLog.init();

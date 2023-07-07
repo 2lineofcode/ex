@@ -1,4 +1,3 @@
-import 'package:dart_code_viewer2/dart_code_viewer2.dart';
 import 'package:ex/ex.dart';
 import 'package:flutter/material.dart';
 
@@ -21,14 +20,13 @@ class LogPage extends StatelessWidget {
             title: 'Type',
             content: Container(
               height: 100,
-              child: DartCodeViewer(
+              child: Text(
                 '''
 logD('message');
 logI('message');
 logW('message');
 logE('message');
     ''',
-                showCopyButton: false,
               ).p8(),
             ),
           ),

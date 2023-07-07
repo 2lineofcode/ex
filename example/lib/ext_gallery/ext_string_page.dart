@@ -1,4 +1,4 @@
-import 'package:dart_code_viewer2/dart_code_viewer2.dart';
+
 import 'package:ex/ex.dart';
 import 'package:flutter/material.dart';
 
@@ -20,13 +20,12 @@ class ExtStringPage extends StatelessWidget {
             title: 'forEach',
             content: Container(
               height: 100,
-              child: DartCodeViewer(
+              child: Text(
                 '''
 10.forEach((index) {
   // do something 10 times...
 });
     ''',
-                showCopyButton: false,
               ).p8(),
             ),
           ),
@@ -37,13 +36,12 @@ class ExtStringPage extends StatelessWidget {
             title: 'map',
             content: Container(
               height: 100,
-              child: DartCodeViewer(
+              child: Text(
                 '''
 10.map((index) {
   // do something 10 times...
 });
     ''',
-                showCopyButton: false,
               ).p8(),
             ),
           ),

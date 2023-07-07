@@ -1,3 +1,11 @@
+## 0.3.1
+* update example
+
+## 0.3.0
+* clean up all code
+* improve code
+* update all dependency
+
 ## 0.2.2
 * add param radius on ExTextField
 ## 0.2.1

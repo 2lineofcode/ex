@@ -39,6 +39,7 @@ class ErrorOrEmptyPage extends GetView<ErrorOrEmptyController> {
                 labelSize: 12,
                 radius: 90,
                 backgroundColor: controller.currentState.value == 0 ? colorError : colorPrimary,
+                labelColor: colorWhite,
                 onPressed: () => controller.reload(),
               ).centered(),
             ).expand(),

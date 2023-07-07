@@ -24,6 +24,7 @@ class ExButtonElevated extends StatelessWidget {
     this.onPressed,
     this.child,
     this.icon,
+    this.minimumSize,
   });
 
   final double? width;
@@ -37,6 +38,7 @@ class ExButtonElevated extends StatelessWidget {
   final double radius;
   final Widget? icon;
   final Widget? child;
+  final Size? minimumSize;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,7 @@ class ExButtonElevated extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         primary: backgroundColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
-        minimumSize: Size(width ?? 44, height ?? 44),
+        minimumSize: minimumSize ?? Size(width ?? 44, height ?? 44),
       ),
       child: child ??
           HStack(

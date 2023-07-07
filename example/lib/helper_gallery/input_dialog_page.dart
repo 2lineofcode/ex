@@ -1,5 +1,4 @@
 import 'package:ex/ex.dart';
-import 'package:example/core/index.dart';
 import 'package:faker/faker.dart';
 
 import 'package:flutter/material.dart';
@@ -20,13 +19,10 @@ class InputDialogPage extends StatelessWidget {
           label: 'SINGLE INPUT',
           width: double.infinity,
           onPressed: () => ExDialog.singleInput(
-            title: faker.lorem.sentence(),
-            questionText: faker.lorem.word(),
-            helperText: faker.lorem.sentence(),
-            helperTextStyle: TextStyle(color: colorNeutral[300], fontSize: 10),
-            btnOkText: 'Save',
-            // initialValue: 'peler',
-            inputHint: 'hint...',
+            title: '${faker.lorem.sentences(2)}',
+            body: '${faker.lorem.sentence()}',
+            hint: 'hint...',
+            initialValue: 'peler',
             onYes: (output) => ExSnackbar.info(output),
           ),
         ),
@@ -41,7 +37,7 @@ class InputDialogPage extends StatelessWidget {
             title: 'tess',
             content: VStack(
               [
-                Text('-body-').pSymmetric(v: 12),
+                Text('-body-').pOnly(bottom: 12),
                 ExAvatarView(source: 'url', name: 'userFullName', size: 24),
                 Text('jijnii').pSymmetric(v: 12),
                 IconButton(onPressed: () {}, icon: Icon(Icons.next_plan)),

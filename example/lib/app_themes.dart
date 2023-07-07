@@ -18,6 +18,7 @@ mixin AppThemes {
   // light
   // —————————————————————————————————————————————————————————————————————————————
   static final light = ThemeData(
+    useMaterial3: true,
     // Coloring
     primaryColor: colorPrimary,
     primaryColorDark: colorPrimaryDark,
@@ -25,6 +26,7 @@ mixin AppThemes {
     primaryIconTheme: IconThemeData(color: colorNeutral),
     scaffoldBackgroundColor: colorWhite,
     dividerColor: colorNeutral[200],
+    dividerTheme: DividerThemeData(color: colorNeutral[200]),
 
     // ListTile
     listTileTheme: ListTileThemeData(
@@ -107,6 +109,7 @@ mixin AppThemes {
     disabledColor: colorNeutral[100],
     hintColor: colorNeutral[300],
     dividerColor: colorNeutral[200],
+    dividerTheme: DividerThemeData(color: colorNeutral[200], thickness: 0.2),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: colorPrimary[800],
     ),

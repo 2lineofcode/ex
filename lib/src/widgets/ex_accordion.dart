@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../../ex.dart';
+
 class ExAccordion extends StatefulWidget {
   /// An accordion is used to show (and hide) content. Use [showAccordion] to hide & show the accordion content.
   const ExAccordion({
@@ -10,10 +12,10 @@ class ExAccordion extends StatefulWidget {
     this.content,
     this.titleChild,
     this.contentChild,
-    this.collapsedTitleBackgroundColor = Colors.white,
-    this.expandedTitleBackgroundColor = const Color(0xFFE0E0E0),
-    this.collapsedIcon = const Icon(Icons.keyboard_arrow_down),
-    this.expandedIcon = const Icon(Icons.keyboard_arrow_up),
+    this.collapsedTitleBackgroundColor = Vx.neutral200,
+    this.expandedTitleBackgroundColor = Vx.neutral200,
+    this.collapsedIcon = const Icon(Icons.keyboard_arrow_down_rounded, color: Colors.black),
+    this.expandedIcon = const Icon(Icons.keyboard_arrow_up_rounded, color: Colors.black),
     this.textStyle = const TextStyle(color: Colors.black, fontSize: 16),
     this.titlePadding = const EdgeInsets.all(10),
     this.contentBackgroundColor,
@@ -23,8 +25,8 @@ class ExAccordion extends StatefulWidget {
     this.margin,
     this.showAccordion = false,
     this.onToggleCollapsed,
-    this.titleBorderRadius = const BorderRadius.all(Radius.circular(0)),
-    this.contentBorderRadius = const BorderRadius.all(Radius.circular(0)),
+    this.titleBorderRadius = const BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12)),
+    this.contentBorderRadius = const BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
   });
 
   /// controls if the accordion should be collapsed or not making it possible to be controlled from outside

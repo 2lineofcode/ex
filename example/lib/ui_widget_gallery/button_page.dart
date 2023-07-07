@@ -10,9 +10,7 @@ class ButtonPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: 'Button'.text.extraBold.size(16).make(),
-      ),
+      appBar: ExAppBar(title: 'Button'),
       body: VStack([
         'Elevated'.text.bold.make().pOnly(bottom: 12),
         HStack([

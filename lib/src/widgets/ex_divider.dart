@@ -25,7 +25,7 @@ class ExDivider extends StatelessWidget {
     super.key,
     this.label,
     this.textMode = ExDividerTextMode.CENTER,
-    this.dividerMode = ExDividerMode.LINE,
+    this.dividerMode = ExDividerMode.DASH,
   });
 
   final String? label;

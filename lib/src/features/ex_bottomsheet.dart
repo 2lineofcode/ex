@@ -12,53 +12,43 @@ mixin ExBottomSheet {
   // BOTTOM SHEET DIALOG  ————————————————————————————————————————————————————
   // —————————————————————————————————————————————————————————————————————————
   static void basic({
-    required Widget childrenWidget,
-    String? title,
-    int titleMaxLine = 999,
-    BSHeaderType headerType = BSHeaderType.dash,
-    MainAxisAlignment alignment = MainAxisAlignment.spaceBetween,
-    bool iconPositionOnLeft = false,
+    required String? title,
+    required Widget content,
+    Color? backgroundColor,
+    Color? barrierColor,
+    bool? isDismissible,
+    bool? isFullScreen,
+    bool? persistent,
+    double? radius,
   }) {
     // add haptic feedback (UX)
     HapticFeedback.lightImpact();
     Get.bottomSheet(
-      Container(
-        decoration: ExDecorator.boxBottomSheet(),
-        child: VStack(
-          [
-            if (headerType == BSHeaderType.dash)
-              VStack(
-                [
-                  ExDashLine(),
-                  if (title != null) title.text.bold.size(18).maxLines(titleMaxLine).make().pOnly(top: 24),
-                ],
-              )
-            else
-              HStack(
-                [
-                  if (title != null) title.text.color(Colors.black).maxLines(titleMaxLine).size(18).bold.make().pOnly(top: 24),
-                  IconButton(
-                    onPressed: Get.back,
-                    icon: const Icon(
-                      Icons.close_rounded,
-                      size: 30,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-                alignment: alignment,
-              ).w(double.infinity - 48),
-            Wrap(children: [childrenWidget]).pOnly(top: 24),
+      VStack(
+        [
+          ExDashLine(),
+          if (title != null) ...[
+            title.text.bold.black.size(18).maxLines(2).ellipsis.make().pOnly(top: 24, bottom: 8),
+            Divider().pOnly(bottom: 8),
           ],
-        ).p24(),
+          content,
+        ],
+      ).p24(),
+      // isScrollControlled: true,
+      backgroundColor: backgroundColor ?? Colors.white,
+      barrierColor: barrierColor,
+      isDismissible: isDismissible ?? true,
+      persistent: persistent ?? true,
+      isScrollControlled: isFullScreen ?? false,
+      shape: RoundedRectangleBorder(
+        side: BorderSide(color: backgroundColor ?? Colors.white),
+        borderRadius: BorderRadius.circular(radius ?? 24),
       ),
-      elevation: 10,
-      isScrollControlled: true,
     );
   }
 
   static void dragable({
-    required Widget childrenWidget,
+    required Widget content,
     double radius = 16,
     bool isClose = false,
     double initialChildSize = 0.7,
@@ -93,7 +83,7 @@ mixin ExBottomSheet {
                 const SizedBox(),
               ListView(
                 controller: controller,
-                children: [childrenWidget],
+                children: [content],
               ).paddingSymmetric(vertical: 24).expand(),
             ],
           ).p24(),
@@ -110,25 +100,20 @@ mixin ExBottomSheet {
     required String title,
     required String keySelected,
     required Function(String, String) callback,
-    bool? showTotalData = false,
     bool isFullScreen = false,
-    String? emptyMessage = 'Tidak ada data',
-    String? emptySvgAsset,
-    Function? emptyCallback,
+    Widget? onEmpty,
     double? radius = 16,
   }) {
     // add haptic feedback (UX)
     HapticFeedback.lightImpact();
-    final totalData = data.length;
     Get.bottomSheet(
       Container(
         decoration: ExDecorator.boxBottomSheet(),
         child: VStack(
           [
-            const ExDashLine().p24(),
-            8.heightBox,
-            if (showTotalData == true) '$title ($totalData)'.text.size(18).semiBold.make().paddingOnly(left: 24, right: 24) else title.text.size(18).semiBold.make().paddingOnly(left: 24, right: 24),
-            12.heightBox,
+            ExDashLine().pOnly(top: 24),
+            title.text.bold.black.size(18).maxLines(2).ellipsis.make().pOnly(top: 24, bottom: 8),
+            Divider().pOnly(bottom: 8),
             Expanded(
               child: data.isNotEmpty
                   ? ListView.separated(
@@ -142,22 +127,13 @@ mixin ExBottomSheet {
                             Get.back();
                             callback(data[index].key, data[index].value);
                           },
-                        ).pSymmetric(h: 24);
+                        );
                       },
                     )
-                  : VStack([
-                      100.heightBox,
-                      ExUiErrorOrEmpty(
-                        title: '$emptyMessage'.text.make(),
-                        action: ExButtonElevated(
-                          label: 'Retry',
-                          onPressed: () => emptyCallback?.call(),
-                        ),
-                      ).centered(),
-                    ]).scrollVertical(),
+                  : onEmpty ?? 0.heightBox,
             ),
           ],
-        ),
+        ).pSymmetric(h: 24),
       ),
       isScrollControlled: isFullScreen,
     );

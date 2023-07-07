@@ -25,7 +25,7 @@ class BottomSheetPage extends StatelessWidget {
           onPressed: () {
             ExBottomSheet.basic(
               title: faker.lorem.word(),
-              childrenWidget: VStack([
+              content: VStack([
                 faker.lorem.sentence().text.make(),
                 4.heightBox,
                 'line 2'.text.make(),
@@ -79,7 +79,7 @@ class BottomSheetPage extends StatelessWidget {
           width: double.infinity,
           onPressed: () {
             ExBottomSheet.dragable(
-              childrenWidget: VStack([
+              content: VStack([
                 faker.lorem.sentence().text.make().pSymmetric(v: 12),
                 Placeholder(),
                 faker.lorem.sentence().text.make().pSymmetric(v: 12),

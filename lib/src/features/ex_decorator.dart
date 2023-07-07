@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 mixin ExDecorator {
   static BoxDecoration box({
     Color? borderColor = const Color(0xFFD8DCE0),
-    Color? fillColor = Colors.transparent,
+    Color? fillColor = Colors.white,
     double borderRadius = 12,
   }) {
     return BoxDecoration(
@@ -32,7 +32,7 @@ mixin ExDecorator {
     );
   }
 
-  static BoxDecoration boxBottomSheet({double radius = 16}) {
+  static BoxDecoration boxBottomSheet({double radius = 24}) {
     return BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.only(

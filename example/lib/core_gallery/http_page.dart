@@ -17,10 +17,26 @@ class HttpController extends GetxController {
 
   Future<void> hpost() async {
     ExLoading.show(
+      paddingSymmetric: 70,
       child: VStack(
         [
-          Icon(Icons.ac_unit).centered().pOnly(bottom: 8),
-          'loading'.text.size(12).makeCentered(),
+          'Custom'.text.makeCentered().pOnly(bottom: 24),
+          LoadingAnimationWidget.discreteCircle(
+            color: Theme.of(Get.context!).primaryColor,
+            size: 32,
+          ).centered(),
+          HStack(
+            [
+              Icon(Icons.android),
+              12.widthBox,
+              Icon(Icons.ios_share),
+            ],
+          ).pSymmetric(v: 12),
+          ExButtonElevated(
+            label: 'Cancel',
+            width: double.infinity,
+            onPressed: () {},
+          )
         ],
       ),
     );

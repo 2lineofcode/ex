@@ -12,7 +12,7 @@ mixin ExDatePicker {
   // —————————————————————————————————————————————————————————————————————————
   static void datePickerCupertino({
     required Function(DateTime) callback,
-    String title = 'Pilih Tanggal',
+    String title = 'Select Date',
     String btnText = 'Simpan',
     DateTime? initialDate,
     DateTime? minDate,

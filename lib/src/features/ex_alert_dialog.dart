@@ -216,6 +216,7 @@ mixin ExAlert {
                     height: 50,
                     labelSize: 14,
                     backgroundColor: color,
+                    labelColor: Colors.white,
                     onPressed: onYes ?? Get.back,
                   ).cornerRadius(90).pOnly(left: 12, right: 12, bottom: 12),
                 ],

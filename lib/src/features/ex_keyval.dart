@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 ///   created               : Aditya Pratama
 ///   originalFilename      : _key_val
 ///   date                  : 20 Jun 2021
@@ -12,13 +14,11 @@ class ExKeyValue {
     required this.key,
     required this.value,
     this.icon,
-    this.badge,
     this.isSelected,
   });
 
   dynamic key;
   String value;
-  String? icon;
-  bool? badge;
+  Widget? icon;
   bool? isSelected;
 }

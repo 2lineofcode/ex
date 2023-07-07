@@ -1,8 +1,6 @@
+import 'package:ex/ex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
-
-import '../widgets/ex_progressbar.dart';
 
 /*
  * ExLoading
@@ -33,26 +31,24 @@ mixin ExLoading {
     Widget? child,
     double? radius,
     Color? backgroundColor,
+    String? message,
+    double? paddingSymmetric,
   }) {
+    logW(Get.width - 300);
     Get.dialog(
-      AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(radius ?? 10))),
-        insetPadding: EdgeInsets.symmetric(horizontal: 120),
-        backgroundColor: backgroundColor,
-        content: VStack(
-          [
-            Center(
-              child: child ??
-                  LoadingAnimationWidget.discreteCircle(
-                    color: Theme.of(Get.context!).primaryColor,
-                    size: 32,
-                  ).centered(),
-            ),
-          ],
-        ),
-      ),
-      barrierDismissible: isDismissible,
-      useSafeArea: true,
+      Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: child?.p24() ??
+            VStack(
+              [
+                LoadingAnimationWidget.discreteCircle(
+                  color: Theme.of(Get.context!).primaryColor,
+                  size: 32,
+                ).centered(),
+                if (message != null) Text(message, textAlign: TextAlign.center).centered().pOnly(top: 16)
+              ],
+            ).p24(),
+      ).pSymmetric(h: paddingSymmetric ?? 100),
     );
   }
 

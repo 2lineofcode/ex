@@ -1,3 +1,8 @@
+## 0.3.3
+* adjust for material3
+* fix minor bug on ExLoading (web)
+
+
 ## 0.3.1
 * update example
 

@@ -12,29 +12,32 @@ mixin ExImagePreview {
   static void showUrl(String url, {Map<String, String>? header}) {
     showGeneralDialog(
       context: Get.context!,
-      barrierColor: Colors.black,
+      barrierColor: Colors.black.withOpacity(0.8),
       barrierDismissible: true,
       barrierLabel: 'Dialog',
       transitionDuration: Duration(milliseconds: 300),
       pageBuilder: (context, __, ___) {
         return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.black,
-            leading: 0.heightBox,
-            actions: [IconButton(onPressed: () => Get.back(), icon: Icon(Icons.close, color: Colors.white))],
-          ),
-          backgroundColor: Colors.black.withOpacity(0.2),
+          backgroundColor: Colors.black.withOpacity(0.5),
           body: Dismissible(
             key: Key(''),
-            direction: DismissDirection.vertical,
+            direction: DismissDirection.down,
             onDismissed: (_) => Get.back(),
             child: SafeArea(
-              child: Stack(
-                children: [
+              child: VStack(
+                [
+                  if (!context.isMobile)
+                    HStack(
+                      [
+                        Spacer(),
+                        IconButton(onPressed: () => Get.back(), icon: Icon(Icons.close, color: Colors.white)),
+                      ],
+                    ),
                   PhotoView(
                     backgroundDecoration: BoxDecoration(color: Colors.transparent),
                     imageProvider: NetworkImage(url),
-                  ),
+                  ).expand(),
+                  '${url.split('/').last}'.text.white.align(TextAlign.center).makeCentered(),
                 ],
               ),
             ),

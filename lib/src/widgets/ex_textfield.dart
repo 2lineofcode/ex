@@ -5,10 +5,10 @@ import 'package:velocity_x/velocity_x.dart';
 import 'ex_textfield_base.dart';
 
 ///   created               : Aditya Pratama
-///   originalFilename      : ex_text_field_icon
+///   originalFilename      : ex_text_field_normal
 ///   date                  : 24 Jun 2021
 ///   —————————————————————————————————————————————————————————————————————————————
-///   <img width="349" alt="image" src="https://user-images.githubusercontent.com/36602270/169626756-7bbcb4f5-f819-4e4b-bd26-fc54c5894ce4.png">
+///   <img width="339" alt="image" src="https://user-images.githubusercontent.com/36602270/169626802-e1cd3866-814d-4b27-87ff-488d80c2fd0a.png">
 
 class ExTextField extends StatelessWidget {
   const ExTextField({
@@ -24,12 +24,11 @@ class ExTextField extends StatelessWidget {
     this.maxLength,
     this.textAlign = TextAlign.left,
     this.fillColor = Colors.transparent,
-    this.borderColor = Vx.neutral200,
+    this.borderColor = const Color(0xFFC7CBCF),
     this.prefixIcon,
     this.suffixIcon,
     this.height = 40,
-    this.icon,
-    this.borderRadius = 4,
+    this.borderRadius = 12,
     this.contentPaddingLeft,
     this.contentPaddingTop,
     this.keyboardType,
@@ -43,7 +42,9 @@ class ExTextField extends StatelessWidget {
     this.autofocus = false,
     this.style,
     this.labelText,
-    this.labelStyle,
+    this.labelStyle = const TextStyle(fontSize: 14),
+    this.helperText,
+    this.helperStyle = const TextStyle(fontSize: 12),
     this.cursorColor,
     this.autocorrect = true,
     this.cursorHeight,
@@ -58,6 +59,8 @@ class ExTextField extends StatelessWidget {
     this.borderColorFocus,
     this.initialValue,
     this.readOnly,
+    this.isRequired,
+    this.clearCallback,
   });
 
   final TextEditingController? controller;
@@ -76,7 +79,6 @@ class ExTextField extends StatelessWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final double height;
-  final Widget? icon;
   final double? borderRadius;
   final double? contentPaddingLeft;
   final double? contentPaddingTop;
@@ -92,6 +94,8 @@ class ExTextField extends StatelessWidget {
   final TextStyle? style;
   final String? labelText;
   final TextStyle? labelStyle;
+  final String? helperText;
+  final TextStyle? helperStyle;
   final Color? cursorColor;
   final bool autocorrect;
   final double? cursorHeight;
@@ -105,24 +109,29 @@ class ExTextField extends StatelessWidget {
   final AutovalidateMode? autovalidateMode;
   final String? initialValue;
   final bool? readOnly;
+  final bool? isRequired;
+  final Function? clearCallback;
 
   @override
   Widget build(BuildContext context) {
     return VStack(
       [
+        if (labelText != null) ...[
+          HStack(
+            [
+              labelText!.text.caption(context).textStyle(labelStyle).make(),
+              if (isRequired == true) ...[
+                ' *'.text.color(Colors.red).make(),
+              ],
+            ],
+          ).pOnly(bottom: 8),
+        ],
         ExBaseTextField(
+          height: height,
           borderType: ExTextFieldBorderType.roundLine,
           borderRadius: borderRadius,
           borderColor: borderColor,
-          prefixIcon: prefixIcon != null
-              ? HStack([
-                  16.widthBox,
-                  prefixIcon!,
-                  12.widthBox,
-                  Container(color: borderColor, height: 40, width: 1),
-                  16.widthBox,
-                ])
-              : null,
+          prefixIcon: prefixIcon != null ? HStack([16.widthBox, prefixIcon!]) : null,
           contentPaddingLeft: prefixIcon != null ? 0 : 16,
           suffixIcon: suffixIcon,
           keyboardType: keyboardType,
@@ -150,12 +159,14 @@ class ExTextField extends StatelessWidget {
           onSaved: onSaved,
           textAlign: textAlign,
           value: value,
-          style: style,
+          style: TextStyle(color: Colors.black),
           enableSuggestions: enableSuggestions,
           key: key,
           contentPaddingTop: contentPaddingTop,
           maxLength: maxLength,
+          clearCallback: clearCallback,
         ),
+        if (helperText != null) helperText!.text.caption(context).textStyle(helperStyle).make().pOnly(top: 8),
       ],
     );
   }

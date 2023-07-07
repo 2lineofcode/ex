@@ -17,23 +17,18 @@ mixin ExDialog {
   /// type : single input
   static void singleInput({
     required String title,
-    String? questionText,
-    String? helperText,
-    String? initialValue,
-    //
     TextStyle? titleTextStyle,
-    TextStyle? questionTextStyle,
-    TextStyle? helperTextStyle,
-
-    // double height = 250,
+    String? body,
+    TextStyle? bodyStyle,
+    //
+    String? initialValue,
     double width = 300,
-    double titleTextSize = 18,
     bool isDismissible = true,
-    String inputHint = '',
-    String btnOkText = 'Yes',
-    String btnCancelText = 'No',
+    String hint = '',
+    String btnYesText = 'OK',
+    String btnNoText = 'Cancel',
     Color? barrierColor = Colors.black54,
-    double cornerRadius = 4,
+    double cornerRadius = 12,
     Function(String)? onYes,
     Function()? onNo,
   }) {
@@ -48,84 +43,57 @@ mixin ExDialog {
         return SizedBox(
           width: width,
           child: AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(cornerRadius)),
-            ),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(cornerRadius))),
             contentPadding: EdgeInsets.all(0),
             scrollable: true,
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  color: Color(0xFFF6F7F9),
-                  height: 48,
-                  width: width,
-                  child: HStack(
-                    [
-                      title.text.size(titleTextSize).ellipsis.textStyle(titleTextStyle ?? TextStyle()).maxLines(1).bold.make().pSymmetric(h: 24).expand(),
-                    ],
-                  ),
-                ).cornerRadius(4),
-                24.heightBox,
-                if (questionText != null)
+                /// title
+                Text(
+                  title,
+                  style: titleTextStyle ?? TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16),
+                  maxLines: 2,
+                ).p16(),
+                12.heightBox,
+                if (body != null)
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
-                      questionText,
+                      body,
                       textAlign: TextAlign.start,
-                      style: questionTextStyle ?? TextStyle(fontSize: 12, color: Vx.neutral500),
+                      style: bodyStyle ?? TextStyle(fontSize: 14, color: Vx.neutral500),
                     ),
                   ),
+                12.heightBox,
                 ExTextField(
                   controller: tfController,
                   borderColor: Vx.neutral300,
-                  hint: inputHint,
+                  hint: hint,
                   onChanged: (s) => isInputValid.value = s.isNotBlank,
                 ).pSymmetric(h: 12, v: 12),
-                if (helperText != null)
-                  Text(
-                    helperText,
-                    textAlign: TextAlign.start,
-                    style: helperTextStyle ?? TextStyle(fontSize: 12, color: Vx.neutral500),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ).pSymmetric(h: 12),
+
                 Divider().pSymmetric(v: 16),
 
                 // action
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    OutlinedButton(
+                    ExButtonText(
+                      label: '$btnNoText',
+                      labelColor: Colors.black,
                       onPressed: onNo ?? Get.back,
-                      child: Text(
-                        btnCancelText,
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ).pOnly(right: 12, bottom: 12).h(55),
+                    ).pOnly(right: 12, bottom: 12).h(55).pOnly(right: 8),
                     Obx(
-                      () => ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Theme.of(context).primaryColor,
-                        ),
+                      () => ExButtonElevated(
+                        minimumSize: Size(70, 55),
+                        label: '$btnYesText',
                         onPressed: isInputValid.value == true
                             ? () {
-                                if (tfController.text.isNotBlank) {
-                                  Get.back();
-                                  onYes?.call(tfController.text);
-                                } else {
-                                  Get.snackbar(
-                                    'Gagal',
-                                    'Field tidak boleh kosong',
-                                    backgroundColor: Theme.of(context).errorColor,
-                                    colorText: Colors.white,
-                                    duration: 900.milliseconds,
-                                    animationDuration: 100.milliseconds,
-                                  );
-                                }
+                                Get.back();
+                                onYes?.call(tfController.text);
                               }
                             : null,
-                        child: Text(btnOkText),
                       ).pOnly(right: 12, bottom: 12).h(55),
                     ),
                   ],
@@ -145,7 +113,7 @@ mixin ExDialog {
     TextStyle? titleTextStyle,
     bool isDismissible = true,
     Color? barrierColor = Colors.black54,
-    double cornerRadius = 4,
+    double cornerRadius = 12,
     Widget? content,
   }) {
     showDialog(
@@ -164,17 +132,17 @@ mixin ExDialog {
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  color: Color(0xFFF6F7F9),
-                  height: 48,
-                  width: width,
-                  child: HStack(
-                    [
-                      title.text.size(titleTextSize).ellipsis.textStyle(titleTextStyle ?? TextStyle()).maxLines(1).bold.make().pSymmetric(h: 24).expand(),
-                    ],
+                /// title
+                Text(
+                  title,
+                  style: titleTextStyle ?? TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16),
+                  maxLines: 2,
+                ).p16(),
+                if (content != null)
+                  Padding(
+                    padding: EdgeInsets.all(12),
+                    child: content,
                   ),
-                ).cornerRadius(4),
-                if (content != null) content.p12()
               ],
             ),
           ),

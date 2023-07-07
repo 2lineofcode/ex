@@ -8,9 +8,7 @@ class AccordionPage extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: 'Accordion'.text.extraBold.size(16).make(),
-      ),
+      appBar: ExAppBar(title: 'Accordion'),
       body: VStack(
         [
           ExAccordion(

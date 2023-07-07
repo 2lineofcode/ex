@@ -22,7 +22,7 @@ import 'ui_widget_gallery/loading_page.dart';
 import 'ui_widget_gallery/progress_page.dart';
 import 'ui_widget_gallery/shimmer_page.dart';
 import 'helper_gallery/snackbar_page.dart';
-import 'ui_widget_gallery/table_page.dart';
+import 'ui_widget_gallery/dropdown_page.dart';
 import 'ui_widget_gallery/textfield_page.dart';
 import 'ui_widget_gallery/typography_page.dart';
 import 'helper_gallery/decoration_page.dart';
@@ -72,7 +72,7 @@ class Home extends GetView {
     'Loading Page': LoadingPage(),
     'Progress': ProgressPage(),
     'Shimmer': ShimmerPage(),
-    'Table': TablePage(),
+    'Dropdown': DropdownPage(),
     'TextField': TextFieldPage(),
   };
 
@@ -103,7 +103,7 @@ class Home extends GetView {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
-          title: 'Ex:mple'.text.extraBold.size(16).make(),
+          title: 'Ex:mple (Material3)'.text.extraBold.size(16).make(),
           elevation: 0.5,
           bottom: TabBar(
             labelColor: colorBlack,
@@ -123,7 +123,7 @@ class Home extends GetView {
             VStack([
               ListView.separated(
                 itemCount: xFeatures1.length,
-                separatorBuilder: (BuildContext context, int index) => Divider(),
+                separatorBuilder: (BuildContext context, int index) => ExDivider(dividerMode: ExDividerMode.DASH),
                 itemBuilder: (context, index) {
                   final data = xFeatures1.entries.toList();
                   return ListTile(
@@ -151,7 +151,9 @@ class Home extends GetView {
               Divider(),
               ListView.separated(
                 itemCount: xFeatures2.length,
-                separatorBuilder: (BuildContext context, int index) => Divider(),
+                separatorBuilder: (BuildContext context, int index) => Divider(
+                  color: colorNeutral[200],
+                ),
                 itemBuilder: (context, index) {
                   final data = xFeatures2.entries.toList();
                   return ListTile(

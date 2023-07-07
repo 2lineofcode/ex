@@ -4,6 +4,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 enum ExTextFieldBorderType { none, roundLine, underLine }
 
@@ -18,6 +19,7 @@ class ExBaseTextField extends StatefulWidget {
     this.isPassword = false,
     this.obscureText = false,
     this.borderType = ExTextFieldBorderType.underLine,
+    this.minLine = 1,
     this.maxLine = 1,
     this.maxLength,
     this.textAlign = TextAlign.left,
@@ -29,6 +31,7 @@ class ExBaseTextField extends StatefulWidget {
     this.icon,
     this.borderRadius,
     this.contentPaddingLeft,
+    this.contentPaddingRight,
     this.contentPaddingTop,
     this.keyboardType,
     this.textInputAction,
@@ -56,6 +59,7 @@ class ExBaseTextField extends StatefulWidget {
     this.borderColorFocus,
     this.initialValue,
     this.readOnly,
+    this.clearCallback,
   });
 
   final TextEditingController? controller;
@@ -65,6 +69,7 @@ class ExBaseTextField extends StatefulWidget {
   final bool isPassword;
   final bool obscureText;
   final ExTextFieldBorderType borderType;
+  final int? minLine;
   final int? maxLine;
   final int? maxLength;
   final TextAlign textAlign;
@@ -77,6 +82,7 @@ class ExBaseTextField extends StatefulWidget {
   final Widget? icon;
   final double? borderRadius;
   final double? contentPaddingLeft;
+  final double? contentPaddingRight;
   final double? contentPaddingTop;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
@@ -103,6 +109,7 @@ class ExBaseTextField extends StatefulWidget {
   final AutovalidateMode? autovalidateMode;
   final String? initialValue;
   final bool? readOnly;
+  final Function? clearCallback;
 
   @override
   _ExBaseTextFieldState createState() => _ExBaseTextFieldState();
@@ -163,6 +170,7 @@ class _ExBaseTextFieldState extends State<ExBaseTextField> {
       ),
       maxLength: widget.maxLength,
       maxLines: widget.maxLine,
+      minLines: widget.minLine,
       onChanged: onChanged,
       onEditingComplete: onEditingComplete,
       onFieldSubmitted: onSubmitted,
@@ -196,7 +204,7 @@ class _ExBaseTextFieldState extends State<ExBaseTextField> {
       children.add(
         GestureDetector(
           onTap: clear,
-          child: Icon(Icons.clear, size: tempSize),
+          child: Icon(Icons.clear, size: tempSize, color: Vx.neutral500),
         ),
       );
     }
@@ -250,7 +258,7 @@ class _ExBaseTextFieldState extends State<ExBaseTextField> {
     }
     return EdgeInsets.only(
       left: widget.contentPaddingLeft ?? contentPaddingLeft,
-      right: 8,
+      right: widget.contentPaddingRight ?? 8,
       top: widget.contentPaddingTop ?? (widget.height - 20) / 2,
       bottom: (widget.height - 20) / 2,
     );
@@ -304,6 +312,7 @@ class _ExBaseTextFieldState extends State<ExBaseTextField> {
   /// Clear the controller value
   void clear() {
     controller?.clear();
+    widget.clearCallback?.call();
     onChanged('');
   }
 

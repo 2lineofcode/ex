@@ -28,9 +28,14 @@ class AccordionPage extends GetView {
           ),
           ExAccordion(
             title: faker.lorem.word(),
+            titleBorderRadius: BorderRadius.all(Radius.circular(0)),
+            contentBorderRadius: BorderRadius.all(Radius.circular(0)),
             content: HStack(
               [
-                ExAvatarView(source: 'url', name: 'userFullName').pOnly(right: 12),
+                ExAvatarView(
+                  url: 'https://infomedia.tv/wp-content/uploads/2023/01/aa.jpg',
+                  name: 'userFullName',
+                ).onTap(() => ExImagePreview.showUrl('https://infomedia.tv/wp-content/uploads/2023/01/aa.jpg')).pOnly(right: 12),
                 faker.lorem.word().text.make(),
               ],
             ),

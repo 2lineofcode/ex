@@ -29,7 +29,7 @@ class DecorationPage extends GetView {
           '# ExDecorator.boxShadow'.text.make().pSymmetric(v: 8),
           Container(
             width: double.infinity,
-            decoration: ExDecorator.boxShadow(),
+            decoration: ExDecorator.shadow(),
             child: VStack([
               faker.lorem.sentence().text.make(),
             ]).p12(),

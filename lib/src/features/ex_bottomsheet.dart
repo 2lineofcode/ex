@@ -14,27 +14,31 @@ mixin ExBottomSheet {
   static void basic({
     required String? title,
     required Widget content,
+    TextStyle? titleStyle,
     Color? backgroundColor,
     Color? barrierColor,
     bool? isDismissible,
     bool? isFullScreen,
     bool? persistent,
     double? radius,
+    bool? showDivider = true,
+    double? padding,
   }) {
     // add haptic feedback (UX)
     HapticFeedback.lightImpact();
     Get.bottomSheet(
-      VStack(
-        [
-          ExDashLine(),
-          if (title != null) ...[
-            title.text.bold.black.size(18).maxLines(2).ellipsis.make().pOnly(top: 24, bottom: 8),
-            Divider().pOnly(bottom: 8),
+      SafeArea(
+        child: VStack(
+          [
+            ExDashLine().pSymmetric(v: 24),
+            if (title != null) ...[
+              title.text.bold.black.size(18).maxLines(2).textStyle(titleStyle).ellipsis.make().pOnly(bottom: 8).pSymmetric(h: 24),
+              if (showDivider == true) Divider().pOnly(bottom: 8) else 8.heightBox,
+            ],
+            content.pSymmetric(h: padding ?? 24),
           ],
-          content,
-        ],
-      ).p24(),
-      // isScrollControlled: true,
+        ),
+      ),
       backgroundColor: backgroundColor ?? Colors.white,
       barrierColor: barrierColor,
       isDismissible: isDismissible ?? true,
@@ -42,7 +46,7 @@ mixin ExBottomSheet {
       isScrollControlled: isFullScreen ?? false,
       shape: RoundedRectangleBorder(
         side: BorderSide(color: backgroundColor ?? Colors.white),
-        borderRadius: BorderRadius.circular(radius ?? 24),
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(radius ?? 24), topRight: Radius.circular(radius ?? 24)),
       ),
     );
   }
@@ -64,29 +68,31 @@ mixin ExBottomSheet {
         maxChildSize: 0.9,
         minChildSize: minChildSize,
         builder: (_, controller) => Container(
-          decoration: ExDecorator.boxBottomSheet(radius: radius),
-          child: VStack(
-            [
-              const ExDashLine(),
-              if (isClose)
-                const Align(
-                  alignment: Alignment.centerRight,
-                  child: Icon(
-                    Icons.close_rounded,
-                    size: 25,
-                    color: Colors.black,
-                  ),
-                ).onInkTap(
-                  () => {Get.back(), if (onClose != null) onClose() else ''},
-                )
-              else
-                const SizedBox(),
-              ListView(
-                controller: controller,
-                children: [content],
-              ).paddingSymmetric(vertical: 24).expand(),
-            ],
-          ).p24(),
+          decoration: ExDecorator.top(radius: radius),
+          child: SafeArea(
+            child: VStack(
+              [
+                const ExDashLine(),
+                if (isClose)
+                  const Align(
+                    alignment: Alignment.centerRight,
+                    child: Icon(
+                      Icons.close_rounded,
+                      size: 25,
+                      color: Colors.black,
+                    ),
+                  ).onInkTap(
+                    () => {Get.back(), if (onClose != null) onClose() else ''},
+                  )
+                else
+                  const SizedBox(),
+                ListView(
+                  controller: controller,
+                  children: [content],
+                ).paddingSymmetric(vertical: 24).expand(),
+              ],
+            ).p24(),
+          ),
         ),
       ),
       elevation: 10,
@@ -100,42 +106,62 @@ mixin ExBottomSheet {
     required String title,
     required String keySelected,
     required Function(String, String) callback,
-    bool isFullScreen = false,
+    bool? isFullScreen,
+    bool showDivider = false,
     Widget? onEmpty,
     double? radius = 16,
+    bool showTrailing = false,
+    TextStyle? titleStyle,
+    Color? backgroundColor,
+    Color? barrierColor,
+    bool? isDismissible,
+    bool? persistent,
+    double? padding,
   }) {
     // add haptic feedback (UX)
     HapticFeedback.lightImpact();
     Get.bottomSheet(
-      Container(
-        decoration: ExDecorator.boxBottomSheet(),
+      SafeArea(
         child: VStack(
           [
             ExDashLine().pOnly(top: 24),
-            title.text.bold.black.size(18).maxLines(2).ellipsis.make().pOnly(top: 24, bottom: 8),
-            Divider().pOnly(bottom: 8),
+            title.text.bold.black.size(18).maxLines(2).ellipsis.make().pOnly(top: 24, bottom: 8).pSymmetric(h: 24),
+            if (showDivider == true) Divider().pOnly(bottom: 8) else 8.heightBox,
             Expanded(
               child: data.isNotEmpty
                   ? ListView.separated(
-                      separatorBuilder: (context, index) => const Divider(),
+                      separatorBuilder: (context, index) => Divider(),
                       itemCount: data.length,
                       itemBuilder: (context, index) {
                         return ListTile(
-                          title: data[index].key == keySelected ? data[index].value.text.bold.size(14).make() : data[index].value.text.size(14).make(),
-                          trailing: data[index].key == keySelected ? Icon(Icons.radio_button_on) : Icon(Icons.radio_button_off),
+                          leading: data[index].icon,
+                          title: data[index].key == keySelected ? data[index].value.text.bold.color(Theme.of(context).primaryColor).size(14).make() : data[index].value.text.size(14).make(),
+                          trailing: showTrailing == true
+                              ? data[index].key == keySelected
+                                  ? Icon(Icons.radio_button_on)
+                                  : Icon(Icons.radio_button_off)
+                              : null,
                           onTap: () {
                             Get.back();
                             callback(data[index].key, data[index].value);
                           },
                         );
                       },
-                    )
+                    ).pSymmetric(h: 24)
                   : onEmpty ?? 0.heightBox,
             ),
           ],
-        ).pSymmetric(h: 24),
+        ),
       ),
-      isScrollControlled: isFullScreen,
+      backgroundColor: backgroundColor ?? Colors.white,
+      barrierColor: barrierColor,
+      isDismissible: isDismissible ?? true,
+      persistent: persistent ?? true,
+      isScrollControlled: isFullScreen ?? false,
+      shape: RoundedRectangleBorder(
+        side: BorderSide(color: backgroundColor ?? Colors.white),
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(radius ?? 24), topRight: Radius.circular(radius ?? 24)),
+      ),
     );
   }
 }

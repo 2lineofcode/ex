@@ -7,6 +7,8 @@ class ExAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leading,
     this.actions,
     this.textStyle,
+    this.elevation,
+    this.backgroundColor,
     super.key,
   });
 
@@ -14,6 +16,8 @@ class ExAppBar extends StatelessWidget implements PreferredSizeWidget {
   final TextStyle? textStyle;
   final Widget? leading;
   final List<Widget>? actions;
+  final double? elevation;
+  final Color? backgroundColor;
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
@@ -24,7 +28,9 @@ class ExAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: '$title'.text.bold.size(16).maxLines(1).ellipsis.textStyle(textStyle).make(),
       actions: actions,
       leading: leading ?? ExBackButton(),
-      // Add any other desired customization to the AppBar
+      centerTitle: false,
+      elevation: elevation,
+      backgroundColor: backgroundColor,
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:ex/ex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,15 +19,15 @@ mixin AppThemes {
   // light
   // —————————————————————————————————————————————————————————————————————————————
   static final light = ThemeData(
-    useMaterial3: true,
+    useMaterial3: false,
     // Coloring
     primaryColor: colorPrimary,
     primaryColorDark: colorPrimaryDark,
     primaryColorLight: colorPrimaryLight,
     primaryIconTheme: IconThemeData(color: colorNeutral),
     scaffoldBackgroundColor: colorWhite,
-    dividerColor: colorNeutral[200],
-    dividerTheme: DividerThemeData(color: colorNeutral[200]),
+    dividerColor: Vx.neutral300,
+    dividerTheme: DividerThemeData(color: Vx.neutral300),
 
     // ListTile
     listTileTheme: ListTileThemeData(

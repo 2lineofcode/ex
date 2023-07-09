@@ -1,3 +1,17 @@
+## 0.4.0
+* improve ExLoading
+* improve ExHttp
+* improve ExBottomSheet
+* iprove all Widget
+
+
+
+
+## 0.3.5
+* add ExButtonLoading
+* adjust default radius on ExButton, ExSnackbar
+
+
 ## 0.3.3
 * adjust for material3
 * fix minor bug on ExLoading (web)

@@ -1,4 +1,5 @@
 import 'package:ex/ex.dart';
+import 'package:example/core/index.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
@@ -111,6 +112,7 @@ class AlertPage extends StatelessWidget {
             width: double.infinity,
             onPressed: () => ExAlert.confirm(
               title: faker.lorem.word(),
+              color: colorError,
             ),
           ).expand(),
           12.widthBox,
@@ -118,6 +120,7 @@ class AlertPage extends StatelessWidget {
             label: 'T & M',
             width: double.infinity,
             onPressed: () => ExAlert.confirm(
+              color: colorError,
               title: faker.lorem.word(),
               message: faker.lorem.sentence(),
             ),
@@ -127,6 +130,7 @@ class AlertPage extends StatelessWidget {
             label: 'No Asset',
             width: double.infinity,
             onPressed: () => ExAlert.confirm(
+              color: colorError,
               title: faker.lorem.word(),
               message: faker.lorem.sentence(),
             ),
@@ -142,7 +146,41 @@ class AlertPage extends StatelessWidget {
             width: double.infinity,
             onPressed: () => ExAlert.custom(
               content: VStack(
-                [Text('asda')],
+                [
+                  Text(
+                    '${faker.lorem.words(2).join(' ')}',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: colorBlack),
+                  ),
+                  16.heightBox,
+                  Text(
+                    '${faker.lorem.sentences(2).join(' ')}',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  16.heightBox,
+                  ExTextField(
+                    hint: 'abehbatre/ex',
+                    borderRadius: 4,
+                  ),
+                  24.heightBox,
+                  HStack(
+                    [
+                      Spacer(),
+                      ExButtonText(
+                        label: 'Cancel',
+                        labelColor: colorBlack,
+                        onPressed: () {},
+                      ),
+                      12.widthBox,
+                      ExButtonOutline(
+                        label: 'Delete',
+                        backgroundColor: Vx.neutral100,
+                        borderColor: Vx.neutral100,
+                        labelColor: colorError,
+                        onPressed: () {},
+                      )
+                    ],
+                  ),
+                ],
               ),
             ),
           ).expand(),

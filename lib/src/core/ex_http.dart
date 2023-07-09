@@ -96,7 +96,7 @@ class ExHttp extends GetConnect {
           // await PrefHelper.setUserRefreshToken(rToken);
           // await PrefHelper.setUserGoogleToken(gToken);
 
-          // // re-adjust headers ...
+          // # re-adjust headers ...
           // request.headers['Authorization'] = '$token';
           // logI('TOKEN REFRESHED!');
           // }
@@ -136,12 +136,6 @@ Get.put(
   }) async {
     final result = Outcome();
     httpClient.baseUrl = '';
-    // httpClient.addRequestModifier<void>((request) async {
-    //   request.headers.clear();
-    //   request.headers.addAll(header ?? {});
-    //   return request;
-    // });
-
     Response res;
     switch (method) {
       case Method.GET:
@@ -185,7 +179,6 @@ Get.put(
     required String endPoint,
     Map<String, dynamic>? query,
     Map<String, String>? header,
-    bool withToken = true,
   }) async {
     await onInit();
     final result = Outcome();
@@ -215,12 +208,12 @@ Get.put(
     String endPoint = '',
     dynamic body,
     Map<String, String>? header,
-    bool withToken = true,
+    Map<String, String>? query,
   }) async {
     await onInit();
     final result = Outcome();
 
-    final res = await httpClient.post(endPoint, body: body, headers: header);
+    final res = await httpClient.post(endPoint, body: body, headers: header, query: query);
     await ApiUtils.apiLog(
       response: res,
       showHeader: showLogHeader,
@@ -246,12 +239,12 @@ Get.put(
     String endPoint = '',
     dynamic body,
     Map<String, String>? header,
-    bool withToken = true,
+    Map<String, String>? query,
   }) async {
     await onInit();
     final result = Outcome();
 
-    final res = await httpClient.put(endPoint, body: body);
+    final res = await httpClient.put(endPoint, body: body, headers: header, query: query);
     await ApiUtils.apiLog(
       response: res,
       showHeader: showLogHeader,
@@ -276,12 +269,11 @@ Get.put(
   Future<Outcome> httpDelete({
     String endPoint = '',
     Map<String, String>? header,
-    bool withToken = true,
   }) async {
     await onInit();
     final result = Outcome();
 
-    final res = await httpClient.delete(endPoint);
+    final res = await httpClient.delete(endPoint, headers: header);
     await ApiUtils.apiLog(
       response: res,
       showHeader: showLogHeader,
@@ -302,35 +294,33 @@ Get.put(
     }
   }
 
-  Future<Outcome> httpUploadMultipart({
-    required File file,
+  Future<Outcome> httpPatch({
     String endPoint = '',
+    dynamic body,
     Map<String, String>? header,
-    String? fileName,
-    bool withToken = true,
+    Map<String, String>? query,
   }) async {
     await onInit();
     final result = Outcome();
 
-    final form = FormData({'file': MultipartFile(file, filename: fileName ?? '')});
-    final res = await post(endPoint, form);
+    final res = await httpClient.patch(endPoint, body: body, headers: header, query: query);
     await ApiUtils.apiLog(
       response: res,
       showHeader: showLogHeader,
+      body: body,
       showResponse: showLogResponse,
     );
 
     if (res.isOk) {
-      result
+      return result
         ..body = res.body
         ..statusCode = res.statusCode
         ..isFailure = false;
-      return result;
     } else {
       return ErrorInterceptorHandling(
         response: res,
         result: result,
-        url: '${httpClient.baseUrl} | $endPoint',
+        url: '${httpClient.baseUrl}$endPoint',
       );
     }
   }
@@ -421,7 +411,7 @@ Outcome ErrorInterceptorHandling({
       result.errorMessages = 'Service Unavailable (503)';
       throw Exception(result.errorMessages);
     default: // offline
-      result.errorMessages = 'Tidak dapat terhubung ke server.';
+      result.errorMessages = response.statusText;
       throw Exception(result.errorMessages);
   }
 }

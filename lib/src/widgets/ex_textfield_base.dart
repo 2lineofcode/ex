@@ -176,7 +176,7 @@ class _ExBaseTextFieldState extends State<ExBaseTextField> {
       onFieldSubmitted: onSubmitted,
       onSaved: widget.onSaved,
       validator: widget.validator,
-      style: widget.style,
+      style: widget.style ?? TextStyle(color: Colors.black, fontSize: 14),
       initialValue: widget.initialValue,
       readOnly: widget.readOnly ?? false,
     );

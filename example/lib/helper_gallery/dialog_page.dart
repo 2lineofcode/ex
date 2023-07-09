@@ -3,15 +3,13 @@ import 'package:faker/faker.dart';
 
 import 'package:flutter/material.dart';
 
-class InputDialogPage extends StatelessWidget {
-  const InputDialogPage({Key? key}) : super(key: key);
+class DialogPage extends StatelessWidget {
+  const DialogPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: 'Dialog'.text.extraBold.size(16).make(),
-      ),
+      appBar: ExAppBar(title: 'Dialog'),
       body: VStack([
         // 1
         'ExDialog.singleInput'.text.make().pOnly(bottom: 8),
@@ -26,7 +24,7 @@ class InputDialogPage extends StatelessWidget {
             onYes: (output) => ExSnackbar.info(output),
           ),
         ),
-        ExDivider().pSymmetric(v: 16),
+        Divider().pSymmetric(v: 16),
 
         // 2
         'ExDialog.custom'.text.make().pOnly(bottom: 8),
@@ -38,7 +36,7 @@ class InputDialogPage extends StatelessWidget {
             content: VStack(
               [
                 Text('-body-').pOnly(bottom: 12),
-                ExAvatarView(source: 'url', name: 'userFullName', size: 24),
+                ExAvatarView(url: 'url', name: 'userFullName', size: 24),
                 Text('jijnii').pSymmetric(v: 12),
                 IconButton(onPressed: () {}, icon: Icon(Icons.next_plan)),
                 ExButtonElevated(
@@ -51,6 +49,8 @@ class InputDialogPage extends StatelessWidget {
             ),
           ),
         ),
+
+        Divider().pSymmetric(v: 16),
       ]).p16().scrollVertical(),
     );
   }

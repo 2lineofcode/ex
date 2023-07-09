@@ -17,21 +17,21 @@ final _internal = Random();
 
 // -- example --
 // main() {
-//   print(ExUtils.randomBetween(10, 20)); // some integer between 10 and 20 where 0 <= min <= max <= 999999999999999
-//   print(ExUtils.randomNumeric(4)); // sequence of 4 random numbers i.e. 3259
-//   print(ExUtils.randomString(10)); // random sequence of 10 characters i.e. e~f93(4l-
-//   print(ExUtils.randomAlpha(5)); // random sequence of 5 alpha characters i.e. aRztC
-//   print(ExUtils.randomAlphaNumeric(10)); // random sequence of 10 alpha numeric i.e. aRztC1y32B
-//
-//   var r = Random.secure();
-//   print(ExUtils.randomBetween(10, 20, provider: CoreRandomProvider.from(r))); // You can use a provider from Random.
-//   print(ExUtils.randomBetween(10, 20, provider: _Provider())); // Or you can implement your own.
+  // print(ExRandom.between(10, 20)); // some integer between 10 and 20 where 0 <= min <= max <= 999999999999999
+  // print(ExRandom.numeric(4)); // sequence of 4 random numbers i.e. 3259
+  // print(ExRandom.string(10)); // random sequence of 10 characters i.e. e~f93(4l-
+  // print(ExRandom.alpha(5)); // random sequence of 5 alpha characters i.e. aRztC
+  // print(ExRandom.alphaNumeric(10)); // random sequence of 10 alpha numeric i.e. aRztC1y32B
+
+  // var r = Random.secure();
+  // print(ExRandom.between(10, 20, provider: CoreRandomProvider.from(r))); // You can use a provider from Random.
+  // print(ExRandom.between(10, 20, provider: _Provider())); // Or you can implement your own.
 // }
 
-mixin ExUtils {
+mixin ExRandom {
   /// Generates a random integer where [from] <= [to] inclusive
   /// where 0 <= from <= to <= 999999999999999
-  static int randomBetween(
+  static int between(
     int from,
     int to, {
     AbstractRandomProvider provider = const DefaultRandomProvider(),
@@ -69,7 +69,7 @@ mixin ExUtils {
   /// Generates a random string of [length] with characters
   /// between ascii [from] to [to].
   /// Defaults to characters of ascii '!' to '~'.
-  static String randomString(
+  static String string(
     int length, {
     int from = asciiStart,
     int to = asciiEnd,
@@ -78,17 +78,17 @@ mixin ExUtils {
     return String.fromCharCodes(
       List.generate(
         length,
-        (index) => randomBetween(from, to, provider: provider),
+        (index) => between(from, to, provider: provider),
       ),
     );
   }
 
   /// Generates a random string of [length] with only numeric characters.
-  static String randomNumeric(
+  static String numeric(
     int length, {
     AbstractRandomProvider provider = const DefaultRandomProvider(),
   }) =>
-      randomString(
+      string(
         length,
         from: numericStart,
         to: numericEnd,
@@ -96,7 +96,7 @@ mixin ExUtils {
       );
 
   /// Generates a random string of [length] with only alpha characters.
-  static String randomAlpha(
+  static String alpha(
     int length, {
     AbstractRandomProvider provider = const DefaultRandomProvider(),
   }) {
@@ -105,15 +105,15 @@ mixin ExUtils {
     final sumWeight = lowerAlphaWeight + upperAlphaWeight;
     lowerAlphaWeight /= sumWeight;
     upperAlphaWeight /= sumWeight;
-    final lowerAlphaLength = randomBetween(0, length, provider: provider);
+    final lowerAlphaLength = between(0, length, provider: provider);
     final upperAlphaLength = length - lowerAlphaLength;
-    final lowerAlpha = randomString(
+    final lowerAlpha = string(
       lowerAlphaLength,
       from: lowerAlphaStart,
       to: lowerAlphaEnd,
       provider: provider,
     );
-    final upperAlpha = randomString(
+    final upperAlpha = string(
       upperAlphaLength,
       from: upperAlphaStart,
       to: upperAlphaEnd,
@@ -123,15 +123,15 @@ mixin ExUtils {
   }
 
   /// Generates a random string of [length] with alpha-numeric characters.
-  static String randomAlphaNumeric(
+  static String alphaNumeric(
     int length, {
     AbstractRandomProvider provider = const DefaultRandomProvider(),
   }) {
-    final alphaLength = randomBetween(0, length, provider: provider);
+    final alphaLength = between(0, length, provider: provider);
     final numericLength = length - alphaLength;
-    final alpha = randomAlpha(alphaLength, provider: provider);
-    final numeric = randomNumeric(numericLength, provider: provider);
-    return randomMerge(alpha, numeric);
+    final xalpha = alpha(alphaLength, provider: provider);
+    final xnumeric = numeric(numericLength, provider: provider);
+    return randomMerge(xalpha, xnumeric);
   }
 
   /// Merge [a] with [b] and shuffle.

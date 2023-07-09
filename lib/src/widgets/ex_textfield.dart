@@ -28,8 +28,9 @@ class ExTextField extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.height = 40,
-    this.borderRadius = 12,
-    this.contentPaddingLeft,
+    this.borderRadius = 8,
+    this.contentPaddingLeft = 12,
+    this.contentPaddingRight,
     this.contentPaddingTop,
     this.keyboardType,
     this.textInputAction,
@@ -81,6 +82,7 @@ class ExTextField extends StatelessWidget {
   final double height;
   final double? borderRadius;
   final double? contentPaddingLeft;
+  final double? contentPaddingRight;
   final double? contentPaddingTop;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
@@ -131,8 +133,9 @@ class ExTextField extends StatelessWidget {
           borderType: ExTextFieldBorderType.roundLine,
           borderRadius: borderRadius,
           borderColor: borderColor,
-          prefixIcon: prefixIcon != null ? HStack([16.widthBox, prefixIcon!]) : null,
-          contentPaddingLeft: prefixIcon != null ? 0 : 16,
+          prefixIcon: prefixIcon != null ? HStack([10.widthBox, prefixIcon!]) : null,
+          contentPaddingLeft: prefixIcon != null ? 0 : contentPaddingLeft,
+          contentPaddingRight: contentPaddingRight,
           suffixIcon: suffixIcon,
           keyboardType: keyboardType,
           textInputAction: textInputAction,
@@ -159,7 +162,7 @@ class ExTextField extends StatelessWidget {
           onSaved: onSaved,
           textAlign: textAlign,
           value: value,
-          style: TextStyle(color: Colors.black),
+          style: style,
           enableSuggestions: enableSuggestions,
           key: key,
           contentPaddingTop: contentPaddingTop,

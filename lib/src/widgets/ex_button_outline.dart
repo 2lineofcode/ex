@@ -19,7 +19,7 @@ class ExButtonOutline extends StatelessWidget {
     this.onPressed,
     this.labelColor,
     this.borderColor,
-    this.radius = 12,
+    this.radius = 90,
     this.labelSize,
     this.backgroundColor,
     this.isLabelBold = true,
@@ -43,7 +43,7 @@ class ExButtonOutline extends StatelessWidget {
     return OutlinedButton(
       onPressed: onPressed,
       style: OutlinedButton.styleFrom(
-        primary: labelColor,
+        primary: Colors.black87,
         backgroundColor: backgroundColor,
         side: BorderSide(color: borderColor ?? Vx.neutral300),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),

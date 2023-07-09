@@ -12,10 +12,10 @@ class ProgressPage extends StatefulWidget {
 }
 
 class _ProgressPageState extends State<ProgressPage> {
-  var counter = ExUtils.randomBetween(10, 99);
-  var counter2 = ExUtils.randomBetween(10, 99);
-  var counter3 = ExUtils.randomBetween(10, 99);
-  var counter4 = ExUtils.randomBetween(10, 99);
+  var counter = ExRandom.between(10, 99);
+  var counter2 = ExRandom.between(10, 99);
+  var counter3 = ExRandom.between(10, 99);
+  var counter4 = ExRandom.between(10, 99);
 
   @override
   Widget build(BuildContext context) {
@@ -83,10 +83,10 @@ class _ProgressPageState extends State<ProgressPage> {
           label: 're-render',
           onPressed: () {
             setState(() {
-              counter = ExUtils.randomBetween(10, 90);
-              counter2 = ExUtils.randomBetween(10, 90);
-              counter3 = ExUtils.randomBetween(10, 90);
-              counter4 = ExUtils.randomBetween(10, 90);
+              counter = ExRandom.between(10, 90);
+              counter2 = ExRandom.between(10, 90);
+              counter3 = ExRandom.between(10, 90);
+              counter4 = ExRandom.between(10, 90);
               debugPrint('counter: $counter');
             });
           },

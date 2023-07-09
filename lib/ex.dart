@@ -13,5 +13,7 @@ export 'src/core/index.dart';
 export 'src/extensions/index.dart';
 // features
 export 'src/features/index.dart';
+// utils
+export 'src/utils/utils.dart';
 // widgets
 export 'src/widgets/index.dart';

@@ -27,11 +27,12 @@ class ExTextFieldMultiline extends StatelessWidget {
     this.autofocus,
     this.validator,
     this.clear = true,
-    this.contentPaddingLeft = 16,
-    this.contentPaddingRight = 16,
-    this.borderRadius = 12,
+    this.contentPaddingLeft = 12,
+    this.contentPaddingRight = 12,
+    this.borderRadius = 8,
     this.labelText,
     this.labelTextStyle = const TextStyle(fontSize: 14),
+    this.style,
     this.labelIcon,
     this.inputFormatters,
     this.maxLength,
@@ -59,6 +60,7 @@ class ExTextFieldMultiline extends StatelessWidget {
   final double? borderRadius;
   final String? labelText;
   final TextStyle labelTextStyle;
+  final TextStyle? style;
   final Widget? labelIcon;
   final List<TextInputFormatter>? inputFormatters;
   final bool? isRequired;
@@ -97,8 +99,9 @@ class ExTextFieldMultiline extends StatelessWidget {
           enabled: enabled ?? true,
           contentPaddingLeft: contentPaddingLeft,
           contentPaddingRight: contentPaddingRight,
-          contentPaddingTop: 8,
+          contentPaddingTop: 12,
           controller: controller,
+          style: style,
           fillColor: fillColor,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: validator,

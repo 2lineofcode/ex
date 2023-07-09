@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../ex.dart';
@@ -40,6 +41,7 @@ mixin ExDialog {
       barrierDismissible: isDismissible,
       barrierColor: barrierColor,
       builder: (context) {
+        HapticFeedback.lightImpact();
         return SizedBox(
           width: width,
           child: AlertDialog(
@@ -70,6 +72,8 @@ mixin ExDialog {
                   controller: tfController,
                   borderColor: Vx.neutral300,
                   hint: hint,
+                  borderRadius: 4,
+                  fillColor: Vx.neutral50,
                   onChanged: (s) => isInputValid.value = s.isNotBlank,
                 ).pSymmetric(h: 12, v: 12),
 
@@ -121,6 +125,7 @@ mixin ExDialog {
       barrierDismissible: isDismissible,
       barrierColor: barrierColor,
       builder: (context) {
+        HapticFeedback.lightImpact();
         return SizedBox(
           width: width,
           child: AlertDialog(

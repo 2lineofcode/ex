@@ -14,22 +14,11 @@ class ExUiShimmerList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      height: context.mq.size.height,
-      width: context.mq.size.width,
-      child: ZStack([
-        Column(
-          children: List.generate(count!, (index) {
-            return buildCC(context);
-          }),
-        ).scrollVertical(),
-        // VStack([
-        //   LoadingAnimationWidget.discreteCircle(color: Colors.blueGrey, size: 24).centered(),
-        //   8.heightBox,
-        //   'asdkfhjkafhka'.text.size(12).makeCentered(),
-        // ]).centered(),
-      ]),
+    return ListView.separated(
+      shrinkWrap: true,
+      itemCount: count ?? 10,
+      separatorBuilder: (context, index) => Divider(),
+      itemBuilder: (context, index) => buildCC(context),
     );
   }
 
@@ -63,6 +52,6 @@ class ExUiShimmerList extends StatelessWidget {
           VxCircle().wh(12, 12).shimmer(primaryColor: primaryColor, secondaryColor: secondaryColor),
         ],
       ).p8(),
-    ).card.make();
+    );
   }
 }

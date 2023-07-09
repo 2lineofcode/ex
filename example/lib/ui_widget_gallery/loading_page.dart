@@ -9,7 +9,7 @@ class LoadingController extends GetxController with StateMixin {
   Future<void> onInit() async {
     log('im here..');
     change(0, status: RxStatus.loading());
-    await 1.seconds.delay();
+    await 5.seconds.delay();
     change(0, status: RxStatus.success());
     super.onInit();
   }
@@ -29,12 +29,14 @@ class LoadingPage extends GetView<LoadingController> {
         ],
       ),
       body: controller.obx(
-        (state) => VStack(
-          [
-            'DATA LOADED'.text.xl.makeCentered().pOnly(bottom: 16),
-            '${faker.lorem.sentence()}'.text.center.green600.makeCentered(),
-          ],
-        ).centered().p12(),
+        (state) => ExContainer(
+          child: VStack(
+            [
+              'DATA LOADED'.text.xl.makeCentered().pOnly(bottom: 16),
+              '${faker.lorem.sentence()}'.text.center.green600.makeCentered(),
+            ],
+          ).centered().p12(),
+        ),
         onLoading: ExUiLoading(),
       ),
     );

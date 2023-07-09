@@ -12,6 +12,24 @@ class ButtonPage extends StatelessWidget {
     return Scaffold(
       appBar: ExAppBar(title: 'Button'),
       body: VStack([
+        'Loading'.text.bold.make().pOnly(bottom: 12),
+        ExButtonLoading(
+          animate: true,
+          animationDuration: 1.seconds,
+          type: ExButtonType.elevated,
+          borderColor: Colors.pink,
+          height: 44,
+          width: 200,
+          child: 'Login'.text.make(),
+          onTap: (startLoading, stopLoading, btnState) async {
+            startLoading();
+            await 5.seconds.delayed();
+            stopLoading();
+            ExSnackbar.danger('login failed');
+          },
+        ).centered(),
+        Divider().pSymmetric(v: 16),
+
         'Elevated'.text.bold.make().pOnly(bottom: 12),
         HStack([
           ExButtonElevated(

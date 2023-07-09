@@ -20,7 +20,7 @@ class ExButtonText extends StatelessWidget {
     this.width,
     this.height = 45,
     this.backgroundColor,
-    this.radius = 12,
+    this.radius = 90,
     this.onPressed,
     this.child,
     this.icon,

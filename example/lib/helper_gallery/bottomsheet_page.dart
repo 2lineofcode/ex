@@ -24,7 +24,8 @@ class BottomSheetPage extends StatelessWidget {
           width: double.infinity,
           onPressed: () {
             ExBottomSheet.basic(
-              title: faker.lorem.word(),
+              title: 'Base Location',
+              showDivider: true,
               content: VStack([
                 faker.lorem.sentence().text.make(),
                 4.heightBox,
@@ -61,6 +62,7 @@ class BottomSheetPage extends StatelessWidget {
 
             ExBottomSheet.list(
               data: data,
+              showDivider: true,
               keySelected: keyItemBottomSheetSelected,
               title: '${faker.lorem.word().toTitleCase}',
               callback: (k, v) {

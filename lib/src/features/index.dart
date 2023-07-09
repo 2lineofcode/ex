@@ -7,5 +7,4 @@ export 'ex_image_preview.dart';
 export 'ex_keyval.dart';
 export 'ex_loading_dialog.dart';
 export 'ex_snackbar.dart';
-export 'ex_utils.dart';
 export 'index.dart';

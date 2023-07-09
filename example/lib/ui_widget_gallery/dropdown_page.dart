@@ -1,5 +1,4 @@
 import 'package:ex/ex.dart';
-import 'package:example/core/index.dart';
 import 'package:flutter/material.dart';
 
 class DropdownPage extends StatelessWidget {
@@ -15,10 +14,9 @@ class DropdownPage extends StatelessWidget {
         [
           ExDropdown(
             hint: 'hintt..',
-            textStyle: TextStyle(color: colorBlack),
             data: [
-              ExKeyValue(key: 1, value: 'text, leading, trailing', icon: Icon(Icons.inbox), isSelected: true),
-              ExKeyValue(key: 2, value: 'text, leading', icon: Icon(Icons.inbox)),
+              ExKeyValue(key: 1, value: 'text, leading, trailing'),
+              ExKeyValue(key: 2, value: 'text, leading'),
               ExKeyValue(key: 3, value: 'text only'),
             ],
             callback: (k, v) {

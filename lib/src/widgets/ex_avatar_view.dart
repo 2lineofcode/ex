@@ -2,6 +2,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../ex.dart';
@@ -15,7 +16,7 @@ import '../../ex.dart';
 class ExAvatarView extends StatelessWidget {
   const ExAvatarView({
     /// url or assets
-    required this.source,
+    required this.url,
     super.key,
     this.header,
     this.package,
@@ -32,7 +33,7 @@ class ExAvatarView extends StatelessWidget {
     this.errorWidget,
   });
 
-  final String source;
+  final String url;
   final Map<String, String>? header;
   final String? package;
   final String? name;
@@ -50,7 +51,7 @@ class ExAvatarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// assets
-    if (!source.isURL) {
+    if (!url.isURL) {
       return Container(
         width: size ?? width,
         height: size ?? height,
@@ -59,13 +60,21 @@ class ExAvatarView extends StatelessWidget {
           boxShadow: [BoxShadow(color: Colors.grey[200]!, spreadRadius: 1, blurRadius: 1, offset: Offset(0, 1))],
         ),
         child: ClipOval(
-          child: Image.asset(
-            source,
-            height: size ?? height,
-            width: size ?? width,
-            color: bgColor,
-            package: package,
-          ),
+          child: url.contains('.svg')
+              ? SvgPicture.asset(
+                  url,
+                  width: size ?? width,
+                  height: size ?? height,
+                  placeholderBuilder: (context) => ExProgressBar(color: Theme.of(context).primaryColor, size: 12).centered(),
+                  package: package,
+                )
+              : Image.asset(
+                  url,
+                  height: size ?? height,
+                  width: size ?? width,
+                  color: bgColor,
+                  package: package,
+                ),
         ),
       );
     }
@@ -82,7 +91,7 @@ class ExAvatarView extends StatelessWidget {
               )
             : BoxDecoration(),
         child: CircularProfileAvatar(
-          imageUrl: source,
+          imageUrl: url,
           httpHeaders: header,
           radius: 100,
           backgroundColor: bgColor ?? Colors.transparent,

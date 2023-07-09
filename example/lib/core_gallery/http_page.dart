@@ -50,6 +50,7 @@ class HttpController extends GetxController {
 
   Future<void> hput() async {
     ExLoading.show();
+    await 10.seconds.delayed();
     await apiService.httpPut(endPoint: '/posts/1').then((response) {
       ExSnackbar.success(response.statusCode);
     }).catchError((e) {

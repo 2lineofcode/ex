@@ -51,6 +51,7 @@ class ExDropdown extends StatelessWidget {
     this.title = 'Options',
     this.textStyle,
     this.hint,
+    this.radius,
     super.key,
   });
 
@@ -60,6 +61,7 @@ class ExDropdown extends StatelessWidget {
   final String title;
   final TextStyle? textStyle;
   final Function(dynamic, String)? callback;
+  final double? radius;
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +74,7 @@ class ExDropdown extends StatelessWidget {
       suffixIcon: Icon(Icons.keyboard_arrow_down_rounded, color: Vx.neutral500),
       enabled: false,
       style: textStyle,
+      borderRadius: radius ?? 8,
     ).onInkTap(() {
       controller.onTap(title: title, data: data);
     });

@@ -101,7 +101,7 @@ mixin ExAlert {
 
   static void confirm({
     Widget? icon,
-    Color color = const Color(0xFFF69348),
+    Color? color,
     double radius = 16,
     String? title,
     TextStyle? titleStyle,
@@ -132,7 +132,7 @@ mixin ExAlert {
       messageTextAlign: messageTextAlign,
       messageTextColor: messageTextColor,
       isDismissible: isDismissible,
-      color: color,
+      color: color ?? Theme.of(Get.context!).primaryColor,
       radius: radius,
       btnYesText: btnYesText,
       onYes: onYes,

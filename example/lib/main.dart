@@ -17,7 +17,7 @@ import 'ui_widget_gallery/button_page.dart';
 import 'ui_widget_gallery/divider_page.dart';
 import 'ui_widget_gallery/error_or_empty_page.dart';
 import 'ui_widget_gallery/imageview_page.dart';
-import 'helper_gallery/input_dialog_page.dart';
+import 'helper_gallery/dialog_page.dart';
 import 'ui_widget_gallery/loading_page.dart';
 import 'ui_widget_gallery/progress_page.dart';
 import 'ui_widget_gallery/shimmer_page.dart';
@@ -49,7 +49,7 @@ Future<void> main() async {
 
   runApp(
     GetMaterialApp(
-      title: 'Ex:ample',
+      title: 'Ex:mple',
       debugShowCheckedModeBanner: false,
       home: Home(),
       theme: AppThemes.light,
@@ -78,7 +78,7 @@ class Home extends GetView {
 
   final xFeatures2 = {
     'Alert': AlertPage(),
-    'Dialog Input': InputDialogPage(),
+    'Dialog Input': DialogPage(),
     'BottomSheet': BottomSheetPage(),
     'DateTime Picker': DateTimePage(),
     'Decorator': DecorationPage(),
@@ -105,16 +105,22 @@ class Home extends GetView {
         appBar: AppBar(
           title: 'Ex:mple (Material3)'.text.extraBold.size(16).make(),
           elevation: 0.5,
-          bottom: TabBar(
-            labelColor: colorBlack,
-            unselectedLabelColor: colorNeutral[200],
-            isScrollable: true,
-            tabs: [
-              'UI/Widget'.text.make().p16(),
-              'Helper'.text.make().p16(),
-              'Extension'.text.make().p16(),
-              'Core'.text.make().p16(),
-            ],
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(40),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: TabBar(
+                labelColor: colorBlack,
+                unselectedLabelColor: colorNeutral[200],
+                isScrollable: true,
+                tabs: [
+                  'UI/Widget'.text.make().p16(),
+                  'Helper'.text.make().p16(),
+                  'Extension'.text.make().p16(),
+                  'Core'.text.make().p16(),
+                ],
+              ),
+            ),
           ),
         ),
         body: TabBarView(
@@ -123,7 +129,7 @@ class Home extends GetView {
             VStack([
               ListView.separated(
                 itemCount: xFeatures1.length,
-                separatorBuilder: (BuildContext context, int index) => ExDivider(dividerMode: ExDividerMode.DASH),
+                separatorBuilder: (BuildContext context, int index) => Divider(),
                 itemBuilder: (context, index) {
                   final data = xFeatures1.entries.toList();
                   return ListTile(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:ex/ex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,16 +28,19 @@ mixin ExLoading {
   ///    Future.delayed(3.seconds).then((value) => ExLoading.dismiss(Get.context!));
   /// }
   /// ```
-  static void show({
-    bool isDismissible = true,
+  static Future<void> show({
+    bool isDismissible = false,
     Widget? child,
-    double? radius,
-    Color? backgroundColor,
+    Color? barrierColor,
     String? message,
     double? paddingSymmetric,
-  }) {
-    logW(Get.width - 300);
-    Get.dialog(
+  }) async {
+    final showCancel = false.obs;
+    Future.delayed(5.seconds, () {
+      showCancel.value = true;
+    });
+
+    await Get.dialog(
       Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: child?.p24() ??
@@ -45,10 +50,21 @@ mixin ExLoading {
                   color: Theme.of(Get.context!).primaryColor,
                   size: 32,
                 ).centered(),
-                if (message != null) Text(message, textAlign: TextAlign.center).centered().pOnly(top: 16)
+                if (message != null) Text(message, textAlign: TextAlign.center).centered().pOnly(top: 16),
+                Obx(
+                  () => showCancel.value == true
+                      ? ExButtonOutline(
+                          label: 'Cancel',
+                          height: 33,
+                          onPressed: () => Get.back(),
+                        ).pOnly(top: 24)
+                      : Container(),
+                )
               ],
             ).p24(),
-      ).pSymmetric(h: paddingSymmetric ?? 100),
+      ).pSymmetric(h: paddingSymmetric ?? 90),
+      barrierDismissible: isDismissible,
+      barrierColor: barrierColor,
     );
   }
 

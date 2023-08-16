@@ -1,6 +1,6 @@
 name: ex
 description: Fully Customize Material UI |  all material widget with functional many helper/utils like `ExHttp, ExLog, ExAlert, ExBottomSheet, ExDialog, ExSnackbar` 
-version: 0.4.0
+version: 0.4.1
 homepage: https://github.com/abehbatre/ex
 repository: https://github.com/abehbatre/ex
 issue_tracker: https://github.com/abehbatre/ex/issues

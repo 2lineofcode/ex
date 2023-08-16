@@ -5,4 +5,9 @@ extension Unique<E, Id> on List<E> {
       ..retainWhere((x) => ids.add(id != null ? id(x) : x as Id));
     return list;
   }
+
+  List<E> limitLength(int maxLength) {
+    return (length <= maxLength) ? this : sublist(0, maxLength);
+  }
+  
 }

@@ -24,6 +24,7 @@ class ExButtonOutline extends StatelessWidget {
     this.backgroundColor,
     this.isLabelBold = true,
     this.child,
+    this.icon,
   });
 
   final double? width;
@@ -37,6 +38,7 @@ class ExButtonOutline extends StatelessWidget {
   final Color? backgroundColor;
   final double radius;
   final Widget? child;
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +53,7 @@ class ExButtonOutline extends StatelessWidget {
       ),
       child: child ??
           HStack([
+            icon?.pOnly(right: 8) ?? 0.heightBox,
             Text(
               '$label',
               style: TextStyle(

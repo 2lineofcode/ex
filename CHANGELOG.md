@@ -1,3 +1,6 @@
+## 0.4.3
+* add extension (date)
+
 ## 0.4.2
 * upgrade to flutter 3.13.*
 

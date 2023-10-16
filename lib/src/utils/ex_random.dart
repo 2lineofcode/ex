@@ -17,15 +17,15 @@ final _internal = Random();
 
 // -- example --
 // main() {
-  // print(ExRandom.between(10, 20)); // some integer between 10 and 20 where 0 <= min <= max <= 999999999999999
-  // print(ExRandom.numeric(4)); // sequence of 4 random numbers i.e. 3259
-  // print(ExRandom.string(10)); // random sequence of 10 characters i.e. e~f93(4l-
-  // print(ExRandom.alpha(5)); // random sequence of 5 alpha characters i.e. aRztC
-  // print(ExRandom.alphaNumeric(10)); // random sequence of 10 alpha numeric i.e. aRztC1y32B
+// print(ExRandom.between(10, 20)); // some integer between 10 and 20 where 0 <= min <= max <= 999999999999999
+// print(ExRandom.numeric(4)); // sequence of 4 random numbers i.e. 3259
+// print(ExRandom.string(10)); // random sequence of 10 characters i.e. e~f93(4l-
+// print(ExRandom.alpha(5)); // random sequence of 5 alpha characters i.e. aRztC
+// print(ExRandom.alphaNumeric(10)); // random sequence of 10 alpha numeric i.e. aRztC1y32B
 
-  // var r = Random.secure();
-  // print(ExRandom.between(10, 20, provider: CoreRandomProvider.from(r))); // You can use a provider from Random.
-  // print(ExRandom.between(10, 20, provider: _Provider())); // Or you can implement your own.
+// var r = Random.secure();
+// print(ExRandom.between(10, 20, provider: CoreRandomProvider.from(r))); // You can use a provider from Random.
+// print(ExRandom.between(10, 20, provider: _Provider())); // Or you can implement your own.
 // }
 
 mixin ExRandom {

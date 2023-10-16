@@ -19,8 +19,6 @@ analyzer:
     - "bin/cache/**"
     - "dev/conductor/lib/proto/*"
     - "lib/generated/**"
-    - "lib/app/models/response/**"
-    - "lib/app/models/request/**"
     
 
 linter:
@@ -48,4 +46,3 @@ linter:
     use_decorated_box: false
     use_colored_box: false
     use_if_null_to_convert_nulls_to_bools: false
-    avoid_relative_lib_imports: false

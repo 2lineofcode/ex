@@ -28,19 +28,19 @@ mixin ExLoading {
   ///    Future.delayed(3.seconds).then((value) => ExLoading.dismiss(Get.context!));
   /// }
   /// ```
-  static Future<void> show({
-    bool isDismissible = false,
+  static void show({
+    bool isDismissible = true,
     Widget? child,
     Color? barrierColor,
     String? message,
     double? paddingSymmetric,
-  }) async {
+  }) {
     final showCancel = false.obs;
     Future.delayed(5.seconds, () {
       showCancel.value = true;
     });
 
-    await Get.dialog(
+    Get.dialog(
       Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: child?.p24() ??
@@ -55,7 +55,7 @@ mixin ExLoading {
                   () => showCancel.value == true
                       ? ExButtonOutline(
                           label: 'Cancel',
-                          height: 33,
+                          height: 40,
                           onPressed: () => Get.back(),
                         ).pOnly(top: 24).centered()
                       : Container(),

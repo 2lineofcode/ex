@@ -1,3 +1,7 @@
+## 0.4.5
+* add example ExLoading
+* fix ExLoading (cancel button)
+
 ## 0.4.4
 * fix Extension (String)
 * fix ExLoading (cancel button)

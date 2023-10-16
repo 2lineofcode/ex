@@ -17,22 +17,26 @@ extension MiscExtensions on String? {
 
   /// input = aditya pratama | output = AP
   String get initialName {
-    final splitW = this!.split(' ');
-    var output = '';
+    if (isNotNullOrEmpty) {
+      final splitW = this!.split(' ');
+      var output = '';
 
-    try {
-      if (splitW.length > 1) {
-        final fWord = splitW[0].substring(0, 1).toUpperCase();
-        final sWord = splitW[1].substring(0, 1).toUpperCase();
-        output = fWord + sWord;
-      } else {
-        final fWord = splitW[0].substring(0, 1).toUpperCase();
-        output = fWord;
+      try {
+        if (splitW.length > 1) {
+          final fWord = splitW[0].substring(0, 1).toUpperCase();
+          final sWord = splitW[1].substring(0, 1).toUpperCase();
+          output = fWord + sWord;
+        } else {
+          final fWord = splitW[0].substring(0, 1).toUpperCase();
+          output = fWord;
+        }
+      } catch (_) {
+        output = '-';
       }
-    } catch (_) {
-      output = '-';
+      return output;
+    } else {
+      return '';
     }
-    return output;
   }
 
   /// Returns the average read time duration of the given String in seconds.

@@ -1,3 +1,7 @@
+## 0.4.4
+* fix Extension (String)
+* fix ExLoading (cancel button)
+
 ## 0.4.3
 * add extension (date)
 

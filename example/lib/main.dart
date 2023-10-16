@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'app_themes.dart';
 import 'ext_gallery/ext_int_page.dart';
 import 'ext_gallery/ext_string_page.dart';
+import 'helper_gallery/loading_dialog_page.dart';
 import 'ui_widget_gallery/accordion_page.dart';
 import 'helper_gallery/datetime_picker_page.dart';
 import 'helper_gallery/alert_page.dart';
@@ -83,6 +84,7 @@ class Home extends GetView {
     'DateTime Picker': DateTimePage(),
     'Decorator': DecorationPage(),
     'SnackBar': SnackbarPage(),
+    'Loading Dialog': LoadingDialogPage(),
   };
 
   final xFeatures3 = {

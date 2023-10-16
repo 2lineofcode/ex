@@ -57,7 +57,7 @@ mixin ExLoading {
                           label: 'Cancel',
                           height: 33,
                           onPressed: () => Get.back(),
-                        ).pOnly(top: 24)
+                        ).pOnly(top: 24).centered()
                       : Container(),
                 ),
               ],

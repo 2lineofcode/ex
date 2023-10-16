@@ -145,7 +145,7 @@ class _ExAccordionState extends State<ExAccordion> with TickerProviderStateMixin
                     Expanded(
                       child: widget.title != null ? Text(widget.title!, style: widget.textStyle) : (widget.titleChild ?? Container()),
                     ),
-                    if (showAccordion) widget.expandedIcon else widget.collapsedIcon
+                    if (showAccordion) widget.expandedIcon else widget.collapsedIcon,
                   ],
                 ),
               ),
@@ -167,7 +167,7 @@ class _ExAccordionState extends State<ExAccordion> with TickerProviderStateMixin
                 ),
               )
             else
-              Container()
+              Container(),
           ],
         ),
       );

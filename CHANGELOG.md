@@ -1,3 +1,6 @@
+## 0.4.2
+* upgrade to flutter 3.13.*
+
 ## 0.4.1
 * improve all extension
 

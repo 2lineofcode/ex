@@ -57,7 +57,7 @@ class ExProgress extends StatelessWidget {
                   child: Container(),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

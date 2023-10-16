@@ -59,7 +59,7 @@ mixin ExLoading {
                           onPressed: () => Get.back(),
                         ).pOnly(top: 24)
                       : Container(),
-                )
+                ),
               ],
             ).p24(),
       ).pSymmetric(h: paddingSymmetric ?? 90),

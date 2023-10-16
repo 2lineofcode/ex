@@ -17,7 +17,7 @@ void print(dynamic message) => log(message);
 void logD(dynamic message) => log(message);
 
 void log(dynamic message) {
-  developer.log('👻 | $message', name: _logName.value);
+  developer.log('🐛 | $message', name: _logName.value);
 }
 
 void logE(dynamic message) {

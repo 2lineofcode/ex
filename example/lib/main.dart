@@ -2,6 +2,7 @@ import 'package:ex/ex.dart';
 import 'package:example/core/index.dart';
 import 'package:example/core_gallery/http_page.dart';
 import 'package:example/core_gallery/log_page.dart';
+import 'package:example/ext_gallery/ext_date_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -35,16 +36,9 @@ Future<void> main() async {
   ExLog.init();
 
   /// ExHttp
-  final baseHeader = {'sample': 'ex'};
   Get.put(
     ExHttp(
       baseURL: 'https://jsonplaceholder.typicode.com',
-      baseHeader: baseHeader,
-      maxTimeOut: 30.seconds,
-      maxAuthRetry: 5,
-      allowFollowRedirects: true,
-      showLogHeader: false,
-      showLogResponse: false,
     ),
   );
 
@@ -88,10 +82,10 @@ class Home extends GetView {
   };
 
   final xFeatures3 = {
-    'Int': ExtIntPage(),
     'String': ExtStringPage(),
-    'List': Scaffold(appBar: AppBar()),
-    'Date': Scaffold(appBar: AppBar()),
+    'Date': ExtDatePage(),
+    'Int': ExtIntPage(),
+    // 'List': Scaffold(appBar: AppBar()),
   };
   final xFeatures4 = {
     'Log': LogPage(),

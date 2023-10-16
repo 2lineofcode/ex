@@ -1,1 +1,1 @@
-export 'ex_random.dart';
+export 'ex_utils_random.dart';

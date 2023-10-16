@@ -1,15 +1,27 @@
+import 'dart:io';
+
 import 'package:ex/ex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 
-class HttpController extends GetxController {
+class HttpController extends GetxController with StateMixin {
   final output = [].obs;
   final apiService = Get.find<ExHttp>();
 
+  @override
+  onInit() async {
+    await hget();
+    super.onInit();
+  }
+
   Future<void> hget() async {
-    await apiService.httpGet(endPoint: '/posts').then((response) {
+    change(2, status: RxStatus.loading());
+    await 500.milliseconds.delayed();
+    await apiService.get('/posts').then((response) {
       output.value = response.body;
       Get.forceAppUpdate();
+      change(2, status: RxStatus.success());
     }).catchError((e) {
       ExSnackbar.danger(e);
     });
@@ -40,7 +52,8 @@ class HttpController extends GetxController {
         ],
       ),
     );
-    await apiService.httpPost(endPoint: '/posts').then((response) {
+
+    await apiService.post('/posts').then((response) {
       ExSnackbar.success(response.statusCode);
     }).catchError((e) {
       ExSnackbar.danger(e);
@@ -50,8 +63,7 @@ class HttpController extends GetxController {
 
   Future<void> hput() async {
     ExLoading.show();
-    await 10.seconds.delayed();
-    await apiService.httpPut(endPoint: '/posts/1').then((response) {
+    await apiService.put('/posts/1').then((response) {
       ExSnackbar.success(response.statusCode);
     }).catchError((e) {
       ExSnackbar.danger(e);
@@ -61,12 +73,102 @@ class HttpController extends GetxController {
 
   Future<void> hdelete() async {
     ExLoading.show();
-    await apiService.httpDelete(endPoint: '/posts/1').then((response) {
+    await apiService.delete('/posts/1').then((response) {
       ExSnackbar.success(response.statusCode);
     }).catchError((e) {
       ExSnackbar.danger(e);
     });
     ExLoading.dismiss();
+  }
+
+  Future<void> hpatch() async {
+    ExLoading.show();
+    await apiService.patch('/posts/1').then((response) {
+      ExSnackbar.success(response.statusCode);
+    }).catchError((e) {
+      ExSnackbar.danger(e);
+    });
+    ExLoading.dismiss();
+  }
+
+  Future<void> hHead() async {
+    ExLoading.show();
+    apiService.head('/posts').then((r) {
+      ExSnackbar.success('r: ${r.statusText}');
+      ExLoading.dismiss();
+    }).catchError((e) {
+      ExSnackbar.danger('e: $e');
+      ExLoading.dismiss();
+    });
+  }
+
+  Future<void> hConnect() async {
+    ExLoading.show();
+    apiService.connect('/posts').then((r) {
+      ExSnackbar.success('r: ${r.statusText}');
+      ExLoading.dismiss();
+    }).catchError((e) {
+      ExSnackbar.danger('e: $e');
+      ExLoading.dismiss();
+    });
+  }
+
+  Future<void> hOptions() async {
+    ExLoading.show();
+    apiService.options('/posts').then((r) {
+      ExSnackbar.success('r: ${r.statusText}');
+      ExLoading.dismiss();
+    }).catchError((e) {
+      ExSnackbar.danger('e: $e');
+      ExLoading.dismiss();
+    });
+  }
+
+  Future<void> hTrace() async {
+    ExLoading.show();
+    apiService.trace('/posts').then((r) {
+      ExSnackbar.success('r: ${r.statusText}');
+      ExLoading.dismiss();
+    }).catchError((e) {
+      ExSnackbar.danger('e: $e');
+      ExLoading.dismiss();
+    });
+  }
+
+  hDownload() async {
+    final savePath = (await getTemporaryDirectory()).path + '/mobil-bagus.jpg';
+    await apiService.download('https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?cs=srgb&dl=pexels-vlad-alexandru-popa-1402787.jpg&fm=jpg', savePath).then((r) {
+      ExAlert.success(title: 'Success', message: '$r');
+    });
+  }
+
+  Future<void> hUpload() async {
+    final progress = 0.0.obs;
+
+    final form = {
+      "name": 'name',
+      "email": 'email',
+      "address": 'address',
+      "avatar": MultipartFile(File(''), filename: 'fileName'),
+    };
+
+    try {
+      await apiService.put(
+        '/upload',
+        header: {HttpHeaders.authorizationHeader: '*'},
+        body: form,
+        uploadProgress: (p0) => progress.value = p0,
+      );
+    } on Exception catch (e) {
+      ExSnackbar.danger('e: $e');
+      ExLoading.dismiss();
+    }
+  }
+
+  hCustom() async {
+    await apiService.request('https://api.github.com/', 'get').then((r) {
+      ExSnackbar.success('r: ${r.body['repository_search_url']}');
+    });
   }
 }
 
@@ -76,9 +178,7 @@ class HttpPage extends GetView<HttpController> {
     Get.put(HttpController());
 
     return Scaffold(
-      appBar: AppBar(
-        title: 'ExHttp'.text.extraBold.size(16).make(),
-      ),
+      appBar: AppBar(title: 'ExHttp'.text.extraBold.size(16).make()),
       body: VStack(
         [
           Wrap(
@@ -100,16 +200,56 @@ class HttpPage extends GetView<HttpController> {
                 onPressed: () => controller.hdelete(),
               ).pOnly(right: 12, bottom: 12),
               ExButtonOutline(
-                label: 'UPLOAD',
+                label: 'PATCH',
+                onPressed: () => controller.hpatch(),
+              ).pOnly(right: 12, bottom: 12),
+              ExButtonOutline(
+                label: 'HEAD',
+                onPressed: () => controller.hHead(),
+              ).pOnly(right: 12, bottom: 12),
+              ExButtonOutline(
+                label: 'CONNECT',
+                onPressed: () => controller.hConnect(),
+              ).pOnly(right: 12, bottom: 12),
+              ExButtonOutline(
+                label: 'OPTIONS',
+                onPressed: () => controller.hOptions(),
+              ).pOnly(right: 12, bottom: 12),
+              ExButtonOutline(
+                label: 'TRACE',
+                onPressed: () => controller.hTrace(),
               ).pOnly(right: 12, bottom: 12),
               ExButtonOutline(
                 label: 'DOWNLOAD',
+                onPressed: () async => await controller.hDownload(),
+              ).pOnly(right: 12, bottom: 12),
+              ExButtonOutline(
+                label: 'UPLOAD',
+                onPressed: () => controller.hUpload(),
+              ).pOnly(right: 12, bottom: 12),
+              ExButtonOutline(
+                label: 'CUSTOM',
+                onPressed: () async => await controller.hCustom(),
               ).pOnly(right: 12, bottom: 12),
             ],
           ),
-          VxJson.list(controller.output),
+          ExDivider(),
+          controller.obx(
+            (state) => ListView.separated(
+              itemCount: controller.output.length,
+              separatorBuilder: (BuildContext context, int index) => Divider(),
+              itemBuilder: (context, index) {
+                final item = controller.output[index];
+                return ListTile(
+                  title: '${index + 1}. ${item['title']}'.text.maxLines(1).ellipsis.minFontSize(14).make(),
+                  subtitle: '${item['body']}'.text.neutral400.maxLines(1).ellipsis.make(),
+                );
+              },
+            ).expand(),
+            onLoading: ExUiLoading().expand(),
+          ),
         ],
-      ).p12().scrollVertical(),
+      ).p12(),
     );
   }
 }

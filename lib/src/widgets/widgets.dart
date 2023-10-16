@@ -24,4 +24,3 @@ export 'ex_ui_error_or_empty.dart';
 export 'ex_ui_loading.dart';
 export 'ex_ui_shimmer_grid.dart';
 export 'ex_ui_shimmer_list.dart';
-export 'index.dart';

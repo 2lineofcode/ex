@@ -8,12 +8,12 @@ library ex;
 export 'package:velocity_x/velocity_x.dart';
 
 // core
-export 'src/core/index.dart';
+export 'src/core/core.dart';
 // extensions
-export 'src/extensions/index.dart';
+export 'src/extensions/extensions.dart';
 // features
-export 'src/features/index.dart';
+export 'src/features/features.dart';
 // utils
 export 'src/utils/utils.dart';
 // widgets
-export 'src/widgets/index.dart';
+export 'src/widgets/widgets.dart';

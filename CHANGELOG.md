@@ -1,3 +1,7 @@
+## 0.5.0
+* improve ExHttp (add download, and optimize)
+* add some extension (num, collection)
+
 ## 0.4.5
 * add example ExLoading
 * fix ExLoading (cancel button)

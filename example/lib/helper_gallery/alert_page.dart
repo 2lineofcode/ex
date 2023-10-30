@@ -1,4 +1,4 @@
-import 'package:ex/ex.dart';
+import 'package:ex_kit/ex.dart';
 import 'package:example/core/index.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +20,7 @@ class AlertPage extends StatelessWidget {
             label: 'T only',
             width: double.infinity,
             onPressed: () => ExAlert.success(
+              context,
               title: faker.lorem.word(),
               // message: faker.lorem.sentence(),
             ),
@@ -29,6 +30,7 @@ class AlertPage extends StatelessWidget {
             label: 'T & M',
             width: double.infinity,
             onPressed: () => ExAlert.success(
+              context,
               title: faker.lorem.word(),
               message: faker.lorem.sentence(),
             ),
@@ -37,7 +39,7 @@ class AlertPage extends StatelessWidget {
           ExButtonOutline(
             label: 'No Asset',
             width: double.infinity,
-            onPressed: () => ExAlert.success(message: 'asdasd'),
+            onPressed: () => ExAlert.success(context, message: 'asdasd'),
           ).expand(),
         ]),
         Divider().pSymmetric(v: 16),
@@ -49,6 +51,7 @@ class AlertPage extends StatelessWidget {
             label: 'T only',
             width: double.infinity,
             onPressed: () => ExAlert.error(
+              context,
               title: faker.lorem.word(),
             ),
           ).expand(),
@@ -57,6 +60,7 @@ class AlertPage extends StatelessWidget {
             label: 'T & M',
             width: double.infinity,
             onPressed: () => ExAlert.error(
+              context,
               title: faker.lorem.word(),
               message: faker.lorem.sentence(),
             ),
@@ -66,6 +70,7 @@ class AlertPage extends StatelessWidget {
             label: 'No Asset',
             width: double.infinity,
             onPressed: () => ExAlert.error(
+              context,
               title: faker.lorem.word(),
               message: faker.lorem.sentence(),
             ),
@@ -80,6 +85,7 @@ class AlertPage extends StatelessWidget {
             label: 'T only',
             width: double.infinity,
             onPressed: () => ExAlert.confirm(
+              context,
               title: faker.lorem.word(),
             ),
           ).expand(),
@@ -88,6 +94,7 @@ class AlertPage extends StatelessWidget {
             label: 'T & M',
             width: double.infinity,
             onPressed: () => ExAlert.confirm(
+              context,
               title: faker.lorem.word(),
               message: faker.lorem.sentence(),
             ),
@@ -97,6 +104,7 @@ class AlertPage extends StatelessWidget {
             label: 'No Asset',
             width: double.infinity,
             onPressed: () => ExAlert.confirm(
+              context,
               title: faker.lorem.word(),
               message: faker.lorem.sentence(),
             ),
@@ -111,6 +119,7 @@ class AlertPage extends StatelessWidget {
             label: 'T only',
             width: double.infinity,
             onPressed: () => ExAlert.confirm(
+              context,
               title: faker.lorem.word(),
               color: colorError,
             ),
@@ -120,6 +129,7 @@ class AlertPage extends StatelessWidget {
             label: 'T & M',
             width: double.infinity,
             onPressed: () => ExAlert.confirm(
+              context,
               color: colorError,
               title: faker.lorem.word(),
               message: faker.lorem.sentence(),
@@ -130,6 +140,7 @@ class AlertPage extends StatelessWidget {
             label: 'No Asset',
             width: double.infinity,
             onPressed: () => ExAlert.confirm(
+              context,
               color: colorError,
               title: faker.lorem.word(),
               message: faker.lorem.sentence(),
@@ -145,6 +156,7 @@ class AlertPage extends StatelessWidget {
             label: 'test',
             width: double.infinity,
             onPressed: () => ExAlert.custom(
+              context,
               content: VStack(
                 [
                   Text(

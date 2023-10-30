@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ExCloseButton extends StatelessWidget {
   const ExCloseButton({super.key, this.color, this.onPressed, this.icon});
@@ -11,7 +10,7 @@ class ExCloseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: onPressed ?? Get.back,
+      onPressed: onPressed ?? () => Navigator.pop(context),
       icon: Icon(icon ?? Icons.close, color: color),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:ex/ex.dart';
+import 'package:ex_kit/ex.dart';
 
 class Dioo {
   final dio = createDio();

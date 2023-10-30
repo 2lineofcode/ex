@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
 
-import 'package:ex/src/extensions/extension_list.dart';
+import 'package:ex_kit/ex.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

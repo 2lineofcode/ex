@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../ex.dart';
 
@@ -10,7 +9,8 @@ mixin ExDatePicker {
   // —————————————————————————————————————————————————————————————————————————
   // DATE PICKER (CUPERTINO) —————————————————————————————————————————————————
   // —————————————————————————————————————————————————————————————————————————
-  static void datePickerCupertino({
+  static void datePickerCupertino(
+    BuildContext context, {
     required Function(DateTime) callback,
     String title = 'Select Date',
     String btnOKText = 'Select',
@@ -22,11 +22,11 @@ mixin ExDatePicker {
   }) {
     var output = DateTime.now();
     showCupertinoModalPopup(
-      context: Get.context!,
+      context: context,
       builder: (_) => CupertinoApp(
         debugShowCheckedModeBanner: false,
         builder: (context, child) => Container(
-          height: Get.size.height * 0.40,
+          height: MediaQuery.of(context).size.height * 0.40,
           decoration: ExDecorator.top(),
           child: Column(
             children: [
@@ -41,7 +41,7 @@ mixin ExDatePicker {
                   borderColor: Colors.transparent,
                   onPressed: () {
                     callback.call(output);
-                    Navigator.of(Get.context!).pop();
+                    Navigator.of(context).pop();
                   },
                 ).pOnly(right: 12),
               ]).pOnly(left: 20, top: 12, bottom: 12),
@@ -65,7 +65,8 @@ mixin ExDatePicker {
     );
   }
 
-  static void timePickerCupertino({
+  static void timePickerCupertino(
+    BuildContext context, {
     required Function(DateTime) callback,
     String title = 'Select Time',
     String btnOKText = 'Select',
@@ -77,11 +78,11 @@ mixin ExDatePicker {
   }) {
     var output = DateTime.now();
     showCupertinoModalPopup(
-      context: Get.context!,
+      context: context,
       builder: (_) => CupertinoApp(
         debugShowCheckedModeBanner: false,
         builder: (context, child) => Container(
-          height: Get.size.height * 0.40,
+          height: MediaQuery.of(context).size.height * 0.40,
           decoration: ExDecorator.top(),
           child: Column(
             children: [
@@ -96,7 +97,7 @@ mixin ExDatePicker {
                   borderColor: Colors.transparent,
                   onPressed: () {
                     callback.call(output);
-                    Navigator.of(Get.context!).pop();
+                    Navigator.of(context).pop();
                   },
                 ).pOnly(right: 12),
               ]).pOnly(left: 20, top: 12, bottom: 12),
@@ -123,14 +124,15 @@ mixin ExDatePicker {
 // —————————————————————————————————————————————————————————————————————————
 // DATE PICKER (MATERIAL) ——————————————————————————————————————————————————
 // —————————————————————————————————————————————————————————————————————————
-  static Future<void> datePickerMaterial({
+  static Future<void> datePickerMaterial(
+    BuildContext context, {
     required Function(DateTime) callback,
     DateTime? initialDate,
     DateTime? minDate,
     DateTime? maxDate,
   }) async {
     final picked = await showDatePicker(
-      context: Get.context!,
+      context: context,
       initialDate: initialDate ?? DateTime.now(),
       firstDate: minDate ?? DateTime(2020),
       lastDate: maxDate ?? DateTime(2050),
@@ -140,14 +142,15 @@ mixin ExDatePicker {
     }
   }
 
-  static Future<void> timePickerMaterial({
+  static Future<void> timePickerMaterial(
+    BuildContext context, {
     required Function(TimeOfDay) callback,
     DateTime? initialDate,
     DateTime? minDate,
     DateTime? maxDate,
   }) async {
     final picked = await showTimePicker(
-      context: Get.context!,
+      context: context,
       initialTime: TimeOfDay.now(),
     );
     if (picked != null) {
@@ -155,7 +158,8 @@ mixin ExDatePicker {
     }
   }
 
-  static Future<void> date({
+  static Future<void> date(
+    BuildContext context, {
     required Function(DateTime) callback,
     DateTime? initialDate,
     DateTime? minDate,
@@ -163,6 +167,7 @@ mixin ExDatePicker {
   }) async {
     if (Platform.isAndroid) {
       await datePickerMaterial(
+        context,
         initialDate: initialDate,
         minDate: minDate,
         maxDate: maxDate,
@@ -170,6 +175,7 @@ mixin ExDatePicker {
       );
     } else {
       datePickerCupertino(
+        context,
         initialDate: initialDate,
         minDate: minDate,
         maxDate: maxDate,
@@ -178,7 +184,8 @@ mixin ExDatePicker {
     }
   }
 
-  static Future<void> time({
+  static Future<void> time(
+    BuildContext context, {
     required Function(dynamic) callback,
     DateTime? initialDate,
     DateTime? minDate,
@@ -186,6 +193,7 @@ mixin ExDatePicker {
   }) async {
     if (Platform.isAndroid) {
       await timePickerMaterial(
+        context,
         initialDate: initialDate,
         minDate: minDate,
         maxDate: maxDate,
@@ -193,6 +201,7 @@ mixin ExDatePicker {
       );
     } else {
       timePickerCupertino(
+        context,
         initialDate: initialDate,
         minDate: minDate,
         maxDate: maxDate,
@@ -201,33 +210,20 @@ mixin ExDatePicker {
     }
   }
 
-  static Future<void> datetime({
+  static Future<void> datetime(
+    BuildContext context, {
     required Function(dynamic) callback,
     DateTime? initialDate,
     DateTime? minDate,
     DateTime? maxDate,
   }) async {
     datePickerCupertino(
+      context,
       initialDate: initialDate,
       minDate: minDate,
       maxDate: maxDate,
       callback: callback,
       mode: CupertinoDatePickerMode.dateAndTime,
     );
-    // if (Platform.isAndroid) {
-    //   await datePickerMaterial(
-    //     initialDate: initialDate,
-    //     minDate: minDate,
-    //     maxDate: maxDate,
-    //     callback: callback,
-    //   );
-    // } else {
-    //   datePickerCupertino(
-    //     initialDate: initialDate,
-    //     minDate: minDate,
-    //     maxDate: maxDate,
-    //     callback: callback,
-    //   );
-    // }
   }
 }

@@ -1,8 +1,5 @@
-import 'dart:async';
-
-import 'package:ex/ex.dart';
+import 'package:ex_kit/ex.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 /*
  * ExLoading
@@ -21,6 +18,8 @@ import 'package:get/get.dart';
  * ```
  */
 mixin ExLoading {
+  static bool isDialogOpen = false;
+
   /// -- example implementation
   /// ```dart
   /// void loading() {
@@ -28,47 +27,40 @@ mixin ExLoading {
   ///    Future.delayed(3.seconds).then((value) => ExLoading.dismiss(Get.context!));
   /// }
   /// ```
-  static void show({
+  static void show(
+    BuildContext context, {
     bool isDismissible = true,
     Widget? child,
     Color? barrierColor,
     String? message,
     double? paddingSymmetric,
   }) {
-    final showCancel = false.obs;
-    Future.delayed(5.seconds, () {
-      showCancel.value = true;
-    });
-
-    Get.dialog(
-      Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        child: child?.p24() ??
-            VStack(
-              [
-                LoadingAnimationWidget.discreteCircle(
-                  color: Theme.of(Get.context!).primaryColor,
-                  size: 32,
-                ).centered(),
-                if (message != null) Text(message, textAlign: TextAlign.center).centered().pOnly(top: 16),
-                Obx(
-                  () => showCancel.value == true
-                      ? ExButtonOutline(
-                          label: 'Cancel',
-                          height: 40,
-                          onPressed: () => Get.back(),
-                        ).pOnly(top: 24).centered()
-                      : Container(),
-                ),
-              ],
-            ).p24(),
-      ).pSymmetric(h: paddingSymmetric ?? 90),
+    isDialogOpen = true;
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          child: child?.p24() ??
+              VStack(
+                [
+                  LoadingAnimationWidget.discreteCircle(
+                    color: Theme.of(context).primaryColor,
+                    size: 32,
+                  ).centered(),
+                  if (message != null) Text(message, textAlign: TextAlign.center).centered().pOnly(top: 16),
+                ],
+              ).p24(),
+        ).pSymmetric(h: paddingSymmetric ?? 90);
+      },
       barrierDismissible: isDismissible,
-      barrierColor: barrierColor,
-    );
+      // barrierColor: barrierColor,
+    ).then((_) {
+      isDialogOpen = false;
+    });
   }
 
-  static void dismiss() {
-    if (Get.isDialogOpen == true) Get.back();
+  static void dismiss(BuildContext context) {
+    if (isDialogOpen == true) Navigator.pop(context);
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import '../../ex.dart';
 
 enum BSHeaderType { dash, close }
@@ -11,7 +10,8 @@ mixin ExBottomSheet {
   // —————————————————————————————————————————————————————————————————————————
   // BOTTOM SHEET DIALOG  ————————————————————————————————————————————————————
   // —————————————————————————————————————————————————————————————————————————
-  static void basic({
+  static void basic(
+    BuildContext context, {
     required String? title,
     required Widget content,
     TextStyle? titleStyle,
@@ -26,23 +26,25 @@ mixin ExBottomSheet {
   }) {
     // add haptic feedback (UX)
     HapticFeedback.lightImpact();
-    Get.bottomSheet(
-      SafeArea(
-        child: VStack(
-          [
-            ExDashLine().pSymmetric(v: 24),
-            if (title != null) ...[
-              title.text.bold.black.size(18).maxLines(2).textStyle(titleStyle).ellipsis.make().pOnly(bottom: 8).pSymmetric(h: 24),
-              if (showDivider == true) Divider().pOnly(bottom: 8) else 8.heightBox,
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return SafeArea(
+          child: VStack(
+            [
+              ExDashLine().pSymmetric(v: 24),
+              if (title != null) ...[
+                title.text.bold.black.size(18).maxLines(2).textStyle(titleStyle).ellipsis.make().pOnly(bottom: 8).pSymmetric(h: 24),
+                if (showDivider == true) Divider().pOnly(bottom: 8) else 8.heightBox,
+              ],
+              content.pSymmetric(h: padding ?? 24),
             ],
-            content.pSymmetric(h: padding ?? 24),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
       backgroundColor: backgroundColor ?? Colors.white,
       barrierColor: barrierColor,
       isDismissible: isDismissible ?? true,
-      persistent: persistent ?? true,
       isScrollControlled: isFullScreen ?? false,
       shape: RoundedRectangleBorder(
         side: BorderSide(color: backgroundColor ?? Colors.white),
@@ -51,7 +53,8 @@ mixin ExBottomSheet {
     );
   }
 
-  static void dragable({
+  static void dragable(
+    BuildContext context, {
     required Widget content,
     double radius = 16,
     bool isClose = false,
@@ -62,46 +65,53 @@ mixin ExBottomSheet {
   }) {
     // add haptic feedback (UX)
     HapticFeedback.lightImpact();
-    Get.bottomSheet(
-      DraggableScrollableSheet(
-        initialChildSize: initialChildSize,
-        maxChildSize: 0.9,
-        minChildSize: minChildSize,
-        builder: (_, controller) => Container(
-          decoration: ExDecorator.top(radius: radius),
-          child: SafeArea(
-            child: VStack(
-              [
-                const ExDashLine(),
-                if (isClose)
-                  const Align(
-                    alignment: Alignment.centerRight,
-                    child: Icon(
-                      Icons.close_rounded,
-                      size: 25,
-                      color: Colors.black,
-                    ),
-                  ).onInkTap(
-                    () => {Get.back(), if (onClose != null) onClose() else ''},
-                  )
-                else
-                  const SizedBox(),
-                ListView(
-                  controller: controller,
-                  children: [content],
-                ).paddingSymmetric(vertical: 24).expand(),
-              ],
-            ).p24(),
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return DraggableScrollableSheet(
+          initialChildSize: initialChildSize,
+          maxChildSize: 0.9,
+          minChildSize: minChildSize,
+          builder: (_, controller) => Container(
+            decoration: ExDecorator.top(radius: radius),
+            child: SafeArea(
+              child: VStack(
+                [
+                  const ExDashLine(),
+                  if (isClose)
+                    const Align(
+                      alignment: Alignment.centerRight,
+                      child: Icon(
+                        Icons.close_rounded,
+                        size: 25,
+                        color: Colors.black,
+                      ),
+                    ).onInkTap(
+                      () => {
+                        Navigator.pop(context),
+                        if (onClose != null) onClose() else '',
+                      },
+                    )
+                  else
+                    const SizedBox(),
+                  ListView(
+                    controller: controller,
+                    children: [content],
+                  ).pSymmetric(v: 24).expand(),
+                ],
+              ).p24(),
+            ),
           ),
-        ),
-      ),
+        );
+      },
       elevation: 10,
       isScrollControlled: isScrollControlled,
       isDismissible: true,
     );
   }
 
-  static void list({
+  static void list(
+    BuildContext context, {
     required List<ExKeyValue> data,
     required String title,
     required String keySelected,
@@ -120,43 +130,45 @@ mixin ExBottomSheet {
   }) {
     // add haptic feedback (UX)
     HapticFeedback.lightImpact();
-    Get.bottomSheet(
-      SafeArea(
-        child: VStack(
-          [
-            ExDashLine().pOnly(top: 24),
-            title.text.bold.black.size(18).maxLines(2).ellipsis.make().pOnly(top: 24, bottom: 8).pSymmetric(h: 24),
-            if (showDivider == true) Divider().pOnly(bottom: 8) else 8.heightBox,
-            Expanded(
-              child: data.isNotEmpty
-                  ? ListView.separated(
-                      separatorBuilder: (context, index) => Divider(),
-                      itemCount: data.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          leading: data[index].icon,
-                          title: data[index].key == keySelected ? data[index].value.text.bold.color(Theme.of(context).primaryColor).size(14).make() : data[index].value.text.size(14).make(),
-                          trailing: showTrailing == true
-                              ? data[index].key == keySelected
-                                  ? Icon(Icons.radio_button_on)
-                                  : Icon(Icons.radio_button_off)
-                              : null,
-                          onTap: () {
-                            Get.back();
-                            callback(data[index].key, data[index].value);
-                          },
-                        );
-                      },
-                    ).pSymmetric(h: 24)
-                  : onEmpty ?? 0.heightBox,
-            ),
-          ],
-        ),
-      ),
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return SafeArea(
+          child: VStack(
+            [
+              ExDashLine().pOnly(top: 24),
+              title.text.bold.black.size(18).maxLines(2).ellipsis.make().pOnly(top: 24, bottom: 8).pSymmetric(h: 24),
+              if (showDivider == true) Divider().pOnly(bottom: 8) else 8.heightBox,
+              Expanded(
+                child: data.isNotEmpty
+                    ? ListView.separated(
+                        separatorBuilder: (context, index) => Divider(),
+                        itemCount: data.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            leading: data[index].icon,
+                            title: data[index].key == keySelected ? data[index].value.text.bold.color(Theme.of(context).primaryColor).size(14).make() : data[index].value.text.size(14).make(),
+                            trailing: showTrailing == true
+                                ? data[index].key == keySelected
+                                    ? Icon(Icons.radio_button_on)
+                                    : Icon(Icons.radio_button_off)
+                                : null,
+                            onTap: () {
+                              Navigator.pop(context);
+                              callback(data[index].key, data[index].value);
+                            },
+                          );
+                        },
+                      ).pSymmetric(h: 24)
+                    : onEmpty ?? 0.heightBox,
+              ),
+            ],
+          ),
+        );
+      },
       backgroundColor: backgroundColor ?? Colors.white,
       barrierColor: barrierColor,
       isDismissible: isDismissible ?? true,
-      persistent: persistent ?? true,
       isScrollControlled: isFullScreen ?? false,
       shape: RoundedRectangleBorder(
         side: BorderSide(color: backgroundColor ?? Colors.white),

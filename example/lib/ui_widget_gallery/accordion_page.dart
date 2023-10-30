@@ -1,4 +1,4 @@
-import 'package:ex/ex.dart';
+import 'package:ex_kit/ex.dart';
 
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +35,7 @@ class AccordionPage extends GetView {
                 ExAvatarView(
                   url: 'https://infomedia.tv/wp-content/uploads/2023/01/aa.jpg',
                   name: 'userFullName',
-                ).onTap(() => ExImagePreview.showUrl('https://infomedia.tv/wp-content/uploads/2023/01/aa.jpg')).pOnly(right: 12),
+                ).onTap(() => ExImagePreview.showUrl(context, 'https://infomedia.tv/wp-content/uploads/2023/01/aa.jpg')).pOnly(right: 12),
                 faker.lorem.word().text.make(),
               ],
             ),

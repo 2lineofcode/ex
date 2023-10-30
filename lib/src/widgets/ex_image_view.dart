@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 
 import '../../ex.dart';
 
@@ -55,7 +54,7 @@ class ExImageView extends StatelessWidget {
       );
     }
 
-    if (url.isURL) {
+    if (url.isUrl!) {
       return ZStack(
         [
           ExContainer(

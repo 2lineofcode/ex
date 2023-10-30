@@ -1,4 +1,4 @@
-import 'package:ex/ex.dart';
+import 'package:ex_kit/ex.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +25,7 @@ class ButtonPage extends StatelessWidget {
             startLoading();
             await 5.seconds.delayed();
             stopLoading();
-            ExSnackbar.danger('login failed');
+            ExSnackbar.danger(context, 'login failed');
           },
         ).centered(),
         Divider().pSymmetric(v: 16),

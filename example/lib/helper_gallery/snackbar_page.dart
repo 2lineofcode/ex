@@ -1,4 +1,4 @@
-import 'package:ex/ex.dart';
+import 'package:ex_kit/ex.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
@@ -17,13 +17,13 @@ class SnackbarPage extends StatelessWidget {
           ExButtonOutline(
             label: 'Neutral',
             width: double.infinity,
-            onPressed: () => ExSnackbar.neutral(faker.lorem.sentence()),
+            onPressed: () => ExSnackbar.neutral(context, faker.lorem.sentence()),
           ).expand(),
           12.widthBox,
           ExButtonOutline(
             label: 'Neutral Top',
             width: double.infinity,
-            onPressed: () => ExSnackbar.neutralTop(faker.lorem.sentence()),
+            onPressed: () => ExSnackbar.neutralTop(context, faker.lorem.sentence()),
           ).expand(),
         ]),
 
@@ -35,13 +35,13 @@ class SnackbarPage extends StatelessWidget {
           ExButtonOutline(
             label: 'Info',
             width: double.infinity,
-            onPressed: () => ExSnackbar.info(faker.lorem.sentence()),
+            onPressed: () => ExSnackbar.info(context, faker.lorem.sentence()),
           ).expand(),
           12.widthBox,
           ExButtonOutline(
             label: 'Info Top',
             width: double.infinity,
-            onPressed: () => ExSnackbar.infoTop(faker.lorem.sentence()),
+            onPressed: () => ExSnackbar.infoTop(context, faker.lorem.sentence()),
           ).expand(),
         ]),
 
@@ -52,13 +52,13 @@ class SnackbarPage extends StatelessWidget {
           ExButtonOutline(
             label: 'Warning',
             width: double.infinity,
-            onPressed: () => ExSnackbar.warning(faker.lorem.sentence()),
+            onPressed: () => ExSnackbar.warning(context, faker.lorem.sentence()),
           ).expand(),
           12.widthBox,
           ExButtonOutline(
             label: 'Warning Top',
             width: double.infinity,
-            onPressed: () => ExSnackbar.warningTop(faker.lorem.sentence()),
+            onPressed: () => ExSnackbar.warningTop(context, faker.lorem.sentence()),
           ).expand(),
         ]),
 
@@ -69,13 +69,13 @@ class SnackbarPage extends StatelessWidget {
           ExButtonOutline(
             label: 'Success',
             width: double.infinity,
-            onPressed: () => ExSnackbar.success(faker.lorem.sentence()),
+            onPressed: () => ExSnackbar.success(context, faker.lorem.sentence()),
           ).expand(),
           12.widthBox,
           ExButtonOutline(
             label: 'Success Top',
             width: double.infinity,
-            onPressed: () => ExSnackbar.successTop(faker.lorem.sentence()),
+            onPressed: () => ExSnackbar.successTop(context, faker.lorem.sentence()),
           ).expand(),
         ]),
 
@@ -87,13 +87,13 @@ class SnackbarPage extends StatelessWidget {
           ExButtonOutline(
             label: 'Danger',
             width: double.infinity,
-            onPressed: () => ExSnackbar.danger(faker.lorem.sentence()),
+            onPressed: () => ExSnackbar.danger(context, faker.lorem.sentence()),
           ).expand(),
           12.widthBox,
           ExButtonOutline(
             label: 'Danger Top',
             width: double.infinity,
-            onPressed: () => ExSnackbar.dangerTop(faker.lorem.sentence()),
+            onPressed: () => ExSnackbar.dangerTop(context, faker.lorem.sentence()),
           ).expand(),
         ]),
       ]).p16().scrollVertical(),

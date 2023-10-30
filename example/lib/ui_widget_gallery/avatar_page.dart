@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_field_initializers_in_const_classes
 
-import 'package:ex/ex.dart';
+import 'package:ex_kit/ex.dart';
 import 'package:example/core/index.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';

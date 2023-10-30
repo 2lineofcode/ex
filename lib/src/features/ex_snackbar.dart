@@ -5,7 +5,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:get/get.dart';
 import '../../ex.dart';
 
 /*
@@ -21,6 +20,7 @@ mixin ExSnackbar {
   // neutral
   // —————————————————————————————————————————————————————————————————————————————
   static void neutralTop(
+    BuildContext context,
     dynamic message, {
     String? title,
     double? titleSize,
@@ -50,13 +50,14 @@ mixin ExSnackbar {
       isDismissible: isDismissible,
       duration: duration,
       flushbarPosition: position,
-    ).show(Get.context!);
+    ).show(context);
   }
 
   // —————————————————————————————————————————————————————————————————————————————
   // info
   // —————————————————————————————————————————————————————————————————————————————
   static void infoTop(
+    BuildContext context,
     dynamic message, {
     String? title,
     double? titleSize,
@@ -86,13 +87,14 @@ mixin ExSnackbar {
       isDismissible: isDismissible,
       duration: duration,
       flushbarPosition: position,
-    ).show(Get.context!);
+    ).show(context);
   }
 
   // —————————————————————————————————————————————————————————————————————————————
   // danger
   // —————————————————————————————————————————————————————————————————————————————
   static void dangerTop(
+    BuildContext context,
     dynamic message, {
     String? title,
     double? titleSize,
@@ -122,13 +124,14 @@ mixin ExSnackbar {
       isDismissible: isDismissible,
       duration: duration,
       flushbarPosition: position,
-    ).show(Get.context!);
+    ).show(context);
   }
 
   // —————————————————————————————————————————————————————————————————————————————
   // warning
   // —————————————————————————————————————————————————————————————————————————————
   static void warningTop(
+    BuildContext context,
     dynamic message, {
     String? title,
     double? titleSize,
@@ -158,13 +161,14 @@ mixin ExSnackbar {
       isDismissible: isDismissible,
       duration: duration,
       flushbarPosition: position,
-    ).show(Get.context!);
+    ).show(context);
   }
 
   // —————————————————————————————————————————————————————————————————————————————
   // success
   // —————————————————————————————————————————————————————————————————————————————
   static void successTop(
+    BuildContext context,
     dynamic message, {
     String? title,
     double? titleSize,
@@ -194,13 +198,14 @@ mixin ExSnackbar {
       isDismissible: isDismissible,
       duration: duration,
       flushbarPosition: position,
-    ).show(Get.context!);
+    ).show(context);
   }
 
   // —————————————————————————————————————————————————————————————————————————————
   // action
   // —————————————————————————————————————————————————————————————————————————————
-  static void action({
+  static void action(
+    BuildContext context, {
     required dynamic message,
     required Widget button,
     String? title,
@@ -211,10 +216,11 @@ mixin ExSnackbar {
       message: message,
       duration: duration,
       mainButton: button,
-    ).show(Get.context!);
+    ).show(context);
   }
 
-  static void uploading({
+  static void uploading(
+    BuildContext context, {
     required dynamic message,
     String? title,
     Duration duration = const Duration(seconds: 3),
@@ -229,14 +235,14 @@ mixin ExSnackbar {
       showProgressIndicator: true,
       progressIndicatorController: progressIndicatorController,
       progressIndicatorBackgroundColor: progressIndicatorBackgroundColor,
-    ).show(Get.context!);
+    ).show(context);
   }
 
   // —————————————————————————————————————————————————————————————————————————————
   // ver2 : bottom
   // —————————————————————————————————————————————————————————————————————————————
 
-  static void neutral(dynamic message, {int? duration, bool showIcon = true}) {
+  static void neutral(BuildContext context, dynamic message, {int? duration, bool showIcon = true}) {
     final snackBar = SnackBar(
       content: HStack([
         if (showIcon == true) Icon(Icons.info, color: Colors.white),
@@ -247,10 +253,10 @@ mixin ExSnackbar {
       behavior: SnackBarBehavior.floating,
       duration: Duration(seconds: duration ?? 2),
     );
-    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
+    ScaffoldMessenger.of(context).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(context).clearSnackBars());
   }
 
-  static void info(dynamic message, {int? duration, bool showIcon = true}) {
+  static void info(BuildContext context, dynamic message, {int? duration, bool showIcon = true}) {
     final snackBar = SnackBar(
       content: Container(
         decoration: ExDecorator.box(borderColor: Color(0xFF093479)),
@@ -265,10 +271,10 @@ mixin ExSnackbar {
       behavior: SnackBarBehavior.floating,
       duration: Duration(seconds: duration ?? 2),
     );
-    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
+    ScaffoldMessenger.of(context).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(context).clearSnackBars());
   }
 
-  static void danger(dynamic message, {int? duration, bool showIcon = true}) {
+  static void danger(BuildContext context, dynamic message, {int? duration, bool showIcon = true}) {
     final snackBar = SnackBar(
       content: Container(
         decoration: ExDecorator.box(borderColor: Color(0xFF881135)),
@@ -283,10 +289,10 @@ mixin ExSnackbar {
       behavior: SnackBarBehavior.floating,
       duration: Duration(seconds: duration ?? 2),
     );
-    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
+    ScaffoldMessenger.of(context).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(context).clearSnackBars());
   }
 
-  static void success(dynamic message, {int? duration, bool showIcon = true}) {
+  static void success(BuildContext context, dynamic message, {int? duration, bool showIcon = true}) {
     final snackBar = SnackBar(
       content: Container(
         decoration: ExDecorator.box(borderColor: Color(0xFF0E3E33)),
@@ -301,10 +307,10 @@ mixin ExSnackbar {
       behavior: SnackBarBehavior.floating,
       duration: Duration(seconds: duration ?? 2),
     );
-    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
+    ScaffoldMessenger.of(context).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(context).clearSnackBars());
   }
 
-  static void warning(dynamic message, {int? duration, bool showIcon = true}) {
+  static void warning(BuildContext context, dynamic message, {int? duration, bool showIcon = true}) {
     final snackBar = SnackBar(
       content: Container(
         decoration: ExDecorator.box(borderColor: Color(0xFF93662A)),
@@ -319,7 +325,7 @@ mixin ExSnackbar {
       behavior: SnackBarBehavior.floating,
       duration: Duration(seconds: duration ?? 2),
     );
-    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
+    ScaffoldMessenger.of(context).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(context).clearSnackBars());
   }
 }
 

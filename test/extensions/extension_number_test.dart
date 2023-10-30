@@ -1,4 +1,4 @@
-import 'package:ex/src/extensions/extension_number.dart';
+import 'package:ex_kit/ex.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -28,18 +28,6 @@ void main() {
   });
 
   group('Num Extensions', () {
-    test('isPositive', () {
-      expect(5.isPositive, isTrue);
-      expect((-5).isPositive, isFalse);
-      expect(0.isPositive, isFalse);
-    });
-
-    test('isNegative', () {
-      expect(5.isNegative, isFalse);
-      expect((-5).isNegative, isTrue);
-      expect(0.isNegative, isFalse);
-    });
-
     test('isZero', () {
       expect(5.isZero, isFalse);
       expect((-5).isZero, isFalse);

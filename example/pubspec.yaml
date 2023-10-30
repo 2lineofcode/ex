@@ -13,7 +13,7 @@ dependencies:
   path_provider: ^2.1.1
   flutter:
     sdk: flutter
-  ex:
+  ex_kit:
     path: ../
 
 dev_dependencies: 

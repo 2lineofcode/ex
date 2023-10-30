@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:ex/ex.dart';
+import 'package:ex_kit/ex.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +24,7 @@ class BottomSheetPage extends StatelessWidget {
           width: double.infinity,
           onPressed: () {
             ExBottomSheet.basic(
+              context,
               title: 'Base Location',
               showDivider: true,
               content: VStack([
@@ -61,12 +62,13 @@ class BottomSheetPage extends StatelessWidget {
             ];
 
             ExBottomSheet.list(
+              context,
               data: data,
               showDivider: true,
               keySelected: keyItemBottomSheetSelected,
               title: '${faker.lorem.word().toTitleCase}',
               callback: (k, v) {
-                ExSnackbar.info('$v selected');
+                ExSnackbar.info(context, '$v selected');
                 keyItemBottomSheetSelected = k;
               },
             );
@@ -81,6 +83,7 @@ class BottomSheetPage extends StatelessWidget {
           width: double.infinity,
           onPressed: () {
             ExBottomSheet.dragable(
+              context,
               content: VStack([
                 faker.lorem.sentence().text.make().pSymmetric(v: 12),
                 Placeholder(),

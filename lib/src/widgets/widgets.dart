@@ -11,7 +11,6 @@ export 'ex_button_text.dart';
 export 'ex_container.dart';
 export 'ex_dashline.dart';
 export 'ex_divider.dart';
-export 'ex_dropdown.dart';
 export 'ex_image_view.dart';
 export 'ex_progress.dart';
 export 'ex_progressbar.dart';

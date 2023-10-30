@@ -3,15 +3,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
 
 import '../../ex.dart';
 
 mixin ExImagePreview {
-  static void showUrl(String url, {Map<String, String>? header}) {
+  static void showUrl(BuildContext context, String url, {Map<String, String>? header}) {
     showGeneralDialog(
-      context: Get.context!,
+      context: context,
       barrierColor: Colors.black.withOpacity(0.8),
       barrierDismissible: true,
       barrierLabel: 'Dialog',
@@ -22,7 +21,7 @@ mixin ExImagePreview {
           body: Dismissible(
             key: Key(''),
             direction: DismissDirection.down,
-            onDismissed: (_) => Get.back(),
+            onDismissed: (_) => Navigator.pop(context),
             child: SafeArea(
               child: VStack(
                 [
@@ -30,7 +29,7 @@ mixin ExImagePreview {
                     HStack(
                       [
                         Spacer(),
-                        IconButton(onPressed: () => Get.back(), icon: Icon(Icons.close, color: Colors.white)),
+                        IconButton(onPressed: () => Navigator.pop(context), icon: Icon(Icons.close, color: Colors.white)),
                       ],
                     ),
                   PhotoView(
@@ -47,9 +46,9 @@ mixin ExImagePreview {
     );
   }
 
-  static void showBase64(String base64, {Map<String, String>? header}) {
+  static void showBase64(BuildContext context, String base64, {Map<String, String>? header}) {
     showGeneralDialog(
-      context: Get.context!,
+      context: context,
       barrierColor: Colors.black.withOpacity(0.8),
       barrierDismissible: true,
       barrierLabel: 'Dialog',

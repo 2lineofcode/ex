@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ExBackButton extends StatelessWidget {
   const ExBackButton({
@@ -16,7 +15,7 @@ class ExBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: onPressed ?? Get.back,
+      onPressed: onPressed ?? () => Navigator.pop(context),
       icon: Icon(icon ?? Icons.arrow_back, color: color),
     );
   }

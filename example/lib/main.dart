@@ -1,6 +1,5 @@
-import 'package:ex/ex.dart';
+import 'package:ex_kit/ex.dart';
 import 'package:example/core/index.dart';
-import 'package:example/core_gallery/http_page.dart';
 import 'package:example/core_gallery/log_page.dart';
 import 'package:example/ext_gallery/ext_date_page.dart';
 import 'package:flutter/material.dart';
@@ -19,28 +18,16 @@ import 'ui_widget_gallery/button_page.dart';
 import 'ui_widget_gallery/divider_page.dart';
 import 'ui_widget_gallery/error_or_empty_page.dart';
 import 'ui_widget_gallery/imageview_page.dart';
-import 'helper_gallery/dialog_page.dart';
 import 'ui_widget_gallery/loading_page.dart';
 import 'ui_widget_gallery/progress_page.dart';
 import 'ui_widget_gallery/shimmer_page.dart';
 import 'helper_gallery/snackbar_page.dart';
-import 'ui_widget_gallery/dropdown_page.dart';
 import 'ui_widget_gallery/textfield_page.dart';
 import 'ui_widget_gallery/typography_page.dart';
 import 'helper_gallery/decoration_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  /// ExLog
-  ExLog.init();
-
-  /// ExHttp
-  Get.put(
-    ExHttp(
-      baseURL: 'https://jsonplaceholder.typicode.com',
-    ),
-  );
 
   runApp(
     GetMaterialApp(
@@ -67,13 +54,11 @@ class Home extends GetView {
     'Loading Page': LoadingPage(),
     'Progress': ProgressPage(),
     'Shimmer': ShimmerPage(),
-    'Dropdown': DropdownPage(),
     'TextField': TextFieldPage(),
   };
 
   final xFeatures2 = {
     'Alert': AlertPage(),
-    'Dialog Input': DialogPage(),
     'BottomSheet': BottomSheetPage(),
     'DateTime Picker': DateTimePage(),
     'Decorator': DecorationPage(),
@@ -89,7 +74,6 @@ class Home extends GetView {
   };
   final xFeatures4 = {
     'Log': LogPage(),
-    'Http': HttpPage(),
   };
 
   @override
@@ -147,6 +131,7 @@ class Home extends GetView {
                 title: 'ImagePreview'.text.make(),
                 minLeadingWidth: 16,
                 onTap: () => ExImagePreview.showUrl(
+                  context,
                   'https://asset.kompas.com/crops/7z-QN6nlfPhhYas60AA5tQXDu7Y=/0x0:1350x900/750x500/data/photo/2020/11/13/5fae5fa6b09bb.jpg',
                 ),
               ),

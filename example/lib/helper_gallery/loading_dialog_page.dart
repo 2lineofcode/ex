@@ -1,4 +1,4 @@
-import 'package:ex/ex.dart';
+import 'package:ex_kit/ex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,18 +37,10 @@ class LoadingDialogController extends GetxController {
   final dataPosts = [].obs;
 
   Future<void> gget() async {
-    logD('load api service...');
-    final apiService = Get.find<ExHttp>();
-    logD('show dialog...');
-    ExLoading.show(message: 'Getting data...');
+    ExLoading.show(Get.context!);
     logD('wait 10 second...');
     await 10.seconds.delay();
-    logD('getting data...');
-    apiService.get('/posts').then((value) {
-      dataPosts.value = value.body;
-      logD('data loaded...');
-    });
-    ExLoading.dismiss();
+    ExLoading.dismiss(Get.context!);
     logD('done...');
   }
 }

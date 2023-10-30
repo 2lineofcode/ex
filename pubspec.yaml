@@ -1,6 +1,6 @@
 name: ex
 description: Fully Customize Material UI |  all material widget with functional many helper/utils like `ExHttp, ExLog, ExAlert, ExBottomSheet, ExDialog, ExSnackbar` 
-version: 0.5.0
+version: 0.5.1
 homepage: https://github.com/aditgpt/ex
 repository: https://github.com/aditgpt/ex
 issue_tracker: https://github.com/aditgpt/ex/issues
@@ -25,5 +25,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/images/

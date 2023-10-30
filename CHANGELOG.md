@@ -1,3 +1,6 @@
+## 0.5.1
+* fix ExHttp (delete)
+
 ## 0.5.0
 * improve ExHttp (add download, and optimize)
 * add some extension (num, collection)

@@ -151,7 +151,7 @@ Get.put(
 
   @override
   Future<Response<T>> delete<T>(String path, {Map<String, String>? header, dynamic query, dynamic body, String? contentType, Decoder<T>? decoder}) async {
-    return _httpBase(method: 'put', url: path, header: header, query: query, body: body, decoder: decoder, contentType: contentType);
+    return _httpBase(method: 'delete', url: path, header: header, query: query, body: body, decoder: decoder, contentType: contentType);
   }
 
   Future<Response<T>> head<T>(String path, {Map<String, String>? header, dynamic query, dynamic body, String? contentType, Decoder<T>? decoder}) async {
@@ -270,11 +270,9 @@ Get.put(
     logI('${method.toUpperCase()} : ${res.request?.url}');
     try {
       if (header != null) logI('Header: ${jsonEncode(header)}');
-      if (query != null) logI('Query: ${jsonEncode(query)}');
       if (body != null) logI('Body: ${jsonEncode(body)}');
     } catch (e) {
       if (header != null) logI('Header: ${header}');
-      if (query != null) logI('Query: ${query}');
       if (body != null) logI('Body: ${body}');
     }
 

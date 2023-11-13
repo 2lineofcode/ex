@@ -150,7 +150,6 @@ class ExTextField extends StatelessWidget {
           fillColor: fillColor,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: validator,
-          borderColorFocus: Theme.of(context).primaryColor,
           autocorrect: autocorrect,
           autofocus: autofocus,
           clear: clear,

@@ -1,4 +1,5 @@
 import 'package:ex/ex.dart';
+import 'package:example/app_themes.dart';
 import 'package:example/core/index.dart';
 import 'package:example/core_gallery/http_page.dart';
 import 'package:example/core_gallery/log_page.dart';
@@ -6,7 +7,6 @@ import 'package:example/ext_gallery/ext_date_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'app_themes.dart';
 import 'ext_gallery/ext_int_page.dart';
 import 'ext_gallery/ext_string_page.dart';
 import 'helper_gallery/loading_dialog_page.dart';
@@ -19,12 +19,10 @@ import 'ui_widget_gallery/button_page.dart';
 import 'ui_widget_gallery/divider_page.dart';
 import 'ui_widget_gallery/error_or_empty_page.dart';
 import 'ui_widget_gallery/imageview_page.dart';
-import 'helper_gallery/dialog_page.dart';
 import 'ui_widget_gallery/loading_page.dart';
 import 'ui_widget_gallery/progress_page.dart';
 import 'ui_widget_gallery/shimmer_page.dart';
 import 'helper_gallery/snackbar_page.dart';
-import 'ui_widget_gallery/dropdown_page.dart';
 import 'ui_widget_gallery/textfield_page.dart';
 import 'ui_widget_gallery/typography_page.dart';
 import 'helper_gallery/decoration_page.dart';
@@ -32,14 +30,9 @@ import 'helper_gallery/decoration_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  /// ExLog
-  ExLog.init();
-
   /// ExHttp
   Get.put(
-    ExHttp(
-      baseURL: 'https://jsonplaceholder.typicode.com',
-    ),
+    ExHttp(baseURL: 'https://jsonplaceholder.typicode.com'),
   );
 
   runApp(
@@ -47,9 +40,24 @@ Future<void> main() async {
       title: 'Ex:mple',
       debugShowCheckedModeBanner: false,
       home: Home(),
-      theme: AppThemes.light,
-      darkTheme: AppThemes.dark,
       themeMode: AppThemes.theme,
+      builder: (context, child) {
+        return Scaffold(
+          body: Stack(
+            children: [
+              child!,
+              IconButton(
+                icon: Icon(Icons.brightness_2_rounded),
+                onPressed: () async {
+                  Get.changeTheme(Get.isDarkMode ? AppThemes.light : AppThemes.dark);
+                  await 500.milliseconds.delay();
+                  Get.forceAppUpdate();
+                },
+              ).positioned(right: 16, top: 16),
+            ],
+          ),
+        );
+      },
     ),
   );
 }
@@ -67,13 +75,11 @@ class Home extends GetView {
     'Loading Page': LoadingPage(),
     'Progress': ProgressPage(),
     'Shimmer': ShimmerPage(),
-    'Dropdown': DropdownPage(),
     'TextField': TextFieldPage(),
   };
 
   final xFeatures2 = {
     'Alert': AlertPage(),
-    'Dialog Input': DialogPage(),
     'BottomSheet': BottomSheetPage(),
     'DateTime Picker': DateTimePage(),
     'Decorator': DecorationPage(),
@@ -106,9 +112,8 @@ class Home extends GetView {
             child: Align(
               alignment: Alignment.centerLeft,
               child: TabBar(
-                labelColor: colorBlack,
-                unselectedLabelColor: colorNeutral[200],
                 isScrollable: true,
+                tabAlignment: TabAlignment.start,
                 tabs: [
                   'UI/Widget'.text.make().p16(),
                   'Helper'.text.make().p16(),

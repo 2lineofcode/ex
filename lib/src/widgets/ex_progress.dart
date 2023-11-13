@@ -30,9 +30,9 @@ class ExProgress extends StatelessWidget {
       child: MediaQuery(
         data: const MediaQueryData(),
         child: Stack(
-          children: <Widget>[
+          children: [
             Row(
-              children: <Widget>[
+              children: [
                 Expanded(
                   flex: 100,
                   child: Container(
@@ -43,15 +43,17 @@ class ExProgress extends StatelessWidget {
               ],
             ),
             Row(
-              children: <Widget>[
-                Expanded(
-                  flex: value,
-                  child: Container(
-                    width: 200,
-                    height: height ?? 12,
-                    color: color1,
-                  ).cornerRadius(20),
-                ),
+              children: [
+                if (value != 0) ...[
+                  Expanded(
+                    flex: value,
+                    child: Container(
+                      width: 200,
+                      height: height ?? 12,
+                      color: color1,
+                    ).cornerRadius(20),
+                  ),
+                ],
                 Expanded(
                   flex: rest,
                   child: Container(),

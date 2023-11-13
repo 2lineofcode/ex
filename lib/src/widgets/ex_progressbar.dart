@@ -19,7 +19,7 @@ class ExProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DiscreteCircle(
-      color: color ?? Theme.of(context).primaryColor,
+      color: color ?? Theme.of(context).hintColor,
       size: size ?? 24,
       secondCircleColor: secondRingColor ?? Colors.teal,
       thirdCircleColor: thirdRingColor ?? Colors.orange,
@@ -92,17 +92,13 @@ class _DiscreteCircleState extends State<DiscreteCircle> with SingleTickerProvid
       animation: _animationController,
       builder: (_, __) {
         return Stack(
-          children: <Widget>[
+          children: [
             Transform.rotate(
               angle: Tween<double>(begin: 0, end: 2 * math.pi)
                   .animate(
                     CurvedAnimation(
                       parent: _animationController,
-                      curve: const Interval(
-                        0.68,
-                        0.95,
-                        curve: Curves.easeOut,
-                      ),
+                      curve: Interval(0.68, 0.95, curve: Curves.easeOut),
                     ),
                   )
                   .value,
@@ -120,11 +116,7 @@ class _DiscreteCircleState extends State<DiscreteCircle> with SingleTickerProvid
                       .animate(
                         CurvedAnimation(
                           parent: _animationController,
-                          curve: const Interval(
-                            0.7,
-                            0.95,
-                            curve: Curves.easeOutSine,
-                          ),
+                          curve: const Interval(0.7, 0.95, curve: Curves.easeOutSine),
                         ),
                       )
                       .value,

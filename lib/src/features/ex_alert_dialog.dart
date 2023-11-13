@@ -1,4 +1,8 @@
 // ignore_for_file: non_constant_identifier_names, deprecated_member_use
+
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,12 +33,12 @@ mixin ExAlert {
     TextStyle? titleStyle,
     double titleTextSize = 18,
     TextAlign titleTextAlign = TextAlign.center,
-    Color titleTextColor = Colors.black,
+    Color? titleTextColor,
     String? message,
     TextStyle? messageStyle,
     double messageTextSize = 14,
     TextAlign messageTextAlign = TextAlign.center,
-    Color messageTextColor = Vx.neutral500,
+    Color? messageTextColor,
     bool isDismissible = true,
     String btnYesText = 'Close',
     Color color = const Color(0xFF229C80),
@@ -67,12 +71,12 @@ mixin ExAlert {
     TextStyle? titleStyle,
     double titleTextSize = 18,
     TextAlign titleTextAlign = TextAlign.center,
-    Color titleTextColor = Colors.black,
+    Color? titleTextColor,
     String? message,
     TextStyle? messageStyle,
     double messageTextSize = 14,
     TextAlign messageTextAlign = TextAlign.center,
-    Color messageTextColor = Vx.neutral500,
+    Color? messageTextColor,
     bool isDismissible = true,
     String btnYesText = 'Close',
     Color color = const Color(0xFFEB373E),
@@ -107,12 +111,12 @@ mixin ExAlert {
     TextStyle? titleStyle,
     double titleTextSize = 18,
     TextAlign titleTextAlign = TextAlign.center,
-    Color titleTextColor = Colors.black,
+    Color? titleTextColor,
     String? message,
     TextStyle? messageStyle,
     double messageTextSize = 14,
     TextAlign messageTextAlign = TextAlign.center,
-    Color messageTextColor = Vx.neutral500,
+    Color? messageTextColor,
     bool isDismissible = true,
     String btnYesText = 'Yes',
     String btnNoText = 'No',
@@ -141,6 +145,37 @@ mixin ExAlert {
     );
   }
 
+  static void adaptive({
+    bool? isDismissible,
+    Widget? title,
+    Widget? content,
+    List<Widget>? actions,
+    double? radius,
+  }) {
+    showAdaptiveDialog(
+      context: Get.context!,
+      builder: (BuildContext context) {
+        // ignore: literal_only_boolean_expressions
+        // if (1 == 100) {
+        if (Platform.isMacOS || Platform.isMacOS) {
+          return CupertinoAlertDialog(
+            title: title,
+            content: content,
+            actions: actions ?? [],
+          );
+        } else {
+          return AlertDialog(
+            title: title,
+            content: content,
+            actions: actions ?? [],
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius ?? 12)),
+          );
+        }
+      },
+      barrierDismissible: isDismissible ?? true,
+    );
+  }
+
   static void custom({Widget? content}) {
     return _base(content: content);
   }
@@ -158,14 +193,14 @@ mixin ExAlert {
     TextStyle? titleStyle,
     double titleTextSize = 18,
     TextAlign titleTextAlign = TextAlign.center,
-    Color titleTextColor = Colors.black,
+    Color? titleTextColor,
 
     // message
     String? message,
     TextStyle? messageStyle,
     double messageTextSize = 14,
     TextAlign messageTextAlign = TextAlign.center,
-    Color messageTextColor = Vx.neutral500,
+    Color? messageTextColor,
 
     // isDismissible
     bool isDismissible = true,
@@ -191,7 +226,13 @@ mixin ExAlert {
                 if (title != null) ...[
                   Text(
                     title,
-                    style: titleStyle ?? TextStyle(fontSize: titleTextSize, fontWeight: FontWeight.bold, color: titleTextColor),
+                    style: titleStyle ??
+                        TextStyle(
+                          fontSize: titleTextSize,
+                          fontWeight: FontWeight.bold,
+                          color: titleTextColor,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                     textAlign: titleTextAlign,
                     maxLines: 2,
                   ).w(double.infinity),
@@ -218,7 +259,7 @@ mixin ExAlert {
                     backgroundColor: color,
                     labelColor: Colors.white,
                     onPressed: onYes ?? Get.back,
-                  ).cornerRadius(90).pOnly(left: 12, right: 12, bottom: 12),
+                  ).cornerRadius(90).pOnly(left: 8, right: 8, bottom: 8),
                 ],
 
                 /// no
@@ -228,9 +269,8 @@ mixin ExAlert {
                     label: btnNoText,
                     height: 50,
                     labelSize: 14,
-                    backgroundColor: color,
                     onPressed: onNo ?? Get.back,
-                  ).cornerRadius(90).pOnly(left: 12, right: 12, bottom: 12),
+                  ).cornerRadius(90).pOnly(left: 8, right: 8, bottom: 8),
                 ],
               ],
             ),

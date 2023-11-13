@@ -24,7 +24,7 @@ class ExAvatarView extends StatelessWidget {
     this.height = 70,
     this.width = 70,
     this.size,
-    this.borderColor = Colors.white,
+    this.borderColor,
     this.borderWidth = 1,
     this.textSize = 14,
     this.textColor,
@@ -40,7 +40,7 @@ class ExAvatarView extends StatelessWidget {
   final double? height;
   final double? width;
   final double? size;
-  final Color borderColor;
+  final Color? borderColor;
   final double borderWidth;
   final double? textSize;
   final Color? textColor;
@@ -65,7 +65,10 @@ class ExAvatarView extends StatelessWidget {
                   url,
                   width: size ?? width,
                   height: size ?? height,
-                  placeholderBuilder: (context) => ExProgressBar(color: Theme.of(context).primaryColor, size: 12).centered(),
+                  placeholderBuilder: (context) => Container(color: Vx.neutral500).shimmer(
+                    primaryColor: Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
+                    secondaryColor: Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
+                  ),
                   package: package,
                 )
               : Image.asset(
@@ -84,20 +87,15 @@ class ExAvatarView extends StatelessWidget {
       return Container(
         width: size ?? width,
         height: size ?? height,
-        decoration: isWithShadow == true
-            ? BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(90)),
-                boxShadow: const [BoxShadow(color: Color(0xFFD8DCE0), spreadRadius: 1, blurRadius: 1, offset: Offset(0, 1))],
-              )
-            : BoxDecoration(),
+        decoration: isWithShadow == true ? BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(90))) : BoxDecoration(),
         child: CircularProfileAvatar(
           imageUrl: url,
           httpHeaders: header,
           radius: 100,
-          backgroundColor: bgColor ?? Colors.transparent,
+          backgroundColor: bgColor ?? Vx.red600,
           borderWidth: borderWidth,
           initialsText: Text(name.initialName, style: TextStyle(fontSize: textSize, color: textColor)),
-          borderColor: borderColor,
+          borderColor: borderColor ?? Colors.white,
           elevation: 0.3,
           errorWidget: (context, url, error) {
             return errorWidget ??
@@ -107,18 +105,15 @@ class ExAvatarView extends StatelessWidget {
                 );
           },
           animateFromOldImageOnUrlChange: true,
-          placeHolder: (context, url) => SizedBox(
-            width: 24,
-            height: 24,
-            child: Container(color: Vx.neutral500),
-          ).shimmer(primaryColor: Vx.neutral100, secondaryColor: Vx.neutral200),
+          placeHolder: (context, url) => Container(color: Vx.neutral500).shimmer(
+            primaryColor: Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
+            secondaryColor: Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
+          ),
         ),
       );
     }
   }
 }
-
-/// x
 
 ///CircularProfileAvatar allows developers to implement circular profile avatar with border,
 /// overlay, initialsText and many other features which simplifies developer's job.

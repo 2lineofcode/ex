@@ -1,7 +1,9 @@
 import 'package:ex/ex.dart';
 import 'package:example/core/index.dart';
 import 'package:faker/faker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AlertPage extends StatelessWidget {
   const AlertPage({Key? key}) : super(key: key);
@@ -13,6 +15,30 @@ class AlertPage extends StatelessWidget {
         title: 'Alert'.text.extraBold.size(16).make(),
       ),
       body: VStack([
+        /// 0
+        'ExAlert.adaptive'.text.bold.make().pOnly(bottom: 12),
+        HStack([
+          ExButtonOutline(
+            label: 'adaptive',
+            width: double.infinity,
+            onPressed: () {
+              ExAlert.adaptive(
+                title: Text('Title'),
+                content: Text(faker.lorem.sentences(3).join()),
+                actions: [
+                  CupertinoDialogAction(
+                    child: Text("OK"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            },
+          ).expand(),
+        ]),
+        Divider().pSymmetric(v: 16),
+
         /// 1
         'ExAlert.success'.text.bold.make().pOnly(bottom: 12),
         HStack([
@@ -20,8 +46,7 @@ class AlertPage extends StatelessWidget {
             label: 'T only',
             width: double.infinity,
             onPressed: () => ExAlert.success(
-              title: faker.lorem.word(),
-              // message: faker.lorem.sentence(),
+              title: faker.lorem.sentences(10).join(),
             ),
           ).expand(),
           12.widthBox,
@@ -30,14 +55,24 @@ class AlertPage extends StatelessWidget {
             width: double.infinity,
             onPressed: () => ExAlert.success(
               title: faker.lorem.word(),
-              message: faker.lorem.sentence(),
+              message: faker.lorem.sentences(5).join(),
             ),
           ).expand(),
           12.widthBox,
           ExButtonOutline(
-            label: 'No Asset',
+            label: 'Uniq',
             width: double.infinity,
-            onPressed: () => ExAlert.success(message: 'asdasd'),
+            onPressed: () => ExAlert.success(
+              icon: Icon(Icons.access_time_outlined, size: 48, color: Vx.pink400),
+              title: 'isDismissible: false',
+              radius: 12,
+              isDismissible: false,
+              btnYesText: 'Tap to close',
+              onYes: () => {
+                Get.back(),
+                ExSnackbar.info('Closed'),
+              },
+            ),
           ).expand(),
         ]),
         Divider().pSymmetric(v: 16),
@@ -65,10 +100,7 @@ class AlertPage extends StatelessWidget {
           ExButtonOutline(
             label: 'No Asset',
             width: double.infinity,
-            onPressed: () => ExAlert.error(
-              title: faker.lorem.word(),
-              message: faker.lorem.sentence(),
-            ),
+            onPressed: () => ExAlert.error(icon: Container()),
           ).expand(),
         ]),
         Divider().pSymmetric(v: 16),

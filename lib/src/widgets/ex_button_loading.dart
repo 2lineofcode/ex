@@ -175,7 +175,7 @@ class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMi
                   padding: EdgeInsets.all(10),
                   width: 40,
                   height: 40,
-                  child: ExProgressBar(color: Theme.of(context).cardColor, size: 32).centered(),
+                  child: ExProgressBar(color: Theme.of(context).hintColor, size: 32).centered(),
                 ),
       ),
     );
@@ -212,7 +212,7 @@ class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMi
                   padding: EdgeInsets.all(10),
                   width: 40,
                   height: 40,
-                  child: ExProgressBar(color: Theme.of(context).primaryColor, size: 32).centered(),
+                  child: ExProgressBar(color: Theme.of(context).hintColor, size: 32).centered(),
                 ),
       ),
     );
@@ -249,7 +249,7 @@ class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMi
                   padding: EdgeInsets.all(10),
                   width: 40,
                   height: 40,
-                  child: ExProgressBar(color: Theme.of(context).primaryColor, size: 32).centered(),
+                  child: ExProgressBar(color: Theme.of(context).hintColor, size: 32).centered(),
                 ),
       ),
     );

@@ -10,7 +10,7 @@ mixin ExDatePicker {
   // —————————————————————————————————————————————————————————————————————————
   // DATE PICKER (CUPERTINO) —————————————————————————————————————————————————
   // —————————————————————————————————————————————————————————————————————————
-  static void datePickerCupertino({
+  static void cupertinoDatePicker({
     required Function(DateTime) callback,
     String title = 'Select Date',
     String btnOKText = 'Select',
@@ -26,38 +26,63 @@ mixin ExDatePicker {
       builder: (_) => CupertinoApp(
         debugShowCheckedModeBanner: false,
         builder: (context, child) => Container(
-          height: Get.size.height * 0.40,
+          height: Get.size.height * 0.50,
           decoration: ExDecorator.top(),
           child: Column(
             children: [
               ExDashLine().pOnly(top: 12),
               HStack([
-                title.text.size(16).black.fontWeight(FontWeight.w500).make().expand(),
-                ExButtonOutline(
-                  label: btnOKText,
-                  height: 36,
-                  labelColor: Theme.of(context).primaryColor,
-                  backgroundColor: Vx.neutral100,
-                  borderColor: Colors.transparent,
-                  onPressed: () {
-                    callback.call(output);
-                    Navigator.of(Get.context!).pop();
-                  },
-                ).pOnly(right: 12),
+                title.text.size(14).color(Get.theme.textTheme.displayMedium?.color).fontWeight(FontWeight.w500).make().expand(),
               ]).pOnly(left: 20, top: 12, bottom: 12),
               Divider(),
               CupertinoTheme(
-                data: CupertinoThemeData(brightness: Brightness.light),
+                data: CupertinoThemeData(
+                  brightness: Get.isDarkMode ? Brightness.dark : Brightness.light,
+                  textTheme: CupertinoTextThemeData(
+                    dateTimePickerTextStyle: TextStyle(
+                      color: Get.theme.textTheme.bodyLarge?.color,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      decoration: TextDecoration.none,
+                    ),
+                  ),
+                ),
                 child: CupertinoDatePicker(
+                  minimumYear: 1980,
+                  maximumYear: 2050,
                   mode: mode,
                   initialDateTime: initialDate ?? DateTime.now(),
                   minimumDate: minDate ?? DateTime.now().subtract(1.seconds),
-                  // somehow must like this =,=
                   maximumDate: maxDate?.add(1.minutes) ?? DateTime(2050),
-                  onDateTimeChanged: (val) => output = val,
                   dateOrder: DatePickerDateOrder.dmy,
-                ),
+                  onDateTimeChanged: (val) => output = val,
+                  use24hFormat: true,
+                ).w(double.infinity),
               ).expand(),
+              HStack(
+                [
+                  ExButtonElevated(
+                    width: double.infinity,
+                    radius: 0,
+                    backgroundColor: Get.theme.canvasColor,
+                    label: btnCancelText,
+                    labelColor: Vx.red500,
+                    onPressed: () => Get.back(),
+                  ).expand(),
+                  1.widthBox,
+                  ExButtonElevated(
+                    width: double.infinity,
+                    radius: 0,
+                    backgroundColor: Get.theme.canvasColor,
+                    label: btnOKText,
+                    labelColor: Get.theme.textTheme.displayLarge?.color,
+                    onPressed: () {
+                      callback.call(output);
+                      Navigator.of(Get.context!).pop();
+                    },
+                  ).expand(),
+                ],
+              ),
             ],
           ),
         ),
@@ -65,7 +90,7 @@ mixin ExDatePicker {
     );
   }
 
-  static void timePickerCupertino({
+  static void cupertinoTimePicker({
     required Function(DateTime) callback,
     String title = 'Select Time',
     String btnOKText = 'Select',
@@ -87,22 +112,21 @@ mixin ExDatePicker {
             children: [
               ExDashLine().pOnly(top: 12),
               HStack([
-                title.text.size(16).black.fontWeight(FontWeight.w500).make().expand(),
-                ExButtonOutline(
-                  label: btnOKText,
-                  labelColor: Theme.of(context).primaryColor,
-                  height: 36,
-                  backgroundColor: Vx.neutral100,
-                  borderColor: Colors.transparent,
-                  onPressed: () {
-                    callback.call(output);
-                    Navigator.of(Get.context!).pop();
-                  },
-                ).pOnly(right: 12),
+                title.text.size(14).color(Get.theme.textTheme.displayMedium?.color).fontWeight(FontWeight.w500).make().expand(),
               ]).pOnly(left: 20, top: 12, bottom: 12),
               Divider(),
               CupertinoTheme(
-                data: CupertinoThemeData(brightness: Brightness.light),
+                data: CupertinoThemeData(
+                  brightness: Get.isDarkMode ? Brightness.dark : Brightness.light,
+                  textTheme: CupertinoTextThemeData(
+                    dateTimePickerTextStyle: TextStyle(
+                      color: Get.theme.textTheme.bodyLarge?.color,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      decoration: TextDecoration.none,
+                    ),
+                  ),
+                ),
                 child: CupertinoDatePicker(
                   mode: CupertinoDatePickerMode.time,
                   initialDateTime: initialDate ?? DateTime.now(),
@@ -113,6 +137,30 @@ mixin ExDatePicker {
                   dateOrder: DatePickerDateOrder.dmy,
                 ),
               ).expand(),
+              HStack(
+                [
+                  ExButtonElevated(
+                    width: double.infinity,
+                    radius: 0,
+                    backgroundColor: Get.theme.canvasColor,
+                    label: btnCancelText,
+                    labelColor: Vx.red500,
+                    onPressed: () => Get.back(),
+                  ).expand(),
+                  1.widthBox,
+                  ExButtonElevated(
+                    width: double.infinity,
+                    radius: 0,
+                    backgroundColor: Get.theme.canvasColor,
+                    label: btnOKText,
+                    labelColor: Get.theme.textTheme.displayLarge?.color,
+                    onPressed: () {
+                      callback.call(output);
+                      Navigator.of(Get.context!).pop();
+                    },
+                  ).expand(),
+                ],
+              ),
             ],
           ),
         ),
@@ -123,7 +171,7 @@ mixin ExDatePicker {
 // —————————————————————————————————————————————————————————————————————————
 // DATE PICKER (MATERIAL) ——————————————————————————————————————————————————
 // —————————————————————————————————————————————————————————————————————————
-  static Future<void> datePickerMaterial({
+  static Future<void> materialDatePicker({
     required Function(DateTime) callback,
     DateTime? initialDate,
     DateTime? minDate,
@@ -140,7 +188,7 @@ mixin ExDatePicker {
     }
   }
 
-  static Future<void> timePickerMaterial({
+  static Future<void> materialTimePicker({
     required Function(TimeOfDay) callback,
     DateTime? initialDate,
     DateTime? minDate,
@@ -155,21 +203,24 @@ mixin ExDatePicker {
     }
   }
 
-  static Future<void> date({
+// ------------------------------------------------------------------------
+// ADAPTIVE DATE PICKER
+// ------------------------------------------------------------------------
+  static Future<void> adaptiveDatePicker({
     required Function(DateTime) callback,
     DateTime? initialDate,
     DateTime? minDate,
     DateTime? maxDate,
   }) async {
     if (Platform.isAndroid) {
-      await datePickerMaterial(
+      await materialDatePicker(
         initialDate: initialDate,
         minDate: minDate,
         maxDate: maxDate,
         callback: callback,
       );
     } else {
-      datePickerCupertino(
+      cupertinoDatePicker(
         initialDate: initialDate,
         minDate: minDate,
         maxDate: maxDate,
@@ -178,21 +229,24 @@ mixin ExDatePicker {
     }
   }
 
-  static Future<void> time({
+// ------------------------------------------------------------------------
+// ADAPTIVE TIME PICKER
+// ------------------------------------------------------------------------
+  static Future<void> adaptiveTimePicker({
     required Function(dynamic) callback,
     DateTime? initialDate,
     DateTime? minDate,
     DateTime? maxDate,
   }) async {
     if (Platform.isAndroid) {
-      await timePickerMaterial(
+      await materialTimePicker(
         initialDate: initialDate,
         minDate: minDate,
         maxDate: maxDate,
         callback: callback,
       );
     } else {
-      timePickerCupertino(
+      cupertinoTimePicker(
         initialDate: initialDate,
         minDate: minDate,
         maxDate: maxDate,
@@ -201,33 +255,18 @@ mixin ExDatePicker {
     }
   }
 
-  static Future<void> datetime({
+  static Future<void> cupertinoDatetimePicker({
     required Function(dynamic) callback,
     DateTime? initialDate,
     DateTime? minDate,
     DateTime? maxDate,
   }) async {
-    datePickerCupertino(
+    cupertinoDatePicker(
       initialDate: initialDate,
       minDate: minDate,
       maxDate: maxDate,
       callback: callback,
       mode: CupertinoDatePickerMode.dateAndTime,
     );
-    // if (Platform.isAndroid) {
-    //   await datePickerMaterial(
-    //     initialDate: initialDate,
-    //     minDate: minDate,
-    //     maxDate: maxDate,
-    //     callback: callback,
-    //   );
-    // } else {
-    //   datePickerCupertino(
-    //     initialDate: initialDate,
-    //     minDate: minDate,
-    //     maxDate: maxDate,
-    //     callback: callback,
-    //   );
-    // }
   }
 }

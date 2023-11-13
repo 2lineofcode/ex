@@ -24,16 +24,6 @@ class DecorationPage extends GetView {
           ),
 
           ExDivider().pSymmetric(v: 16),
-
-          /// 2
-          '# ExDecorator.boxShadow'.text.make().pSymmetric(v: 8),
-          Container(
-            width: double.infinity,
-            decoration: ExDecorator.shadow(),
-            child: VStack([
-              faker.lorem.sentence().text.make(),
-            ]).p12(),
-          ),
         ],
       ).p16(),
     );

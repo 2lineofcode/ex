@@ -1,8 +1,8 @@
-// ignore_for_file: use_named_constants, library_private_types_in_public_api, no_default_cases
+// ignore_for_file: library_private_types_in_public_api, no_default_cases
 
+import 'package:ex/ex.dart';
 import 'package:flutter/material.dart';
-
-import '../../ex.dart';
+import 'package:get/get.dart';
 
 class ExAccordion extends StatefulWidget {
   /// An accordion is used to show (and hide) content. Use [showAccordion] to hide & show the accordion content.
@@ -12,11 +12,11 @@ class ExAccordion extends StatefulWidget {
     this.content,
     this.titleChild,
     this.contentChild,
-    this.collapsedTitleBackgroundColor = Vx.neutral200,
-    this.expandedTitleBackgroundColor = Vx.neutral200,
-    this.collapsedIcon = const Icon(Icons.keyboard_arrow_down_rounded, color: Colors.black),
-    this.expandedIcon = const Icon(Icons.keyboard_arrow_up_rounded, color: Colors.black),
-    this.textStyle = const TextStyle(color: Colors.black, fontSize: 16),
+    this.collapsedTitleBackgroundColor,
+    this.expandedTitleBackgroundColor,
+    this.collapsedIcon = const Icon(Icons.keyboard_arrow_down_rounded),
+    this.expandedIcon = const Icon(Icons.keyboard_arrow_up_rounded),
+    this.textStyle = const TextStyle(fontSize: 16),
     this.titlePadding = const EdgeInsets.all(10),
     this.contentBackgroundColor,
     this.contentPadding = const EdgeInsets.all(10),
@@ -42,10 +42,10 @@ class ExAccordion extends StatefulWidget {
   final Widget? contentChild;
 
   /// type of [Color] or [GFColors] which is used to change the background color of the [ExAccordion] title when it is collapsed
-  final Color collapsedTitleBackgroundColor;
+  final Color? collapsedTitleBackgroundColor;
 
   /// type of [Color] or [GFColors] which is used to change the background color of the [ExAccordion] title when it is expanded
-  final Color expandedTitleBackgroundColor;
+  final Color? expandedTitleBackgroundColor;
 
   /// collapsedIcon of type [Widget] which is used to show when the [ExAccordion] is collapsed
   final Widget collapsedIcon;
@@ -128,7 +128,7 @@ class _ExAccordionState extends State<ExAccordion> with TickerProviderStateMixin
         margin: widget.margin ?? const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: [
             InkWell(
               onTap: _toggleCollapsed,
               borderRadius: widget.titleBorderRadius,
@@ -136,12 +136,20 @@ class _ExAccordionState extends State<ExAccordion> with TickerProviderStateMixin
                 decoration: BoxDecoration(
                   borderRadius: widget.titleBorderRadius,
                   border: widget.titleBorder,
-                  color: showAccordion ? widget.expandedTitleBackgroundColor : widget.collapsedTitleBackgroundColor,
+                  color: Get.isDarkMode
+                      ? showAccordion
+                          //
+                          ? widget.expandedTitleBackgroundColor ?? Vx.neutral500
+                          : widget.collapsedTitleBackgroundColor ?? Vx.neutral500
+                      : showAccordion
+                          //
+                          ? widget.expandedTitleBackgroundColor ?? Vx.neutral200
+                          : widget.collapsedTitleBackgroundColor ?? Vx.neutral200,
                 ),
                 padding: widget.titlePadding,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
+                  children: [
                     Expanded(
                       child: widget.title != null ? Text(widget.title!, style: widget.textStyle) : (widget.titleChild ?? Container()),
                     ),
@@ -154,10 +162,14 @@ class _ExAccordionState extends State<ExAccordion> with TickerProviderStateMixin
               Container(
                 decoration: BoxDecoration(
                   borderRadius: widget.contentBorderRadius,
-                  border: Border.all(
-                    color: widget.contentBorderColor ?? Color(0xFFE0E0E0),
-                  ),
-                  color: widget.contentBackgroundColor ?? Colors.white70,
+                  border: Get.isDarkMode
+                      ? Border.all(
+                          color: widget.contentBorderColor ?? Vx.neutral500,
+                        )
+                      : Border.all(
+                          color: widget.contentBorderColor ?? Vx.neutral200,
+                        ),
+                  color: widget.contentBackgroundColor,
                 ),
                 width: MediaQuery.of(context).size.width,
                 padding: widget.contentPadding,

@@ -14,7 +14,7 @@ class ProgressPage extends StatefulWidget {
 class _ProgressPageState extends State<ProgressPage> {
   var counter = ExRandom.between(10, 99);
   var counter2 = ExRandom.between(10, 99);
-  var counter3 = ExRandom.between(10, 99);
+  var counter3 = 0;
   var counter4 = ExRandom.between(10, 99);
 
   @override

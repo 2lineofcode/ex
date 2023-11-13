@@ -184,7 +184,7 @@ Get.put(
     return _httpBase(method: method, url: url, header: headers, query: query, body: body, contentType: contentType, decoder: decoder, uploadProgress: uploadProgress);
   }
 
-  /// {@template exhttp.download}
+  /// template exhttp.download
   ///
   /// await apiService.download(
   ///     'http://speedtest.ftp.otenet.gr/files/test10Mb.db',

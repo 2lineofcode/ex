@@ -164,7 +164,7 @@ class _ExBaseTextFieldState extends State<ExBaseTextField> {
         border: getInputBorder(),
         enabledBorder: getInputBorder(),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: widget.borderColorFocus ?? Theme.of(context).primaryColor, width: 1.2),
+          borderSide: BorderSide(color: widget.borderColorFocus ?? Theme.of(context).hintColor, width: 1.2),
           borderRadius: BorderRadius.circular(getBorderRadius()),
         ),
       ),
@@ -176,7 +176,7 @@ class _ExBaseTextFieldState extends State<ExBaseTextField> {
       onFieldSubmitted: onSubmitted,
       onSaved: widget.onSaved,
       validator: widget.validator,
-      style: widget.style ?? TextStyle(color: Colors.black, fontSize: 14),
+      style: widget.style ?? TextStyle(fontSize: 14),
       initialValue: widget.initialValue,
       readOnly: widget.readOnly ?? false,
     );

@@ -46,60 +46,57 @@ class ExImageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (url.isEmptyOrNull) {
-      return ExContainer(
+      return Container(
+        decoration: ExDecorator.box(fillColor: Vx.neutral300, borderColor: Vx.neutral300),
         width: size ?? width,
         height: size ?? height,
-        fillColor: Colors.grey[300],
-        borderRadius: radius,
-        child: Icon(Icons.image_not_supported_rounded, color: Vx.neutral500, size: 18),
+        child: Icon(Icons.broken_image_rounded, color: Vx.neutral500, size: 16),
       );
     }
 
     if (url.isURL) {
       return ZStack(
         [
-          ExContainer(
+          SizedBox(
             width: size ?? width,
             height: size ?? height,
-            fillColor: backgroundColor,
-            borderColor: borderColor,
-            borderRadius: radius,
-            borderWidth: borderWidth,
             child: CachedNetworkImage(
               imageUrl: url,
               imageBuilder: (context, imageProvider) => Container(decoration: BoxDecoration(image: DecorationImage(image: imageProvider, fit: boxFit))),
               width: size ?? width,
               height: size ?? height,
               httpHeaders: headers,
-              placeholder: (context, url) => ExContainer(
-                width: size ?? width,
-                height: size ?? height,
-                fillColor: Colors.grey[300],
-                borderRadius: radius,
-                child: Icon(Icons.image_not_supported_rounded, color: Vx.neutral500, size: 18),
-              ).shimmer(primaryColor: Vx.neutral100, secondaryColor: Vx.neutral200),
-              errorWidget: (context, url, error) => Container(color: Colors.grey[300], child: errorWidget ?? Icon(Icons.image_not_supported_rounded, color: Vx.neutral500, size: 18)),
+              placeholder: (context, url) => Container(color: Vx.neutral500).shimmer(
+                primaryColor: Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
+                secondaryColor: Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
+              ),
+              errorWidget: (context, url, error) => Container(
+                color: Colors.grey[300],
+                child: errorWidget ?? Icon(Icons.broken_image_rounded, color: Vx.neutral500, size: 18),
+              ),
             ).p(padding ?? 0),
           ).cornerRadius(radius),
         ],
       );
-    } else {
+    }
+
+    /// assets
+    else {
       return ZStack(
         [
-          ExContainer(
+          SizedBox(
             width: size ?? width,
             height: size ?? height,
-            fillColor: backgroundColor,
-            borderColor: borderColor,
-            borderWidth: borderWidth,
-            borderRadius: radius,
             child: url.contains('.svg')
                 ? SvgPicture.asset(
                     url,
                     width: size ?? width,
                     height: size ?? height,
                     fit: boxFit,
-                    placeholderBuilder: (context) => ExProgressBar(color: Theme.of(context).primaryColor, size: 12).centered(),
+                    placeholderBuilder: (context) => Container(color: Vx.neutral500).shimmer(
+                      primaryColor: Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
+                      secondaryColor: Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
+                    ),
                     package: package,
                   ).p(padding ?? 0)
                 : Image.asset(

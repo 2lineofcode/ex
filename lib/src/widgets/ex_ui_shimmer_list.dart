@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 ///   created               : Aditya Pratama
@@ -23,8 +24,8 @@ class ExUiShimmerList extends StatelessWidget {
   }
 
   Widget buildCC(BuildContext context) {
-    final primaryColor = Colors.grey[200]!;
-    final secondaryColor = Colors.grey[300]!;
+    final primaryColor = Get.isDarkMode ? Vx.neutral700 : Colors.grey[200]!;
+    final secondaryColor = Get.isDarkMode ? Vx.neutral800 : Colors.grey[300]!;
 
     return SizedBox(
       width: double.infinity,

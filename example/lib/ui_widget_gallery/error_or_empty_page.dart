@@ -14,39 +14,43 @@ class ErrorOrEmptyPage extends GetView<ErrorOrEmptyController> {
         elevation: 0.5,
         leading: IconButton(icon: Icon(Icons.arrow_back_outlined), onPressed: () => Get.back()),
       ),
-      body: VStack([
-        HStack(
-          [
-            ExButtonOutline(
-              label: 'Error Page',
-              onPressed: () => controller.currentState.value = 0,
-            ).expand(),
-            12.widthBox,
-            ExButtonOutline(
-              label: 'Empty Page',
-              onPressed: () => controller.currentState.value = 1,
-            ).expand(),
-          ],
-        ).pOnly(bottom: 16),
-        controller.obx(
-          (state) => Obx(
-            () => ExUiErrorOrEmpty(
-              illustration: controller.currentState.value == 0 ? Icon(Icons.error, color: colorError) : Icon(Icons.question_answer, color: colorPrimary),
-              title: '${faker.lorem.word()}'.text.black.bold.size(18).makeCentered(),
-              message: '${faker.lorem.sentences(2)}'.text.size(13).align(TextAlign.center).makeCentered(),
-              action: ExButtonElevated(
-                label: 'Retry',
-                labelSize: 12,
-                radius: 90,
-                backgroundColor: controller.currentState.value == 0 ? colorError : colorPrimary,
-                labelColor: colorWhite,
-                onPressed: () => controller.reload(),
-              ).centered(),
-            ).expand(),
+      body: VStack(
+        [
+          HStack(
+            [
+              ExButtonOutline(
+                label: 'Error Page',
+                onPressed: () => controller.currentState.value = 0,
+              ).expand(),
+              12.widthBox,
+              ExButtonOutline(
+                label: 'Empty Page',
+                onPressed: () => controller.currentState.value = 1,
+              ).expand(),
+            ],
+          ).pOnly(bottom: 16),
+          controller.obx(
+            (state) => Obx(
+              () => ExUiErrorOrEmpty(
+                illustration: controller.currentState.value == 0
+                    ? Icon(
+                        Icons.error,
+                        color: colorError,
+                        size: 48,
+                      )
+                    : Icon(
+                        Icons.question_answer,
+                        color: colorPrimary,
+                        size: 48,
+                      ),
+                title: faker.lorem.words(2).join(),
+                message: faker.lorem.sentences(3).join(),
+              ).pSymmetric(h: 8, v: 8).expand(),
+            ),
+            onLoading: ExUiLoading().expand(),
           ),
-          onLoading: ExUiLoading().expand(),
-        ),
-      ]).p24(),
+        ],
+      ),
     );
   }
 }

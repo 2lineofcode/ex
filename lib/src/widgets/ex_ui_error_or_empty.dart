@@ -12,33 +12,39 @@ class ExUiErrorOrEmpty extends StatelessWidget {
   const ExUiErrorOrEmpty({
     super.key,
     this.title,
+    this.titleStyle,
     this.message,
-    this.action,
+    this.messageStyle,
     this.bgColor,
     this.illustration,
+    this.child,
   });
 
-  final Widget? title;
-  final Widget? message;
-  final Widget? action;
-  final Color? bgColor;
   final Widget? illustration;
+  final String? title;
+  final TextStyle? titleStyle;
+  final String? message;
+  final TextStyle? messageStyle;
+  final Color? bgColor;
+
+  /// if child is not null, ignore all other parameters
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
-      child: Container(
-        color: bgColor ?? Colors.transparent,
-        child: VStack(
-          [
-            if (illustration != null) illustration!.centered().pOnly(bottom: 12),
-            if (title != null) title!.pSymmetric(v: 12),
-            if (message != null) message!.pSymmetric(v: 12),
-            if (action != null) action!.pSymmetric(v: 12),
+      color: bgColor ?? Colors.transparent,
+      child: VStack(
+        [
+          if (child != null) ...[
+            child!,
+          ] else ...[
+            if (illustration != null) illustration!.centered(),
+            if (title != null) title!.text.bold.size(16).textStyle(titleStyle).align(TextAlign.center).makeCentered().pSymmetric(v: 12),
+            if (message != null) message!.text.size(12).align(TextAlign.center).textStyle(messageStyle).makeCentered(),
           ],
-        ).centered(),
-      ),
+        ],
+      ).centered(),
     );
   }
 }

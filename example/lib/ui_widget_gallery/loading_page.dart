@@ -29,7 +29,7 @@ class LoadingPage extends GetView<LoadingController> {
         ],
       ),
       body: controller.obx(
-        (state) => ExContainer(
+        (state) => Container(
           child: VStack(
             [
               'DATA LOADED'.text.xl.makeCentered().pOnly(bottom: 16),

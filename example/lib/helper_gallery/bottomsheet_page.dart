@@ -24,19 +24,24 @@ class BottomSheetPage extends StatelessWidget {
           width: double.infinity,
           onPressed: () {
             ExBottomSheet.basic(
-              title: 'Base Location',
               showDivider: true,
+              showDragIndicator: true,
+              title: 'Base Location',
               content: VStack([
                 faker.lorem.sentence().text.make(),
                 4.heightBox,
                 'line 2'.text.make(),
                 Icon(Icons.android, size: 72),
-                Divider().pSymmetric(v: 16),
                 HStack([
-                  ExButtonElevated(),
+                  ExButtonElevated(
+                    label: 'OK',
+                  ),
                   16.widthBox,
-                  ExButtonElevated(),
+                  ExButtonElevated(
+                    label: 'Cancel',
+                  ),
                 ]),
+                12.heightBox,
               ]),
             );
           },

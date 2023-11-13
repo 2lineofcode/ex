@@ -1,3 +1,8 @@
+## 0.5.3
+* fix ui/ux in dark mode
+* fix ui/ux in material3
+* remove unused function/file
+
 ## 0.5.1
 * fix ExHttp (delete)
 

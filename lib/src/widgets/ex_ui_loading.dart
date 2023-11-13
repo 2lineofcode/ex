@@ -10,25 +10,27 @@ import '../../ex.dart';
 class ExUiLoading extends StatelessWidget {
   const ExUiLoading({
     super.key,
+    this.bgColor,
     this.child,
     this.message,
   });
 
+  final Color? bgColor;
   final Widget? child;
   final Widget? message;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: bgColor,
       height: context.mq.size.height,
       width: context.mq.size.width,
       child: Center(
         child: VStack(
           [
-            child ?? ExProgressBar(color: Theme.of(context).primaryColor, size: 32).centered(),
-            30.heightBox,
-            message ?? 'Please wait...'.text.makeCentered(),
+            child ?? ExProgressBar().centered(),
+            16.heightBox,
+            message ?? 'Please wait...'.text.align(TextAlign.center).makeCentered(),
           ],
         ),
       ),

@@ -1,41 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 mixin ExDecorator {
   static BoxDecoration box({
-    Color? borderColor = const Color(0xFFD8DCE0),
-    Color? fillColor = Colors.transparent,
+    Color? borderColor,
+    Color? fillColor,
     double borderRadius = 8,
     double? borderWidth = 1,
   }) {
     return BoxDecoration(
-      color: fillColor,
-      border: Border.all(color: borderColor ?? const Color(0xFFD8DCE0), width: borderWidth ?? 1),
+      color: fillColor ?? Get.theme.cardColor,
+      border: Border.all(color: borderColor ?? Get.theme.hintColor.withAlpha(100), width: borderWidth ?? 1),
       borderRadius: BorderRadius.circular(borderRadius),
     );
   }
 
-  static BoxDecoration shadow({
-    Color? borderColor = const Color(0xFFD8DCE0),
-    Color? fillColor = Colors.white,
-    double borderRadius = 8,
+  static BoxDecoration top({
+    Color? fillColor,
+    double radius = 16,
   }) {
     return BoxDecoration(
-      color: fillColor,
-      borderRadius: BorderRadius.circular(borderRadius),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.grey[200]!,
-          spreadRadius: 10,
-          blurRadius: 10,
-          offset: const Offset(3, 3),
-        ),
-      ],
-    );
-  }
-
-  static BoxDecoration top({double radius = 24}) {
-    return BoxDecoration(
-      color: Colors.white,
+      color: fillColor ?? Get.theme.cardColor,
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(radius),
         topRight: Radius.circular(radius),
@@ -44,13 +29,14 @@ mixin ExDecorator {
   }
 
   static BoxDecoration custom({
+    Color? fillColor,
     double? topLeft,
     double? topRight,
     double? bottomLeft,
     double? bottomRight,
   }) {
     return BoxDecoration(
-      color: Colors.white,
+      color: fillColor ?? Get.theme.cardColor,
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(topLeft ?? 0),
         topRight: Radius.circular(topRight ?? 0),

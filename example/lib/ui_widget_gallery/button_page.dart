@@ -94,27 +94,23 @@ class ButtonPage extends StatelessWidget {
         'Custom'.text.bold.make().pOnly(bottom: 12),
         HStack([
           ExButtonElevated(
-            backgroundColor: colorSuccess,
-            child: HStack(
-              [
-                Icon(Icons.report_gmailerrorred_sharp, size: 18).pOnly(right: 8),
-                'Elevated'.text.red200.size(12).bold.make().pOnly(right: 8),
-              ],
-            ),
-            radius: 90,
+            backgroundColor: Vx.randomPrimaryColor,
+            child: HStack([
+              Icon(Icons.report_gmailerrorred_sharp, size: 18, color: colorWhite).pOnly(right: 8),
+              'Elevated'.text.white.size(12).bold.make().pOnly(right: 8),
+            ]),
+            radius: 0,
             onPressed: () {},
           ),
           12.widthBox,
           ExButtonOutline(
-            borderColor: colorSuccess,
-            child: HStack(
-              [
-                Icon(Icons.report_gmailerrorred_sharp, size: 12).pOnly(right: 8),
-                'Outline'.text.red200.size(12).bold.make().pOnly(right: 8),
-              ],
-            ),
-            height: 32,
-            radius: 90,
+            // backgroundColor: Vx.randomColor,
+            borderColor: Vx.randomPrimaryColor,
+            child: HStack([
+              Icon(Icons.report_gmailerrorred_sharp, size: 18).pOnly(right: 8),
+              'Outline'.text.red200.size(12).bold.make().pOnly(right: 8),
+            ]),
+            radius: 0,
             onPressed: () {},
           ),
         ]).scrollHorizontal(),

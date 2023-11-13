@@ -16,7 +16,7 @@ class ExButtonText extends StatelessWidget {
     this.label = '',
     this.labelColor,
     this.labelSize,
-    this.isLabelBold = true,
+    this.isLabelBold,
     this.width,
     this.height = 45,
     this.backgroundColor,

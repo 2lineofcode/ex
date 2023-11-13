@@ -16,7 +16,7 @@ class ExButtonElevated extends StatelessWidget {
     this.label = '',
     this.labelColor,
     this.labelSize,
-    this.isLabelBold = true,
+    this.isLabelBold,
     this.width,
     this.height = 45,
     this.backgroundColor,
@@ -37,8 +37,10 @@ class ExButtonElevated extends StatelessWidget {
   final VoidCallback? onPressed;
   final double radius;
   final Widget? icon;
-  final Widget? child;
   final Size? minimumSize;
+
+  /// if child is != null, then icon, label will be ignored
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {

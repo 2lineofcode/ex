@@ -22,7 +22,7 @@ class ExButtonOutline extends StatelessWidget {
     this.radius = 90,
     this.labelSize,
     this.backgroundColor,
-    this.isLabelBold = true,
+    this.isLabelBold,
     this.child,
     this.icon,
   });
@@ -37,33 +37,36 @@ class ExButtonOutline extends StatelessWidget {
   final Color? borderColor;
   final Color? backgroundColor;
   final double radius;
-  final Widget? child;
   final Widget? icon;
+
+  /// if child is != null, then icon, label will be ignored
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: onPressed,
       style: OutlinedButton.styleFrom(
-        primary: Colors.black87,
         backgroundColor: backgroundColor,
-        side: BorderSide(color: borderColor ?? Vx.neutral300),
+        side: BorderSide(color: borderColor ?? Theme.of(context).buttonTheme.colorScheme!.primary),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
         minimumSize: Size(width ?? 44, height ?? 44),
       ),
       child: child ??
-          HStack([
-            icon?.pOnly(right: 8) ?? 0.heightBox,
-            Text(
-              '$label',
-              style: TextStyle(
-                color: labelColor,
-                fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.w500,
-                fontSize: labelSize,
+          HStack(
+            [
+              icon?.pOnly(right: 8) ?? 0.heightBox,
+              Text(
+                '$label',
+                style: TextStyle(
+                  color: labelColor,
+                  fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.w500,
+                  fontSize: labelSize,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
-              overflow: TextOverflow.ellipsis,
-            ),
-          ]),
+            ],
+          ),
     );
   }
 }

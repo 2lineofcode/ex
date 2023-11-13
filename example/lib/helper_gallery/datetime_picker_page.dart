@@ -16,7 +16,7 @@ class DateTimePage extends StatelessWidget {
             children: [
               ExButtonOutline(
                 label: 'material',
-                onPressed: () => ExDatePicker.datePickerMaterial(
+                onPressed: () => ExDatePicker.materialDatePicker(
                   minDate: DateTime(1990),
                   maxDate: DateTime.now(),
                   callback: (p0) => ExSnackbar.info('$p0'),
@@ -24,7 +24,7 @@ class DateTimePage extends StatelessWidget {
               ).pOnly(right: 8),
               ExButtonOutline(
                 label: 'cupertino',
-                onPressed: () => ExDatePicker.datePickerCupertino(
+                onPressed: () => ExDatePicker.cupertinoDatePicker(
                   minDate: DateTime(1990),
                   maxDate: DateTime(2040),
                   callback: (p0) => ExSnackbar.info('$p0'),
@@ -32,7 +32,7 @@ class DateTimePage extends StatelessWidget {
               ).pOnly(right: 8),
               ExButtonOutline(
                 label: 'adaptive',
-                onPressed: () => ExDatePicker.date(
+                onPressed: () => ExDatePicker.adaptiveDatePicker(
                   minDate: DateTime(1990),
                   callback: (p0) => ExSnackbar.info('$p0'),
                 ),
@@ -48,21 +48,21 @@ class DateTimePage extends StatelessWidget {
             children: [
               ExButtonOutline(
                 label: 'material',
-                onPressed: () => ExDatePicker.timePickerMaterial(
+                onPressed: () => ExDatePicker.materialTimePicker(
                   minDate: DateTime(1990),
                   callback: (p0) => ExSnackbar.info('$p0'),
                 ),
               ).pOnly(right: 8),
               ExButtonOutline(
                 label: 'cupertino',
-                onPressed: () => ExDatePicker.timePickerCupertino(
+                onPressed: () => ExDatePicker.cupertinoTimePicker(
                   minDate: DateTime(1990),
                   callback: (p0) => ExSnackbar.info('$p0'),
                 ),
               ).pOnly(right: 8),
               ExButtonOutline(
                 label: 'adaptive',
-                onPressed: () => ExDatePicker.time(
+                onPressed: () => ExDatePicker.adaptiveTimePicker(
                   minDate: DateTime(1990),
                   callback: (p0) => ExSnackbar.info('$p0'),
                 ),
@@ -78,7 +78,7 @@ class DateTimePage extends StatelessWidget {
             children: [
               ExButtonOutline(
                 label: 'cupertino',
-                onPressed: () => ExDatePicker.datetime(
+                onPressed: () => ExDatePicker.cupertinoDatetimePicker(
                   // minDate: DateTime(1990),
                   callback: (p0) => ExSnackbar.info('$p0'),
                 ),

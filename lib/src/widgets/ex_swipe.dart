@@ -80,9 +80,14 @@ class ExSwipe extends StatelessWidget {
         updateVerticalDragDetails = dragDetails;
       },
       onVerticalDragEnd: (endDetails) {
-        if (startVerticalDragDetails != null && updateVerticalDragDetails != null) {
-          final dx = (updateVerticalDragDetails!.globalPosition.dx - startVerticalDragDetails!.globalPosition.dx).abs();
-          final dy = (updateVerticalDragDetails!.globalPosition.dy - startVerticalDragDetails!.globalPosition.dy).abs();
+        if (startVerticalDragDetails != null &&
+            updateVerticalDragDetails != null) {
+          final dx = (updateVerticalDragDetails!.globalPosition.dx -
+                  startVerticalDragDetails!.globalPosition.dx)
+              .abs();
+          final dy = (updateVerticalDragDetails!.globalPosition.dy -
+                  startVerticalDragDetails!.globalPosition.dy)
+              .abs();
           final velocity = endDetails.primaryVelocity ?? 0.0;
 
           if (dx > verticalMaxWidthThreshold) return;
@@ -107,9 +112,14 @@ class ExSwipe extends StatelessWidget {
         updateHorizontalDragDetails = dragDetails;
       },
       onHorizontalDragEnd: (endDetails) {
-        if (startHorizontalDragDetails != null && updateHorizontalDragDetails != null) {
-          final dx = (updateHorizontalDragDetails!.globalPosition.dx - startHorizontalDragDetails!.globalPosition.dx).abs();
-          final dy = (updateHorizontalDragDetails!.globalPosition.dy - startHorizontalDragDetails!.globalPosition.dy).abs();
+        if (startHorizontalDragDetails != null &&
+            updateHorizontalDragDetails != null) {
+          final dx = (updateHorizontalDragDetails!.globalPosition.dx -
+                  startHorizontalDragDetails!.globalPosition.dx)
+              .abs();
+          final dy = (updateHorizontalDragDetails!.globalPosition.dy -
+                  startHorizontalDragDetails!.globalPosition.dy)
+              .abs();
           final velocity = endDetails.primaryVelocity ?? 0.0;
 
           if (dy > horizontalMaxHeightThreshold) return;

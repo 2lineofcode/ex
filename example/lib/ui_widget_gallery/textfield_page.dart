@@ -19,7 +19,11 @@ class TextFieldPage extends StatelessWidget {
 
         // —————————————————————————————————————————————————————————————————————————————
         Divider().pSymmetric(v: 16),
-        'TextField with Prefix Icon & Validator'.text.bold.make().pOnly(bottom: 12),
+        'TextField with Prefix Icon & Validator'
+            .text
+            .bold
+            .make()
+            .pOnly(bottom: 12),
         ExTextField(
           prefixIcon: Icon(Icons.verified_user),
           hint: faker.lorem.sentence(),
@@ -40,7 +44,11 @@ class TextFieldPage extends StatelessWidget {
         ),
         Divider().pSymmetric(v: 16),
 
-        'TextField with Prefix & Suffix Icon'.text.bold.make().pOnly(bottom: 12),
+        'TextField with Prefix & Suffix Icon'
+            .text
+            .bold
+            .make()
+            .pOnly(bottom: 12),
         ExTextField(
           prefixIcon: Icon(Icons.account_circle),
           suffixIcon: Icon(Icons.search),

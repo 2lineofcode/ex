@@ -10,7 +10,10 @@ mixin ExDecorator {
   }) {
     return BoxDecoration(
       color: fillColor ?? Get.theme.cardColor,
-      border: Border.all(color: borderColor ?? Get.theme.hintColor.withAlpha(100), width: borderWidth ?? 1),
+      border: Border.all(
+        color: borderColor ?? Get.theme.hintColor.withAlpha(100),
+        width: borderWidth ?? 1,
+      ),
       borderRadius: BorderRadius.circular(borderRadius),
     );
   }

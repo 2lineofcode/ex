@@ -11,7 +11,10 @@ import 'package:intl/intl.dart';
 
 /// STRING TO DATE
 extension StringToDateExtension on String {
-  DateTime toDateEx({String format = 'yyyy-MM-ddTHH:mm:ssZ', String locale = 'in'}) {
+  DateTime toDateEx({
+    String format = 'yyyy-MM-ddTHH:mm:ssZ',
+    String locale = 'in',
+  }) {
     initializeDateFormatting(locale);
     return DateFormat(format, locale).parse(this);
   }
@@ -33,7 +36,9 @@ extension ReformatDateExtension on String {
     initializeDateFormatting(locale);
     String output;
     try {
-      output = toDateEx(format: from, locale: locale).add(addHours.hours).toStringEx(format: to, locale: locale);
+      output = toDateEx(format: from, locale: locale)
+          .add(addHours.hours)
+          .toStringEx(format: to, locale: locale);
     } catch (e) {
       logE(e.toString());
       output = 'error';
@@ -44,7 +49,10 @@ extension ReformatDateExtension on String {
 
 /// DATE TO STRING
 extension DateToStringExtension on DateTime {
-  String toStringEx({String format = 'yyyy-MM-ddTHH:mm:ssZ', String locale = 'in'}) {
+  String toStringEx({
+    String format = 'yyyy-MM-ddTHH:mm:ssZ',
+    String locale = 'in',
+  }) {
     initializeDateFormatting(locale);
     final output = DateFormat(format, locale).format(this);
     return output;

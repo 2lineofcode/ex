@@ -63,7 +63,8 @@ class AlertPage extends StatelessWidget {
             label: 'Uniq',
             width: double.infinity,
             onPressed: () => ExAlert.success(
-              icon: Icon(Icons.access_time_outlined, size: 48, color: Vx.pink400),
+              icon:
+                  Icon(Icons.access_time_outlined, size: 48, color: Vx.pink400),
               title: 'isDismissible: false',
               radius: 12,
               isDismissible: false,
@@ -181,7 +182,10 @@ class AlertPage extends StatelessWidget {
                 [
                   Text(
                     '${faker.lorem.words(2).join(' ')}',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: colorBlack),
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: colorBlack),
                   ),
                   16.heightBox,
                   Text(

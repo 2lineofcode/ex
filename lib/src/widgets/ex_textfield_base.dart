@@ -163,7 +163,10 @@ class _ExBaseTextFieldState extends State<ExBaseTextField> {
         border: getInputBorder(),
         enabledBorder: getInputBorder(),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: widget.borderColorFocus ?? Theme.of(context).hintColor, width: 1.2),
+          borderSide: BorderSide(
+            color: widget.borderColorFocus ?? Theme.of(context).hintColor,
+            width: 1.2,
+          ),
           borderRadius: BorderRadius.circular(getBorderRadius()),
         ),
       ),
@@ -181,7 +184,8 @@ class _ExBaseTextFieldState extends State<ExBaseTextField> {
     );
 
     const other = null;
-    if (widget.maxLine == other && widget.borderType == ExTextFieldBorderType.roundLine) {
+    if (widget.maxLine == other &&
+        widget.borderType == ExTextFieldBorderType.roundLine) {
       return Container(
         decoration: getBoxDecoration(),
         constraints: BoxConstraints(minHeight: widget.height),

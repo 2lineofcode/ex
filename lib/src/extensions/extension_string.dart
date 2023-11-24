@@ -234,7 +234,9 @@ extension MiscExtensions on String? {
   bool? get isStrongPassword {
     if (this == null) return null;
     if (this!.isEmpty) return false;
-    final regex = RegExp(r'^(?=.*([A-Z]){1,})(?=.*[!@#$&*]{1,})(?=.*[0-9]{1,})(?=.*[a-z]{1,}).{8,100}$');
+    final regex = RegExp(
+      r'^(?=.*([A-Z]){1,})(?=.*[!@#$&*]{1,})(?=.*[0-9]{1,})(?=.*[a-z]{1,}).{8,100}$',
+    );
     return regex.hasMatch(this!);
   }
 
@@ -279,7 +281,10 @@ extension MiscExtensions on String? {
   int? charCount(String char) {
     if (this == null) return null;
     if (this!.isEmpty) return 0;
-    return this!.split('').fold<int>(0, (previousValue, ch) => previousValue + (ch == char ? 1 : 0));
+    return this!.split('').fold<int>(
+          0,
+          (previousValue, ch) => previousValue + (ch == char ? 1 : 0),
+        );
   }
 
   /// Returns the String reversed.
@@ -387,7 +392,8 @@ extension MiscExtensions on String? {
     final result = StringBuffer(words[0].toLowerCase());
     for (var i = 1; i < words.length; i++) {
       result.write(
-        words[i].substring(0, 1).toUpperCase() + words[i].substring(1).toLowerCase(),
+        words[i].substring(0, 1).toUpperCase() +
+            words[i].substring(1).toLowerCase(),
       );
     }
     return result.toString();

@@ -23,8 +23,14 @@ class ExAccordion extends StatefulWidget {
     this.margin,
     this.showAccordion = false,
     this.onToggleCollapsed,
-    this.titleBorderRadius = const BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12)),
-    this.contentBorderRadius = const BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
+    this.titleBorderRadius = const BorderRadius.only(
+      topLeft: Radius.circular(12),
+      topRight: Radius.circular(12),
+    ),
+    this.contentBorderRadius = const BorderRadius.only(
+      bottomLeft: Radius.circular(12),
+      bottomRight: Radius.circular(12),
+    ),
   });
 
   /// controls if the accordion should be collapsed or not making it possible to be controlled from outside
@@ -89,7 +95,8 @@ class ExAccordion extends StatefulWidget {
   _ExAccordionState createState() => _ExAccordionState();
 }
 
-class _ExAccordionState extends State<ExAccordion> with TickerProviderStateMixin {
+class _ExAccordionState extends State<ExAccordion>
+    with TickerProviderStateMixin {
   late AnimationController animationController;
   late AnimationController controller;
   late Animation<Offset> offset;
@@ -98,7 +105,8 @@ class _ExAccordionState extends State<ExAccordion> with TickerProviderStateMixin
   @override
   void initState() {
     showAccordion = widget.showAccordion;
-    animationController = AnimationController(duration: const Duration(seconds: 2), vsync: this);
+    animationController =
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
     controller = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
@@ -139,20 +147,27 @@ class _ExAccordionState extends State<ExAccordion> with TickerProviderStateMixin
                       ? showAccordion
                           //
                           ? widget.expandedTitleBackgroundColor ?? Vx.neutral500
-                          : widget.collapsedTitleBackgroundColor ?? Vx.neutral500
+                          : widget.collapsedTitleBackgroundColor ??
+                              Vx.neutral500
                       : showAccordion
                           //
                           ? widget.expandedTitleBackgroundColor ?? Vx.neutral200
-                          : widget.collapsedTitleBackgroundColor ?? Vx.neutral200,
+                          : widget.collapsedTitleBackgroundColor ??
+                              Vx.neutral200,
                 ),
                 padding: widget.titlePadding,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: widget.title != null ? Text(widget.title!, style: widget.textStyle) : (widget.titleChild ?? Container()),
+                      child: widget.title != null
+                          ? Text(widget.title!, style: widget.textStyle)
+                          : (widget.titleChild ?? Container()),
                     ),
-                    if (showAccordion) widget.expandedIcon else widget.collapsedIcon,
+                    if (showAccordion)
+                      widget.expandedIcon
+                    else
+                      widget.collapsedIcon,
                   ],
                 ),
               ),
@@ -174,7 +189,9 @@ class _ExAccordionState extends State<ExAccordion> with TickerProviderStateMixin
                 padding: widget.contentPadding,
                 child: SlideTransition(
                   position: offset,
-                  child: widget.content != null ? widget.content! : (widget.contentChild ?? Container()),
+                  child: widget.content != null
+                      ? widget.content!
+                      : (widget.contentChild ?? Container()),
                 ),
               )
             else

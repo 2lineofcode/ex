@@ -54,7 +54,8 @@ Future<void> main() async {
               IconButton(
                 icon: Icon(Icons.brightness_2_rounded),
                 onPressed: () async {
-                  Get.changeTheme(Get.isDarkMode ? AppThemes.light : AppThemes.dark);
+                  Get.changeTheme(
+                      Get.isDarkMode ? AppThemes.light : AppThemes.dark);
                   await 500.milliseconds.delay();
                   Get.forceAppUpdate();
                 },
@@ -135,7 +136,8 @@ class Home extends GetView {
             VStack([
               ListView.separated(
                 itemCount: xFeatures1.length,
-                separatorBuilder: (BuildContext context, int index) => Divider(),
+                separatorBuilder: (BuildContext context, int index) =>
+                    Divider(),
                 itemBuilder: (context, index) {
                   final data = xFeatures1.entries.toList();
                   return ListTile(
@@ -183,7 +185,8 @@ class Home extends GetView {
             VStack([
               ListView.separated(
                 itemCount: xFeatures3.length,
-                separatorBuilder: (BuildContext context, int index) => Divider(),
+                separatorBuilder: (BuildContext context, int index) =>
+                    Divider(),
                 itemBuilder: (context, index) {
                   final data = xFeatures3.entries.toList();
                   return ListTile(
@@ -201,7 +204,8 @@ class Home extends GetView {
             VStack([
               ListView.separated(
                 itemCount: xFeatures4.length,
-                separatorBuilder: (BuildContext context, int index) => Divider(),
+                separatorBuilder: (BuildContext context, int index) =>
+                    Divider(),
                 itemBuilder: (context, index) {
                   final data = xFeatures4.entries.toList();
                   return ListTile(

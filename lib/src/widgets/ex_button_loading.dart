@@ -44,7 +44,11 @@ class ExButtonLoading extends StatefulWidget {
   final Curve curve;
   final Curve reverseCurve;
   final Widget child;
-  final Function(Function startLoading, Function stopLoading, ExButtonState btnState)? onTap;
+  final Function(
+    Function startLoading,
+    Function stopLoading,
+    ExButtonState btnState,
+  )? onTap;
   final Color? color;
   final Color? borderColor;
   final double? elevation;
@@ -65,7 +69,8 @@ class ExButtonLoading extends StatefulWidget {
   State<ExButtonLoading> createState() => _LoadingBtnState();
 }
 
-class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMixin {
+class _LoadingBtnState extends State<ExButtonLoading>
+    with TickerProviderStateMixin {
   double? loaderWidth;
   late Animation<double> _animation;
   late AnimationController _controller;
@@ -77,8 +82,15 @@ class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMi
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: widget.animationDuration);
-    _animation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _controller, curve: widget.curve, reverseCurve: widget.reverseCurve));
+    _controller =
+        AnimationController(vsync: this, duration: widget.animationDuration);
+    _animation = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: widget.curve,
+        reverseCurve: widget.reverseCurve,
+      ),
+    );
     _animation.addStatusListener((status) {
       if (status == AnimationStatus.dismissed) {
         setState(() {
@@ -145,7 +157,9 @@ class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMi
   Widget _buttonBodyElevated() {
     return SizedBox(
       height: widget.height,
-      width: widget.animate ? lerpWidth(widget.width, minWidth, _animation.value) : widget.width,
+      width: widget.animate
+          ? lerpWidth(widget.width, minWidth, _animation.value)
+          : widget.width,
       child: ElevatedButton(
         key: _buttonKey,
         style: ButtonStyle(
@@ -153,13 +167,20 @@ class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMi
             RoundedRectangleBorder(
               side: widget.borderSide,
               borderRadius: BorderRadius.circular(
-                widget.roundLoadingShape ? lerpDouble(widget.borderRadius, widget.height / 2, _animation.value)! : widget.borderRadius,
+                widget.roundLoadingShape
+                    ? lerpDouble(
+                        widget.borderRadius,
+                        widget.height / 2,
+                        _animation.value,
+                      )!
+                    : widget.borderRadius,
               ),
             ),
           ),
           backgroundColor: MaterialStateProperty.all(widget.color),
           elevation: MaterialStateProperty.all<double?>(widget.elevation),
-          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(widget.padding),
+          padding:
+              MaterialStateProperty.all<EdgeInsetsGeometry>(widget.padding),
         ),
         clipBehavior: widget.clipBehavior,
         focusNode: widget.focusNode,
@@ -173,7 +194,10 @@ class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMi
                   padding: EdgeInsets.all(10),
                   width: 40,
                   height: 40,
-                  child: ExProgressBar(color: Theme.of(context).hintColor, size: 32).centered(),
+                  child: ExProgressBar(
+                    color: Theme.of(context).hintColor,
+                    size: 32,
+                  ).centered(),
                 ),
       ),
     );
@@ -182,7 +206,9 @@ class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMi
   Widget _buttonBodyOutlined() {
     return SizedBox(
       height: widget.height,
-      width: widget.animate ? lerpWidth(widget.width, minWidth, _animation.value) : widget.width,
+      width: widget.animate
+          ? lerpWidth(widget.width, minWidth, _animation.value)
+          : widget.width,
       child: OutlinedButton(
         key: _buttonKey,
         style: OutlinedButton.styleFrom(
@@ -190,7 +216,13 @@ class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMi
           side: BorderSide(color: widget.borderColor ?? Vx.neutral300),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
-              widget.roundLoadingShape ? lerpDouble(widget.borderRadius, widget.height / 2, _animation.value)! : widget.borderRadius,
+              widget.roundLoadingShape
+                  ? lerpDouble(
+                      widget.borderRadius,
+                      widget.height / 2,
+                      _animation.value,
+                    )!
+                  : widget.borderRadius,
             ),
           ),
           minimumSize: Size(widget.width, widget.height),
@@ -210,7 +242,10 @@ class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMi
                   padding: EdgeInsets.all(10),
                   width: 40,
                   height: 40,
-                  child: ExProgressBar(color: Theme.of(context).hintColor, size: 32).centered(),
+                  child: ExProgressBar(
+                    color: Theme.of(context).hintColor,
+                    size: 32,
+                  ).centered(),
                 ),
       ),
     );
@@ -219,7 +254,9 @@ class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMi
   Widget _buttonBodyText() {
     return SizedBox(
       height: widget.height,
-      width: widget.animate ? lerpWidth(widget.width, minWidth, _animation.value) : widget.width,
+      width: widget.animate
+          ? lerpWidth(widget.width, minWidth, _animation.value)
+          : widget.width,
       child: TextButton(
         key: _buttonKey,
         style: ButtonStyle(
@@ -227,13 +264,20 @@ class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMi
             RoundedRectangleBorder(
               side: widget.borderSide,
               borderRadius: BorderRadius.circular(
-                widget.roundLoadingShape ? lerpDouble(widget.borderRadius, widget.height / 2, _animation.value)! : widget.borderRadius,
+                widget.roundLoadingShape
+                    ? lerpDouble(
+                        widget.borderRadius,
+                        widget.height / 2,
+                        _animation.value,
+                      )!
+                    : widget.borderRadius,
               ),
             ),
           ),
           backgroundColor: MaterialStateProperty.all(widget.color),
           elevation: MaterialStateProperty.all<double?>(widget.elevation),
-          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(widget.padding),
+          padding:
+              MaterialStateProperty.all<EdgeInsetsGeometry>(widget.padding),
         ),
         clipBehavior: widget.clipBehavior,
         focusNode: widget.focusNode,
@@ -247,7 +291,10 @@ class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMi
                   padding: EdgeInsets.all(10),
                   width: 40,
                   height: 40,
-                  child: ExProgressBar(color: Theme.of(context).hintColor, size: 32).centered(),
+                  child: ExProgressBar(
+                    color: Theme.of(context).hintColor,
+                    size: 32,
+                  ).centered(),
                 ),
       ),
     );

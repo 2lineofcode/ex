@@ -30,7 +30,8 @@ class ExUiLoading extends StatelessWidget {
           [
             child ?? ExProgressBar().centered(),
             16.heightBox,
-            message ?? 'Please wait...'.text.align(TextAlign.center).makeCentered(),
+            message ??
+                'Please wait...'.text.align(TextAlign.center).makeCentered(),
           ],
         ),
       ),

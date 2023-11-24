@@ -69,7 +69,8 @@ class DiscreteCircle extends StatefulWidget {
   State<DiscreteCircle> createState() => _DiscreteCircleState();
 }
 
-class _DiscreteCircleState extends State<DiscreteCircle> with SingleTickerProviderStateMixin {
+class _DiscreteCircleState extends State<DiscreteCircle>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
 
   @override
@@ -116,7 +117,11 @@ class _DiscreteCircleState extends State<DiscreteCircle> with SingleTickerProvid
                       .animate(
                         CurvedAnimation(
                           parent: _animationController,
-                          curve: const Interval(0.7, 0.95, curve: Curves.easeOutSine),
+                          curve: const Interval(
+                            0.7,
+                            0.95,
+                            curve: Curves.easeOutSine,
+                          ),
                         ),
                       )
                       .value,

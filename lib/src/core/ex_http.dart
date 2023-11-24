@@ -61,7 +61,8 @@ class ExHttp extends ExConnect {
 
   @override
   Future<void> onInit() async {
-    HttpOverrides.global = MyHttpOverrides(); // Fix Http Issue on Android SDK < 23
+    HttpOverrides.global =
+        MyHttpOverrides(); // Fix Http Issue on Android SDK < 23
 
     try {
       allowAutoSignedCert = allowAutoSignedCertificate;
@@ -150,44 +151,175 @@ Get.put(
   }
 
   @override
-  Future<Response<T>> get<T>(String path, {Map<String, String>? header, dynamic query, dynamic body, String? contentType, Decoder<T>? decoder}) async {
-    return _httpBase(method: 'get', url: path, header: header, query: query, body: body, decoder: decoder, contentType: contentType);
+  Future<Response<T>> get<T>(
+    String path, {
+    Map<String, String>? header,
+    dynamic query,
+    dynamic body,
+    String? contentType,
+    Decoder<T>? decoder,
+  }) async {
+    return _httpBase(
+      method: 'get',
+      url: path,
+      header: header,
+      query: query,
+      body: body,
+      decoder: decoder,
+      contentType: contentType,
+    );
   }
 
   @override
-  Future<Response<T>> post<T>(String path, {Map<String, String>? header, dynamic query, dynamic body, Progress? uploadProgress, String? contentType, Decoder<T>? decoder}) async {
-    return _httpBase(method: 'post', url: path, header: header, query: query, body: body, decoder: decoder, contentType: contentType, uploadProgress: uploadProgress);
+  Future<Response<T>> post<T>(
+    String path, {
+    Map<String, String>? header,
+    dynamic query,
+    dynamic body,
+    Progress? uploadProgress,
+    String? contentType,
+    Decoder<T>? decoder,
+  }) async {
+    return _httpBase(
+      method: 'post',
+      url: path,
+      header: header,
+      query: query,
+      body: body,
+      decoder: decoder,
+      contentType: contentType,
+      uploadProgress: uploadProgress,
+    );
   }
 
   @override
-  Future<Response<T>> put<T>(String path, {Map<String, String>? header, dynamic query, dynamic body, Progress? uploadProgress, String? contentType, Decoder<T>? decoder}) async {
-    return _httpBase(method: 'put', url: path, header: header, query: query, body: body, decoder: decoder, contentType: contentType, uploadProgress: uploadProgress);
+  Future<Response<T>> put<T>(
+    String path, {
+    Map<String, String>? header,
+    dynamic query,
+    dynamic body,
+    Progress? uploadProgress,
+    String? contentType,
+    Decoder<T>? decoder,
+  }) async {
+    return _httpBase(
+      method: 'put',
+      url: path,
+      header: header,
+      query: query,
+      body: body,
+      decoder: decoder,
+      contentType: contentType,
+      uploadProgress: uploadProgress,
+    );
   }
 
   @override
-  Future<Response<T>> patch<T>(String path, {Map<String, String>? header, dynamic query, dynamic body, String? contentType, Decoder<T>? decoder}) async {
-    return _httpBase(method: 'patch', url: path, header: header, query: query, body: body, decoder: decoder, contentType: contentType);
+  Future<Response<T>> patch<T>(
+    String path, {
+    Map<String, String>? header,
+    dynamic query,
+    dynamic body,
+    String? contentType,
+    Decoder<T>? decoder,
+  }) async {
+    return _httpBase(
+      method: 'patch',
+      url: path,
+      header: header,
+      query: query,
+      body: body,
+      decoder: decoder,
+      contentType: contentType,
+    );
   }
 
   @override
-  Future<Response<T>> delete<T>(String path, {Map<String, String>? header, dynamic query, dynamic body, String? contentType, Decoder<T>? decoder}) async {
-    return _httpBase(method: 'delete', url: path, header: header, query: query, body: body, decoder: decoder, contentType: contentType);
+  Future<Response<T>> delete<T>(
+    String path, {
+    Map<String, String>? header,
+    dynamic query,
+    dynamic body,
+    String? contentType,
+    Decoder<T>? decoder,
+  }) async {
+    return _httpBase(
+      method: 'delete',
+      url: path,
+      header: header,
+      query: query,
+      body: body,
+      decoder: decoder,
+      contentType: contentType,
+    );
   }
 
-  Future<Response<T>> head<T>(String path, {Map<String, String>? header, dynamic query, dynamic body, String? contentType, Decoder<T>? decoder}) async {
-    return _httpBase(method: 'head', url: path, header: header, query: query, body: body);
+  Future<Response<T>> head<T>(
+    String path, {
+    Map<String, String>? header,
+    dynamic query,
+    dynamic body,
+    String? contentType,
+    Decoder<T>? decoder,
+  }) async {
+    return _httpBase(
+      method: 'head',
+      url: path,
+      header: header,
+      query: query,
+      body: body,
+    );
   }
 
-  Future<Response<T>> connect<T>(String path, {Map<String, String>? header, dynamic query, dynamic body, String? contentType, Decoder<T>? decoder}) async {
-    return _httpBase(method: 'connect', url: path, header: header, query: query, body: body);
+  Future<Response<T>> connect<T>(
+    String path, {
+    Map<String, String>? header,
+    dynamic query,
+    dynamic body,
+    String? contentType,
+    Decoder<T>? decoder,
+  }) async {
+    return _httpBase(
+      method: 'connect',
+      url: path,
+      header: header,
+      query: query,
+      body: body,
+    );
   }
 
-  Future<Response<T>> options<T>(String path, {Map<String, String>? header, dynamic query, dynamic body, String? contentType, Decoder<T>? decoder}) async {
-    return _httpBase(method: 'options', url: path, header: header, query: query, body: body);
+  Future<Response<T>> options<T>(
+    String path, {
+    Map<String, String>? header,
+    dynamic query,
+    dynamic body,
+    String? contentType,
+    Decoder<T>? decoder,
+  }) async {
+    return _httpBase(
+      method: 'options',
+      url: path,
+      header: header,
+      query: query,
+      body: body,
+    );
   }
 
-  Future<Response<T>> trace<T>(String path, {Map<String, String>? header, dynamic query, dynamic body, String? contentType, Decoder<T>? decoder}) async {
-    return _httpBase(method: 'trace', url: path, header: header, query: query, body: body);
+  Future<Response<T>> trace<T>(
+    String path, {
+    Map<String, String>? header,
+    dynamic query,
+    dynamic body,
+    String? contentType,
+    Decoder<T>? decoder,
+  }) async {
+    return _httpBase(
+      method: 'trace',
+      url: path,
+      header: header,
+      query: query,
+      body: body,
+    );
   }
 
   @override
@@ -201,7 +333,16 @@ Get.put(
     Decoder<T>? decoder,
     Progress? uploadProgress,
   }) {
-    return _httpBase(method: method, url: url, header: headers, query: query, body: body, contentType: contentType, decoder: decoder, uploadProgress: uploadProgress);
+    return _httpBase(
+      method: method,
+      url: url,
+      header: headers,
+      query: query,
+      body: body,
+      contentType: contentType,
+      decoder: decoder,
+      uploadProgress: uploadProgress,
+    );
   }
 
   /// template exhttp.download
@@ -256,7 +397,9 @@ Get.put(
         onBytesReceived: onReceiveProgress ??
             (cumulative, total) {
               if (total != null && total <= 0) return;
-              print('downloading: ${(cumulative / total! * 100).toStringAsFixed(0)}%');
+              print(
+                'downloading: ${(cumulative / total! * 100).toStringAsFixed(0)}%',
+              );
             },
       );
 
@@ -286,7 +429,16 @@ Get.put(
       await onInit();
     }
 
-    final res = await httpClient.request<T>(url, method, headers: header, query: query, body: body, decoder: decoder, contentType: contentType, uploadProgress: uploadProgress);
+    final res = await httpClient.request<T>(
+      url,
+      method,
+      headers: header,
+      query: query,
+      body: body,
+      decoder: decoder,
+      contentType: contentType,
+      uploadProgress: uploadProgress,
+    );
     logI('${method.toUpperCase()} : ${res.request?.url}');
     try {
       if (header != null) logI('Header: ${jsonEncode(header)}');
@@ -321,7 +473,10 @@ Get.put(
 /// —————————————————————————————————————————————————————————————————————————————
 class MyHttpOverrides extends HttpOverrides {
   @override
-  HttpClient createHttpClient(SecurityContext? context) => super.createHttpClient(context)..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+  HttpClient createHttpClient(SecurityContext? context) =>
+      super.createHttpClient(context)
+        ..badCertificateCallback =
+            (X509Certificate cert, String host, int port) => true;
 }
 
 String getErrorMessage(int? code, {Response<dynamic>? response}) {
@@ -331,11 +486,21 @@ String getErrorMessage(int? code, {Response<dynamic>? response}) {
     case 400:
       if (response != null) {
         if (response.body['info'] != null) return '${response.body['info']}';
-        if (response.body['data']['info'] != null) return '${response.body['data']['info']}';
-        if (response.body['message'] != null) return '${response.body['message']}';
-        if (response.body['data']['message'] != null) return '${response.body['data']['message']}';
-        if (response.body['error']['message'] != null) return '${response.body['error']['message']}';
-        if (response.body['error']['description'] != null) return '${response.body['error']['description']}';
+        if (response.body['data']['info'] != null) {
+          return '${response.body['data']['info']}';
+        }
+        if (response.body['message'] != null) {
+          return '${response.body['message']}';
+        }
+        if (response.body['data']['message'] != null) {
+          return '${response.body['data']['message']}';
+        }
+        if (response.body['error']['message'] != null) {
+          return '${response.body['error']['message']}';
+        }
+        if (response.body['error']['description'] != null) {
+          return '${response.body['error']['description']}';
+        }
       }
       return 'Bad request ($code)';
     case 401:

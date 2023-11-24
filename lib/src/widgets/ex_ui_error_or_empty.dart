@@ -40,8 +40,19 @@ class ExUiErrorOrEmpty extends StatelessWidget {
             child!,
           ] else ...[
             if (illustration != null) illustration!.centered(),
-            if (title != null) title!.text.bold.size(16).textStyle(titleStyle).align(TextAlign.center).makeCentered().pSymmetric(v: 12),
-            if (message != null) message!.text.size(12).align(TextAlign.center).textStyle(messageStyle).makeCentered(),
+            if (title != null)
+              title!.text.bold
+                  .size(16)
+                  .textStyle(titleStyle)
+                  .align(TextAlign.center)
+                  .makeCentered()
+                  .pSymmetric(v: 12),
+            if (message != null)
+              message!.text
+                  .size(12)
+                  .align(TextAlign.center)
+                  .textStyle(messageStyle)
+                  .makeCentered(),
           ],
         ],
       ).centered(),

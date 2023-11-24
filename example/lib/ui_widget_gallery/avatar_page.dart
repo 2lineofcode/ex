@@ -33,7 +33,8 @@ class AvatarPage extends StatelessWidget {
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               name: faker.person.name(),
-              url: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
+              url:
+                  'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 32,
             ).pOnly(right: 12),
         ]).scrollHorizontal(),
@@ -59,7 +60,8 @@ class AvatarPage extends StatelessWidget {
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               name: faker.person.name(),
-              url: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
+              url:
+                  'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 48,
             ).pOnly(right: 12),
         ]).scrollHorizontal(),
@@ -71,7 +73,8 @@ class AvatarPage extends StatelessWidget {
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               name: faker.person.name(),
-              url: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
+              url:
+                  'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 56,
             ).pOnly(right: 12),
         ]).scrollHorizontal(),
@@ -84,7 +87,8 @@ class AvatarPage extends StatelessWidget {
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               name: faker.person.name(),
-              url: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
+              url:
+                  'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 72,
             ).pOnly(right: 12),
         ]).scrollHorizontal(),
@@ -97,7 +101,8 @@ class AvatarPage extends StatelessWidget {
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               name: faker.person.name(),
-              url: 'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
+              url:
+                  'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 120,
             ).pOnly(right: 12),
         ]).scrollHorizontal(),

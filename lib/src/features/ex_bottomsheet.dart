@@ -33,8 +33,19 @@ mixin ExBottomSheet {
           [
             if (showDragIndicator == true) ExDashLine().pSymmetric(v: 24),
             if (title != null) ...[
-              title.text.bold.size(18).maxLines(2).textStyle(titleStyle).ellipsis.make().pOnly(bottom: 8).pSymmetric(h: 24).pOnly(top: showDragIndicator == true ? 0 : 16),
-              if (showDivider == true) Divider().pOnly(bottom: 8) else 8.heightBox,
+              title.text.bold
+                  .size(18)
+                  .maxLines(2)
+                  .textStyle(titleStyle)
+                  .ellipsis
+                  .make()
+                  .pOnly(bottom: 8)
+                  .pSymmetric(h: 24)
+                  .pOnly(top: showDragIndicator == true ? 0 : 16),
+              if (showDivider == true)
+                Divider().pOnly(bottom: 8)
+              else
+                8.heightBox,
             ],
             content.pSymmetric(h: padding ?? 24),
           ],
@@ -47,7 +58,10 @@ mixin ExBottomSheet {
       isScrollControlled: isScrolled ?? true,
       enableDrag: true,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(radius ?? 16), topRight: Radius.circular(radius ?? 16)),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(radius ?? 16),
+          topRight: Radius.circular(radius ?? 16),
+        ),
       ),
     );
   }
@@ -127,8 +141,17 @@ mixin ExBottomSheet {
         child: VStack(
           [
             ExDashLine().pOnly(top: 24),
-            title.text.bold.size(18).maxLines(2).ellipsis.make().pOnly(top: 24, bottom: 8).pSymmetric(h: 24),
-            if (showDivider == true) Divider().pOnly(bottom: 8) else 8.heightBox,
+            title.text.bold
+                .size(18)
+                .maxLines(2)
+                .ellipsis
+                .make()
+                .pOnly(top: 24, bottom: 8)
+                .pSymmetric(h: 24),
+            if (showDivider == true)
+              Divider().pOnly(bottom: 8)
+            else
+              8.heightBox,
             Expanded(
               child: data.isNotEmpty
                   ? ListView.separated(
@@ -137,7 +160,14 @@ mixin ExBottomSheet {
                       itemBuilder: (context, index) {
                         return ListTile(
                           leading: data[index].icon,
-                          title: data[index].key == keySelected ? data[index].value.text.bold.size(14).make() : data[index].value.text.color(Get.theme.hintColor).size(14).make(),
+                          title: data[index].key == keySelected
+                              ? data[index].value.text.bold.size(14).make()
+                              : data[index]
+                                  .value
+                                  .text
+                                  .color(Get.theme.hintColor)
+                                  .size(14)
+                                  .make(),
                           trailing: showTrailing == true
                               ? data[index].key == keySelected
                                   ? Icon(Icons.radio_button_on)
@@ -161,7 +191,10 @@ mixin ExBottomSheet {
       persistent: persistent ?? true,
       isScrollControlled: isFullScreen ?? false,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(radius ?? 16), topRight: Radius.circular(radius ?? 16)),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(radius ?? 16),
+          topRight: Radius.circular(radius ?? 16),
+        ),
       ),
     );
   }

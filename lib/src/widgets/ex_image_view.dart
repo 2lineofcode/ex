@@ -47,7 +47,10 @@ class ExImageView extends StatelessWidget {
   Widget build(BuildContext context) {
     if (url.isEmptyOrNull) {
       return Container(
-        decoration: ExDecorator.box(fillColor: Vx.neutral300, borderColor: Vx.neutral300),
+        decoration: ExDecorator.box(
+          fillColor: Vx.neutral300,
+          borderColor: Vx.neutral300,
+        ),
         width: size ?? width,
         height: size ?? height,
         child: Icon(Icons.broken_image_rounded, color: Vx.neutral500, size: 16),
@@ -62,17 +65,28 @@ class ExImageView extends StatelessWidget {
             height: size ?? height,
             child: CachedNetworkImage(
               imageUrl: url,
-              imageBuilder: (context, imageProvider) => Container(decoration: BoxDecoration(image: DecorationImage(image: imageProvider, fit: boxFit))),
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(image: imageProvider, fit: boxFit),
+                ),
+              ),
               width: size ?? width,
               height: size ?? height,
               httpHeaders: headers,
-              placeholder: (context, url) => Container(color: Vx.neutral500).shimmer(
-                primaryColor: Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
+              placeholder: (context, url) =>
+                  Container(color: Vx.neutral500).shimmer(
+                primaryColor:
+                    Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
                 secondaryColor: Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
               ),
               errorWidget: (context, url, error) => Container(
                 color: Colors.grey[300],
-                child: errorWidget ?? Icon(Icons.broken_image_rounded, color: Vx.neutral500, size: 18),
+                child: errorWidget ??
+                    Icon(
+                      Icons.broken_image_rounded,
+                      color: Vx.neutral500,
+                      size: 18,
+                    ),
               ),
             ).p(padding ?? 0),
           ).cornerRadius(radius),
@@ -93,9 +107,13 @@ class ExImageView extends StatelessWidget {
                     width: size ?? width,
                     height: size ?? height,
                     fit: boxFit,
-                    placeholderBuilder: (context) => Container(color: Vx.neutral500).shimmer(
-                      primaryColor: Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
-                      secondaryColor: Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
+                    placeholderBuilder: (context) =>
+                        Container(color: Vx.neutral500).shimmer(
+                      primaryColor: Get.isDarkMode
+                          ? Get.theme.primaryColor
+                          : Vx.neutral100,
+                      secondaryColor:
+                          Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
                     ),
                     package: package,
                   ).p(padding ?? 0)
@@ -105,7 +123,8 @@ class ExImageView extends StatelessWidget {
                     height: size ?? height,
                     fit: boxFit,
                     isAntiAlias: true,
-                    errorBuilder: (context, error, stackTrace) => Container(color: Colors.grey[300], child: errorWidget),
+                    errorBuilder: (context, error, stackTrace) =>
+                        Container(color: Colors.grey[300], child: errorWidget),
                     package: package,
                   ).p(padding ?? 0),
           ).cornerRadius(radius),

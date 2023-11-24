@@ -38,7 +38,9 @@ class ExUiShimmerGrid extends StatelessWidget {
         [
           HStack([
             const Spacer(),
-            Container(width: 24, height: 12, color: primaryColor).cornerRadius(2).shimmer(
+            Container(width: 24, height: 12, color: primaryColor)
+                .cornerRadius(2)
+                .shimmer(
                   primaryColor: primaryColor,
                   secondaryColor: secondaryColor,
                 ),
@@ -61,17 +63,23 @@ class ExUiShimmerGrid extends StatelessWidget {
                 ),
           ]),
           12.heightBox,
-          Container(width: 160, height: 12, color: primaryColor).cornerRadius(2).shimmer(
+          Container(width: 160, height: 12, color: primaryColor)
+              .cornerRadius(2)
+              .shimmer(
                 primaryColor: primaryColor,
                 secondaryColor: secondaryColor,
               ),
           4.heightBox,
-          Container(width: 70, height: 12, color: primaryColor).cornerRadius(2).shimmer(
+          Container(width: 70, height: 12, color: primaryColor)
+              .cornerRadius(2)
+              .shimmer(
                 primaryColor: primaryColor,
                 secondaryColor: secondaryColor,
               ),
           4.heightBox,
-          Container(width: 40, height: 12, color: primaryColor).cornerRadius(2).shimmer(
+          Container(width: 40, height: 12, color: primaryColor)
+              .cornerRadius(2)
+              .shimmer(
                 primaryColor: primaryColor,
                 secondaryColor: secondaryColor,
               ),

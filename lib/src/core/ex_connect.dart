@@ -60,9 +60,19 @@ abstract class _ExConnectInterface with GetLifeCycleBase {
     Decoder<T>? decoder,
   });
 
-  Future<GraphQLResponse<T>> query<T>(String query, {String? url, Map<String, dynamic>? variables, Map<String, String>? headers});
+  Future<GraphQLResponse<T>> query<T>(
+    String query, {
+    String? url,
+    Map<String, dynamic>? variables,
+    Map<String, String>? headers,
+  });
 
-  Future<GraphQLResponse<T>> mutation<T>(String mutation, {String? url, Map<String, dynamic>? variables, Map<String, String>? headers});
+  Future<GraphQLResponse<T>> mutation<T>(
+    String mutation, {
+    String? url,
+    Map<String, dynamic>? variables,
+    Map<String, String>? headers,
+  });
 
   GetSocket socket(String path, {Duration ping = const Duration(seconds: 5)});
 }
@@ -125,7 +135,15 @@ class ExConnect extends _ExConnectInterface {
     Decoder<T>? decoder,
   }) {
     _checkIfDisposed();
-    return httpClient.request<T>(path, 'get', headers: header, query: query, body: body, decoder: decoder, contentType: contentType);
+    return httpClient.request<T>(
+      path,
+      'get',
+      headers: header,
+      query: query,
+      body: body,
+      decoder: decoder,
+      contentType: contentType,
+    );
   }
 
   @override
@@ -139,7 +157,16 @@ class ExConnect extends _ExConnectInterface {
     Decoder<T>? decoder,
   }) {
     _checkIfDisposed();
-    return httpClient.request<T>(path, 'post', headers: header, body: body, query: query, uploadProgress: uploadProgress, decoder: decoder, contentType: contentType);
+    return httpClient.request<T>(
+      path,
+      'post',
+      headers: header,
+      body: body,
+      query: query,
+      uploadProgress: uploadProgress,
+      decoder: decoder,
+      contentType: contentType,
+    );
   }
 
   @override
@@ -153,7 +180,16 @@ class ExConnect extends _ExConnectInterface {
     Decoder<T>? decoder,
   }) {
     _checkIfDisposed();
-    return httpClient.request<T>(path, 'put', headers: header, body: body, query: query, uploadProgress: uploadProgress, decoder: decoder, contentType: contentType);
+    return httpClient.request<T>(
+      path,
+      'put',
+      headers: header,
+      body: body,
+      query: query,
+      uploadProgress: uploadProgress,
+      decoder: decoder,
+      contentType: contentType,
+    );
   }
 
   @override
@@ -166,7 +202,15 @@ class ExConnect extends _ExConnectInterface {
     Decoder<T>? decoder,
   }) {
     _checkIfDisposed();
-    return httpClient.request<T>(path, 'patch', headers: header, body: body, query: query, decoder: decoder, contentType: contentType);
+    return httpClient.request<T>(
+      path,
+      'patch',
+      headers: header,
+      body: body,
+      query: query,
+      decoder: decoder,
+      contentType: contentType,
+    );
   }
 
   @override
@@ -181,7 +225,16 @@ class ExConnect extends _ExConnectInterface {
     Progress? uploadProgress,
   }) {
     _checkIfDisposed();
-    return httpClient.request<T>(url, method, body: body, headers: headers, contentType: contentType, query: query, decoder: decoder, uploadProgress: uploadProgress);
+    return httpClient.request<T>(
+      url,
+      method,
+      body: body,
+      headers: headers,
+      contentType: contentType,
+      query: query,
+      decoder: decoder,
+      uploadProgress: uploadProgress,
+    );
   }
 
   @override
@@ -194,7 +247,15 @@ class ExConnect extends _ExConnectInterface {
     Decoder<T>? decoder,
   }) {
     _checkIfDisposed();
-    return httpClient.request<T>(path, 'delete', headers: header, body: body, query: query, decoder: decoder, contentType: contentType);
+    return httpClient.request<T>(
+      path,
+      'delete',
+      headers: header,
+      body: body,
+      query: query,
+      decoder: decoder,
+      contentType: contentType,
+    );
   }
 
   @override

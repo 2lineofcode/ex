@@ -23,7 +23,8 @@ class _ProgressPageState extends State<ProgressPage> {
       appBar: AppBar(
         title: 'Progress'.text.extraBold.size(16).make(),
         elevation: 0.5,
-        leading: IconButton(icon: Icon(Icons.arrow_back_outlined), onPressed: () => Get.back()),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_outlined), onPressed: () => Get.back()),
       ),
       body: VStack([
         /// 1

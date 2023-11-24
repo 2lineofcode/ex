@@ -3,15 +3,25 @@ import 'dart:developer' as developer;
 
 const _appName = 'Ex';
 
-void print(dynamic msg, {String? name}) => developer.log('${LogColor.green}$msg${LogColor.reset}', name: name ?? _appName);
-void log(dynamic msg, {String? name}) => developer.log('${LogColor.blue}$msg${LogColor.reset}', name: name ?? _appName);
+void print(dynamic msg, {String? name}) => developer
+    .log('${LogColor.green}$msg${LogColor.reset}', name: name ?? _appName);
+void log(dynamic msg, {String? name}) => developer
+    .log('${LogColor.blue}$msg${LogColor.reset}', name: name ?? _appName);
 
-void logD(dynamic msg, {String? name}) => developer.log('${LogColor.cyan}$msg${LogColor.reset}', name: name ?? _appName);
-void logI(dynamic msg, {String? name}) => developer.log('${LogColor.backgroundBlue}${LogColor.white}$msg${LogColor.reset}', name: name ?? _appName);
-void logS(dynamic msg, {String? name}) => developer.log('${LogColor.green}$msg${LogColor.reset}', name: name ?? _appName);
-void logW(dynamic msg, {String? name}) => developer.log('${LogColor.orange}$msg${LogColor.reset}', name: name ?? _appName);
-void logE(dynamic msg, {String? name}) => developer.log('${LogColor.red}$msg${LogColor.reset}', name: name ?? _appName);
-void logC(dynamic color, dynamic msg, {String? name}) => developer.log('$color$msg${LogColor.reset}', name: name ?? _appName);
+void logD(dynamic msg, {String? name}) => developer
+    .log('${LogColor.cyan}$msg${LogColor.reset}', name: name ?? _appName);
+void logI(dynamic msg, {String? name}) => developer.log(
+      '${LogColor.backgroundBlue}${LogColor.white}$msg${LogColor.reset}',
+      name: name ?? _appName,
+    );
+void logS(dynamic msg, {String? name}) => developer
+    .log('${LogColor.green}$msg${LogColor.reset}', name: name ?? _appName);
+void logW(dynamic msg, {String? name}) => developer
+    .log('${LogColor.orange}$msg${LogColor.reset}', name: name ?? _appName);
+void logE(dynamic msg, {String? name}) => developer
+    .log('${LogColor.red}$msg${LogColor.reset}', name: name ?? _appName);
+void logC(dynamic color, dynamic msg, {String? name}) =>
+    developer.log('$color$msg${LogColor.reset}', name: name ?? _appName);
 
 /// json
 void logJson(Map<String, dynamic> input, {int indent = 2}) {
@@ -19,7 +29,11 @@ void logJson(Map<String, dynamic> input, {int indent = 2}) {
     final object = JsonDecoder().convert(jsonEncode(input));
     final prettyString = JsonEncoder.withIndent('  ').convert(object);
 
-    logC('${LogColor.backgroundGreen}${LogColor.black}', '  RESPONSE  ', name: 'log');
+    logC(
+      '${LogColor.backgroundGreen}${LogColor.black}',
+      '  RESPONSE  ',
+      name: 'log',
+    );
     logS(prettyString, name: 'log');
   } catch (e) {
     logS('$input', name: 'log');

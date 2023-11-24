@@ -14,9 +14,12 @@ class ShimmerPage extends GetView<LoadingController> {
       appBar: AppBar(
         title: 'Shimmer'.text.extraBold.size(16).make(),
         elevation: 0.5,
-        leading: IconButton(icon: Icon(Icons.arrow_back_outlined), onPressed: () => Get.back()),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_outlined), onPressed: () => Get.back()),
         actions: [
-          IconButton(onPressed: () => controller.onInit(), icon: Icon(Icons.replay_outlined)),
+          IconButton(
+              onPressed: () => controller.onInit(),
+              icon: Icon(Icons.replay_outlined)),
         ],
       ),
       body: controller.obx(

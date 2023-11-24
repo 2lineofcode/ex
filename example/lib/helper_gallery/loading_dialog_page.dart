@@ -13,7 +13,10 @@ class LoadingDialogPage extends GetView<LoadingDialogController> {
       body: VStack([
         // 1
         'ExLoading.show'.text.make().pOnly(bottom: 8),
-        ExButtonOutline(label: 'ExLoading', width: double.infinity, onPressed: () => controller.gget()),
+        ExButtonOutline(
+            label: 'ExLoading',
+            width: double.infinity,
+            onPressed: () => controller.gget()),
         Divider().pSymmetric(v: 16),
         Obx(
           () => ListView.separated(

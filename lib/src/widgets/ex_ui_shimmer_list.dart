@@ -31,26 +31,60 @@ class ExUiShimmerList extends StatelessWidget {
       width: double.infinity,
       child: HStack(
         [
-          VxCircle().wh(50, 50).shimmer(primaryColor: primaryColor, secondaryColor: secondaryColor),
+          VxCircle().wh(50, 50).shimmer(
+                primaryColor: primaryColor,
+                secondaryColor: secondaryColor,
+              ),
           12.widthBox,
           VStack(
             [
-              Container(width: 250, height: 12, color: primaryColor).cornerRadius(2).shimmer(primaryColor: primaryColor, secondaryColor: secondaryColor),
+              Container(width: 250, height: 12, color: primaryColor)
+                  .cornerRadius(2)
+                  .shimmer(
+                    primaryColor: primaryColor,
+                    secondaryColor: secondaryColor,
+                  ),
               4.heightBox,
-              Container(width: 150, height: 10, color: primaryColor).cornerRadius(2).shimmer(primaryColor: primaryColor, secondaryColor: secondaryColor),
+              Container(width: 150, height: 10, color: primaryColor)
+                  .cornerRadius(2)
+                  .shimmer(
+                    primaryColor: primaryColor,
+                    secondaryColor: secondaryColor,
+                  ),
               4.heightBox,
               HStack(
                 [
-                  Container(height: 10, color: primaryColor).cornerRadius(2).shimmer(primaryColor: primaryColor, secondaryColor: secondaryColor).expand(),
+                  Container(height: 10, color: primaryColor)
+                      .cornerRadius(2)
+                      .shimmer(
+                        primaryColor: primaryColor,
+                        secondaryColor: secondaryColor,
+                      )
+                      .expand(),
                   12.widthBox,
-                  Container(height: 10, color: primaryColor).cornerRadius(2).shimmer(primaryColor: primaryColor, secondaryColor: secondaryColor).expand(flex: 7),
+                  Container(height: 10, color: primaryColor)
+                      .cornerRadius(2)
+                      .shimmer(
+                        primaryColor: primaryColor,
+                        secondaryColor: secondaryColor,
+                      )
+                      .expand(flex: 7),
                   12.widthBox,
-                  Container(height: 10, color: primaryColor).cornerRadius(2).shimmer(primaryColor: primaryColor, secondaryColor: secondaryColor).expand(flex: 2),
+                  Container(height: 10, color: primaryColor)
+                      .cornerRadius(2)
+                      .shimmer(
+                        primaryColor: primaryColor,
+                        secondaryColor: secondaryColor,
+                      )
+                      .expand(flex: 2),
                 ],
               ),
             ],
           ).expand(),
-          VxCircle().wh(12, 12).shimmer(primaryColor: primaryColor, secondaryColor: secondaryColor),
+          VxCircle().wh(12, 12).shimmer(
+                primaryColor: primaryColor,
+                secondaryColor: secondaryColor,
+              ),
         ],
       ).p8(),
     );

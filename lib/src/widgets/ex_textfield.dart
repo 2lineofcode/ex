@@ -133,7 +133,8 @@ class ExTextField extends StatelessWidget {
           borderType: ExTextFieldBorderType.roundLine,
           borderRadius: borderRadius,
           borderColor: borderColor,
-          prefixIcon: prefixIcon != null ? HStack([10.widthBox, prefixIcon!]) : null,
+          prefixIcon:
+              prefixIcon != null ? HStack([10.widthBox, prefixIcon!]) : null,
           contentPaddingLeft: prefixIcon != null ? 0 : contentPaddingLeft,
           contentPaddingRight: contentPaddingRight,
           suffixIcon: suffixIcon,
@@ -168,7 +169,12 @@ class ExTextField extends StatelessWidget {
           maxLength: maxLength,
           clearCallback: clearCallback,
         ),
-        if (helperText != null) helperText!.text.caption(context).textStyle(helperStyle).make().pOnly(top: 8),
+        if (helperText != null)
+          helperText!.text
+              .caption(context)
+              .textStyle(helperStyle)
+              .make()
+              .pOnly(top: 8),
       ],
     );
   }

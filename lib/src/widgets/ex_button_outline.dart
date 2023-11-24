@@ -46,8 +46,12 @@ class ExButtonOutline extends StatelessWidget {
       onPressed: onPressed,
       style: OutlinedButton.styleFrom(
         backgroundColor: backgroundColor,
-        side: BorderSide(color: borderColor ?? Theme.of(context).buttonTheme.colorScheme!.primary),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
+        side: BorderSide(
+          color:
+              borderColor ?? Theme.of(context).buttonTheme.colorScheme!.primary,
+        ),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
         minimumSize: Size(width ?? 44, height ?? 44),
       ),
       child: child ??
@@ -58,7 +62,8 @@ class ExButtonOutline extends StatelessWidget {
                 '$label',
                 style: TextStyle(
                   color: labelColor,
-                  fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.w500,
+                  fontWeight:
+                      isLabelBold == true ? FontWeight.w700 : FontWeight.w500,
                   fontSize: labelSize,
                 ),
                 overflow: TextOverflow.ellipsis,

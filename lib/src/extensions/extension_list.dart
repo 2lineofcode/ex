@@ -9,5 +9,4 @@ extension Unique<E, Id> on List<E> {
   List<E> limitLength(int maxLength) {
     return (length <= maxLength) ? this : sublist(0, maxLength);
   }
-  
 }

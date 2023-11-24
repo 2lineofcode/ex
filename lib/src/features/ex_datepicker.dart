@@ -32,12 +32,18 @@ mixin ExDatePicker {
             children: [
               ExDashLine().pOnly(top: 12),
               HStack([
-                title.text.size(14).color(Get.theme.textTheme.displayMedium?.color).fontWeight(FontWeight.w500).make().expand(),
+                title.text
+                    .size(14)
+                    .color(Get.theme.textTheme.displayMedium?.color)
+                    .fontWeight(FontWeight.w500)
+                    .make()
+                    .expand(),
               ]).pOnly(left: 20, top: 12, bottom: 12),
               Divider(),
               CupertinoTheme(
                 data: CupertinoThemeData(
-                  brightness: Get.isDarkMode ? Brightness.dark : Brightness.light,
+                  brightness:
+                      Get.isDarkMode ? Brightness.dark : Brightness.light,
                   textTheme: CupertinoTextThemeData(
                     dateTimePickerTextStyle: TextStyle(
                       color: Get.theme.textTheme.bodyLarge?.color,
@@ -112,12 +118,18 @@ mixin ExDatePicker {
             children: [
               ExDashLine().pOnly(top: 12),
               HStack([
-                title.text.size(14).color(Get.theme.textTheme.displayMedium?.color).fontWeight(FontWeight.w500).make().expand(),
+                title.text
+                    .size(14)
+                    .color(Get.theme.textTheme.displayMedium?.color)
+                    .fontWeight(FontWeight.w500)
+                    .make()
+                    .expand(),
               ]).pOnly(left: 20, top: 12, bottom: 12),
               Divider(),
               CupertinoTheme(
                 data: CupertinoThemeData(
-                  brightness: Get.isDarkMode ? Brightness.dark : Brightness.light,
+                  brightness:
+                      Get.isDarkMode ? Brightness.dark : Brightness.light,
                   textTheme: CupertinoTextThemeData(
                     dateTimePickerTextStyle: TextStyle(
                       color: Get.theme.textTheme.bodyLarge?.color,

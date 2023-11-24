@@ -1,3 +1,9 @@
+## 0.5.5
+* fix score
+
+## 0.5.4
+* update README.md
+
 ## 0.5.3
 * fix ui/ux in dark mode
 * fix ui/ux in material3

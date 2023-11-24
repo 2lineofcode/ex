@@ -35,7 +35,10 @@ class AccordionPage extends GetView {
                 ExAvatarView(
                   url: 'https://infomedia.tv/wp-content/uploads/2023/01/aa.jpg',
                   name: 'userFullName',
-                ).onTap(() => ExImagePreview.showUrl('https://infomedia.tv/wp-content/uploads/2023/01/aa.jpg')).pOnly(right: 12),
+                )
+                    .onTap(() => ExImagePreview.showUrl(
+                        'https://infomedia.tv/wp-content/uploads/2023/01/aa.jpg'))
+                    .pOnly(right: 12),
                 faker.lorem.word().text.make(),
               ],
             ),

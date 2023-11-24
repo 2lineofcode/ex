@@ -96,7 +96,9 @@ class ButtonPage extends StatelessWidget {
           ExButtonElevated(
             backgroundColor: Vx.randomPrimaryColor,
             child: HStack([
-              Icon(Icons.report_gmailerrorred_sharp, size: 18, color: colorWhite).pOnly(right: 8),
+              Icon(Icons.report_gmailerrorred_sharp,
+                      size: 18, color: colorWhite)
+                  .pOnly(right: 8),
               'Elevated'.text.white.size(12).bold.make().pOnly(right: 8),
             ]),
             radius: 0,

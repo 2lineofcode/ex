@@ -50,7 +50,10 @@ mixin ExLoading {
                   color: Theme.of(Get.context!).primaryColor,
                   size: 32,
                 ).centered(),
-                if (message != null) Text(message, textAlign: TextAlign.center).centered().pOnly(top: 16),
+                if (message != null)
+                  Text(message, textAlign: TextAlign.center)
+                      .centered()
+                      .pOnly(top: 16),
                 Obx(
                   () => showCancel.value == true
                       ? ExButtonOutline(

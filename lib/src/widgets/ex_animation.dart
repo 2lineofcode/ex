@@ -24,7 +24,9 @@ class ExTranslateAnimation extends StatelessWidget {
       tween: Tween(begin: 1.0, end: 0.0),
       builder: (context, double? value, child) {
         return Transform.translate(
-          offset: offsetDirection == Axis.horizontal ? Offset(value! * offset!, 0) : Offset(0, value! * offset!),
+          offset: offsetDirection == Axis.horizontal
+              ? Offset(value! * offset!, 0)
+              : Offset(0, value! * offset!),
           child: child,
         );
       },

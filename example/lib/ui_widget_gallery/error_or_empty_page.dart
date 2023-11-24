@@ -12,7 +12,8 @@ class ErrorOrEmptyPage extends GetView<ErrorOrEmptyController> {
       appBar: AppBar(
         title: 'ErrorOrEmpty'.text.extraBold.size(16).make(),
         elevation: 0.5,
-        leading: IconButton(icon: Icon(Icons.arrow_back_outlined), onPressed: () => Get.back()),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_outlined), onPressed: () => Get.back()),
       ),
       body: VStack(
         [

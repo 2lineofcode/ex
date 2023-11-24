@@ -55,7 +55,14 @@ class ExAvatarView extends StatelessWidget {
         height: size ?? height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(90)),
-          boxShadow: [BoxShadow(color: Colors.grey[200]!, spreadRadius: 1, blurRadius: 1, offset: Offset(0, 1))],
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey[200]!,
+              spreadRadius: 1,
+              blurRadius: 1,
+              offset: Offset(0, 1),
+            ),
+          ],
         ),
         child: ClipOval(
           child: url.contains('.svg')
@@ -63,9 +70,12 @@ class ExAvatarView extends StatelessWidget {
                   url,
                   width: size ?? width,
                   height: size ?? height,
-                  placeholderBuilder: (context) => Container(color: Vx.neutral500).shimmer(
-                    primaryColor: Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
-                    secondaryColor: Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
+                  placeholderBuilder: (context) =>
+                      Container(color: Vx.neutral500).shimmer(
+                    primaryColor:
+                        Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
+                    secondaryColor:
+                        Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
                   ),
                   package: package,
                 )
@@ -85,26 +95,36 @@ class ExAvatarView extends StatelessWidget {
       return Container(
         width: size ?? width,
         height: size ?? height,
-        decoration: isWithShadow == true ? BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(90))) : BoxDecoration(),
+        decoration: isWithShadow == true
+            ? BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(90)))
+            : BoxDecoration(),
         child: CircularProfileAvatar(
           imageUrl: url,
           httpHeaders: header,
           radius: 100,
           backgroundColor: bgColor ?? Vx.red600,
           borderWidth: borderWidth,
-          initialsText: Text(name.initialName, style: TextStyle(fontSize: textSize, color: textColor)),
+          initialsText: Text(
+            name.initialName,
+            style: TextStyle(fontSize: textSize, color: textColor),
+          ),
           borderColor: borderColor ?? Colors.white,
           elevation: 0.3,
           errorWidget: (context, url, error) {
             return errorWidget ??
                 Container(
                   color: bgColor,
-                  child: Text(name.initialName, style: TextStyle(fontSize: textSize, color: textColor)).centered(),
+                  child: Text(
+                    name.initialName,
+                    style: TextStyle(fontSize: textSize, color: textColor),
+                  ).centered(),
                 );
           },
           animateFromOldImageOnUrlChange: true,
-          placeHolder: (context, url) => Container(color: Vx.neutral500).shimmer(
-            primaryColor: Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
+          placeHolder: (context, url) =>
+              Container(color: Vx.neutral500).shimmer(
+            primaryColor:
+                Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
             secondaryColor: Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
           ),
         ),
@@ -250,7 +270,8 @@ class _CircularProfileAvatarState extends State<CircularProfileAvatar> {
                                   Container(
                                     decoration: BoxDecoration(
                                       color: widget.foregroundColor,
-                                      borderRadius: BorderRadius.circular(widget.radius),
+                                      borderRadius:
+                                          BorderRadius.circular(widget.radius),
                                     ),
                                   ),
                                   _initialsText!,
@@ -291,7 +312,8 @@ class _CircularProfileAvatarState extends State<CircularProfileAvatar> {
               placeholder: widget.placeHolder,
               imageBuilder: widget.imageBuilder,
               progressIndicatorBuilder: widget.progressIndicatorBuilder,
-              useOldImageOnUrlChange: widget.animateFromOldImageOnUrlChange ?? false,
+              useOldImageOnUrlChange:
+                  widget.animateFromOldImageOnUrlChange ?? false,
             ),
           )
         : ClipRRect(

@@ -21,7 +21,9 @@ class ExtDatePage extends StatelessWidget {
               child: VStack(
                 [
                   '${'23-04-1999'.toDateEx(format: 'dd-MM-yyyy')}'.text.make(),
-                  '${'12-12-2010 08:40:12'.toDateEx(format: 'dd-MM-yyyy mm:HH:ss')}'.text.make(),
+                  '${'12-12-2010 08:40:12'.toDateEx(format: 'dd-MM-yyyy mm:HH:ss')}'
+                      .text
+                      .make(),
                   '${'21-09-2029'.toDateEx(format: 'dd-MM-yyyy')}'.text.make(),
                   '${'01/11/2011'.toDateEx(format: 'dd/MM/yyyy')}'.text.make(),
                 ],
@@ -36,10 +38,18 @@ class ExtDatePage extends StatelessWidget {
             content: Container(
               child: VStack(
                 [
-                  '${'23-04-1995'.reformatDate(from: 'dd-MM-yyyy')}'.text.make(),
-                  '${'12-12-2010 08:40:12'.reformatDate(from: 'dd-MM-yyyy mm:HH:ss', to: 'HH:mm')}'.text.make(),
-                  '${'21-09-2029'.reformatDate(from: 'dd-MM-yyyy', to: 'dd MMMM yyyy')}'.text.make(),
-                  '${'01/11/2011'.reformatDate(from: 'dd/MM/yyyy', to: 'dd MMM')}'.text.make(),
+                  '${'23-04-1995'.reformatDate(from: 'dd-MM-yyyy')}'
+                      .text
+                      .make(),
+                  '${'12-12-2010 08:40:12'.reformatDate(from: 'dd-MM-yyyy mm:HH:ss', to: 'HH:mm')}'
+                      .text
+                      .make(),
+                  '${'21-09-2029'.reformatDate(from: 'dd-MM-yyyy', to: 'dd MMMM yyyy')}'
+                      .text
+                      .make(),
+                  '${'01/11/2011'.reformatDate(from: 'dd/MM/yyyy', to: 'dd MMM')}'
+                      .text
+                      .make(),
                 ],
               ),
             ),
@@ -52,11 +62,21 @@ class ExtDatePage extends StatelessWidget {
             content: Container(
               child: VStack(
                 [
-                  '${DateTime.now().toStringEx(format: 'd/M/y', locale: 'en')}'.text.make(),
-                  '${DateTime.now().toStringEx(format: 'EEEE, dd MMMM yyyy', locale: 'in')}'.text.make(),
-                  '${DateTime.now().toStringEx(format: 'EEEE, MMMM dd, yyyy', locale: 'en')}'.text.make(),
-                  '${DateTime.now().toStringEx(format: 'd MMM yy', locale: 'en')}'.text.make(),
-                  '${DateTime.now().toStringEx(format: 'dd MMMM yyyy | HH:mm:ss', locale: 'in')}'.text.make(),
+                  '${DateTime.now().toStringEx(format: 'd/M/y', locale: 'en')}'
+                      .text
+                      .make(),
+                  '${DateTime.now().toStringEx(format: 'EEEE, dd MMMM yyyy', locale: 'in')}'
+                      .text
+                      .make(),
+                  '${DateTime.now().toStringEx(format: 'EEEE, MMMM dd, yyyy', locale: 'en')}'
+                      .text
+                      .make(),
+                  '${DateTime.now().toStringEx(format: 'd MMM yy', locale: 'en')}'
+                      .text
+                      .make(),
+                  '${DateTime.now().toStringEx(format: 'dd MMMM yyyy | HH:mm:ss', locale: 'in')}'
+                      .text
+                      .make(),
                 ],
               ),
             ),
@@ -70,7 +90,9 @@ class ExtDatePage extends StatelessWidget {
               child: VStack(
                 [
                   '${1640979000000.fromMillisecondsSinceEpoch()}'.text.make(),
-                  '${1640979000000.fromMillisecondsSinceEpoch()?.toStringEx(format: 'dd MMM yyyy')}'.text.make(),
+                  '${1640979000000.fromMillisecondsSinceEpoch()?.toStringEx(format: 'dd MMM yyyy')}'
+                      .text
+                      .make(),
                 ],
               ),
             ),
@@ -102,7 +124,9 @@ class ExtDatePage extends StatelessWidget {
               child: VStack(
                 [
                   '${'1995-04-24T12:34:56'.ago()}'.text.make(),
-                  '${'21-10-2023 05:33'.ago(format: 'dd-MM-yyyy HH:mm')}'.text.make(),
+                  '${'21-10-2023 05:33'.ago(format: 'dd-MM-yyyy HH:mm')}'
+                      .text
+                      .make(),
                   '${'23-04-2000'.ago(format: 'dd-MM-yyyy')}'.text.make(),
                   '${'23/04/2005'.ago(format: 'dd/MM/yyyy')}'.text.make(),
                 ],

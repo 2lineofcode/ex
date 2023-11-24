@@ -3,7 +3,8 @@ import 'package:ex/ex.dart';
 
 class Dioo {
   final dio = createDio();
-  final tokenDio = Dio(BaseOptions(baseUrl: 'https://jsonplaceholder.typicode.com'));
+  final tokenDio =
+      Dio(BaseOptions(baseUrl: 'https://jsonplaceholder.typicode.com'));
 
   Dioo._internal();
 

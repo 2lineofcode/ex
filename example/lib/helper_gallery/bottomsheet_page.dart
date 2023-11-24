@@ -56,13 +56,27 @@ class BottomSheetPage extends StatelessWidget {
           onPressed: () {
             final data = <ExKeyValue>[
               ExKeyValue(key: 'all', value: 'Semua'),
-              ExKeyValue(key: '124a68ef-a52b-41c6-a65c-902f56a488c7', value: faker.lorem.word()),
-              ExKeyValue(key: '890b3a75-7a55-4d2a-9d4e-bb194fdcdc9a', value: faker.lorem.word()),
-              ExKeyValue(key: '8670e932-93b5-4e54-8dba-dd20b409fe5c', value: faker.lorem.word()),
-              ExKeyValue(key: '85c2cf01-a502-440f-925b-029fd16db4df', value: faker.lorem.word()),
-              ExKeyValue(key: '870e4640-b887-44eb-a1c6-e78097ec7899', value: faker.lorem.word()),
-              ExKeyValue(key: '8dfe58c7-2f48-4676-956a-d4f0c24ab444', value: faker.lorem.word()),
-              ExKeyValue(key: '016d5d17-2617-4708-97f9-80174f2d94c2', value: faker.lorem.word()),
+              ExKeyValue(
+                  key: '124a68ef-a52b-41c6-a65c-902f56a488c7',
+                  value: faker.lorem.word()),
+              ExKeyValue(
+                  key: '890b3a75-7a55-4d2a-9d4e-bb194fdcdc9a',
+                  value: faker.lorem.word()),
+              ExKeyValue(
+                  key: '8670e932-93b5-4e54-8dba-dd20b409fe5c',
+                  value: faker.lorem.word()),
+              ExKeyValue(
+                  key: '85c2cf01-a502-440f-925b-029fd16db4df',
+                  value: faker.lorem.word()),
+              ExKeyValue(
+                  key: '870e4640-b887-44eb-a1c6-e78097ec7899',
+                  value: faker.lorem.word()),
+              ExKeyValue(
+                  key: '8dfe58c7-2f48-4676-956a-d4f0c24ab444',
+                  value: faker.lorem.word()),
+              ExKeyValue(
+                  key: '016d5d17-2617-4708-97f9-80174f2d94c2',
+                  value: faker.lorem.word()),
             ];
 
             ExBottomSheet.list(

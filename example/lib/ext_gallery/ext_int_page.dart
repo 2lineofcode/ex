@@ -1,4 +1,3 @@
-
 import 'package:ex/ex.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +25,6 @@ class ExtIntPage extends StatelessWidget {
   // do something 10 times...
 });
     ''',
-
               ).p8(),
             ),
           ),
@@ -43,7 +41,6 @@ class ExtIntPage extends StatelessWidget {
   // do something 10 times...
 });
     ''',
-
               ).p8(),
             ),
           ),

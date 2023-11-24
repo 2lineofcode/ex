@@ -60,7 +60,8 @@ extension IterableX<T> on Iterable<T> {
   /// modified by [toElement].
   ///
   /// The [List] is fixed-length if [growable] is false.
-  List<R> mapToList<R>(R Function(T e) toElement, {bool growable = false}) => map<R>(toElement).toList(growable: growable);
+  List<R> mapToList<R>(R Function(T e) toElement, {bool growable = false}) =>
+      map<R>(toElement).toList(growable: growable);
 
   /// Creates a [List] with all elements of this [Iterable] that satisfy
   /// the predicate [test] and modified by [toElement].
@@ -83,7 +84,9 @@ extension IterableX<T> on Iterable<T> {
   ///
   /// The [Set] is modifiable if [modifiable] is true.
   Set<R> mapToSet<R>(R Function(T e) toElement, {bool modifiable = false}) {
-    return modifiable ? map<R>(toElement).toSet() : map<R>(toElement).toUnmodifiableSet();
+    return modifiable
+        ? map<R>(toElement).toSet()
+        : map<R>(toElement).toUnmodifiableSet();
   }
 
   /// Creates a [Set] with all elements of this [Iterable] that satisfy

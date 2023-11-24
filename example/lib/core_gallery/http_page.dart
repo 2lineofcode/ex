@@ -137,7 +137,11 @@ class HttpController extends GetxController with StateMixin {
 
   hDownload() async {
     final savePath = (await getTemporaryDirectory()).path + '/mobil-bagus.jpg';
-    await apiService.download('https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?cs=srgb&dl=pexels-vlad-alexandru-popa-1402787.jpg&fm=jpg', savePath).then((r) {
+    await apiService
+        .download(
+            'https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?cs=srgb&dl=pexels-vlad-alexandru-popa-1402787.jpg&fm=jpg',
+            savePath)
+        .then((r) {
       ExAlert.success(title: 'Success', message: '$r');
     });
   }
@@ -241,8 +245,18 @@ class HttpPage extends GetView<HttpController> {
               itemBuilder: (context, index) {
                 final item = controller.output[index];
                 return ListTile(
-                  title: '${index + 1}. ${item['title']}'.text.maxLines(1).ellipsis.minFontSize(14).make(),
-                  subtitle: '${item['body']}'.text.neutral400.maxLines(1).ellipsis.make(),
+                  title: '${index + 1}. ${item['title']}'
+                      .text
+                      .maxLines(1)
+                      .ellipsis
+                      .minFontSize(14)
+                      .make(),
+                  subtitle: '${item['body']}'
+                      .text
+                      .neutral400
+                      .maxLines(1)
+                      .ellipsis
+                      .make(),
                 );
               },
             ).expand(),

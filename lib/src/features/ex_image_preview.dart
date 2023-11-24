@@ -28,14 +28,24 @@ mixin ExImagePreview {
                     HStack(
                       [
                         Spacer(),
-                        IconButton(onPressed: Get.back, icon: Icon(Icons.close, color: Colors.white)),
+                        IconButton(
+                          onPressed: Get.back,
+                          icon: Icon(Icons.close, color: Colors.white),
+                        ),
                       ],
                     ),
                   PhotoView(
-                    backgroundDecoration: BoxDecoration(color: Colors.transparent),
+                    backgroundDecoration:
+                        BoxDecoration(color: Colors.transparent),
                     imageProvider: NetworkImage(url),
                   ).expand(),
-                  url.split('/').last.text.white.align(TextAlign.center).makeCentered(),
+                  url
+                      .split('/')
+                      .last
+                      .text
+                      .white
+                      .align(TextAlign.center)
+                      .makeCentered(),
                 ],
               ),
             ),
@@ -59,7 +69,8 @@ mixin ExImagePreview {
             child: Stack(
               children: [
                 PhotoView(
-                  backgroundDecoration: BoxDecoration(color: Colors.transparent),
+                  backgroundDecoration:
+                      BoxDecoration(color: Colors.transparent),
                   imageProvider: Image.memory(base64Decode(base64)).image,
                 ),
                 HStack(

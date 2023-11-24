@@ -46,7 +46,8 @@ class ExButtonElevated extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: backgroundColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
         minimumSize: minimumSize ?? Size(width ?? 44, height ?? 44),
       ),
       child: child ??
@@ -57,7 +58,8 @@ class ExButtonElevated extends StatelessWidget {
                 '$label',
                 style: TextStyle(
                   color: labelColor,
-                  fontWeight: isLabelBold == true ? FontWeight.w700 : FontWeight.normal,
+                  fontWeight:
+                      isLabelBold == true ? FontWeight.w700 : FontWeight.normal,
                   fontSize: labelSize,
                 ),
                 overflow: TextOverflow.ellipsis,

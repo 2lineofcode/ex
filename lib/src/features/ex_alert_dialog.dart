@@ -44,7 +44,10 @@ mixin ExAlert {
     Function()? onYes,
   }) {
     _base(
-      icon: icon ?? Icon(Icons.check_circle, size: 64, color: color).centered().pOnly(bottom: 16),
+      icon: icon ??
+          Icon(Icons.check_circle, size: 64, color: color)
+              .centered()
+              .pOnly(bottom: 16),
       title: title,
       titleStyle: titleStyle,
       titleTextSize: titleTextSize,
@@ -82,7 +85,10 @@ mixin ExAlert {
     Function()? onYes,
   }) {
     _base(
-      icon: icon ?? Icon(Icons.error, size: 64, color: color).centered().pOnly(bottom: 16),
+      icon: icon ??
+          Icon(Icons.error, size: 64, color: color)
+              .centered()
+              .pOnly(bottom: 16),
       title: title,
       titleStyle: titleStyle,
       titleTextSize: titleTextSize,
@@ -122,7 +128,8 @@ mixin ExAlert {
     Function()? onNo,
   }) {
     _base(
-      icon: icon ?? Icon(Icons.help, size: 64, color: color).centered().pOnly(bottom: 16),
+      icon: icon ??
+          Icon(Icons.help, size: 64, color: color).centered().pOnly(bottom: 16),
       title: title,
       titleStyle: titleStyle,
       titleTextSize: titleTextSize,
@@ -164,7 +171,9 @@ mixin ExAlert {
             title: title,
             content: content,
             actions: actions ?? [],
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius ?? 12)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(radius ?? 12),
+            ),
           );
         }
       },
@@ -209,7 +218,9 @@ mixin ExAlert {
   }) {
     Get.dialog(
       AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(radius))),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(radius)),
+        ),
         scrollable: true,
         content: content ??
             VStack([
@@ -236,7 +247,12 @@ mixin ExAlert {
               if (message != null)
                 Text(
                   message,
-                  style: messageStyle ?? TextStyle(fontSize: messageTextSize, fontWeight: FontWeight.normal, color: messageTextColor),
+                  style: messageStyle ??
+                      TextStyle(
+                        fontSize: messageTextSize,
+                        fontWeight: FontWeight.normal,
+                        color: messageTextColor,
+                      ),
                   textAlign: messageTextAlign,
                 ).w(double.infinity).pOnly(top: 12),
             ]),

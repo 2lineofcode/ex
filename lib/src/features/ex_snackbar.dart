@@ -156,7 +156,10 @@ mixin ExSnackbar {
       behavior: SnackBarBehavior.floating,
       duration: Duration(seconds: duration ?? 2),
     );
-    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
+    ScaffoldMessenger.of(Get.context!)
+        .showSnackBar(snackBar)
+        .closed
+        .then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
   }
 
   static void info(dynamic message, {int? duration, bool showIcon = true}) {
@@ -164,7 +167,13 @@ mixin ExSnackbar {
       content: HStack([
         if (showIcon == true) Icon(Icons.info, color: Colors.blue[800]),
         12.widthBox,
-        '$message'.text.color(Colors.black).overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
+        '$message'
+            .text
+            .color(Colors.black)
+            .overflow(TextOverflow.ellipsis)
+            .maxLines(3)
+            .make()
+            .expand(),
       ]).p12(),
       padding: EdgeInsets.all(0),
       backgroundColor: Colors.blue[50],
@@ -175,7 +184,10 @@ mixin ExSnackbar {
         side: BorderSide(color: Colors.blue[800]!),
       ),
     );
-    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
+    ScaffoldMessenger.of(Get.context!)
+        .showSnackBar(snackBar)
+        .closed
+        .then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
   }
 
   static void danger(dynamic message, {int? duration, bool showIcon = true}) {
@@ -183,7 +195,13 @@ mixin ExSnackbar {
       content: HStack([
         if (showIcon == true) Icon(Icons.info, color: Colors.red[800]),
         12.widthBox,
-        '$message'.text.color(Colors.black).overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
+        '$message'
+            .text
+            .color(Colors.black)
+            .overflow(TextOverflow.ellipsis)
+            .maxLines(3)
+            .make()
+            .expand(),
       ]).p12(),
       padding: EdgeInsets.all(0),
       backgroundColor: Colors.red[50],
@@ -194,7 +212,10 @@ mixin ExSnackbar {
         side: BorderSide(color: Colors.red[800]!),
       ),
     );
-    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
+    ScaffoldMessenger.of(Get.context!)
+        .showSnackBar(snackBar)
+        .closed
+        .then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
   }
 
   static void success(dynamic message, {int? duration, bool showIcon = true}) {
@@ -202,7 +223,13 @@ mixin ExSnackbar {
       content: HStack([
         if (showIcon == true) Icon(Icons.info, color: Colors.green[800]),
         12.widthBox,
-        '$message'.text.color(Colors.black).overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
+        '$message'
+            .text
+            .color(Colors.black)
+            .overflow(TextOverflow.ellipsis)
+            .maxLines(3)
+            .make()
+            .expand(),
       ]).p12(),
       padding: EdgeInsets.all(0),
       backgroundColor: Colors.green[50],
@@ -213,7 +240,10 @@ mixin ExSnackbar {
         side: BorderSide(color: Colors.green[800]!),
       ),
     );
-    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
+    ScaffoldMessenger.of(Get.context!)
+        .showSnackBar(snackBar)
+        .closed
+        .then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
   }
 
   static void warning(dynamic message, {int? duration, bool showIcon = true}) {
@@ -221,7 +251,13 @@ mixin ExSnackbar {
       content: HStack([
         if (showIcon == true) Icon(Icons.info, color: Colors.orange[800]),
         12.widthBox,
-        '$message'.text.color(Colors.black).overflow(TextOverflow.ellipsis).maxLines(3).make().expand(),
+        '$message'
+            .text
+            .color(Colors.black)
+            .overflow(TextOverflow.ellipsis)
+            .maxLines(3)
+            .make()
+            .expand(),
       ]).p12(),
       padding: EdgeInsets.all(0),
       backgroundColor: Colors.orange[50],
@@ -232,6 +268,9 @@ mixin ExSnackbar {
         side: BorderSide(color: Colors.orange[800]!),
       ),
     );
-    ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar).closed.then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
+    ScaffoldMessenger.of(Get.context!)
+        .showSnackBar(snackBar)
+        .closed
+        .then((value) => ScaffoldMessenger.of(Get.context!).clearSnackBars());
   }
 }

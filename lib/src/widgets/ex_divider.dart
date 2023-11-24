@@ -37,18 +37,24 @@ class ExDivider extends StatelessWidget {
     // }
 
     // line
-    if (label != null && dividerMode == ExDividerMode.line && textMode == ExDividerTextMode.center) {
+    if (label != null &&
+        dividerMode == ExDividerMode.line &&
+        textMode == ExDividerTextMode.center) {
       return HStack([
         Divider().expand(),
         '$label'.text.make().pSymmetric(h: 16),
         Divider().expand(),
       ]);
-    } else if (label != null && dividerMode == ExDividerMode.line && textMode == ExDividerTextMode.left) {
+    } else if (label != null &&
+        dividerMode == ExDividerMode.line &&
+        textMode == ExDividerTextMode.left) {
       return HStack([
         '$label'.text.make(),
         Divider().pOnly(left: 12).expand(),
       ]);
-    } else if (label != null && dividerMode == ExDividerMode.line && textMode == ExDividerTextMode.right) {
+    } else if (label != null &&
+        dividerMode == ExDividerMode.line &&
+        textMode == ExDividerTextMode.right) {
       return HStack([
         Divider().pOnly(right: 12).expand(),
         '$label'.text.make(),
@@ -56,18 +62,24 @@ class ExDivider extends StatelessWidget {
     }
 
     // dash
-    else if (label != null && dividerMode == ExDividerMode.dash && textMode == ExDividerTextMode.center) {
+    else if (label != null &&
+        dividerMode == ExDividerMode.dash &&
+        textMode == ExDividerTextMode.center) {
       return HStack([
         buildDash().expand(),
         '$label'.text.make().pSymmetric(h: 16),
         buildDash().expand(),
       ]);
-    } else if (label != null && dividerMode == ExDividerMode.dash && textMode == ExDividerTextMode.left) {
+    } else if (label != null &&
+        dividerMode == ExDividerMode.dash &&
+        textMode == ExDividerTextMode.left) {
       return HStack([
         '$label'.text.make(),
         buildDash().pOnly(left: 16).expand(),
       ]);
-    } else if (label != null && dividerMode == ExDividerMode.dash && textMode == ExDividerTextMode.right) {
+    } else if (label != null &&
+        dividerMode == ExDividerMode.dash &&
+        textMode == ExDividerTextMode.right) {
       return HStack([
         buildDash().pOnly(right: 16).expand(),
         '$label'.text.make(),

@@ -1,5 +1,3 @@
-// ignore_for_file: use_named_constants, type_annotate_public_apis, always_declare_return_types
-
 import 'dart:ui' show lerpDouble;
 
 import 'package:flutter/material.dart';
@@ -25,7 +23,7 @@ class ExButtonLoading extends StatefulWidget {
     this.color,
     this.borderColor,
     this.elevation,
-    this.padding = const EdgeInsets.all(0),
+    this.padding = EdgeInsets.zero,
     this.borderRadius = 90,
     this.clipBehavior = Clip.none,
     this.focusNode,
@@ -109,9 +107,9 @@ class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMi
     _controller.reverse();
   }
 
-  lerpWidth(a, b, t) {
+  double lerpWidth(double a, double b, double t) {
     if (a == 0.0 || b == 0.0) {
-      return null;
+      return 0.0;
     } else {
       return a + (b - a) * t;
     }
@@ -166,7 +164,7 @@ class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMi
         clipBehavior: widget.clipBehavior,
         focusNode: widget.focusNode,
         onPressed: () {
-          widget.onTap!(() => animateForward(), () => animateReverse(), btn);
+          widget.onTap!(animateForward, animateReverse, btn);
         },
         child: btn == ExButtonState.idle
             ? widget.child
@@ -203,7 +201,7 @@ class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMi
         clipBehavior: widget.clipBehavior,
         focusNode: widget.focusNode,
         onPressed: () {
-          widget.onTap!(() => animateForward(), () => animateReverse(), btn);
+          widget.onTap!(animateForward, animateReverse, btn);
         },
         child: btn == ExButtonState.idle
             ? widget.child
@@ -240,7 +238,7 @@ class _LoadingBtnState extends State<ExButtonLoading> with TickerProviderStateMi
         clipBehavior: widget.clipBehavior,
         focusNode: widget.focusNode,
         onPressed: () {
-          widget.onTap!(() => animateForward(), () => animateReverse(), btn);
+          widget.onTap!(animateForward, animateReverse, btn);
         },
         child: btn == ExButtonState.idle
             ? widget.child

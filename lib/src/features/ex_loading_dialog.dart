@@ -56,7 +56,7 @@ mixin ExLoading {
                       ? ExButtonOutline(
                           label: 'Cancel',
                           height: 40,
-                          onPressed: () => Get.back(),
+                          onPressed: Get.back,
                         ).pOnly(top: 24).centered()
                       : Container(),
                 ),

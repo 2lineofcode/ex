@@ -1,9 +1,23 @@
-// ignore_for_file: sort_constructors_first, always_put_control_body_on_new_line
 import 'package:flutter/material.dart';
 
 /// Creates a widget to detect swipe gestures on the screen :
 /// swipe up, swipe down, swipe left and swipe right.
 class ExSwipe extends StatelessWidget {
+  const ExSwipe({
+    required this.child,
+    super.key,
+    this.onSwipeUp,
+    this.onSwipeDown,
+    this.onSwipeLeft,
+    this.onSwipeRight,
+    this.verticalMaxWidthThreshold = 50,
+    this.verticalMinDisplacement = 100,
+    this.verticalMinVelocity = 300,
+    this.horizontalMaxHeightThreshold = 50,
+    this.horizontalMinDisplacement = 100,
+    this.horizontalMinVelocity = 300,
+  });
+
   /// The widget below this widget in the tree
   final Widget child;
 
@@ -48,21 +62,6 @@ class ExSwipe extends StatelessWidget {
   ///
   /// Default: 300
   final double horizontalMinVelocity;
-
-  const ExSwipe({
-    required this.child,
-    super.key,
-    this.onSwipeUp,
-    this.onSwipeDown,
-    this.onSwipeLeft,
-    this.onSwipeRight,
-    this.verticalMaxWidthThreshold = 50,
-    this.verticalMinDisplacement = 100,
-    this.verticalMinVelocity = 300,
-    this.horizontalMaxHeightThreshold = 50,
-    this.horizontalMinDisplacement = 100,
-    this.horizontalMinVelocity = 300,
-  });
 
   @override
   Widget build(BuildContext context) {

@@ -8,7 +8,27 @@ import 'package:get/get_connect/http/src/request/request.dart';
 import '../../ex.dart';
 import 'ex_connect.dart';
 
+///
 enum Method { get, post, put, patch, delete, head, connect, options, trace }
+
+/// ### ExHttp
+///
+/// ```dart
+/// ExHttp(
+///   baseURL: 'https://api.com',
+///   baseHeader: {},
+///   maxTimeOut: 30.seconds,
+// )
+/// ```
+/// or directly
+/// ```dart
+/// await ExHttp().get('/users').then((response) {
+///   print('${response.body}');
+/// }).catchError((e) {
+///   print(e);
+/// });
+/// ```
+///
 
 class ExHttp extends ExConnect {
   ExHttp({
@@ -209,7 +229,7 @@ Get.put(
     final httpClient = HttpClient();
     print('${method.toUpperCase()} : $url');
 
-    if (header != null) print('${jsonEncode(header)}');
+    if (header != null) print(jsonEncode(header));
 
     try {
       // url & method
@@ -241,10 +261,10 @@ Get.put(
       );
 
       // savePath
-      final file = File('$savePath');
+      final file = File(savePath);
       await file.writeAsBytes(bytes);
       print('file downloaded on: ${file.path}');
-      return '${file.path}';
+      return file.path;
     } catch (error) {
       throw ApiException('$error');
     }
@@ -266,14 +286,14 @@ Get.put(
       await onInit();
     }
 
-    final res = await httpClient.request<T>(url, '$method', headers: header, query: query, body: body, decoder: decoder, contentType: contentType, uploadProgress: uploadProgress);
+    final res = await httpClient.request<T>(url, method, headers: header, query: query, body: body, decoder: decoder, contentType: contentType, uploadProgress: uploadProgress);
     logI('${method.toUpperCase()} : ${res.request?.url}');
     try {
       if (header != null) logI('Header: ${jsonEncode(header)}');
       if (body != null) logI('Body: ${jsonEncode(body)}');
     } catch (e) {
-      if (header != null) logI('Header: ${header}');
-      if (body != null) logI('Body: ${body}');
+      if (header != null) logI('Header: $header');
+      if (body != null) logI('Body: $body');
     }
 
     if (res.isOk) {
@@ -296,9 +316,9 @@ Get.put(
   }
 }
 
-// —————————————————————————————————————————————————————————————————————————————
-// MyHttpOverrides
-// —————————————————————————————————————————————————————————————————————————————
+/// —————————————————————————————————————————————————————————————————————————————
+/// MyHttpOverrides
+/// —————————————————————————————————————————————————————————————————————————————
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) => super.createHttpClient(context)..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
@@ -342,8 +362,9 @@ String getErrorMessage(int? code, {Response<dynamic>? response}) {
 }
 
 class ApiException implements Exception {
-  String message;
   ApiException(this.message);
+
+  String message;
   @override
   String toString() => message;
 }

@@ -25,7 +25,7 @@ class ExAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: '$title'.text.bold.size(16).maxLines(1).ellipsis.textStyle(textStyle).make(),
+      title: title.text.bold.size(16).maxLines(1).ellipsis.textStyle(textStyle).make(),
       actions: actions,
       leading: leading ?? ExBackButton(),
       centerTitle: false,

@@ -1,5 +1,3 @@
-// ignore_for_file: noop_primitive_operations, use_raw_strings
-
 extension MiscExtensions on String? {
   /// input = aditya pratama | output = aditya
   String? get firstWord {
@@ -249,8 +247,7 @@ extension MiscExtensions on String? {
   String? get onlyNumbers {
     if (this == null) return null;
     if (this!.isEmpty) return this;
-    // ignore: unnecessary_raw_strings
-    final regex = RegExp(r'([^0-9]+)');
+    final regex = RegExp('([^0-9]+)');
     return this!.replaceAll(regex, '');
   }
 
@@ -268,8 +265,7 @@ extension MiscExtensions on String? {
   String? get removeLetters {
     if (this == null) return null;
     if (this!.isEmpty) return this;
-    // ignore: unnecessary_raw_strings
-    final regex = RegExp(r'([a-zA-Z]+)');
+    final regex = RegExp('([a-zA-Z]+)');
     return this!.replaceAll(regex, '');
   }
 
@@ -484,8 +480,7 @@ extension MiscExtensions on String? {
   String? get stripHtml {
     if (this == null) return null;
     if (this!.isEmpty) return this;
-    // ignore: unnecessary_raw_strings
-    final regex = RegExp(r'<[^>]*>');
+    final regex = RegExp('<[^>]*>');
     return this!.replaceAll(regex, '');
   }
 
@@ -660,7 +655,7 @@ extension MiscExtensions on String? {
     if (this!.isEmpty) return this;
     if (length <= 0) return this;
     if (length > this!.length) return this;
-    return '${this!.substring(0, length)}';
+    return this!.substring(0, length);
   }
 
   String? maxWords(int maxWords) {

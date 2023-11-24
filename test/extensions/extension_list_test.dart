@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
-
 import 'package:ex/src/extensions/extension_list.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -38,12 +36,13 @@ void main() {
 }
 
 class Person {
+  Person({required this.name, required this.age});
   String name;
+
   int age;
 
-  Person({required this.name, required this.age});
-
   @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
@@ -51,5 +50,6 @@ class Person {
   }
 
   @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => name.hashCode ^ age.hashCode;
 }

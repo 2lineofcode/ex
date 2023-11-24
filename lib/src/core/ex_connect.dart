@@ -1,5 +1,3 @@
-// ignore_for_file: only_throw_errors
-
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/exceptions/exceptions.dart';
 
@@ -311,7 +309,8 @@ class ExConnect extends _ExConnectInterface {
 
   void _checkIfDisposed({bool isHttp = true}) {
     if (_isDisposed) {
-      throw 'Can not emit events to disposed clients';
+      final error = ArgumentError('Can not emit events to disposed clients!');
+      throw error;
     }
   }
 

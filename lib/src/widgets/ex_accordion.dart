@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api, no_default_cases
-
 import 'package:ex/ex.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,10 +39,10 @@ class ExAccordion extends StatefulWidget {
   /// contentChild of  type [Widget]is alternative to content key. content will get priority over contentChild
   final Widget? contentChild;
 
-  /// type of [Color] or [GFColors] which is used to change the background color of the [ExAccordion] title when it is collapsed
+  /// type of [Color] which is used to change the background color of the [ExAccordion] title when it is collapsed
   final Color? collapsedTitleBackgroundColor;
 
-  /// type of [Color] or [GFColors] which is used to change the background color of the [ExAccordion] title when it is expanded
+  /// type of [Color] which is used to change the background color of the [ExAccordion] title when it is expanded
   final Color? expandedTitleBackgroundColor;
 
   /// collapsedIcon of type [Widget] which is used to show when the [ExAccordion] is collapsed
@@ -65,16 +63,16 @@ class ExAccordion extends StatefulWidget {
   /// descriptionPadding of type [EdgeInsets] which is used to set the padding of the [ExAccordion] description
   final EdgeInsets contentPadding;
 
-  /// type of [Color] or [GFColors] which is used to change the background color of the [ExAccordion] description
+  /// type of [Color] which is used to change the background color of the [ExAccordion] description
   final Color? contentBackgroundColor;
 
   /// margin of type [EdgeInsets] which is used to set the margin of the [ExAccordion]
   final EdgeInsets? margin;
 
-  /// titleBorderColor of type  [Color] or [GFColors] which is used to change the border color of title
+  /// titleBorderColor of type  [Color] which is used to change the border color of title
   final Border titleBorder;
 
-  /// contentBorderColor of type  [Color] or [GFColors] which is used to change the border color of content
+  /// contentBorderColor of type  [Color] which is used to change the border color of content
   final Color? contentBorderColor;
 
   /// titleBorderRadius of type  [Radius]  which is used to change the border radius of title
@@ -87,6 +85,7 @@ class ExAccordion extends StatefulWidget {
   final Function(bool)? onToggleCollapsed;
 
   @override
+  // ignore: library_private_types_in_public_api
   _ExAccordionState createState() => _ExAccordionState();
 }
 
@@ -193,7 +192,12 @@ class _ExAccordionState extends State<ExAccordion> with TickerProviderStateMixin
         case AnimationStatus.dismissed:
           controller.forward();
           break;
-        default:
+        case AnimationStatus.forward:
+          controller.forward();
+          break;
+        case AnimationStatus.reverse:
+          controller.reverse();
+          break;
       }
       showAccordion = !showAccordion;
       if (widget.onToggleCollapsed != null) {

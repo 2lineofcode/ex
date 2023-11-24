@@ -37,18 +37,6 @@ void main() {
         ),
       );
     });
-
-    test('Sort by', () {
-      final myList = [30, 35, 25];
-      myList.sortBy((a) => a);
-      expect(myList, equals([25, 30, 35]));
-    });
-
-    test('Sort by Descending', () {
-      final myList = [30, 35, 25];
-      myList.sortByDescending((a) => a);
-      expect(myList, equals([35, 30, 25]));
-    });
   });
 
   group('Set Extensions', () {

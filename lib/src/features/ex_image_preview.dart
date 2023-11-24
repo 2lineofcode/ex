@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -30,14 +28,14 @@ mixin ExImagePreview {
                     HStack(
                       [
                         Spacer(),
-                        IconButton(onPressed: () => Get.back(), icon: Icon(Icons.close, color: Colors.white)),
+                        IconButton(onPressed: Get.back, icon: Icon(Icons.close, color: Colors.white)),
                       ],
                     ),
                   PhotoView(
                     backgroundDecoration: BoxDecoration(color: Colors.transparent),
                     imageProvider: NetworkImage(url),
                   ).expand(),
-                  '${url.split('/').last}'.text.white.align(TextAlign.center).makeCentered(),
+                  url.split('/').last.text.white.align(TextAlign.center).makeCentered(),
                 ],
               ),
             ),

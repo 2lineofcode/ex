@@ -32,7 +32,7 @@ class ExUiErrorOrEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: bgColor ?? Colors.transparent,
       child: VStack(
         [

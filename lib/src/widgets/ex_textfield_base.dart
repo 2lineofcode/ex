@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api, prefer_null_aware_method_calls
-
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -112,6 +110,7 @@ class ExBaseTextField extends StatefulWidget {
   final Function? clearCallback;
 
   @override
+  // ignore: library_private_types_in_public_api
   _ExBaseTextFieldState createState() => _ExBaseTextFieldState();
 }
 
@@ -326,6 +325,7 @@ class _ExBaseTextFieldState extends State<ExBaseTextField> {
   void onChanged(String value) {
     notify();
     if (widget.onChanged != null) {
+      // ignore: prefer_null_aware_method_calls
       widget.onChanged!(value);
     }
   }
@@ -334,6 +334,7 @@ class _ExBaseTextFieldState extends State<ExBaseTextField> {
   void onEditingComplete() {
     FocusScope.of(context).unfocus();
     if (widget.onEditingComplete != null) {
+      // ignore: prefer_null_aware_method_calls
       widget.onEditingComplete!();
     }
   }
@@ -342,6 +343,7 @@ class _ExBaseTextFieldState extends State<ExBaseTextField> {
   void onSubmitted(String value) {
     FocusScope.of(context).unfocus();
     if (widget.onSubmitted != null) {
+      // ignore: prefer_null_aware_method_calls
       widget.onSubmitted!(value);
     }
   }

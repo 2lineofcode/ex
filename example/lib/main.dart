@@ -4,6 +4,8 @@ import 'package:example/core/index.dart';
 import 'package:example/core_gallery/http_page.dart';
 import 'package:example/core_gallery/log_page.dart';
 import 'package:example/ext_gallery/ext_date_page.dart';
+import 'package:example/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,6 +31,9 @@ import 'helper_gallery/decoration_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   /// ExHttp
   Get.put(

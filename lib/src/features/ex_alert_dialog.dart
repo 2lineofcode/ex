@@ -1,5 +1,3 @@
-// ignore_for_file: non_constant_identifier_names, deprecated_member_use
-
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -155,8 +153,6 @@ mixin ExAlert {
     showAdaptiveDialog(
       context: Get.context!,
       builder: (BuildContext context) {
-        // ignore: literal_only_boolean_expressions
-        // if (1 == 100) {
         if (Platform.isMacOS || Platform.isMacOS) {
           return CupertinoAlertDialog(
             title: title,
@@ -212,70 +208,67 @@ mixin ExAlert {
     Function()? onNo,
   }) {
     Get.dialog(
-      WillPopScope(
-        onWillPop: () async => isDismissible,
-        child: AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(radius))),
-          scrollable: true,
-          content: content ??
-              VStack([
-                /// icon
-                if (icon != null) icon.centered().pOnly(bottom: 16),
+      AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(radius))),
+        scrollable: true,
+        content: content ??
+            VStack([
+              /// icon
+              if (icon != null) icon.centered().pOnly(bottom: 16),
 
-                /// title
-                if (title != null) ...[
-                  Text(
-                    title,
-                    style: titleStyle ??
-                        TextStyle(
-                          fontSize: titleTextSize,
-                          fontWeight: FontWeight.bold,
-                          color: titleTextColor,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                    textAlign: titleTextAlign,
-                    maxLines: 2,
-                  ).w(double.infinity),
-                ],
-
-                /// message
-                if (message != null)
-                  Text(
-                    message,
-                    style: messageStyle ?? TextStyle(fontSize: messageTextSize, fontWeight: FontWeight.normal, color: messageTextColor),
-                    textAlign: messageTextAlign,
-                  ).w(double.infinity).pOnly(top: 12),
-              ]),
-          actions: [
-            Column(
-              children: [
-                /// yes
-                if (btnYesText != null) ...[
-                  ExButtonElevated(
-                    width: double.infinity,
-                    label: btnYesText,
-                    height: 50,
-                    labelSize: 14,
-                    backgroundColor: color,
-                    labelColor: Colors.white,
-                    onPressed: onYes ?? Get.back,
-                  ).cornerRadius(90).pOnly(left: 8, right: 8, bottom: 8),
-                ],
-
-                /// no
-                if (btnNoText != null) ...[
-                  ExButtonText(
-                    width: double.infinity,
-                    label: btnNoText,
-                    height: 50,
-                    labelSize: 14,
-                    onPressed: onNo ?? Get.back,
-                  ).cornerRadius(90).pOnly(left: 8, right: 8, bottom: 8),
-                ],
+              /// title
+              if (title != null) ...[
+                Text(
+                  title,
+                  style: titleStyle ??
+                      TextStyle(
+                        fontSize: titleTextSize,
+                        fontWeight: FontWeight.bold,
+                        color: titleTextColor,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                  textAlign: titleTextAlign,
+                  maxLines: 2,
+                ).w(double.infinity),
               ],
-            ),
-          ],
-        ),
+
+              /// message
+              if (message != null)
+                Text(
+                  message,
+                  style: messageStyle ?? TextStyle(fontSize: messageTextSize, fontWeight: FontWeight.normal, color: messageTextColor),
+                  textAlign: messageTextAlign,
+                ).w(double.infinity).pOnly(top: 12),
+            ]),
+        actions: [
+          Column(
+            children: [
+              /// yes
+              if (btnYesText != null) ...[
+                ExButtonElevated(
+                  width: double.infinity,
+                  label: btnYesText,
+                  height: 50,
+                  labelSize: 14,
+                  backgroundColor: color,
+                  labelColor: Colors.white,
+                  onPressed: onYes ?? Get.back,
+                ).cornerRadius(90).pOnly(left: 8, right: 8, bottom: 8),
+              ],
+
+              /// no
+              if (btnNoText != null) ...[
+                ExButtonText(
+                  width: double.infinity,
+                  label: btnNoText,
+                  height: 50,
+                  labelSize: 14,
+                  onPressed: onNo ?? Get.back,
+                ).cornerRadius(90).pOnly(left: 8, right: 8, bottom: 8),
+              ],
+            ],
+          ),
+        ],
       ),
       barrierDismissible: isDismissible,
       transitionCurve: Curves.easeInCirc,

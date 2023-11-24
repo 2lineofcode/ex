@@ -1,5 +1,3 @@
-// ignore_for_file: use_late_for_private_fields_and_variables, library_private_types_in_public_api
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -208,10 +206,12 @@ class CircularProfileAvatar extends StatefulWidget {
   final BoxFit imageFit;
 
   @override
+  // ignore: library_private_types_in_public_api
   _CircularProfileAvatarState createState() => _CircularProfileAvatarState();
 }
 
 class _CircularProfileAvatarState extends State<CircularProfileAvatar> {
+  // ignore: use_late_for_private_fields_and_variables
   Widget? _initialsText;
 
   @override

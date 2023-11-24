@@ -23,11 +23,6 @@ extension ListX<T> on List<T> {
       yield sublist(index, chunkSize > length ? length : chunkSize);
     }
   }
-
-  void sortBy(Comparable Function(T e) getVal) => sort((a, b) => getVal(a).compareTo(getVal(b)));
-
-  /// Sorts the list in descending order of the object's field value.
-  void sortByDescending(Comparable Function(T e) getVal) => sort((a, b) => getVal(b).compareTo(getVal(a)));
 }
 
 /// Extensions for [Set].

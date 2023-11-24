@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 
 import '../../ex.dart';
@@ -43,7 +41,7 @@ class ExButtonText extends StatelessWidget {
     return TextButton(
       onPressed: onPressed,
       style: TextButton.styleFrom(
-        primary: backgroundColor,
+        foregroundColor: backgroundColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
         minimumSize: Size(width ?? 44, height ?? 44),
       ),

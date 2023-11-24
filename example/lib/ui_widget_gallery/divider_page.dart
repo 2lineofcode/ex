@@ -16,7 +16,7 @@ class DividerPage extends StatelessWidget {
         32.heightBox,
 
         'Divider LEFT'.text.bold.make().pOnly(bottom: 12),
-        ExDivider(label: 'LEFT', textMode: ExDividerTextMode.LEFT),
+        ExDivider(label: 'LEFT', textMode: ExDividerTextMode.left),
         32.heightBox,
 
         'Divider CENTER'.text.bold.make().pOnly(bottom: 12),
@@ -24,25 +24,25 @@ class DividerPage extends StatelessWidget {
         32.heightBox,
 
         'Divider RIGHT'.text.bold.make().pOnly(bottom: 12),
-        ExDivider(label: 'RIGHT', textMode: ExDividerTextMode.RIGHT),
+        ExDivider(label: 'RIGHT', textMode: ExDividerTextMode.right),
         32.heightBox,
 
         // —————————————————————————————————————————————————————————————————————————————
 
         'Divider Dash Default'.text.bold.make().pOnly(bottom: 12),
-        ExDivider(dividerMode: ExDividerMode.DASH),
+        ExDivider(dividerMode: ExDividerMode.dash),
         32.heightBox,
 
         'Divider Dash LEFT'.text.bold.make().pOnly(bottom: 12),
-        ExDivider(label: 'LEFT', textMode: ExDividerTextMode.LEFT, dividerMode: ExDividerMode.DASH),
+        ExDivider(label: 'LEFT', textMode: ExDividerTextMode.left, dividerMode: ExDividerMode.dash),
         32.heightBox,
 
         'Divider Dash CENTER'.text.bold.make().pOnly(bottom: 12),
-        ExDivider(label: 'CENTER', dividerMode: ExDividerMode.DASH),
+        ExDivider(label: 'CENTER', dividerMode: ExDividerMode.dash),
         32.heightBox,
 
         'Divider Dash RIGHT'.text.bold.make().pOnly(bottom: 12),
-        ExDivider(label: 'RIGHT', textMode: ExDividerTextMode.RIGHT, dividerMode: ExDividerMode.DASH),
+        ExDivider(label: 'RIGHT', textMode: ExDividerTextMode.right, dividerMode: ExDividerMode.dash),
         32.heightBox,
       ]).p16().scrollVertical(),
     );

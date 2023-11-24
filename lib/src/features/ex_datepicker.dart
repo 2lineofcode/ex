@@ -67,7 +67,7 @@ mixin ExDatePicker {
                     backgroundColor: Get.theme.canvasColor,
                     label: btnCancelText,
                     labelColor: Vx.red500,
-                    onPressed: () => Get.back(),
+                    onPressed: Get.back,
                   ).expand(),
                   1.widthBox,
                   ExButtonElevated(
@@ -145,7 +145,7 @@ mixin ExDatePicker {
                     backgroundColor: Get.theme.canvasColor,
                     label: btnCancelText,
                     labelColor: Vx.red500,
-                    onPressed: () => Get.back(),
+                    onPressed: Get.back,
                   ).expand(),
                   1.widthBox,
                   ExButtonElevated(

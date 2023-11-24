@@ -1,9 +1,7 @@
-// ignore_for_file: use_key_in_widget_constructors, library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 
 class ExRestartWidget extends StatefulWidget {
-  const ExRestartWidget({required this.child});
+  const ExRestartWidget({required this.child, super.key});
 
   final Widget child;
 
@@ -12,6 +10,7 @@ class ExRestartWidget extends StatefulWidget {
   }
 
   @override
+  // ignore: library_private_types_in_public_api
   _ExRestartWidgetState createState() => _ExRestartWidgetState();
 }
 

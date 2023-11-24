@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 
 import '../../ex.dart';
@@ -47,7 +45,7 @@ class ExButtonElevated extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        primary: backgroundColor,
+        backgroundColor: backgroundColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
         minimumSize: minimumSize ?? Size(width ?? 44, height ?? 44),
       ),

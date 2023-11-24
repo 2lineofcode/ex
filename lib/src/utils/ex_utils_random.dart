@@ -1,5 +1,3 @@
-// ignore_for_file: one_member_abstracts
-
 import 'dart:math' show Random;
 
 const maxSupportedInteger = 999999999999999;
@@ -145,6 +143,7 @@ mixin ExRandom {
 // internal class
 // —————————————————————————————————————————————————————————————————————————————
 /// A generator of double values.
+// ignore: one_member_abstracts
 abstract class AbstractRandomProvider {
   /// A non-negative random floating point value is expected
   /// in the range from 0.0, inclusive, to 1.0, exclusive.
@@ -152,7 +151,7 @@ abstract class AbstractRandomProvider {
   double nextDouble();
 }
 
-/// A generator of pseudo-random double values using the default [math.Random].
+/// A generator of pseudo-random double values using the default.
 class DefaultRandomProvider with AbstractRandomProvider {
   const DefaultRandomProvider();
 
@@ -160,7 +159,7 @@ class DefaultRandomProvider with AbstractRandomProvider {
   double nextDouble() => _internal.nextDouble();
 }
 
-/// A generator of random values using a supplied [math.Random].
+/// A generator of random values using a supplied.
 class CoreRandomProvider with AbstractRandomProvider {
   CoreRandomProvider.from(this.random);
 
@@ -170,7 +169,7 @@ class CoreRandomProvider with AbstractRandomProvider {
   double nextDouble() => random.nextDouble();
 }
 
-/// ProviderError thrown when a [Provider] provides a value
+/// ProviderError thrown when a provides a value
 /// outside the expected [0, 1) range.
 class ProviderError implements Exception {
   ProviderError(this.value);

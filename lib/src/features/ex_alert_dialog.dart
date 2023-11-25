@@ -146,10 +146,12 @@ mixin ExAlert {
 
   static void adaptive({
     bool? isDismissible,
+    Widget? icon,
     Widget? title,
     Widget? content,
     List<Widget>? actions,
     double? radius,
+    double? padding,
   }) {
     showAdaptiveDialog(
       context: Get.context!,
@@ -162,7 +164,7 @@ mixin ExAlert {
           );
         }
 
-        if (Platform.isIOS) {
+        if (Platform.isIOS || Platform.isMacOS || Platform.isWindows || Platform.isLinux) {
           return CupertinoAlertDialog(
             title: title,
             content: content,
@@ -170,12 +172,16 @@ mixin ExAlert {
           );
         } else {
           return AlertDialog(
+            icon: icon,
             title: title,
             content: content,
             actions: actions ?? [],
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(radius ?? 12),
-            ),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius ?? 12)),
+            contentPadding: EdgeInsets.all(padding ?? 12),
+            iconPadding: EdgeInsets.only(top: 12),
+            actionsPadding: EdgeInsets.only(bottom: 12),
+            titlePadding: EdgeInsets.symmetric(horizontal: 12),
+            scrollable: true,
           );
         }
       },

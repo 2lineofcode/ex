@@ -23,8 +23,59 @@ class AlertPage extends StatelessWidget {
             width: double.infinity,
             onPressed: () {
               ExAlert.adaptive(
-                title: Text('Title'),
-                content: Text(faker.lorem.sentences(3).join()),
+                title: Text(
+                  'Title',
+                  textAlign: TextAlign.left,
+                ).pOnly(bottom: 12),
+                content: VStack(
+                  [
+                    /// 1
+                    CupertinoTextField(
+                      placeholder: 'Nasi Padang',
+                      placeholderStyle: TextStyle(fontSize: 13, color: Vx.neutral500),
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Get.isDarkMode ? Colors.white : Colors.black,
+                      ),
+                      prefix: Text(
+                        'Notes',
+                        textAlign: TextAlign.left,
+                      ).pOnly(left: 8).w(70),
+                    ),
+
+                    8.heightBox,
+
+                    /// 2
+                    CupertinoTextField(
+                      placeholder: 'Food',
+                      placeholderStyle: TextStyle(fontSize: 13, color: Vx.neutral500),
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Get.isDarkMode ? Colors.white : Colors.black,
+                      ),
+                      prefix: Text(
+                        'Category',
+                        textAlign: TextAlign.left,
+                      ).pOnly(left: 8).w(70),
+                    ),
+
+                    8.heightBox,
+
+                    /// 3
+                    CupertinoTextField(
+                      placeholder: 'Rp. 10.000',
+                      placeholderStyle: TextStyle(fontSize: 13, color: Vx.neutral500),
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Get.isDarkMode ? Colors.white : Colors.black,
+                      ),
+                      prefix: Text(
+                        'Amount',
+                        textAlign: TextAlign.left,
+                      ).pOnly(left: 8).w(70),
+                    ),
+                  ],
+                ),
                 actions: [
                   CupertinoDialogAction(
                     child: Text("OK"),
@@ -63,8 +114,7 @@ class AlertPage extends StatelessWidget {
             label: 'Uniq',
             width: double.infinity,
             onPressed: () => ExAlert.success(
-              icon:
-                  Icon(Icons.access_time_outlined, size: 48, color: Vx.pink400),
+              icon: Icon(Icons.access_time_outlined, size: 48, color: Vx.pink400),
               title: 'isDismissible: false',
               radius: 12,
               isDismissible: false,
@@ -178,14 +228,12 @@ class AlertPage extends StatelessWidget {
             label: 'test',
             width: double.infinity,
             onPressed: () => ExAlert.custom(
+              padding: 12,
               content: VStack(
                 [
                   Text(
                     '${faker.lorem.words(2).join(' ')}',
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: colorBlack),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: colorBlack),
                   ),
                   16.heightBox,
                   Text(
@@ -196,25 +244,6 @@ class AlertPage extends StatelessWidget {
                   ExTextField(
                     hint: 'abehbatre/ex',
                     borderRadius: 4,
-                  ),
-                  24.heightBox,
-                  HStack(
-                    [
-                      Spacer(),
-                      ExButtonText(
-                        label: 'Cancel',
-                        labelColor: colorBlack,
-                        onPressed: () {},
-                      ),
-                      12.widthBox,
-                      ExButtonOutline(
-                        label: 'Delete',
-                        backgroundColor: Vx.neutral100,
-                        borderColor: Vx.neutral100,
-                        labelColor: colorError,
-                        onPressed: () {},
-                      )
-                    ],
                   ),
                 ],
               ),

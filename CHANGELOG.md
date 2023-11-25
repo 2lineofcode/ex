@@ -1,3 +1,7 @@
+## 0.5.6
+* fix ExAlert.adaptive on web
+* fix ExAlert.custom padding
+
 ## 0.5.5
 * fix score
 

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -44,10 +45,7 @@ mixin ExAlert {
     Function()? onYes,
   }) {
     _base(
-      icon: icon ??
-          Icon(Icons.check_circle, size: 64, color: color)
-              .centered()
-              .pOnly(bottom: 16),
+      icon: icon ?? Icon(Icons.check_circle, size: 64, color: color).centered().pOnly(bottom: 16),
       title: title,
       titleStyle: titleStyle,
       titleTextSize: titleTextSize,
@@ -85,10 +83,7 @@ mixin ExAlert {
     Function()? onYes,
   }) {
     _base(
-      icon: icon ??
-          Icon(Icons.error, size: 64, color: color)
-              .centered()
-              .pOnly(bottom: 16),
+      icon: icon ?? Icon(Icons.error, size: 64, color: color).centered().pOnly(bottom: 16),
       title: title,
       titleStyle: titleStyle,
       titleTextSize: titleTextSize,
@@ -128,8 +123,7 @@ mixin ExAlert {
     Function()? onNo,
   }) {
     _base(
-      icon: icon ??
-          Icon(Icons.help, size: 64, color: color).centered().pOnly(bottom: 16),
+      icon: icon ?? Icon(Icons.help, size: 64, color: color).centered().pOnly(bottom: 16),
       title: title,
       titleStyle: titleStyle,
       titleTextSize: titleTextSize,
@@ -160,7 +154,15 @@ mixin ExAlert {
     showAdaptiveDialog(
       context: Get.context!,
       builder: (BuildContext context) {
-        if (Platform.isMacOS || Platform.isMacOS) {
+        if (kIsWeb) {
+          return CupertinoAlertDialog(
+            title: title,
+            content: content,
+            actions: actions ?? [],
+          );
+        }
+
+        if (Platform.isIOS) {
           return CupertinoAlertDialog(
             title: title,
             content: content,
@@ -181,17 +183,29 @@ mixin ExAlert {
     );
   }
 
-  static void custom({Widget? content}) {
-    return _base(content: content);
+  static void custom({
+    String? title,
+    Widget? content,
+    List<Widget>? actions,
+    double? padding,
+  }) {
+    return _base(
+      title: title,
+      content: content,
+      actions: actions,
+      padding: padding ?? 0,
+    );
   }
 
   static void _base({
     /// custom
     Widget? content,
+    List<Widget>? actions,
     // icon
     Widget? icon,
     Color color = const Color(0xFF229C80),
-    double radius = 16,
+    double radius = 12,
+    double padding = 12,
 
     // title
     String? title,
@@ -218,32 +232,29 @@ mixin ExAlert {
   }) {
     Get.dialog(
       AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(radius)),
-        ),
+        contentPadding: EdgeInsets.all(padding),
+        iconPadding: EdgeInsets.only(top: 12),
+        actionsPadding: EdgeInsets.only(bottom: 12),
+        titlePadding: EdgeInsets.symmetric(horizontal: 12),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(radius))),
         scrollable: true,
+        icon: icon ?? 0.heightBox,
+        title: title != null
+            ? Text(
+                title,
+                style: titleStyle ??
+                    TextStyle(
+                      fontSize: titleTextSize,
+                      fontWeight: FontWeight.bold,
+                      color: titleTextColor,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                textAlign: titleTextAlign,
+                maxLines: 2,
+              )
+            : 0.heightBox,
         content: content ??
             VStack([
-              /// icon
-              if (icon != null) icon.centered().pOnly(bottom: 16),
-
-              /// title
-              if (title != null) ...[
-                Text(
-                  title,
-                  style: titleStyle ??
-                      TextStyle(
-                        fontSize: titleTextSize,
-                        fontWeight: FontWeight.bold,
-                        color: titleTextColor,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                  textAlign: titleTextAlign,
-                  maxLines: 2,
-                ).w(double.infinity),
-              ],
-
-              /// message
               if (message != null)
                 Text(
                   message,
@@ -254,12 +265,10 @@ mixin ExAlert {
                         color: messageTextColor,
                       ),
                   textAlign: messageTextAlign,
-                ).w(double.infinity).pOnly(top: 12),
+                ).w(double.infinity).pOnly(top: 8, bottom: 8),
             ]),
-        actions: [
-          Column(
-            children: [
-              /// yes
+        actions: actions ??
+            [
               if (btnYesText != null) ...[
                 ExButtonElevated(
                   width: double.infinity,
@@ -269,25 +278,25 @@ mixin ExAlert {
                   backgroundColor: color,
                   labelColor: Colors.white,
                   onPressed: onYes ?? Get.back,
-                ).cornerRadius(90).pOnly(left: 8, right: 8, bottom: 8),
+                ).pSymmetric(h: 12),
               ],
 
               /// no
               if (btnNoText != null) ...[
+                8.heightBox,
                 ExButtonText(
                   width: double.infinity,
                   label: btnNoText,
                   height: 50,
                   labelSize: 14,
                   onPressed: onNo ?? Get.back,
-                ).cornerRadius(90).pOnly(left: 8, right: 8, bottom: 8),
+                ).pSymmetric(h: 12),
               ],
             ],
-          ),
-        ],
       ),
       barrierDismissible: isDismissible,
       transitionCurve: Curves.easeInCirc,
+      useSafeArea: true,
     );
   }
 }

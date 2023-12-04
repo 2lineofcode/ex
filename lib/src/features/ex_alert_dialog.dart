@@ -45,7 +45,10 @@ mixin ExAlert {
     Function()? onYes,
   }) {
     _base(
-      icon: icon ?? Icon(Icons.check_circle, size: 64, color: color).centered().pOnly(bottom: 16),
+      icon: icon ??
+          Icon(Icons.check_circle, size: 64, color: color)
+              .centered()
+              .pOnly(bottom: 16),
       title: title,
       titleStyle: titleStyle,
       titleTextSize: titleTextSize,
@@ -83,7 +86,10 @@ mixin ExAlert {
     Function()? onYes,
   }) {
     _base(
-      icon: icon ?? Icon(Icons.error, size: 64, color: color).centered().pOnly(bottom: 16),
+      icon: icon ??
+          Icon(Icons.error, size: 64, color: color)
+              .centered()
+              .pOnly(bottom: 16),
       title: title,
       titleStyle: titleStyle,
       titleTextSize: titleTextSize,
@@ -123,7 +129,8 @@ mixin ExAlert {
     Function()? onNo,
   }) {
     _base(
-      icon: icon ?? Icon(Icons.help, size: 64, color: color).centered().pOnly(bottom: 16),
+      icon: icon ??
+          Icon(Icons.help, size: 64, color: color).centered().pOnly(bottom: 16),
       title: title,
       titleStyle: titleStyle,
       titleTextSize: titleTextSize,
@@ -164,7 +171,10 @@ mixin ExAlert {
           );
         }
 
-        if (Platform.isIOS || Platform.isMacOS || Platform.isWindows || Platform.isLinux) {
+        if (Platform.isIOS ||
+            Platform.isMacOS ||
+            Platform.isWindows ||
+            Platform.isLinux) {
           return CupertinoAlertDialog(
             title: title,
             content: content,
@@ -176,7 +186,8 @@ mixin ExAlert {
             title: title,
             content: content,
             actions: actions ?? [],
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius ?? 12)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(radius ?? 12)),
             contentPadding: EdgeInsets.all(padding ?? 12),
             iconPadding: EdgeInsets.only(top: 12),
             actionsPadding: EdgeInsets.only(bottom: 12),
@@ -242,7 +253,8 @@ mixin ExAlert {
         iconPadding: EdgeInsets.only(top: 12),
         actionsPadding: EdgeInsets.only(bottom: 12),
         titlePadding: EdgeInsets.symmetric(horizontal: 12),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(radius))),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(radius))),
         scrollable: true,
         icon: icon ?? 0.heightBox,
         title: title != null

@@ -3,38 +3,36 @@ import 'dart:developer' as developer;
 
 const _appName = 'Ex';
 
-void print(dynamic msg, {String? name}) => developer
-    .log('${LogColor.green}$msg${LogColor.reset}', name: name ?? _appName);
+void print(dynamic msg, {String? name}) =>
+    developer.log('$msg${LogColor.reset}', name: name ?? _appName);
 void log(dynamic msg, {String? name}) => developer
-    .log('${LogColor.blue}$msg${LogColor.reset}', name: name ?? _appName);
+    .log('${LogColor.white}$msg${LogColor.reset}', name: name ?? _appName);
 
 void logD(dynamic msg, {String? name}) => developer
     .log('${LogColor.cyan}$msg${LogColor.reset}', name: name ?? _appName);
-void logI(dynamic msg, {String? name}) => developer.log(
-      '${LogColor.backgroundBlue}${LogColor.white}$msg${LogColor.reset}',
-      name: name ?? _appName,
-    );
+void logI(dynamic msg, {String? name}) => developer
+    .log('${LogColor.blue}$msg${LogColor.reset}', name: name ?? _appName);
 void logS(dynamic msg, {String? name}) => developer
     .log('${LogColor.green}$msg${LogColor.reset}', name: name ?? _appName);
 void logW(dynamic msg, {String? name}) => developer
     .log('${LogColor.orange}$msg${LogColor.reset}', name: name ?? _appName);
 void logE(dynamic msg, {String? name}) => developer
     .log('${LogColor.red}$msg${LogColor.reset}', name: name ?? _appName);
-void logC(dynamic color, dynamic msg, {String? name}) =>
-    developer.log('$color$msg${LogColor.reset}', name: name ?? _appName);
+void logC(dynamic ansiColor, dynamic msg, {String? name}) =>
+    developer.log('$ansiColor$msg${LogColor.reset}', name: name ?? _appName);
 
 /// json
-void logJson(Map<String, dynamic> input, {int indent = 2}) {
+void logJson(Map<String, dynamic> input, {String? name = 'JSON VIEW'}) {
   try {
     final object = JsonDecoder().convert(jsonEncode(input));
     final prettyString = JsonEncoder.withIndent('  ').convert(object);
 
     logC(
       '${LogColor.backgroundGreen}${LogColor.black}',
-      '  RESPONSE  ',
+      '  $name  ',
       name: 'log',
     );
-    logS(prettyString, name: 'log');
+    log(prettyString, name: 'log');
   } catch (e) {
     logS('$input', name: 'log');
   }

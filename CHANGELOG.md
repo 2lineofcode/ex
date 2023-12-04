@@ -1,3 +1,6 @@
+## 0.5.8
+* update exlog
+
 ## 0.5.7
 * fix ExAlert.adaptive on web
 * fix ExAlert.custom padding

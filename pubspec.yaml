@@ -1,6 +1,6 @@
 name: ex
 description: Ex is a low-code offering with pre-built and UI-ready components, such as Dialog, BottomSheet, Toast, Snack, Alert, Loading, etc. Save time and assemble features fast with. 
-version: 0.5.7
+version: 0.5.8
 homepage: https://github.com/aditgpt/ex
 repository: https://github.com/aditgpt/ex
 issue_tracker: https://github.com/aditgpt/ex/issues

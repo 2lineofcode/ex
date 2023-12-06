@@ -3,23 +3,58 @@ import 'dart:developer' as developer;
 
 const _appName = 'Ex';
 
-void print(dynamic msg, {String? name}) =>
-    developer.log('$msg${LogColor.reset}', name: name ?? _appName);
-void log(dynamic msg, {String? name}) => developer
-    .log('${LogColor.white}$msg${LogColor.reset}', name: name ?? _appName);
+void print(dynamic msg, {String? name}) {
+  developer.log('$msg${LogColor.reset}', name: name ?? _appName);
+}
 
-void logD(dynamic msg, {String? name}) => developer
-    .log('${LogColor.cyan}$msg${LogColor.reset}', name: name ?? _appName);
-void logI(dynamic msg, {String? name}) => developer
-    .log('${LogColor.blue}$msg${LogColor.reset}', name: name ?? _appName);
-void logS(dynamic msg, {String? name}) => developer
-    .log('${LogColor.green}$msg${LogColor.reset}', name: name ?? _appName);
-void logW(dynamic msg, {String? name}) => developer
-    .log('${LogColor.orange}$msg${LogColor.reset}', name: name ?? _appName);
-void logE(dynamic msg, {String? name}) => developer
-    .log('${LogColor.red}$msg${LogColor.reset}', name: name ?? _appName);
-void logC(dynamic ansiColor, dynamic msg, {String? name}) =>
-    developer.log('$ansiColor$msg${LogColor.reset}', name: name ?? _appName);
+void log(dynamic msg, {String? name}) {
+  developer.log(
+    '${LogColor.white}$msg${LogColor.reset}',
+    name: name ?? _appName,
+  );
+}
+
+void logD(dynamic msg, {String? name}) {
+  developer.log(
+    '${LogColor.cyan}$msg${LogColor.reset}',
+    name: name ?? _appName,
+  );
+}
+
+void logI(dynamic msg, {String? name}) {
+  developer.log(
+    '${LogColor.blue}$msg${LogColor.reset}',
+    name: name ?? _appName,
+  );
+}
+
+void logS(dynamic msg, {String? name}) {
+  developer.log(
+    '${LogColor.green}$msg${LogColor.reset}',
+    name: name ?? _appName,
+  );
+}
+
+void logW(dynamic msg, {String? name}) {
+  developer.log(
+    '${LogColor.orange}$msg${LogColor.reset}',
+    name: name ?? _appName,
+  );
+}
+
+void logE(dynamic msg, {String? name}) {
+  developer.log(
+    '${LogColor.red}$msg${LogColor.reset}',
+    name: name ?? _appName,
+  );
+}
+
+void logC(dynamic ansiColor, dynamic msg, {String? name}) {
+  developer.log(
+    '$ansiColor$msg${LogColor.reset}',
+    name: name ?? _appName,
+  );
+}
 
 /// json
 void logJson(Map<String, dynamic> input, {String? name = 'JSON VIEW'}) {
@@ -39,7 +74,7 @@ void logJson(Map<String, dynamic> input, {String? name = 'JSON VIEW'}) {
 }
 
 mixin LogColor {
-  static const reset = '\x1B[0m'; // default IDE color
+  static const reset = '\x1B[0m';
   static const red = '\x1B[31m';
   static const green = '\x1B[32m';
   static const blue = '\x1B[34m';

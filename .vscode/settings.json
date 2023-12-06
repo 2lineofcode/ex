@@ -1,29 +1,17 @@
 {
-
-  // Flutter UI Guides : https://dartcode.org/releases/v3-1/#preview-flutter-ui-guides
-  "dart.renameFilesWithClasses": "prompt",
-  "editor.lineHeight": 20,
-  "dart.previewFlutterUiGuides": true,
-  "editor.fontLigatures": true,
-  "dart.closingLabels":true,
-
-  // recommended settings : https://dartcode.org/docs/recommended-settings/
-  "[dart]": {
-		"editor.formatOnSave": true,
-		"editor.rulers": [100],
-		"editor.selectionHighlight": false,
-		"editor.suggest.snippetsPreventQuickSuggestions": false,
-		"editor.suggestSelection": "first",
-		"editor.tabCompletion": "onlySnippets",
-		"editor.wordBasedSuggestions": false,
+	// Flutter UI Guides : https://dartcode.org/releases/v3-1/#preview-flutter-ui-guides
+	"editor.lineHeight": 20,
+	"dart.lineLength": 80,
+	"files.exclude": {
+		"build": true,
+		"macos": true,
+		".fvm": true,
+		".idea": true,
+		".dart_tool": true,
+		".meta*": true,
+		".*ignore*": true,
+		"*.lock": true,
+		"*.iml": true,
+		".flutter**": true,
 	},
-
-	// FVM
-	// "dart.flutterSdkPath": ".fvm/flutter_sdk",
-	// "search.exclude": {
-	// 	"**/.fvm": true
-	// },
-	// "files.watcherExclude": {
-	// 	"**/.fvm": true
-	// }
 }

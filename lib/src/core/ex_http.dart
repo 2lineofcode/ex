@@ -29,7 +29,6 @@ enum Method { get, post, put, patch, delete, head, connect, options, trace }
 /// });
 /// ```
 ///
-
 class ExHttp extends ExConnect {
   ExHttp({
     this.baseURL,
@@ -55,14 +54,46 @@ class ExHttp extends ExConnect {
   int maxRedirectURL;
   int maxAuthRetry;
   Duration? maxTimeOut;
+
+  /// example:
+  /// ```dart
+  /// if (PrefHelper.userRefreshToken.isNotNullOrEmpty) {
+  /// final response = await api.post(
+  ///   url: '/user/v1.0/renew-token',
+  ///   body: {
+  ///     'refresh_token': '${PrefHelper.userRefreshToken}',
+  ///   },
+  /// );
+  ///
+  /// final token = response.body['data']['access_token'];
+  /// final rToken = response.body['data']['refresh_token'];
+  /// final gToken = response.body['data']['google_token'];
+  /// await PrefHelper.setUserToken(token);
+  /// await PrefHelper.setUserRefreshToken(rToken);
+  /// await PrefHelper.setUserGoogleToken(gToken);
+  ///
+  /// # re-adjust headers ...
+  /// request.headers['Authorization'] = '$token';
+  /// logI('TOKEN REFRESHED!');
+  /// }
+  /// ```
   Function(Request<void>)? interceptorAddAuthenticator;
+
+  /// example:
+  /// ```dart
+  /// final token = PrefHelper.userToken;
+  /// if (token != null && token.isNotEmpty) {
+  ///   request.headers['Authorization'] = 'Bearer $token';
+  /// }
+  /// request.headers.addAll(baseHeader);
+  /// return request;
+  /// ```
   Function(Request<void>)? interceptorAddRequestModifier;
   Function(Request<void>, Response<Object?>)? interceptorAddResponseModifier;
 
   @override
   Future<void> onInit() async {
-    HttpOverrides.global =
-        MyHttpOverrides(); // Fix Http Issue on Android SDK < 23
+    HttpOverrides.global = MyHttpOverrides();
 
     try {
       allowAutoSignedCert = allowAutoSignedCertificate;
@@ -80,13 +111,6 @@ class ExHttp extends ExConnect {
       /// add something on every http request
       if (interceptorAddRequestModifier != null) {
         httpClient.addRequestModifier<void>((request) async {
-          /// [example]
-          // final token = PrefHelper.userToken;
-          // if (token != null && token.isNotEmpty) {
-          //   request.headers['Authorization'] = 'Bearer $token';
-          // }
-          // request.headers.addAll(baseHeader);
-          // return request;
           interceptorAddRequestModifier?.call(request);
           return request;
         });
@@ -95,26 +119,6 @@ class ExHttp extends ExConnect {
       /// if (401) -> AUTO REFRESH TOKEN
       if (interceptorAddAuthenticator != null) {
         httpClient.addAuthenticator<void>((request) async {
-          /// [example]
-          // if (PrefHelper.userRefreshToken.isNotNullOrEmpty) {
-          // final response = await httpPost(
-          //   url: '/user/v1.0/renew-token',
-          //   body: {
-          //     'refresh_token': '${PrefHelper.userRefreshToken}',
-          //   },
-          // );
-          // final token = response.body['data']['access_token'];
-          // final rToken = response.body['data']['refresh_token'];
-          // final gToken = response.body['data']['google_token'];
-
-          // await PrefHelper.setUserToken(token);
-          // await PrefHelper.setUserRefreshToken(rToken);
-          // await PrefHelper.setUserGoogleToken(gToken);
-
-          // // # re-adjust headers ...
-          // request.headers['Authorization'] = '$token';
-          // logI('TOKEN REFRESHED!');
-          // }
           interceptorAddAuthenticator?.call(request);
           return request;
         });
@@ -347,7 +351,7 @@ Get.put(
 
   /// template exhttp.download
   ///
-  /// await apiService.download(
+  /// await api.download(
   ///     'http://speedtest.ftp.otenet.gr/files/test10Mb.db',
   ///     (await getTemporaryDirectory()).path + '/dummy.db',
   ///     method: 'get',
@@ -485,7 +489,9 @@ String getErrorMessage(int? code, {Response<dynamic>? response}) {
   switch (code) {
     case 400:
       if (response != null) {
-        if (response.body['info'] != null) return '${response.body['info']}';
+        if (response.body['info'] != null) {
+          return '${response.body['info']}';
+        }
         if (response.body['data']['info'] != null) {
           return '${response.body['data']['info']}';
         }

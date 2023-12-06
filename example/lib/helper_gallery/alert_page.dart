@@ -32,7 +32,10 @@ class AlertPage extends StatelessWidget {
                     /// 1
                     CupertinoTextField(
                       placeholder: 'Nasi Padang',
-                      placeholderStyle: TextStyle(fontSize: 13, color: Vx.neutral500),
+                      placeholderStyle: TextStyle(
+                        fontSize: 13,
+                        color: Vx.neutral500,
+                      ),
                       style: TextStyle(
                         fontSize: 13,
                         color: Get.isDarkMode ? Colors.white : Colors.black,
@@ -48,7 +51,10 @@ class AlertPage extends StatelessWidget {
                     /// 2
                     CupertinoTextField(
                       placeholder: 'Food',
-                      placeholderStyle: TextStyle(fontSize: 13, color: Vx.neutral500),
+                      placeholderStyle: TextStyle(
+                        fontSize: 13,
+                        color: Vx.neutral500,
+                      ),
                       style: TextStyle(
                         fontSize: 13,
                         color: Get.isDarkMode ? Colors.white : Colors.black,
@@ -64,7 +70,10 @@ class AlertPage extends StatelessWidget {
                     /// 3
                     CupertinoTextField(
                       placeholder: 'Rp. 10.000',
-                      placeholderStyle: TextStyle(fontSize: 13, color: Vx.neutral500),
+                      placeholderStyle: TextStyle(
+                        fontSize: 13,
+                        color: Vx.neutral500,
+                      ),
                       style: TextStyle(
                         fontSize: 13,
                         color: Get.isDarkMode ? Colors.white : Colors.black,
@@ -114,7 +123,11 @@ class AlertPage extends StatelessWidget {
             label: 'Uniq',
             width: double.infinity,
             onPressed: () => ExAlert.success(
-              icon: Icon(Icons.access_time_outlined, size: 48, color: Vx.pink400),
+              icon: Icon(
+                Icons.access_time_outlined,
+                size: 48,
+                color: Vx.pink400,
+              ),
               title: 'isDismissible: false',
               radius: 12,
               isDismissible: false,
@@ -233,7 +246,11 @@ class AlertPage extends StatelessWidget {
                 [
                   Text(
                     '${faker.lorem.words(2).join(' ')}',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: colorBlack),
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: colorBlack,
+                    ),
                   ),
                   16.heightBox,
                   Text(

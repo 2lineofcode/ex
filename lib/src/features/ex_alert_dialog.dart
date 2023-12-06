@@ -187,7 +187,8 @@ mixin ExAlert {
             content: content,
             actions: actions ?? [],
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(radius ?? 12)),
+              borderRadius: BorderRadius.circular(radius ?? 12),
+            ),
             contentPadding: EdgeInsets.all(padding ?? 12),
             iconPadding: EdgeInsets.only(top: 12),
             actionsPadding: EdgeInsets.only(bottom: 12),
@@ -254,7 +255,8 @@ mixin ExAlert {
         actionsPadding: EdgeInsets.only(bottom: 12),
         titlePadding: EdgeInsets.symmetric(horizontal: 12),
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(radius))),
+          borderRadius: BorderRadius.all(Radius.circular(radius)),
+        ),
         scrollable: true,
         icon: icon ?? 0.heightBox,
         title: title != null

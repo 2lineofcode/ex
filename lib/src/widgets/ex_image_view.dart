@@ -13,7 +13,7 @@ import '../../ex.dart';
 
 class ExImageView extends StatelessWidget {
   const ExImageView({
-    required this.url,
+    required this.source,
     super.key,
     this.headers,
     this.height,
@@ -29,7 +29,7 @@ class ExImageView extends StatelessWidget {
     this.package,
   });
 
-  final String url;
+  final String source;
   final Map<String, String>? headers;
   final double? height;
   final double? width;
@@ -45,7 +45,7 @@ class ExImageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (url.isEmptyOrNull) {
+    if (source.isEmptyOrNull) {
       return Container(
         decoration: ExDecorator.box(
           fillColor: Vx.neutral300,
@@ -57,38 +57,58 @@ class ExImageView extends StatelessWidget {
       );
     }
 
-    if (url.isURL) {
+    if (source.isURL) {
       return ZStack(
         [
           SizedBox(
             width: size ?? width,
             height: size ?? height,
-            child: CachedNetworkImage(
-              imageUrl: url,
-              imageBuilder: (context, imageProvider) => Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(image: imageProvider, fit: boxFit),
-                ),
-              ),
-              width: size ?? width,
-              height: size ?? height,
-              httpHeaders: headers,
-              placeholder: (context, url) =>
-                  Container(color: Vx.neutral500).shimmer(
-                primaryColor:
-                    Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
-                secondaryColor: Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
-              ),
-              errorWidget: (context, url, error) => Container(
-                color: Colors.grey[300],
-                child: errorWidget ??
-                    Icon(
-                      Icons.broken_image_rounded,
-                      color: Vx.neutral500,
-                      size: 18,
+            child: source.contains('.svg')
+                ? SvgPicture.network(
+                    source,
+                    width: size ?? width,
+                    height: size ?? height,
+                    fit: boxFit,
+                    placeholderBuilder: (context) =>
+                        Container(color: Vx.neutral500).shimmer(
+                      primaryColor: Get.isDarkMode
+                          ? Get.theme.primaryColor
+                          : Vx.neutral100,
+                      secondaryColor:
+                          Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
                     ),
-              ),
-            ).p(padding ?? 0),
+                  ).p(padding ?? 0)
+                : CachedNetworkImage(
+                    imageUrl: source,
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: boxFit,
+                        ),
+                      ),
+                    ),
+                    width: size ?? width,
+                    height: size ?? height,
+                    httpHeaders: headers,
+                    placeholder: (context, url) =>
+                        Container(color: Vx.neutral500).shimmer(
+                      primaryColor: Get.isDarkMode
+                          ? Get.theme.primaryColor
+                          : Vx.neutral100,
+                      secondaryColor:
+                          Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
+                    ),
+                    errorWidget: (context, url, error) => Container(
+                      color: Colors.grey[300],
+                      child: errorWidget ??
+                          Icon(
+                            Icons.broken_image_rounded,
+                            color: Vx.neutral500,
+                            size: 18,
+                          ),
+                    ),
+                  ).p(padding ?? 0),
           ).cornerRadius(radius),
         ],
       );
@@ -101,9 +121,9 @@ class ExImageView extends StatelessWidget {
           SizedBox(
             width: size ?? width,
             height: size ?? height,
-            child: url.contains('.svg')
+            child: source.contains('.svg')
                 ? SvgPicture.asset(
-                    url,
+                    source,
                     width: size ?? width,
                     height: size ?? height,
                     fit: boxFit,
@@ -118,7 +138,7 @@ class ExImageView extends StatelessWidget {
                     package: package,
                   ).p(padding ?? 0)
                 : Image.asset(
-                    url,
+                    source,
                     width: size ?? width,
                     height: size ?? height,
                     fit: boxFit,

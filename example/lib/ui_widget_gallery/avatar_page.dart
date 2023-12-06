@@ -20,7 +20,8 @@ class AvatarPage extends StatelessWidget {
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               name: faker.person.name(),
-              url: 'assets/images/ic_dialog_error.svg',
+              source:
+                  'https://app.bibit.id/assets/images/portfolio/green/dark/${i + 1}.svg',
               package: 'ex',
               size: 48,
             ).pOnly(right: 12),
@@ -31,12 +32,16 @@ class AvatarPage extends StatelessWidget {
         '32px'.text.bold.make().pOnly(bottom: 12),
         HStack([
           for (var i = 0; i < counter; i++)
-            ExAvatarView(
-              name: faker.person.name(),
-              url:
-                  'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
-              size: 32,
-            ).pOnly(right: 12),
+            Hero(
+              tag: 'dash',
+              child: ExAvatarView(
+                name: faker.person.name(),
+                source: 'https://picsum.photos/id/4/200/300',
+                size: 32,
+              ).onTap(() {
+                ExImagePreview.showUrl('https://picsum.photos/id/4/200/300', tag: 'dash');
+              }).pOnly(right: 12),
+            ),
         ]).scrollHorizontal(),
         Divider().pSymmetric(v: 16),
 
@@ -46,8 +51,8 @@ class AvatarPage extends StatelessWidget {
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               name: faker.person.name(),
-              url: 'https://asda.com',
-              bgColor: Colors.pink,
+              source: 'https://asda.com',
+              bgColor: Colors.black12,
               textColor: colorPrimary[50],
               size: 40,
             ).pOnly(right: 12),
@@ -60,7 +65,7 @@ class AvatarPage extends StatelessWidget {
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               name: faker.person.name(),
-              url:
+              source:
                   'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 48,
             ).pOnly(right: 12),
@@ -73,7 +78,7 @@ class AvatarPage extends StatelessWidget {
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               name: faker.person.name(),
-              url:
+              source:
                   'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 56,
             ).pOnly(right: 12),
@@ -87,7 +92,7 @@ class AvatarPage extends StatelessWidget {
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               name: faker.person.name(),
-              url:
+              source:
                   'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 72,
             ).pOnly(right: 12),
@@ -101,7 +106,7 @@ class AvatarPage extends StatelessWidget {
           for (var i = 0; i < counter; i++)
             ExAvatarView(
               name: faker.person.name(),
-              url:
+              source:
                   'https://picsum.photos/id/${random.integer(999, min: 100)}/200/300',
               size: 120,
             ).pOnly(right: 12),

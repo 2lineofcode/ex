@@ -1,6 +1,5 @@
 import 'package:ex/ex.dart';
 import 'package:example/app_themes.dart';
-import 'package:example/core/index.dart';
 import 'package:example/core_gallery/http_page.dart';
 import 'package:example/core_gallery/log_page.dart';
 import 'package:example/ext_gallery/ext_date_page.dart';
@@ -46,6 +45,8 @@ Future<void> main() async {
       debugShowCheckedModeBanner: false,
       home: Home(),
       themeMode: AppThemes.theme,
+      theme: AppThemes.dark,
+      darkTheme: AppThemes.dark,
       builder: (context, child) {
         return Scaffold(
           body: Stack(
@@ -55,7 +56,8 @@ Future<void> main() async {
                 icon: Icon(Icons.brightness_2_rounded),
                 onPressed: () async {
                   Get.changeTheme(
-                      Get.isDarkMode ? AppThemes.light : AppThemes.dark);
+                    Get.isDarkMode ? AppThemes.light : AppThemes.dark,
+                  );
                   await 500.milliseconds.delay();
                   Get.forceAppUpdate();
                 },
@@ -97,7 +99,6 @@ class Home extends GetView {
     'String': ExtStringPage(),
     'Date': ExtDatePage(),
     'Int': ExtIntPage(),
-    // 'List': Scaffold(appBar: AppBar()),
   };
   final xFeatures4 = {
     'Log': LogPage(),
@@ -136,8 +137,7 @@ class Home extends GetView {
             VStack([
               ListView.separated(
                 itemCount: xFeatures1.length,
-                separatorBuilder: (BuildContext context, int index) =>
-                    Divider(),
+                separatorBuilder: (context, index) => Divider(),
                 itemBuilder: (context, index) {
                   final data = xFeatures1.entries.toList();
                   return ListTile(
@@ -153,7 +153,6 @@ class Home extends GetView {
 
             /// tab 2
             VStack([
-              Divider(),
               ListTile(
                 leading: Icon(Icons.folder_outlined),
                 title: 'ImagePreview'.text.make(),
@@ -165,9 +164,7 @@ class Home extends GetView {
               Divider(),
               ListView.separated(
                 itemCount: xFeatures2.length,
-                separatorBuilder: (BuildContext context, int index) => Divider(
-                  color: colorNeutral[200],
-                ),
+                separatorBuilder: (context, index) => Divider(),
                 itemBuilder: (context, index) {
                   final data = xFeatures2.entries.toList();
                   return ListTile(
@@ -185,8 +182,7 @@ class Home extends GetView {
             VStack([
               ListView.separated(
                 itemCount: xFeatures3.length,
-                separatorBuilder: (BuildContext context, int index) =>
-                    Divider(),
+                separatorBuilder: (context, index) => Divider(),
                 itemBuilder: (context, index) {
                   final data = xFeatures3.entries.toList();
                   return ListTile(
@@ -204,8 +200,7 @@ class Home extends GetView {
             VStack([
               ListView.separated(
                 itemCount: xFeatures4.length,
-                separatorBuilder: (BuildContext context, int index) =>
-                    Divider(),
+                separatorBuilder: (context, index) => Divider(),
                 itemBuilder: (context, index) {
                   final data = xFeatures4.entries.toList();
                   return ListTile(

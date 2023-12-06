@@ -33,7 +33,8 @@ class AccordionPage extends GetView {
             content: HStack(
               [
                 ExAvatarView(
-                  url: 'https://infomedia.tv/wp-content/uploads/2023/01/aa.jpg',
+                  source:
+                      'https://infomedia.tv/wp-content/uploads/2023/01/aa.jpg',
                   name: 'userFullName',
                 )
                     .onTap(() => ExImagePreview.showUrl(

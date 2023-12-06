@@ -11,7 +11,7 @@ import 'ex_connect.dart';
 ///
 enum Method { get, post, put, patch, delete, head, connect, options, trace }
 
-/// ### ExHttp
+/// ### [ExHttp]
 ///
 /// ```dart
 /// ExHttp(

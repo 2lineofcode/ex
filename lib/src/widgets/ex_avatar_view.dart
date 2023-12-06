@@ -5,16 +5,16 @@ import 'package:get/get.dart';
 
 import '../../ex.dart';
 
-///   created               : Aditya Pratama
-///   originalFilename      : ex_avatar_view
-///   date                  : 21 Jun 2021
-///   —————————————————————————————————————————————————————————————————————————————
-///  <img width="200" alt="image" src="https://user-images.githubusercontent.com/36602270/169626607-f16c4fca-dce0-4095-b09c-c5ce915b649e.png">
-
+/// ```doc
+/// `url` can be either url or asset
+/// `url` support .svg .png .jpg .jpeg .gif
+/// ```
+/// —————————————————————————————————————————————————————————————————————————————
+/// <img width="200" alt="image" src="https://user-images.githubusercontent.com/36602270/169626607-f16c4fca-dce0-4095-b09c-c5ce915b649e.png">
 class ExAvatarView extends StatelessWidget {
   const ExAvatarView({
     /// url or assets
-    required this.url,
+    required this.source,
     super.key,
     this.header,
     this.package,
@@ -31,7 +31,7 @@ class ExAvatarView extends StatelessWidget {
     this.errorWidget,
   });
 
-  final String url;
+  final String source;
   final Map<String, String>? header;
   final String? package;
   final String? name;
@@ -49,7 +49,7 @@ class ExAvatarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// assets
-    if (!url.isURL) {
+    if (!source.isURL) {
       return Container(
         width: size ?? width,
         height: size ?? height,
@@ -64,10 +64,15 @@ class ExAvatarView extends StatelessWidget {
             ),
           ],
         ),
-        child: ClipOval(
-          child: url.contains('.svg')
-              ? SvgPicture.asset(
-                  url,
+        child: source.contains('.svg')
+            ? Container(
+                padding: EdgeInsets.all(borderWidth),
+                decoration: BoxDecoration(
+                  color: borderColor ?? Colors.white,
+                  borderRadius: BorderRadius.circular(90),
+                ),
+                child: SvgPicture.asset(
+                  source,
                   width: size ?? width,
                   height: size ?? height,
                   placeholderBuilder: (context) =>
@@ -78,15 +83,15 @@ class ExAvatarView extends StatelessWidget {
                         Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
                   ),
                   package: package,
-                )
-              : Image.asset(
-                  url,
-                  height: size ?? height,
-                  width: size ?? width,
-                  color: bgColor,
-                  package: package,
                 ),
-        ),
+              )
+            : Image.asset(
+                source,
+                height: size ?? height,
+                width: size ?? width,
+                color: bgColor,
+                package: package,
+              ),
       );
     }
 
@@ -98,36 +103,64 @@ class ExAvatarView extends StatelessWidget {
         decoration: isWithShadow == true
             ? BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(90)))
             : BoxDecoration(),
-        child: CircularProfileAvatar(
-          imageUrl: url,
-          httpHeaders: header,
-          radius: 100,
-          backgroundColor: bgColor ?? Vx.red600,
-          borderWidth: borderWidth,
-          initialsText: Text(
-            name.initialName,
-            style: TextStyle(fontSize: textSize, color: textColor),
-          ),
-          borderColor: borderColor ?? Colors.white,
-          elevation: 0.3,
-          errorWidget: (context, url, error) {
-            return errorWidget ??
-                Container(
-                  color: bgColor,
-                  child: Text(
-                    name.initialName,
-                    style: TextStyle(fontSize: textSize, color: textColor),
-                  ).centered(),
-                );
-          },
-          animateFromOldImageOnUrlChange: true,
-          placeHolder: (context, url) =>
-              Container(color: Vx.neutral500).shimmer(
-            primaryColor:
-                Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
-            secondaryColor: Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
-          ),
-        ),
+        child: source.contains('.svg')
+            ? Container(
+                padding: EdgeInsets.all(borderWidth),
+                decoration: BoxDecoration(
+                  color: borderColor ?? Colors.white,
+                  borderRadius: BorderRadius.circular(90),
+                ),
+                child: SvgPicture.network(
+                  source,
+                  width: size ?? width,
+                  height: size ?? height,
+                  placeholderBuilder: (context) =>
+                      Container(color: Vx.neutral500).shimmer(
+                    primaryColor:
+                        Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
+                    secondaryColor:
+                        Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
+                  ),
+                ),
+              )
+            : CircularProfileAvatar(
+                imageUrl: source,
+                httpHeaders: header,
+                radius: 100,
+                backgroundColor:
+                    bgColor ?? (Get.isDarkMode ? Vx.black : Vx.neutral300),
+                borderWidth: borderWidth,
+                initialsText: Text(
+                  name.initialName,
+                  style: TextStyle(
+                    fontSize: textSize,
+                    color: textColor ?? (Get.isDarkMode ? Vx.black : Vx.white),
+                  ),
+                ),
+                borderColor: borderColor ?? Colors.white,
+                elevation: 0.3,
+                errorWidget: (context, url, error) {
+                  return errorWidget ??
+                      Container(
+                        color: bgColor,
+                        child: Text(
+                          name.initialName,
+                          style: TextStyle(
+                            fontSize: textSize,
+                            color: textColor,
+                          ),
+                        ).centered(),
+                      );
+                },
+                animateFromOldImageOnUrlChange: true,
+                placeHolder: (context, url) =>
+                    Container(color: Vx.neutral500).shimmer(
+                  primaryColor:
+                      Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
+                  secondaryColor:
+                      Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
+                ),
+              ),
       );
     }
   }

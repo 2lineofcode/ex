@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../ex.dart';
 
-///   created               : Aditya Pratama
-///   originalFilename      : ex_button_outline
-///   date                  : 24 Jun 2021
-///   —————————————————————————————————————————————————————————————————————————————
 ///   <img width="199" alt="image" src="https://user-images.githubusercontent.com/36602270/169626629-60056c7a-2081-4cb5-95a3-b88db7d00492.png">
-
 class ExButtonOutline extends StatelessWidget {
   const ExButtonOutline({
     super.key,

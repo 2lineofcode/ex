@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../ex.dart';
 
-///   created               : Aditya Pratama
-///   originalFilename      : ex_ui_error
-///   date                  : 24 Jun 2021
-///   —————————————————————————————————————————————————————————————————————————————
 ///   <img width="156" alt="image" src="https://user-images.githubusercontent.com/36602270/169626815-4a6e631d-4ac6-4430-b2eb-5538ae12ac80.png">
-
 class ExUiErrorOrEmpty extends StatelessWidget {
   const ExUiErrorOrEmpty({
     super.key,

@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../ex.dart';
 
-///   created               : Aditya Pratama
-///   originalFilename      : ex_text_field_multiline
-///   date                  : 24 Jun 2021
-///   —————————————————————————————————————————————————————————————————————————————
 ///   <img width="348" alt="image" src="https://user-images.githubusercontent.com/36602270/169626780-fc30e64c-6f53-46b7-a1d3-d131692fedaf.png">
-
 class ExTextFieldMultiline extends StatelessWidget {
   const ExTextFieldMultiline({
     super.key,

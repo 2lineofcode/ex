@@ -2,8 +2,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-class ExProgressBar extends StatelessWidget {
-  const ExProgressBar({
+class ExRefreshIndicator extends StatelessWidget {
+  const ExRefreshIndicator({
     super.key,
     this.color,
     this.size,

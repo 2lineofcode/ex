@@ -4,7 +4,10 @@ import 'dart:developer' as developer;
 const _appName = 'Ex';
 
 void print(dynamic msg, {String? name}) {
-  developer.log('$msg${LogColor.reset}', name: name ?? _appName);
+  developer.log(
+    '${LogColor.white}$msg${LogColor.reset}',
+    name: name ?? _appName,
+  );
 }
 
 void log(dynamic msg, {String? name}) {

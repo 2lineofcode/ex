@@ -2,12 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-///   created               : Aditya Pratama
-///   originalFilename      : ex_ui_loading
-///   date                  : 24 Jun 2021
-///   —————————————————————————————————————————————————————————————————————————————
-///
-
 class ExUiShimmerList extends StatelessWidget {
   const ExUiShimmerList({super.key, this.count = 10});
 

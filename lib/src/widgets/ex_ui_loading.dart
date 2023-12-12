@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../ex.dart';
 
-///   created               : Aditya Pratama
-///   originalFilename      : ex_ui_loading
-///   date                  : 24 Jun 2021
-///   —————————————————————————————————————————————————————————————————————————————
 ///   <img width="122" alt="image" src="https://user-images.githubusercontent.com/36602270/169626852-b050bc69-e3a2-422f-b3ff-0e7644597526.png">
-
 class ExUiLoading extends StatelessWidget {
   const ExUiLoading({
     super.key,
@@ -28,7 +23,7 @@ class ExUiLoading extends StatelessWidget {
       child: Center(
         child: VStack(
           [
-            child ?? ExProgressBar().centered(),
+            child ?? ExRefreshIndicator().centered(),
             16.heightBox,
             message ??
                 'Please wait...'.text.align(TextAlign.center).makeCentered(),

@@ -5,12 +5,7 @@ import 'package:get/get.dart';
 
 import '../../ex.dart';
 
-///   created               : Aditya Pratama
-///   originalFilename      : ex_avatar_view
-///   date                  : 21 Jun 2021
-///   —————————————————————————————————————————————————————————————————————————————
 ///  <img width="200" alt="image" src="https://user-images.githubusercontent.com/36602270/169626607-f16c4fca-dce0-4095-b09c-c5ce915b649e.png">
-
 class ExImageView extends StatelessWidget {
   const ExImageView({
     required this.source,

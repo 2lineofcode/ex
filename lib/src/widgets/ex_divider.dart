@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-///   created               : Aditya Pratama
-///   originalFilename      : ExDivider
-///   date                  : 23 May 2022
-///   —————————————————————————————————————————————————————————————————————————————
 ///   <img width="376" alt="image" src="https://user-images.githubusercontent.com/36602270/169745959-c2b1cc2a-74eb-49a9-83bf-811e8c1d1a65.png">
-
-enum ExDividerMode {
-  line,
-  dash,
-}
+enum ExDividerMode { line, dash }
 
 enum ExDividerTextMode {
   left,

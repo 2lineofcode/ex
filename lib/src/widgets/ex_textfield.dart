@@ -4,12 +4,7 @@ import 'package:velocity_x/velocity_x.dart';
 
 import 'ex_textfield_base.dart';
 
-///   created               : Aditya Pratama
-///   originalFilename      : ex_text_field_normal
-///   date                  : 24 Jun 2021
-///   —————————————————————————————————————————————————————————————————————————————
 ///   <img width="339" alt="image" src="https://user-images.githubusercontent.com/36602270/169626802-e1cd3866-814d-4b27-87ff-488d80c2fd0a.png">
-
 class ExTextField extends StatelessWidget {
   const ExTextField({
     super.key,

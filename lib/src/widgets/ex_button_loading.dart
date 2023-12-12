@@ -194,7 +194,7 @@ class _LoadingBtnState extends State<ExButtonLoading>
                   padding: EdgeInsets.all(10),
                   width: 40,
                   height: 40,
-                  child: ExProgressBar(
+                  child: ExRefreshIndicator(
                     color: Theme.of(context).hintColor,
                     size: 32,
                   ).centered(),
@@ -242,7 +242,7 @@ class _LoadingBtnState extends State<ExButtonLoading>
                   padding: EdgeInsets.all(10),
                   width: 40,
                   height: 40,
-                  child: ExProgressBar(
+                  child: ExRefreshIndicator(
                     color: Theme.of(context).hintColor,
                     size: 32,
                   ).centered(),
@@ -291,7 +291,7 @@ class _LoadingBtnState extends State<ExButtonLoading>
                   padding: EdgeInsets.all(10),
                   width: 40,
                   height: 40,
-                  child: ExProgressBar(
+                  child: ExRefreshIndicator(
                     color: Theme.of(context).hintColor,
                     size: 32,
                   ).centered(),

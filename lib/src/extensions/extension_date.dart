@@ -2,13 +2,6 @@ import 'package:ex/ex.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
-///   created               : Aditya Pratama
-///   originalFilename      : extension_date
-///   date                  : 22 Jun 2021
-///   —————————————————————————————————————————————————————————————————————————————
-///   scope                : dateTime <-> string
-///
-
 /// STRING TO DATE
 extension StringToDateExtension on String {
   DateTime toDateEx({

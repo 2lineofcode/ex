@@ -30,7 +30,7 @@ class _ProgressPageState extends State<ProgressPage> {
         /// 1
         HStack(
           [
-            ExProgress(
+            ExProgressBar(
               value: counter,
               color1: colorPrimary,
               color2: colorPrimaryLight,
@@ -43,7 +43,7 @@ class _ProgressPageState extends State<ProgressPage> {
         /// 2
         HStack(
           [
-            ExProgress(
+            ExProgressBar(
               value: counter2,
               color1: colorAccent,
               color2: colorAccentLight,
@@ -56,7 +56,7 @@ class _ProgressPageState extends State<ProgressPage> {
         /// 3
         HStack(
           [
-            ExProgress(
+            ExProgressBar(
               value: counter3,
               color1: colorSuccess,
               color2: colorSuccessLight,
@@ -69,7 +69,7 @@ class _ProgressPageState extends State<ProgressPage> {
         /// 4
         HStack(
           [
-            ExProgress(
+            ExProgressBar(
               value: counter4,
               color1: colorError,
               color2: colorErrorLight,

@@ -1,7 +1,6 @@
 ### 0.5.9
 - Modified the file `lib/src/widgets/ex_avatar_view.dart`:
   - Implemented conditional rendering for SVG images.
-
 - Modified the file `lib/src/widgets/ex_image_view.dart`:
   - Implemented conditional rendering for SVG images.
 

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-
 ///   <img width="369" alt="image" src="https://user-images.githubusercontent.com/36602270/169626718-b998853b-1837-44e4-8f2a-1561619f1087.png">
 class ExProgressBar extends StatelessWidget {
   const ExProgressBar({

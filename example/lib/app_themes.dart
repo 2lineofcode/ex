@@ -5,5 +5,5 @@ mixin AppThemes {
 
   static final dark = ThemeData.dark(useMaterial3: true);
 
-  static ThemeMode get theme => ThemeMode.dark;
+  static ThemeMode get theme => ThemeMode.light;
 }

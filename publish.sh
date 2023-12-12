@@ -1,2 +1,3 @@
 dart format lib/* -l 80
-dart pub publish -y
+cd example && firebase deploy
+dart pub publish

@@ -48,13 +48,35 @@ class ExAvatarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// assets
+    /// ! empty or null
+    if (source.isNullOrEmpty) {
+      return Container(
+        width: size ?? width,
+        height: size ?? height,
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.all(Radius.circular(90)),
+          border: Border.all(
+            color: borderColor ?? Colors.white,
+            width: borderWidth,
+          ),
+        ),
+        child: name.initialName.text
+            .color(textColor)
+            .size(textSize)
+            .makeCentered(),
+      );
+    }
+
+    /// ! assets
     if (!source.isURL) {
       return Container(
         width: size ?? width,
         height: size ?? height,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(90)),
+          borderRadius: BorderRadius.all(
+            Radius.circular(90),
+          ),
           boxShadow: [
             BoxShadow(
               color: Colors.grey[200]!,
@@ -70,6 +92,10 @@ class ExAvatarView extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: borderColor ?? Colors.white,
                   borderRadius: BorderRadius.circular(90),
+                  border: Border.all(
+                    color: borderColor ??
+                        (Get.isDarkMode ? Vx.black : Vx.neutral300),
+                  ),
                 ),
                 child: SvgPicture.asset(
                   source,
@@ -85,17 +111,28 @@ class ExAvatarView extends StatelessWidget {
                   package: package,
                 ),
               )
-            : Image.asset(
-                source,
-                height: size ?? height,
-                width: size ?? width,
-                color: bgColor,
-                package: package,
+            : Container(
+                padding: EdgeInsets.all(borderWidth),
+                decoration: BoxDecoration(
+                  color: borderColor ?? Colors.white,
+                  borderRadius: BorderRadius.circular(90),
+                  border: Border.all(
+                    color: borderColor ??
+                        (Get.isDarkMode ? Vx.black : Vx.neutral300),
+                  ),
+                ),
+                child: Image.asset(
+                  source,
+                  height: size ?? height,
+                  width: size ?? width,
+                  color: bgColor,
+                  package: package,
+                ),
               ),
       );
     }
 
-    /// url
+    /// ! url
     else {
       return Container(
         width: size ?? width,
@@ -104,11 +141,17 @@ class ExAvatarView extends StatelessWidget {
             ? BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(90)))
             : BoxDecoration(),
         child: source.contains('.svg')
+
+            /// * svg
             ? Container(
                 padding: EdgeInsets.all(borderWidth),
                 decoration: BoxDecoration(
-                  color: borderColor ?? Colors.white,
+                  color: bgColor ?? (Get.isDarkMode ? Vx.black : Vx.neutral300),
                   borderRadius: BorderRadius.circular(90),
+                  border: Border.all(
+                    color: borderColor ??
+                        (Get.isDarkMode ? Vx.black : Vx.neutral300),
+                  ),
                 ),
                 child: SvgPicture.network(
                   source,
@@ -123,6 +166,8 @@ class ExAvatarView extends StatelessWidget {
                   ),
                 ),
               )
+
+            /// * png
             : CircularProfileAvatar(
                 imageUrl: source,
                 httpHeaders: header,

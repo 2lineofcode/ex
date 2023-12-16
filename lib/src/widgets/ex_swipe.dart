@@ -1,142 +1,221 @@
+// ignore_for_file: library_private_types_in_public_api, type_annotate_public_apis, use_named_constants, always_declare_return_types, unnecessary_parenthesis
+
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
-/// Creates a widget to detect swipe gestures on the screen :
-/// swipe up, swipe down, swipe left and swipe right.
-class ExSwipe extends StatelessWidget {
+/// SwipeTo is a wrapper widget to other Widget that we can swipe horizontally
+/// to initiate a callback when animation gets end.
+/// It is useful to develop and What's App kind of replay animation for a
+/// component of ongoing chat.
+class ExSwipe extends StatefulWidget {
   const ExSwipe({
     required this.child,
     super.key,
-    this.onSwipeUp,
-    this.onSwipeDown,
-    this.onSwipeLeft,
-    this.onSwipeRight,
-    this.verticalMaxWidthThreshold = 50,
-    this.verticalMinDisplacement = 100,
-    this.verticalMinVelocity = 300,
-    this.horizontalMaxHeightThreshold = 50,
-    this.horizontalMinDisplacement = 100,
-    this.horizontalMinVelocity = 300,
-  });
+    this.onRightSwipe,
+    this.onLeftSwipe,
+    this.iconOnRightSwipe = Icons.reply,
+    this.rightSwipeWidget,
+    this.iconOnLeftSwipe = Icons.reply,
+    this.leftSwipeWidget,
+    this.iconSize = 26.0,
+    this.iconColor,
+    this.animationDuration = const Duration(milliseconds: 150),
+    this.offsetDx = 0.3,
+    this.swipeSensitivity = 5,
+  }) : assert(
+          swipeSensitivity >= 5 && swipeSensitivity <= 35,
+          'swipeSensitivity value must be between 5 to 35',
+        );
 
-  /// The widget below this widget in the tree
+  /// Child widget for which you want to have horizontal swipe action
+  /// @required parameter
   final Widget child;
 
-  /// Callback function to be called when swiping up
-  final Function()? onSwipeUp;
+  /// Duration value to define animation duration
+  /// if not passed default Duration(milliseconds: 150) will be taken
+  final Duration animationDuration;
 
-  /// Callback function to be called when swiping down
-  final Function()? onSwipeDown;
+  /// Icon that will be displayed beneath child widget when swipe right
+  final IconData iconOnRightSwipe;
 
-  /// Callback function to be called when swiping left
-  final Function()? onSwipeLeft;
+  /// Widget that will be displayed beneath child widget when swipe right
+  final Widget? rightSwipeWidget;
 
-  /// Callback function to be called when swiping right
-  final Function()? onSwipeRight;
+  /// Icon that will be displayed beneath child widget when swipe left
+  final IconData iconOnLeftSwipe;
 
-  /// Default: 50
-  final double verticalMaxWidthThreshold;
+  /// Widget that will be displayed beneath child widget when swipe right
+  final Widget? leftSwipeWidget;
 
-  /// mininum displacement of pointer on the vertical axis
-  /// to be counted as a swipe
-  ///
-  /// Default: 100
-  final double verticalMinDisplacement;
+  /// double value defining size of displayed icon beneath child widget
+  /// if not specified default size 26 will be taken
+  final double iconSize;
 
-  /// minimum absolute velocity of pointer moving on the vertical axis
-  /// to be counted as a swipe
-  ///
-  /// Default: 300
-  final double verticalMinVelocity;
+  /// color value defining color of displayed icon beneath child widget
+  ///if not specified primaryColor from theme will be taken
+  final Color? iconColor;
 
-  /// Default: 50
-  final double horizontalMaxHeightThreshold;
+  /// Double value till which position child widget will get animate when swipe left
+  /// or swipe right
+  /// if not specified 0.3 default will be taken for Right Swipe &
+  /// it's negative -0.3 will bve taken for Left Swipe
+  final double offsetDx;
 
-  /// mininum displacement of pointer on the horizontal axis
-  /// to be counted as a swipe
-  ///
-  /// Default: 100
-  final double horizontalMinDisplacement;
+  /// callback which will be initiated at the end of child widget animation
+  /// when swiped right
+  /// if not passed swipe to right will be not available
+  final GestureDragUpdateCallback? onRightSwipe;
 
-  /// minimum absolute velocity of pointer moving on the horizontal axis
-  /// to be counted as a swipe
-  ///
-  /// Default: 300
-  final double horizontalMinVelocity;
+  /// callback which will be initiated at the end of child widget animation
+  /// when swiped left
+  /// if not passed swipe to left will be not available
+  final GestureDragUpdateCallback? onLeftSwipe;
+
+  /// Integer specifying value above which it will sense swipe to get triggerred
+  /// default minimum value is 20 and maximum value is 35
+  /// Putting max value will require use to swipe in short time to get swipe in effect
+  final int swipeSensitivity;
+
+  @override
+  _ExSwipeState createState() => _ExSwipeState();
+}
+
+class _ExSwipeState extends State<ExSwipe> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<Offset> _animation;
+  late Animation<double> _leftIconAnimation;
+  late Animation<double> _rightIconAnimation;
+  late GestureDragUpdateCallback _onSwipeLeft;
+  late GestureDragUpdateCallback _onSwipeRight;
+
+  @override
+  initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: widget.animationDuration,
+    );
+    _animation = Tween<Offset>(
+      begin: const Offset(0.0, 0.0),
+      end: const Offset(0.0, 0.0),
+    ).animate(
+      CurvedAnimation(curve: Curves.decelerate, parent: _controller),
+    );
+    _leftIconAnimation = _controller.drive(
+      Tween<double>(begin: 0.0, end: 0.0),
+    );
+    _rightIconAnimation = _controller.drive(
+      Tween<double>(begin: 0.0, end: 0.0),
+    );
+    _onSwipeLeft = widget.onLeftSwipe ??
+        (details) {
+          log('Left Swipe Not Provided');
+        };
+
+    _onSwipeRight = widget.onRightSwipe ??
+        (details) {
+          log('Right Swipe Not Provided');
+        };
+    _controller.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  ///Run animation for child widget
+  ///[onRight] value defines animation Offset direction
+  void _runAnimation({required bool onRight, details}) {
+    //set child animation
+    _animation = Tween(
+      begin: const Offset(0.0, 0.0),
+      end: Offset(onRight ? widget.offsetDx : -widget.offsetDx, 0.0),
+    ).animate(
+      CurvedAnimation(curve: Curves.decelerate, parent: _controller),
+    );
+    //set back left/right icon animation
+    if (onRight) {
+      _leftIconAnimation = Tween(begin: 0.0, end: 1.0).animate(
+        CurvedAnimation(curve: Curves.decelerate, parent: _controller),
+      );
+    } else {
+      _rightIconAnimation = Tween(begin: 0.0, end: 1.0).animate(
+        CurvedAnimation(curve: Curves.decelerate, parent: _controller),
+      );
+    }
+    //Forward animation
+    _controller.forward().whenComplete(() {
+      _controller.reverse().whenComplete(() {
+        if (onRight) {
+          //keep left icon visibility to 0.0 until onRightSwipe triggers again
+          _leftIconAnimation = _controller.drive(Tween(begin: 0.0, end: 0.0));
+          _onSwipeRight(details);
+        } else {
+          //keep right icon visibility to 0.0 until onLeftSwipe triggers again
+          _rightIconAnimation = _controller.drive(Tween(begin: 0.0, end: 0.0));
+          _onSwipeLeft(details);
+        }
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    DragStartDetails? startVerticalDragDetails;
-    DragUpdateDetails? updateVerticalDragDetails;
-
-    DragStartDetails? startHorizontalDragDetails;
-    DragUpdateDetails? updateHorizontalDragDetails;
-
     return GestureDetector(
-      child: child,
-      onVerticalDragStart: (dragDetails) {
-        startVerticalDragDetails = dragDetails;
-      },
-      onVerticalDragUpdate: (dragDetails) {
-        updateVerticalDragDetails = dragDetails;
-      },
-      onVerticalDragEnd: (endDetails) {
-        if (startVerticalDragDetails != null &&
-            updateVerticalDragDetails != null) {
-          final dx = (updateVerticalDragDetails!.globalPosition.dx -
-                  startVerticalDragDetails!.globalPosition.dx)
-              .abs();
-          final dy = (updateVerticalDragDetails!.globalPosition.dy -
-                  startVerticalDragDetails!.globalPosition.dy)
-              .abs();
-          final velocity = endDetails.primaryVelocity ?? 0.0;
-
-          if (dx > verticalMaxWidthThreshold) return;
-          if (dy < verticalMinDisplacement) return;
-          if (velocity.abs() < verticalMinVelocity) return;
-
-          if (velocity < 0) {
-            //ExSwipe Up
-            onSwipeUp?.call();
-          }
-
-          if (velocity > 0) {
-            //ExSwipe Down
-            onSwipeDown?.call();
-          }
+      onPanUpdate: (details) {
+        if (details.delta.dx > widget.swipeSensitivity &&
+            widget.onRightSwipe != null) {
+          _runAnimation(onRight: true, details: details);
+        }
+        if (details.delta.dx < -(widget.swipeSensitivity) &&
+            widget.onLeftSwipe != null) {
+          _runAnimation(onRight: false, details: details);
         }
       },
-      onHorizontalDragStart: (dragDetails) {
-        startHorizontalDragDetails = dragDetails;
-      },
-      onHorizontalDragUpdate: (dragDetails) {
-        updateHorizontalDragDetails = dragDetails;
-      },
-      onHorizontalDragEnd: (endDetails) {
-        if (startHorizontalDragDetails != null &&
-            updateHorizontalDragDetails != null) {
-          final dx = (updateHorizontalDragDetails!.globalPosition.dx -
-                  startHorizontalDragDetails!.globalPosition.dx)
-              .abs();
-          final dy = (updateHorizontalDragDetails!.globalPosition.dy -
-                  startHorizontalDragDetails!.globalPosition.dy)
-              .abs();
-          final velocity = endDetails.primaryVelocity ?? 0.0;
-
-          if (dy > horizontalMaxHeightThreshold) return;
-          if (dx < horizontalMinDisplacement) return;
-          if (velocity.abs() < horizontalMinVelocity) return;
-
-          if (velocity < 0) {
-            //ExSwipe Left
-            onSwipeLeft?.call();
-          }
-
-          if (velocity > 0) {
-            //ExSwipe Right
-            onSwipeRight?.call();
-          }
-        }
-      },
+      child: Stack(
+        alignment: Alignment.center,
+        fit: StackFit.passthrough,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              AnimatedOpacity(
+                opacity: _leftIconAnimation.value,
+                duration: widget.animationDuration,
+                curve: Curves.decelerate,
+                child: widget.rightSwipeWidget ??
+                    Icon(
+                      widget.iconOnRightSwipe,
+                      size: widget.iconSize,
+                      color:
+                          widget.iconColor ?? Theme.of(context).iconTheme.color,
+                    ),
+              ),
+              AnimatedOpacity(
+                opacity: _rightIconAnimation.value,
+                duration: widget.animationDuration,
+                curve: Curves.decelerate,
+                child: widget.leftSwipeWidget ??
+                    Icon(
+                      widget.iconOnLeftSwipe,
+                      size: widget.iconSize,
+                      color:
+                          widget.iconColor ?? Theme.of(context).iconTheme.color,
+                    ),
+              ),
+            ],
+          ),
+          SlideTransition(
+            position: _animation,
+            child: widget.child,
+          ),
+        ],
+      ),
     );
   }
 }

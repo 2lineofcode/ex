@@ -1,3 +1,7 @@
+### 0.5.10
+- feat: ExSwipe
+- fix: ExAvatarView (load from: asset, svg, empty/null)
+
 ### 0.5.9
 - Modified the file `lib/src/widgets/ex_avatar_view.dart`:
   - Implemented conditional rendering for SVG images.

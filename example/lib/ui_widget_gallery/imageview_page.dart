@@ -57,10 +57,10 @@ class ImageViewPage extends StatelessWidget {
         '40px'.text.bold.make().pOnly(bottom: 12),
         HStack([
           ExImageView(
-                  source: 'assets/images/ic_dialog_error.svg',
-                  size: 40,
-                  package: 'ex')
-              .pOnly(right: 12),
+            source: 'assets/images/sample.svg',
+            size: 40,
+            backgroundColor: Vx.randomPrimaryColor,
+          ).pOnly(right: 12),
           ExImageView(source: '', size: 40).pOnly(right: 12),
           ExImageView(
                   source:

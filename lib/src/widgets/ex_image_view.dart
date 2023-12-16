@@ -40,6 +40,7 @@ class ExImageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// empty or null
     if (source.isEmptyOrNull) {
       return Container(
         decoration: ExDecorator.box(
@@ -52,6 +53,7 @@ class ExImageView extends StatelessWidget {
       );
     }
 
+    /// ! url
     if (source.isURL) {
       return ZStack(
         [
@@ -109,13 +111,14 @@ class ExImageView extends StatelessWidget {
       );
     }
 
-    /// assets
+    /// ! assets
     else {
       return ZStack(
         [
-          SizedBox(
+          Container(
             width: size ?? width,
             height: size ?? height,
+            color: backgroundColor,
             child: source.contains('.svg')
                 ? SvgPicture.asset(
                     source,

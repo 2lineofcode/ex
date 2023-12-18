@@ -27,8 +27,10 @@ class ExAvatarView extends StatelessWidget {
     this.textSize = 14,
     this.textColor,
     this.bgColor,
-    this.isWithShadow = true,
+    this.colorFilter,
+    this.pngColor,
     this.errorWidget,
+    this.boxFit,
   });
 
   final String source;
@@ -42,22 +44,30 @@ class ExAvatarView extends StatelessWidget {
   final double borderWidth;
   final double? textSize;
   final Color? textColor;
+
+  /// for container
   final Color? bgColor;
-  final bool? isWithShadow;
+
+  /// for svg
+  final ColorFilter? colorFilter;
+
+  /// for png
+  final Color? pngColor;
   final Widget? errorWidget;
+  final BoxFit? boxFit;
 
   @override
   Widget build(BuildContext context) {
-    /// ! empty or null
+    /// ! empty or null ✅
     if (source.isNullOrEmpty) {
       return Container(
         width: size ?? width,
         height: size ?? height,
         decoration: BoxDecoration(
-          color: bgColor,
+          color: bgColor ?? (Get.isDarkMode ? Vx.black : Vx.neutral200),
           borderRadius: BorderRadius.all(Radius.circular(90)),
           border: Border.all(
-            color: borderColor ?? Colors.white,
+            color: borderColor ?? (Get.isDarkMode ? Vx.white : Vx.neutral500),
             width: borderWidth,
           ),
         ),
@@ -68,144 +78,123 @@ class ExAvatarView extends StatelessWidget {
       );
     }
 
-    /// ! assets
+    /// ! assets ✅
     if (!source.isURL) {
-      return Container(
-        width: size ?? width,
-        height: size ?? height,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(90),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey[200]!,
-              spreadRadius: 1,
-              blurRadius: 1,
-              offset: Offset(0, 1),
+      return ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(90)),
+        child: Container(
+          width: size ?? width,
+          height: size ?? height,
+          decoration: BoxDecoration(
+            color: bgColor,
+            borderRadius: BorderRadius.all(Radius.circular(90)),
+            border: Border.all(
+              color: borderColor ?? (Get.isDarkMode ? Vx.white : Vx.neutral500),
+              width: borderWidth,
             ),
-          ],
+          ),
+          child: source.contains('.svg')
+              ? SvgPicture.asset(
+                  source,
+                  colorFilter: colorFilter,
+                  width: size ?? width,
+                  height: size ?? height,
+                  package: package,
+                  excludeFromSemantics: true,
+                  fit: boxFit ?? BoxFit.contain,
+                )
+              : Image.asset(
+                  source,
+                  height: size ?? height,
+                  width: size ?? width,
+                  package: package,
+                  color: pngColor,
+                  fit: boxFit,
+                ),
         ),
-        child: source.contains('.svg')
-            ? Container(
-                padding: EdgeInsets.all(borderWidth),
-                decoration: BoxDecoration(
-                  color: borderColor ?? Colors.white,
-                  borderRadius: BorderRadius.circular(90),
-                  border: Border.all(
-                    color: borderColor ??
-                        (Get.isDarkMode ? Vx.black : Vx.neutral300),
-                  ),
-                ),
-                child: SvgPicture.asset(
-                  source,
-                  width: size ?? width,
-                  height: size ?? height,
-                  placeholderBuilder: (context) =>
-                      Container(color: Vx.neutral500).shimmer(
-                    primaryColor:
-                        Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
-                    secondaryColor:
-                        Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
-                  ),
-                  package: package,
-                ),
-              )
-            : Container(
-                padding: EdgeInsets.all(borderWidth),
-                decoration: BoxDecoration(
-                  color: borderColor ?? Colors.white,
-                  borderRadius: BorderRadius.circular(90),
-                  border: Border.all(
-                    color: borderColor ??
-                        (Get.isDarkMode ? Vx.black : Vx.neutral300),
-                  ),
-                ),
-                child: Image.asset(
-                  source,
-                  height: size ?? height,
-                  width: size ?? width,
-                  color: bgColor,
-                  package: package,
-                ),
-              ),
       );
     }
 
     /// ! url
     else {
-      return Container(
-        width: size ?? width,
-        height: size ?? height,
-        decoration: isWithShadow == true
-            ? BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(90)))
-            : BoxDecoration(),
-        child: source.contains('.svg')
+      return ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(90)),
+        child: Container(
+          width: size ?? width,
+          height: size ?? height,
+          decoration: BoxDecoration(
+            color: bgColor,
+            borderRadius: BorderRadius.all(Radius.circular(90)),
+            border: Border.all(
+              color: borderColor ?? (Get.isDarkMode ? Vx.white : Vx.neutral500),
+              width: borderWidth,
+            ),
+          ),
+          child: source.contains('.svg')
 
-            /// * svg
-            ? Container(
-                padding: EdgeInsets.all(borderWidth),
-                decoration: BoxDecoration(
-                  color: bgColor ?? (Get.isDarkMode ? Vx.black : Vx.neutral300),
-                  borderRadius: BorderRadius.circular(90),
-                  border: Border.all(
-                    color: borderColor ??
-                        (Get.isDarkMode ? Vx.black : Vx.neutral300),
-                  ),
-                ),
-                child: SvgPicture.network(
+              /// * svg
+              ? SvgPicture.network(
                   source,
                   width: size ?? width,
                   height: size ?? height,
+                  colorFilter: colorFilter,
+                  excludeFromSemantics: true,
+                  fit: boxFit ?? BoxFit.contain,
                   placeholderBuilder: (context) =>
-                      Container(color: Vx.neutral500).shimmer(
-                    primaryColor:
-                        Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
-                    secondaryColor:
-                        Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
-                  ),
-                ),
-              )
+                      Container(color: Vx.neutral500)
+                          .shimmer(
+                            primaryColor:
+                                Get.isDarkMode ? Vx.neutral700 : Vx.neutral100,
+                            secondaryColor:
+                                Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
+                          )
+                          .cornerRadius(90),
+                )
 
-            /// * png
-            : CircularProfileAvatar(
-                imageUrl: source,
-                httpHeaders: header,
-                radius: 100,
-                backgroundColor:
-                    bgColor ?? (Get.isDarkMode ? Vx.black : Vx.neutral300),
-                borderWidth: borderWidth,
-                initialsText: Text(
-                  name.initialName,
-                  style: TextStyle(
-                    fontSize: textSize,
-                    color: textColor ?? (Get.isDarkMode ? Vx.black : Vx.white),
+              /// * png
+              : CircularProfileAvatar(
+                  imageUrl: source,
+                  httpHeaders: header,
+                  radius: 100,
+                  backgroundColor:
+                      bgColor ?? (Get.isDarkMode ? Vx.black : Vx.neutral300),
+                  imageFit: boxFit ?? BoxFit.cover,
+                  initialsText: Text(
+                    name.initialName,
+                    style: TextStyle(
+                      fontSize: textSize,
+                      color:
+                          textColor ?? (Get.isDarkMode ? Vx.white : Vx.black),
+                    ),
                   ),
+                  borderColor: borderColor ?? Colors.white,
+                  elevation: 0.3,
+                  errorWidget: (context, url, error) {
+                    return errorWidget ??
+                        Container(
+                          color: bgColor,
+                          child: Text(
+                            name.initialName,
+                            style: TextStyle(
+                              fontSize: textSize,
+                              color: textColor,
+                            ),
+                          ).centered(),
+                        );
+                  },
+                  animateFromOldImageOnUrlChange: true,
+                  placeHolder: (context, url) {
+                    return Container(color: Vx.neutral500)
+                        .shimmer(
+                          primaryColor:
+                              Get.isDarkMode ? Vx.neutral700 : Vx.neutral100,
+                          secondaryColor:
+                              Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
+                        )
+                        .cornerRadius(90);
+                  },
                 ),
-                borderColor: borderColor ?? Colors.white,
-                elevation: 0.3,
-                errorWidget: (context, url, error) {
-                  return errorWidget ??
-                      Container(
-                        color: bgColor,
-                        child: Text(
-                          name.initialName,
-                          style: TextStyle(
-                            fontSize: textSize,
-                            color: textColor,
-                          ),
-                        ).centered(),
-                      );
-                },
-                animateFromOldImageOnUrlChange: true,
-                placeHolder: (context, url) =>
-                    Container(color: Vx.neutral500).shimmer(
-                  primaryColor:
-                      Get.isDarkMode ? Get.theme.primaryColor : Vx.neutral100,
-                  secondaryColor:
-                      Get.isDarkMode ? Vx.neutral800 : Vx.neutral200,
-                ),
-              ),
+        ),
       );
     }
   }

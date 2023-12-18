@@ -1,4 +1,4 @@
-### 0.5.10
+### 0.5.11
 - feat: ExSwipe
 - fix: ExAvatarView (load from: asset, svg, empty/null)
 

@@ -25,4 +25,20 @@
 		"example/web": true,
 		"example/buld": true,
 	},
+	"explorerExclude.backup": {},
+
+    "workbench.editor.enablePreview": true,
+
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit"
+    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+        "pubspec.yaml": "pubspec.lock,pubspec_overrides.yaml,.packages,.flutter-plugins,.flutter-plugins-dependencies,.metadata, analysis_options.yaml, flutter_launcher_icons.yaml",
+        "README.md":"README.md, LICENSE, publish.sh",
+        "*.dart": "${capture}.g.dart",
+        "firebase.json": "firebase.json, .firebaserc",
+        ".env": ".env, .env.dev, .env.local, .env.staging, .env.prod, env.g.dart",
+    },
 }

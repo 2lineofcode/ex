@@ -443,7 +443,6 @@ Get.put(
       contentType: contentType,
       uploadProgress: uploadProgress,
     );
-    logS('${method.toUpperCase()} : ${res.request?.url}');
     try {
       if (header != null) logI('Header: ${jsonEncode(header)}');
       if (body != null) logI('Body: ${jsonEncode(body)}');

@@ -1,3 +1,6 @@
+### 0.5.12
+- update: remove default value interceptor response `ExHttp`
+
 ### 0.5.11
 - feat: ExSwipe
 - fix: ExAvatarView (load from: asset, svg, empty/null)

@@ -6,12 +6,12 @@ environment:
   sdk: '>=3.0.0 <4.0.0'
 
 dependencies: 
-  faker: ^2.0.0
-  google_fonts: ^5.1.0
-  get: ^4.6.5
-  dio: ^5.3.3
-  path_provider: ^2.1.1
-  firebase_core: ^2.23.0
+  faker: 
+  google_fonts: 
+  get: 
+  dio: 
+  path_provider: 
+  firebase_core: 
   flutter:
     sdk: flutter
   ex:

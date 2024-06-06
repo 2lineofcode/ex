@@ -67,7 +67,7 @@ class ExTextFieldMultiline extends StatelessWidget {
         if (labelText != null) ...[
           HStack(
             [
-              labelText!.text.caption(context).textStyle(labelTextStyle).make(),
+              labelText!.text.size(12).textStyle(labelTextStyle).make(),
               if (isRequired == true) ...[
                 ' *'.text.color(Colors.red).make(),
               ],

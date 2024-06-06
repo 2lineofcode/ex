@@ -56,7 +56,6 @@ mixin ExBottomSheet {
       isDismissible: isDismissible ?? true,
       persistent: persistent ?? true,
       isScrollControlled: isScrolled ?? true,
-      enableDrag: true,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(radius ?? 16),
@@ -98,7 +97,12 @@ mixin ExBottomSheet {
                       size: 25,
                     ),
                   ).onInkTap(
-                    () => {Get.back(), if (onClose != null) onClose() else ''},
+                    () {
+                      Get.back();
+                      if (onClose != null) {
+                        onClose();
+                      }
+                    },
                   )
                 else
                   const SizedBox(),
@@ -113,7 +117,6 @@ mixin ExBottomSheet {
       ),
       elevation: 0,
       isScrollControlled: isScrollControlled,
-      isDismissible: true,
     );
   }
 

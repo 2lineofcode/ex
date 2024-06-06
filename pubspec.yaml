@@ -1,6 +1,6 @@
 name: ex
 description: Ex is a low-code offering with pre-built and UI-ready components, such as Dialog, BottomSheet, Toast, Snack, Alert, Loading, etc. Save time and assemble features fast with. 
-version: 0.5.12
+version: 0.6.0
 homepage: https://github.com/aditgpt/ex
 repository: https://github.com/aditgpt/ex
 issue_tracker: https://github.com/aditgpt/ex/issues
@@ -11,21 +11,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cached_network_image: ^3.3.0
+  cached_network_image: ^3.3.1
   get: ^4.6.6
-  photo_view: ^0.14.0
-  velocity_x: ^4.1.2
-  flutter_svg: ^2.0.9
-  intl: ^0.18.1
+  photo_view: ^0.15.0
+  velocity_x: ^4.2.1
+  flutter_svg: ^2.0.10+1
+  intl: ^0.19.0
 
-dependency_overrides: 
-  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   very_good_analysis: ^5.1.0
-  lints: ^3.0.0
+  lints: ^4.0.0
 
 flutter:
   uses-material-design: true

@@ -1,3 +1,6 @@
+### 0.6.0
+- upgrade all dependencies to latest
+
 ### 0.5.12
 - update: remove default value interceptor response `ExHttp`
 

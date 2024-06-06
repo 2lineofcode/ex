@@ -116,7 +116,7 @@ class ExTextField extends StatelessWidget {
         if (labelText != null) ...[
           HStack(
             [
-              labelText!.text.caption(context).textStyle(labelStyle).make(),
+              labelText!.text.size(12).textStyle(labelStyle).make(),
               if (isRequired == true) ...[
                 ' *'.text.color(Colors.red).make(),
               ],
@@ -166,7 +166,7 @@ class ExTextField extends StatelessWidget {
         ),
         if (helperText != null)
           helperText!.text
-              .caption(context)
+              .size(12)
               .textStyle(helperStyle)
               .make()
               .pOnly(top: 8),

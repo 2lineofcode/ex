@@ -163,7 +163,7 @@ class _LoadingBtnState extends State<ExButtonLoading>
       child: ElevatedButton(
         key: _buttonKey,
         style: ButtonStyle(
-          shape: MaterialStateProperty.all<OutlinedBorder>(
+          shape: WidgetStateProperty.all<OutlinedBorder>(
             RoundedRectangleBorder(
               side: widget.borderSide,
               borderRadius: BorderRadius.circular(
@@ -177,10 +177,9 @@ class _LoadingBtnState extends State<ExButtonLoading>
               ),
             ),
           ),
-          backgroundColor: MaterialStateProperty.all(widget.color),
-          elevation: MaterialStateProperty.all<double?>(widget.elevation),
-          padding:
-              MaterialStateProperty.all<EdgeInsetsGeometry>(widget.padding),
+          backgroundColor: WidgetStateProperty.all(widget.color),
+          elevation: WidgetStateProperty.all<double?>(widget.elevation),
+          padding: WidgetStateProperty.all<EdgeInsetsGeometry>(widget.padding),
         ),
         clipBehavior: widget.clipBehavior,
         focusNode: widget.focusNode,
@@ -260,7 +259,7 @@ class _LoadingBtnState extends State<ExButtonLoading>
       child: TextButton(
         key: _buttonKey,
         style: ButtonStyle(
-          shape: MaterialStateProperty.all<OutlinedBorder>(
+          shape: WidgetStateProperty.all<OutlinedBorder>(
             RoundedRectangleBorder(
               side: widget.borderSide,
               borderRadius: BorderRadius.circular(
@@ -274,10 +273,9 @@ class _LoadingBtnState extends State<ExButtonLoading>
               ),
             ),
           ),
-          backgroundColor: MaterialStateProperty.all(widget.color),
-          elevation: MaterialStateProperty.all<double?>(widget.elevation),
-          padding:
-              MaterialStateProperty.all<EdgeInsetsGeometry>(widget.padding),
+          backgroundColor: WidgetStateProperty.all(widget.color),
+          elevation: WidgetStateProperty.all<double?>(widget.elevation),
+          padding: WidgetStateProperty.all<EdgeInsetsGeometry>(widget.padding),
         ),
         clipBehavior: widget.clipBehavior,
         focusNode: widget.focusNode,

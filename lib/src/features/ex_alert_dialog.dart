@@ -316,7 +316,6 @@ mixin ExAlert {
       ),
       barrierDismissible: isDismissible,
       transitionCurve: Curves.easeInCirc,
-      useSafeArea: true,
     );
   }
 }

@@ -11,7 +11,7 @@ class DateTimePage extends StatelessWidget {
       body: VStack(
         [
           /// 1
-          '# DATE'.text.bodyText1(context).bold.make().pOnly(bottom: 12),
+          '# DATE'.text.bold.make().pOnly(bottom: 12),
           Wrap(
             children: [
               ExButtonOutline(
@@ -43,7 +43,7 @@ class DateTimePage extends StatelessWidget {
           Divider().pSymmetric(v: 10),
 
           /// 2
-          '# TIME'.text.bodyText1(context).bold.make().pOnly(bottom: 12),
+          '# TIME'.text.bold.make().pOnly(bottom: 12),
           Wrap(
             children: [
               ExButtonOutline(
@@ -73,7 +73,7 @@ class DateTimePage extends StatelessWidget {
           Divider().pSymmetric(v: 10),
 
           /// 3
-          '# DATETIME'.text.bodyText1(context).bold.make().pOnly(bottom: 12),
+          '# DATETIME'.text.bold.make().pOnly(bottom: 12),
           Wrap(
             children: [
               ExButtonOutline(

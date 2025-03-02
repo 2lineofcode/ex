@@ -14,7 +14,7 @@ dependencies:
   firebase_core: 
   flutter:
     sdk: flutter
-  ex:
+  ex_kit:
     path: ../
 
 dev_dependencies: 

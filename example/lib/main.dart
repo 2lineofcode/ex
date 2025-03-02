@@ -1,4 +1,4 @@
-import 'package:ex/ex.dart';
+import 'package:ex_kit/ex.dart';
 import 'package:example/app_themes.dart';
 import 'package:example/core_gallery/http_page.dart';
 import 'package:example/core_gallery/log_page.dart';

@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:ex/ex.dart';
+import 'package:ex_kit/ex.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 

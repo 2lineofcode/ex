@@ -1,3 +1,6 @@
+### 0.7.0
+- upgrade all dependencies to latest
+
 ### 0.6.0
 - upgrade all dependencies to latest
 

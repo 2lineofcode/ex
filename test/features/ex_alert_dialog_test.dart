@@ -1,4 +1,4 @@
-import 'package:ex/src/features/ex_alert_dialog.dart';
+import 'package:ex_kit/ex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
